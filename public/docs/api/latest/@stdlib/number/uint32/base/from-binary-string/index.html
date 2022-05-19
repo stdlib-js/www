@@ -1,0 +1,35 @@
+<h1 id="from-binary-string">From Binary String</h1><blockquote><p>Create an unsigned 32-bit integer from a <a href="/docs/api/latest/@stdlib/number/uint32/base/to-binary-string">literal bit representation</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fromBinaryStringUint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint32/base/from-binary-string'</span> );
+</code></pre><h4 id="frombinarystringuint32-bstr-">fromBinaryStringUint32( bstr )</h4><p>Creates an unsigned 32-bit integer from a <a href="/docs/api/latest/@stdlib/number/uint32/base/to-binary-string">literal bit representation</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bstr = <span class="hljs-string">'01010101010101010101010101010101'</span>;
+<span class="hljs-keyword">var</span> val = fromBinaryStringUint32( bstr );
+<span class="hljs-comment">// returns 1431655765</span>
+
+bstr = <span class="hljs-string">'00000000000000000000000000000000'</span>;
+val = fromBinaryStringUint32( bstr );
+<span class="hljs-comment">// returns 0</span>
+
+bstr = <span class="hljs-string">'00000000000000000000000000000010'</span>;
+val = fromBinaryStringUint32( bstr );
+<span class="hljs-comment">// returns 2</span>
+
+bstr = <span class="hljs-string">'11111111111111111111111111111111'</span>;
+val = fromBinaryStringUint32( bstr );
+<span class="hljs-comment">// returns 4294967295</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> MAX_UINT = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/uint32/max'</span> );
+<span class="hljs-keyword">var</span> toBinaryStringUint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint32/base/to-binary-string'</span> );
+<span class="hljs-keyword">var</span> fromBinaryStringUint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint32/base/from-binary-string'</span> );
+
+<span class="hljs-keyword">var</span> b;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Convert random integers to literal bit representations and then convert them back...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = round( randu()*MAX_UINT );
+    b = toBinaryStringUint32( x );
+    y = fromBinaryStringUint32( b );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d => %s => %d'</span>, x, b, y );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

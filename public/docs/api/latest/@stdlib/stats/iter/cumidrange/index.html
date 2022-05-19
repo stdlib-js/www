@@ -1,0 +1,44 @@
+<h1 id="itercumidrange">itercumidrange</h1><blockquote><p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which iteratively computes a cumulative <a href="https://en.wikipedia.org/wiki/Mid-range">mid-range</a>.</p></blockquote><section class="intro"><p>The <a href="https://en.wikipedia.org/wiki/Mid-range"><strong>mid-range</strong></a>, or <strong>mid-extreme</strong>, is the arithmetic mean of maximum and minimum values. Accordingly, the <a href="https://en.wikipedia.org/wiki/Mid-range">mid-range</a> is the midpoint of the <a href="https://en.wikipedia.org/wiki/Range_%28statistics%29">range</a> and a measure of central tendency.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> itercumidrange = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/iter/cumidrange'</span> );
+</code></pre><h4 id="itercumidrange-iterator-">itercumidrange( iterator )</h4><p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which iteratively computes a cumulative <a href="https://en.wikipedia.org/wiki/Mid-range">mid-range</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">7.0</span>, -<span class="hljs-number">5.0</span> ] );
+<span class="hljs-keyword">var</span> it = itercumidrange( arr );
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 2.0</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 1.5</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 2.0</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns -2.0</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns -2.0</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If an iterated value is non-numeric (including <code>NaN</code>), the function returns <code>NaN</code> for <strong>all</strong> future iterations. If non-numeric iterated values are possible, you are advised to provide an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a> which type checks and handles non-numeric values accordingly.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> runif = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/uniform'</span> );
+<span class="hljs-keyword">var</span> itercumidrange = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/iter/cumidrange'</span> );
+
+<span class="hljs-comment">// Create an iterator for generating uniformly distributed pseudorandom numbers:</span>
+<span class="hljs-keyword">var</span> rand = runif( -<span class="hljs-number">10.0</span>, <span class="hljs-number">10.0</span>, {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">100</span>
+});
+
+<span class="hljs-comment">// Create an iterator for iteratively computing a cumulative mid-range:</span>
+<span class="hljs-keyword">var</span> it = itercumidrange( rand );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it.next();
+    <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> v.value === <span class="hljs-string">'number'</span> ) {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'mid-range: %d'</span>, v.value );
+    }
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/iter/cumean"><code>@stdlib/stats/iter/cumean</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative arithmetic mean.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/iter/cumax"><code>@stdlib/stats/iter/cumax</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative maximum value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/iter/cumin"><code>@stdlib/stats/iter/cumin</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative minimum value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/iter/curange"><code>@stdlib/stats/iter/curange</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative range.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/iter/midrange"><code>@stdlib/stats/iter/midrange</code></a></span><span class="delimiter">: </span><span class="description">compute the mid-range of all iterated values.</span></li></ul></section><section class="links"></section>

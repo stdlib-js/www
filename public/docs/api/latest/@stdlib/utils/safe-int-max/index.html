@@ -1,0 +1,22 @@
+<h1 id="safeintmax">safeintmax</h1><blockquote><p>Return the maximum safe integer capable of being represented by a numeric real type.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> safeintmax = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/safe-int-max'</span> );
+</code></pre><h4 id="safeintmax-dtype-">safeintmax( dtype )</h4><p>Returns the maximum <strong>safe</strong> integer capable of being represented by a numeric <strong>real</strong> type.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = safeintmax( <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns 9007199254740991</span>
+</code></pre><p>The following numeric <strong>real</strong> types are supported:</p><ul><li><code>float64</code>: double-precision floating-point numbers</li><li><code>float32</code>: single-precision floating-point numbers</li><li><code>float16</code>: half-precision floating-point numbers</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> safeintmax = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/safe-int-max'</span> );
+
+<span class="hljs-keyword">var</span> m = safeintmax( <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns 9007199254740991</span>
+
+m = safeintmax( <span class="hljs-string">'float32'</span> );
+<span class="hljs-comment">// returns 16777215</span>
+
+m = safeintmax( <span class="hljs-string">'float16'</span> );
+<span class="hljs-comment">// returns 2047</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: safeintmax [options] &#x3C;dtype>
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ safeintmax float16
+2047
+</code></pre></section></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/safe-int-min"><code>@stdlib/utils/safe-int-min</code></a></span><span class="delimiter">: </span><span class="description">return the minimum safe integer capable of being represented by a numeric real type.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/real-max"><code>@stdlib/utils/real-max</code></a></span><span class="delimiter">: </span><span class="description">return the maximum finite value capable of being represented by a numeric real type.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/type-max"><code>@stdlib/utils/type-max</code></a></span><span class="delimiter">: </span><span class="description">return the maximum value of a specified numeric type.</span></li></ul></section><section class="links"></section>

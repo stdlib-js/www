@@ -1,0 +1,91 @@
+<h1 id="unary">Unary</h1><blockquote><p>Apply a unary callback to elements in an input ndarray and assign results to elements in an output ndarray.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unary = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/unary'</span> );
+</code></pre><h4 id="unary-arrays-fcn-">unary( arrays, fcn )</h4><p>Applies a unary callback to elements in an input ndarray and assigns results to elements in an output ndarray.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scale</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">10.0</span>;
+}
+
+<span class="hljs-comment">// Create data buffers:</span>
+<span class="hljs-keyword">var</span> xbuf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">11.0</span>, <span class="hljs-number">12.0</span> ] );
+<span class="hljs-keyword">var</span> ybuf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">6</span> );
+
+<span class="hljs-comment">// Define the shape of the input and output arrays:</span>
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-comment">// Define the array strides:</span>
+<span class="hljs-keyword">var</span> sx = [ <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> sy = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-comment">// Define the index offsets:</span>
+<span class="hljs-keyword">var</span> ox = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">var</span> oy = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create the input and output ndarray-like objects:</span>
+<span class="hljs-keyword">var</span> x = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'data'</span>: xbuf,
+    <span class="hljs-string">'shape'</span>: shape,
+    <span class="hljs-string">'strides'</span>: sx,
+    <span class="hljs-string">'offset'</span>: ox,
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'row-major'</span>
+};
+<span class="hljs-keyword">var</span> y = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'data'</span>: ybuf,
+    <span class="hljs-string">'shape'</span>: shape,
+    <span class="hljs-string">'strides'</span>: sy,
+    <span class="hljs-string">'offset'</span>: oy,
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'row-major'</span>
+};
+
+<span class="hljs-comment">// Apply the unary function:</span>
+unary( [ x, y ], scale );
+
+<span class="hljs-built_in">console</span>.log( y.data );
+<span class="hljs-comment">// => &#x3C;Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: array-like object containing one input ndarray and one output ndarray.</li><li><strong>fcn</strong>: unary function to apply.</li></ul><p>Each provided ndarray should be an <code>object</code> with the following properties:</p><ul><li><strong>dtype</strong>: data type.</li><li><strong>data</strong>: data buffer.</li><li><strong>shape</strong>: dimensions.</li><li><strong>strides</strong>: stride lengths.</li><li><strong>offset</strong>: index offset.</li><li><strong>order</strong>: specifies whether an ndarray is row-major (C-style) or column major (Fortran-style).</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>For very high-dimensional ndarrays which are non-contiguous, one should consider copying the underlying data to contiguous memory before applying a unary function in order to achieve better performance.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> filledarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled'</span> );
+<span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> shape2strides = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/shape2strides'</span> );
+<span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/to-array'</span> );
+<span class="hljs-keyword">var</span> unary = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/unary'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scale</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">10</span>;
+}
+
+<span class="hljs-keyword">var</span> N = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">var</span> x = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'data'</span>: filledarrayBy( N, <span class="hljs-string">'generic'</span>, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) ),
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">5</span>, <span class="hljs-number">2</span> ],
+    <span class="hljs-string">'strides'</span>: [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ],
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'row-major'</span>
+};
+<span class="hljs-keyword">var</span> y = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'data'</span>: filledarray( <span class="hljs-number">0</span>, N, <span class="hljs-string">'generic'</span> ),
+    <span class="hljs-string">'shape'</span>: x.shape.slice(),
+    <span class="hljs-string">'strides'</span>: shape2strides( x.shape, <span class="hljs-string">'column-major'</span> ),
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'column-major'</span>
+};
+
+unary( [ x, y ], scale );
+<span class="hljs-built_in">console</span>.log( ndarray2array( x.data, x.shape, x.strides, x.offset, x.order ) );
+<span class="hljs-built_in">console</span>.log( ndarray2array( y.data, y.shape, y.strides, y.offset, y.order ) );
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"><p>Character codes for data types:</p><ul><li><strong>d</strong>: <code>float64</code> (double-precision floating-point number).</li><li><strong>f</strong>: <code>float32</code> (single-precision floating-point number).</li><li><strong>c</strong>: <code>complex64</code> (single-precision floating-point complex number).</li><li><strong>z</strong>: <code>complex128</code> (double-precision floating-point complex number).</li><li><strong>s</strong>: <code>int8</code> (signed 8-bit integer).</li><li><strong>b</strong>: <code>uint8</code> (unsigned 8-bit integer).</li><li><strong>k</strong>: <code>int16</code> (signed 16-bit integer).</li><li><strong>t</strong>: <code>uint16</code> (unsigned 16-bit integer).</li><li><strong>i</strong>: <code>int32</code> (signed 32-bit integer).</li><li><strong>u</strong>: <code>uint32</code> (unsigned 32-bit integer).</li><li><strong>l</strong>: <code>int64</code> (signed 64-bit integer).</li><li><strong>v</strong>: <code>uint64</code> (unsigned 64-bit integer).</li><li><strong>x</strong>: <code>boolean</code>.</li></ul><p>Function name suffix naming convention:</p><pre><code class="no-highlight language-text">stdlib_ndarray_&#x3C;input_data_type>_&#x3C;output_data_type>[_as_&#x3C;callback_arg_data_type>_&#x3C;callback_return_data_type>]
+</code></pre><p>For example,</p><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_ndarray_d_d</span><span class="hljs-params">(...)</span> </span>{...}
+</code></pre><p>is a function which accepts one double-precision floating-point input ndarray and one double-precision floating-point output ndarray. In other words, the suffix encodes the function type signature.</p><p>To support callbacks whose input arguments and/or return values are of a different data type than the input and/or output ndarray data types, the naming convention supports appending an <code>as</code> suffix. For example,</p><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_ndarray_f_f_as_d_d</span><span class="hljs-params">(...)</span> </span>{...}
+</code></pre><p>is a function which accepts one single-precision floating-point input ndarray and one single-precision floating-point output ndarray. However, the callback accepts and returns double-precision floating-point numbers. Accordingly, the input and output values need to be cast using the following conversion sequence</p><pre><code class="hljs language-c"><span class="hljs-comment">// Convert each input array element to double-precision:</span>
+<span class="hljs-keyword">double</span> dxi = (<span class="hljs-keyword">double</span>)fx[ i ];
+
+<span class="hljs-comment">// Evaluate the callback:</span>
+<span class="hljs-keyword">double</span> dyi = f( dxi );
+
+<span class="hljs-comment">// Convert the callback return value to single-precision:</span>
+fy[ i ] = (<span class="hljs-keyword">float</span>)dyi;
+</code></pre></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/unary.h"</span></span>
+</code></pre><hr><p>FIXME: add docs for the loop interfaces</p></section><section class="notes"></section><hr><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-comment">// <span class="hljs-doctag">FIXME:</span> add example</span>
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/dispatch"><code>@stdlib/ndarray/dispatch</code></a></span><span class="delimiter">: </span><span class="description">create an ndarray function interface which performs multiple dispatch.</span></li></ul></section><section class="links"></section>

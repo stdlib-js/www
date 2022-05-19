@@ -1,0 +1,62 @@
+<h1 id="iterlogspace">iterLogspace</h1><blockquote><p>Create an iterator which returns evenly spaced numbers over a specified interval.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterLogspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/logspace'</span> );
+</code></pre><h4 id="iterlogspace-start-stop-n-options-">iterLogspace( start, stop[, N][, options] )</h4><p>Returns an iterator which returns evenly spaced numbers on a log scale.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterLogspace( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns ~1.26</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns ~1.59</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The returned iterator protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an iterator protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the iterator is finished.</li><li><strong>return</strong>: function which closes an iterator and returns a single (optional) argument in an iterator protocol-compliant object.</li></ul><p>The function accepts the following <code>options</code>:</p><ul><li><strong>base</strong>: base of the log space. Default: <code>10</code>.</li></ul><p>By default, the iterator returns <code>100</code> values. To return an alternative number of values, provide an <code>N</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterLogspace( <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 10</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 100</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>To specify an alternative log base, provide a <code>base</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'base'</span>: <span class="hljs-number">2</span>
+};
+<span class="hljs-keyword">var</span> it = iterLogspace( <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, opts );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 2</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 4</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The returned iterator is guaranteed to include the values <code>base^start</code> and <code>base^stop</code>. Beware, however, that exponents between the <code>start</code> and <code>stop</code> are subject to floating-point rounding errors.</li><li>If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterLogspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/logspace'</span> );
+
+<span class="hljs-comment">// Create a base-2 iterator:</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'base'</span>: <span class="hljs-number">2</span>
+};
+<span class="hljs-keyword">var</span> it = iterLogspace( <span class="hljs-number">0</span>, <span class="hljs-number">16</span>, <span class="hljs-number">17</span>, opts );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it.next();
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( v.value );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/from-iterator"><code>@stdlib/array/from-iterator</code></a></span><span class="delimiter">: </span><span class="description">create (or fill) an array from an iterator.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/datespace"><code>@stdlib/iter/datespace</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns evenly spaced dates over a specified interval.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/incrspace"><code>@stdlib/iter/incrspace</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns evenly spaced numbers according to a specified increment.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/linspace"><code>@stdlib/iter/linspace</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns evenly spaced numbers over a specified interval.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/step"><code>@stdlib/iter/step</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns a sequence of numbers according to a specified increment.</span></li></ul></section><section class="links"></section>

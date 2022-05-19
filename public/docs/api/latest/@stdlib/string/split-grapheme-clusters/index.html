@@ -1,0 +1,23 @@
+<h1 id="splitgraphemeclusters">splitGraphemeClusters</h1><blockquote><p>Split a string by its <a href="http://www.unicode.org/reports/tr29/">grapheme cluster</a> breaks.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> splitGraphemeClusters = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/split-grapheme-clusters'</span> );
+</code></pre><h4 id="splitgraphemeclusters-str-">splitGraphemeClusters( str )</h4><p>Splits a string by its <a href="http://www.unicode.org/reports/tr29/">grapheme cluster</a> breaks.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = splitGraphemeClusters( <span class="hljs-string">'café'</span> );
+<span class="hljs-comment">// returns [ 'c', 'a', 'f', 'é' ]</span>
+
+out = splitGraphemeClusters( <span class="hljs-string">'🍕🍕🍕'</span> );
+<span class="hljs-comment">// returns [ '🍕', '🍕', '🍕' ]</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> splitGraphemeClusters = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/split-grapheme-clusters'</span> );
+
+<span class="hljs-keyword">var</span> out = splitGraphemeClusters( <span class="hljs-string">'abc'</span> );
+<span class="hljs-comment">// returns [ 'a', 'b', 'c' ]</span>
+
+out = splitGraphemeClusters( <span class="hljs-string">'Iñtërnâtiônàlizætiøn'</span> );
+<span class="hljs-comment">// returns [ 'I', 'ñ', 't', 'ë', 'r', 'n', 'â', 't', 'i', 'ô', 'n', 'à', 'l', 'i', 'z', 'æ', 't', 'i', 'ø', 'n' ]</span>
+
+out = splitGraphemeClusters( <span class="hljs-string">'\uD834\uDD1E'</span> );
+<span class="hljs-comment">// returns [ '𝄞' ]</span>
+
+out = splitGraphemeClusters( <span class="hljs-string">'! !'</span> );
+<span class="hljs-comment">// returns [ '!', ' ', '!' ]</span>
+
+out = splitGraphemeClusters( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns []</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

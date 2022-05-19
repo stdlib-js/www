@@ -1,0 +1,42 @@
+<h1 id="rempio2">rempio2</h1><blockquote><p>Compute <code>x - nπ/2 = r</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rempio2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/rempio2'</span> );
+</code></pre><h4 id="rempio2-x-y-">rempio2( x, y )</h4><p>Computes <code>x - nπ/2 = r</code>. The function returns <code>n</code> and stores the remainder <code>r</code> as two numbers in <code>y</code>, such that <code>y[0]+y[1] = r</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ];
+<span class="hljs-keyword">var</span> n = rempio2( <span class="hljs-number">128.0</span>, y );
+<span class="hljs-comment">// returns 81</span>
+
+<span class="hljs-keyword">var</span> y1 = y[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns ~0.765</span>
+
+<span class="hljs-keyword">var</span> y2 = y[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns ~3.618e-17</span>
+</code></pre><p>When <code>x</code> is <code>NaN</code> or infinite, the function returns zero and sets the elements of <code>y</code> to <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ];
+<span class="hljs-keyword">var</span> n = rempio2( <span class="hljs-literal">NaN</span>, y );
+<span class="hljs-comment">// returns 0</span>
+
+<span class="hljs-keyword">var</span> y1 = y[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns NaN</span>
+
+<span class="hljs-keyword">var</span> y2 = y[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns NaN</span>
+
+y = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ];
+n = rempio2( <span class="hljs-literal">Infinity</span>, y );
+<span class="hljs-comment">// returns 0</span>
+
+y1 = y[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns NaN</span>
+
+y2 = y[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>For input values larger than <code>2^20*π/2</code> in magnitude, the function <strong>only</strong> returns the last three binary digits of <code>n</code> and not the full result.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> rempio2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/rempio2'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span>, <span class="hljs-number">100</span> );
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ];
+<span class="hljs-keyword">var</span> n;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    n = rempio2( x[ i ], y );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d - %dπ/2 = %d + %d'</span>, x[ i ], n, y[ <span class="hljs-number">0</span> ], y[ <span class="hljs-number">1</span> ] );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

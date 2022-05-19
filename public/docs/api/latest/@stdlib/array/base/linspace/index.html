@@ -1,0 +1,32 @@
+<h1 id="linspace">linspace</h1><blockquote><p>Generate a linearly spaced numeric array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+</code></pre><h4 id="linspace-start-stop-length-">linspace( start, stop, length )</h4><p>Generates a linearly spaced numeric <code>array</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns [ 0, 20, 40, 60, 80, 100 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The function assumes that <code>length</code> is greater than or equal to <code>2</code>.</p></li><li><p>The output <code>array</code> is guaranteed to include the <code>start</code> and <code>stop</code> values. Beware, however, that values between <code>start</code> and <code>stop</code> are subject to floating-point rounding errors. Hence,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns [ 0, ~0.5, 1 ]</span>
+</code></pre><p>where <code>arr[1]</code> is only guaranteed to be approximately equal to <code>0.5</code>. If you desire more control over element precision, consider using <a href="/docs/api/latest/@stdlib/math/base/special/roundn"><code>roundn</code></a>:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> roundn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/roundn'</span> );
+
+<span class="hljs-comment">// Create an array subject to floating-point rounding errors:</span>
+<span class="hljs-keyword">var</span> arr = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">21</span> );
+
+<span class="hljs-comment">// Round each value to the nearest hundredth:</span>
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    arr[ i ] = roundn( arr[ i ], -<span class="hljs-number">2</span> );
+}
+<span class="hljs-built_in">console</span>.log( arr.join( <span class="hljs-string">'\n'</span> ) );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+
+<span class="hljs-comment">// Create arrays of varying lengths:</span>
+<span class="hljs-keyword">var</span> out = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span> );
+<span class="hljs-built_in">console</span>.log( out );
+
+out = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span> );
+<span class="hljs-built_in">console</span>.log( out );
+
+out = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">21</span> );
+<span class="hljs-built_in">console</span>.log( out );
+
+<span class="hljs-comment">// Create an array with decremented values:</span>
+out = linspace( <span class="hljs-number">10</span>, <span class="hljs-number">0</span>, <span class="hljs-number">11</span> );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="related"></section><section class="links"></section>

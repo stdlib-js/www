@@ -1,0 +1,22 @@
+<h1 id="min-safe-integer">Min Safe Integer</h1><blockquote><p>Minimum safe <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point</a> integer.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT32_MIN_SAFE_INTEGER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float32/min-safe-integer'</span> );
+</code></pre><h4 id="float32_min_safe_integer">FLOAT32_MIN_SAFE_INTEGER</h4><p>The minimum <a href="http://www.2ality.com/2013/10/safe-integers.html">safe</a> <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point</a> integer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( FLOAT32_MIN_SAFE_INTEGER === -<span class="hljs-number">16777215</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
+<span class="hljs-keyword">var</span> FLOAT32_MIN_SAFE_INTEGER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float32/min-safe-integer'</span> );
+
+<span class="hljs-keyword">var</span> min;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> i;
+
+min = -pow( <span class="hljs-number">2.0</span>, <span class="hljs-number">26</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = round( randu() * min );
+    <span class="hljs-keyword">if</span> ( x &#x3C; FLOAT32_MIN_SAFE_INTEGER ) {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Unsafe: %d'</span>, x );
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Safe: %d'</span>, x );
+    }
+}
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float16/min-safe-integer"><code>@stdlib/constants/float16/min-safe-integer</code></a></span><span class="delimiter">: </span><span class="description">minimum safe half-precision floating-point integer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float32/max-safe-integer"><code>@stdlib/constants/float32/max-safe-integer</code></a></span><span class="delimiter">: </span><span class="description">maximum safe single-precision floating-point integer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float64/min-safe-integer"><code>@stdlib/constants/float64/min-safe-integer</code></a></span><span class="delimiter">: </span><span class="description">minimum safe double-precision floating-point integer.</span></li></ul></section><section class="links"></section>

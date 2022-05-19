@@ -1,0 +1,36 @@
+<h1 id="promotion-rules">Promotion Rules</h1><blockquote><p>Return the complex number <a href="/docs/api/latest/@stdlib/complex/dtypes">data type</a> with the smallest size and closest "kind" to which data types can be <strong>safely</strong> cast.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> promotionRules = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/promotion-rules'</span> );
+</code></pre><h4 id="promotionrules-dtype1-dtype2-">promotionRules( [dtype1, dtype2] )</h4><p>If provided data types, returns the complex number <a href="/docs/api/latest/@stdlib/complex/dtypes">data type</a> with the smallest size and closest "kind" to which data types can be <strong>safely</strong> cast.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = promotionRules( <span class="hljs-string">'complex128'</span>, <span class="hljs-string">'complex64'</span> );
+<span class="hljs-comment">// returns 'complex128'</span>
+</code></pre><p>If not provided data types, the function returns a promotion table.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = promotionRules();
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-keyword">var</span> c128 = out[ <span class="hljs-string">'complex128'</span> ];
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-keyword">var</span> rule = c128[ <span class="hljs-string">'uint32'</span> ];
+<span class="hljs-comment">// returns 'complex128'</span>
+</code></pre><p>If provided an unrecognized or unsupported <code>dtype</code>, the function returns <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = promotionRules( <span class="hljs-string">'foo'</span>, <span class="hljs-string">'complex128'</span> );
+<span class="hljs-comment">// returns null</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If a <a href="/docs/api/latest/@stdlib/complex/dtypes">data type</a> to which data types can be safely cast does <strong>not</strong> exist (or is not supported), the function returns <code>-1</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/dtypes'</span> );
+<span class="hljs-keyword">var</span> promotionRules = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/promotion-rules'</span> );
+
+<span class="hljs-keyword">var</span> DTYPES;
+<span class="hljs-keyword">var</span> dt1;
+<span class="hljs-keyword">var</span> dt2;
+<span class="hljs-keyword">var</span> dt;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> j;
+
+<span class="hljs-comment">// Get the list of supported data types:</span>
+DTYPES = dtypes();
+
+<span class="hljs-comment">// Print the promotion rule for each pair of data types...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; DTYPES.length; i++ ) {
+    dt1 = DTYPES[ i ];
+    <span class="hljs-keyword">for</span> ( j = <span class="hljs-number">0</span>; j &#x3C; DTYPES.length; j++ ) {
+        dt2 = DTYPES[ j ];
+        dt = promotionRules( dt1, dt2 );
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'(%s, %s) => %s'</span>, dt1, dt2, dt );
+    }
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

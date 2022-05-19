@@ -1,0 +1,62 @@
+<h1 id="from-words">From Words</h1><blockquote><p>Create a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> from a higher order word and a lower order word.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fromWords = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/from-words'</span> );
+</code></pre><h4 id="fromwords-high-low-">fromWords( high, low )</h4><p>Creates a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> from a higher order word (unsigned 32-bit <code>integer</code>) and a lower order word (unsigned 32-bit <code>integer</code>).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = fromWords( <span class="hljs-number">1774486211</span>, <span class="hljs-number">2479577218</span> );
+<span class="hljs-comment">// returns 3.14e201</span>
+
+v = fromWords( <span class="hljs-number">3221823995</span>, <span class="hljs-number">1413754136</span> );
+<span class="hljs-comment">// returns -3.141592653589793</span>
+
+v = fromWords( <span class="hljs-number">0</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = fromWords( <span class="hljs-number">2147483648</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns -0.0</span>
+
+v = fromWords( <span class="hljs-number">2146959360</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = fromWords( <span class="hljs-number">2146435072</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns Infinity</span>
+
+v = fromWords( <span class="hljs-number">4293918720</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns -Infinity</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>For more information regarding higher and lower order words, see <a href="/docs/api/latest/@stdlib/number/float64/base/to-words">to-words</a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> MAX_UINT32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/uint32/max'</span> );
+<span class="hljs-keyword">var</span> fromWords = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/from-words'</span> );
+
+<span class="hljs-keyword">var</span> high;
+<span class="hljs-keyword">var</span> low;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    high = round( randu()*MAX_UINT32 );
+    low = round( randu()*MAX_UINT32 );
+    x = fromWords( high, low );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'higher: %d. lower: %d. float: %d.'</span>, high, low, x );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float64/base/from_words.h"</span></span>
+</code></pre><h4 id="stdlib_base_float64_from_words-high-low-x-">stdlib_base_float64_from_words( high, low, *x )</h4><p>Creates a double-precision floating-point number from a higher order word and a lower order word.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-keyword">uint32_t</span> high = <span class="hljs-number">1074339512</span>;
+<span class="hljs-keyword">uint32_t</span> low = <span class="hljs-number">1374389535</span>;
+
+<span class="hljs-keyword">double</span> x;
+stdlib_base_float64_from_words( high, low, &#x26;x );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>high</strong>: <code>[in] uint32_t</code> higher order word.</li><li><strong>low</strong>: <code>[in] uint32_t</code> lower order word.</li><li><strong>x</strong>: <code>[out] double*</code> destination for a double-precision floating-point number.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_base_float64_from_words</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">uint32_t</span> high, <span class="hljs-keyword">const</span> <span class="hljs-keyword">uint32_t</span> low, <span class="hljs-keyword">double</span> *x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float64/base/from_words.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">uint32_t</span> high = <span class="hljs-number">1074339512</span>;
+    <span class="hljs-keyword">uint32_t</span> low[] = { <span class="hljs-number">0</span>, <span class="hljs-number">10000</span>, <span class="hljs-number">1000000</span>, <span class="hljs-number">1374389535</span> };
+
+    <span class="hljs-keyword">double</span> x;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        stdlib_base_float64_from_words( high, low[ i ], &#x26;x );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"high: %u, low: %u => %lf\n"</span>, high, low[ i ], x );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,23 @@
+<h1 id="issamenativeclass">isSameNativeClass</h1><blockquote><p>Test if two arguments have the same native class.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameNativeClass = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-native-class'</span> );
+</code></pre><h4 id="issamenativeclass-a-b-">isSameNativeClass( a, b )</h4><p>Tests if two arguments <code>a</code> and <code>b</code> have the same <a href="/docs/api/latest/@stdlib/utils/native-class">native class</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isSameNativeClass( <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameNativeClass( [], {} );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameNativeClass = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-native-class'</span> );
+
+<span class="hljs-keyword">var</span> bool = isSameNativeClass( <span class="hljs-number">3.14</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">3.14</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameNativeClass( <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameNativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>( <span class="hljs-string">'beep'</span> ), <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>( <span class="hljs-string">'boop'</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameNativeClass( [], {} );
+<span class="hljs-comment">// returns false</span>
+
+bool = isSameNativeClass( <span class="hljs-literal">null</span>, <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,29 @@
+<h1 id="msg2id">msg2id</h1><blockquote><p>Return a two-character error identifier corresponding to a provided error message.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> msg2id = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/tools/msg2id'</span> );
+</code></pre><h4 id="msg2id-msg-">msg2id( msg )</h4><p>Returns a two-character error identifier corresponding to a provided error message.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = msg2id( <span class="hljs-string">'invalid value. `%s` must be a number. Value: `%s`.'</span> );
+<span class="hljs-comment">// e.g., returns '6d'</span>
+</code></pre><p>If provided an unrecognized error message, the function returns <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = msg2id( <span class="hljs-string">'beep boop baz'</span> );
+<span class="hljs-comment">// returns null</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> msg2id = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/tools/msg2id'</span> );
+
+<span class="hljs-keyword">var</span> list;
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+list = [
+    <span class="hljs-string">'invalid argument. First argument must be a number and not `NaN`. Value: `%s`.'</span>,
+    <span class="hljs-string">'invalid argument. First argument must be a positive integer. Value: `%s`.'</span>
+];
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; list.length; i++ ) {
+    v = list[ i ];
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'msg: "%s". id: "%s".'</span>, v, msg2id( v ) );
+}
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: stdlib-msg2id [options] &#x3C;msg>
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ stdlib-msg2id <span class="hljs-string">'invalid value. `%s` must be a number. Value: `%s`.'</span>
+6d
+</code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

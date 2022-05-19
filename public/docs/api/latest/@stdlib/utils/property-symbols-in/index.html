@@ -1,0 +1,28 @@
+<h1 id="propertysymbolsin">propertySymbolsIn</h1><blockquote><p>Return an array of an object's own and inherited <a href="/docs/api/latest/@stdlib/symbol/ctor">symbol</a> properties.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> propertySymbolsIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/property-symbols-in'</span> );
+</code></pre><h4 id="propertysymbolsin-obj-">propertySymbolsIn( obj )</h4><p>Returns an <code>array</code> of an object's own and inherited <a href="/docs/api/latest/@stdlib/symbol/ctor">symbol</a> properties.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> symbols = propertySymbolsIn( [] );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In contrast to the built-in <code>Object.getOwnPropertySymbols()</code>, if provided <code>null</code> or <code>undefined</code>, the function returns an empty <code>array</code>, rather than throwing an error.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
+<span class="hljs-keyword">var</span> propertySymbolsIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/property-symbols-in'</span> );
+
+<span class="hljs-keyword">var</span> hasSymbols;
+<span class="hljs-keyword">var</span> symbols;
+<span class="hljs-keyword">var</span> obj;
+
+hasSymbols = hasSymbolSupport();
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> ( hasSymbols ) {
+        <span class="hljs-built_in">this</span>[ <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'beep'</span> ) ] = <span class="hljs-string">'boop'</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+
+<span class="hljs-keyword">if</span> ( hasSymbols ) {
+    Foo.prototype[ <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'foo'</span> ) ] = <span class="hljs-string">'bar'</span>;
+}
+
+obj = <span class="hljs-keyword">new</span> Foo();
+symbols = propertySymbolsIn( obj );
+
+<span class="hljs-built_in">console</span>.log( symbols );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-names-in"><code>@stdlib/utils/property-names-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited enumerable and non-enumerable property names.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-symbols"><code>@stdlib/utils/property-symbols</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own symbol properties.</span></li></ul></section><section class="links"></section>

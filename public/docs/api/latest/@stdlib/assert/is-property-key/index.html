@@ -1,0 +1,30 @@
+<h1 id="ispropertykey">isPropertyKey</h1><blockquote><p>Test whether a value is a property key.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isPropertyKey = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-property-key'</span> );
+</code></pre><h4 id="ispropertykey-value-">isPropertyKey( value )</h4><p>Tests whether a value is a property key.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isPropertyKey( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPropertyKey( <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>A valid property key is either a string, symbol, or a nonnegative integer. For example, <code>'beep'</code>, <code>Symbol( 'beep' )</code>, and <code>3</code> are all valid property keys.</li><li>Only primitive values are considered to be valid property keys. This excludes object wrappers such as <code>new String( 'beep' )</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
+<span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
+<span class="hljs-keyword">var</span> isPropertyKey = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-property-key'</span> );
+
+<span class="hljs-keyword">var</span> hasSymbols = hasSymbolSupport();
+<span class="hljs-keyword">var</span> bool = isPropertyKey( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">if</span> ( hasSymbols ) {
+    bool = isPropertyKey( <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'beep'</span> ) );
+    <span class="hljs-comment">// returns true</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment does not support symbols.'</span> );
+}
+
+bool = isPropertyKey( <span class="hljs-number">37</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPropertyKey( {} );
+<span class="hljs-comment">// returns false</span>
+
+bool = isPropertyKey( [] );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,31 @@
+<h1 id="padjust">padjust</h1><blockquote><p>Adjust supplied p-values for multiple comparisons.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> padjust = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/padjust'</span> );
+</code></pre><h4 id="padjust-pvals-method-comparisons-">padjust( pvals, method[, comparisons] )</h4><p>Adjusts supplied p-values for multiple comparisons via a specified method.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = padjust( [ <span class="hljs-number">0.1496</span>, <span class="hljs-number">0.0275</span>, <span class="hljs-number">0.3053</span>, <span class="hljs-number">0.1599</span>, <span class="hljs-number">0.2061</span> ], <span class="hljs-string">'bonferroni'</span> );
+<span class="hljs-comment">// returns [ 0.748, ~0.138, ..., ~0.799, 1 ]</span>
+</code></pre><p>The <code>method</code> parameter can be one of the following values:</p><ul><li><strong>bh</strong>: Benjamini-Hochberg procedure controlling the False Discovery Rate (FDR).</li><li><strong>bonferroni</strong>: Bonferroni correction fixing the family-wise error rate by multiplying the p-values with the number of comparisons. The Bonferroni correction is usually a too conservative adjustment compared to the others.</li><li><strong>by</strong>: Procedure by Benjamini &#x26; Yekutieli for controlling the False Discovery Rate (FDR) under dependence.</li><li><strong>holm</strong>: Hommel's method controlling family-wise error rate. It is uniformly more powerful than the Bonferroni correction.</li><li><strong>hommel</strong>: Hommel's method, which is valid when hypothesis tests are independent. It is more expensive to compute than the other methods.</li></ul><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pvalues = [ <span class="hljs-number">0.319</span>, <span class="hljs-number">0.201</span>, <span class="hljs-number">0.4</span>, <span class="hljs-number">0.374</span>, <span class="hljs-number">0.113</span> ];
+<span class="hljs-keyword">var</span> out = padjust( pvalues, <span class="hljs-string">'holm'</span> );
+<span class="hljs-comment">// returns [ ~0.957, 0.804, ..., ~0.957, ~0.565 ]</span>
+
+out = padjust( pvalues, <span class="hljs-string">'bh'</span> );
+<span class="hljs-comment">// returns [ 0.4, 0.4, ..., 0.4, 0.4 ]</span>
+</code></pre><p>By default, the number of comparisons for which the p-values should be corrected is equal to the number of provided p-values. Alternatively, it is possible to set <code>comparisons</code> to a number greater than the length of <code>pvals</code>. In that case, the methods assume <code>comparisons - pvals.length</code> unobserved p-values that are greater than all observed p-values (for Holm's method and the Bonferroni correction) or equal to <code>1</code> for the remaining methods.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pvalues = [ <span class="hljs-number">0.319</span>, <span class="hljs-number">0.201</span>, <span class="hljs-number">0.4</span>, <span class="hljs-number">0.374</span>, <span class="hljs-number">0.113</span> ];
+<span class="hljs-keyword">var</span> out = padjust( pvalues, <span class="hljs-string">'bh'</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns [ 0.8, 0.8, ..., 0.8, 0.8 ]</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> padjust = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/padjust'</span> );
+
+<span class="hljs-keyword">var</span> pvalues = [ <span class="hljs-number">0.008</span>, <span class="hljs-number">0.03</span>, <span class="hljs-number">0.123</span>, <span class="hljs-number">0.6</span>, <span class="hljs-number">0.2</span> ];
+
+<span class="hljs-keyword">var</span> out = padjust( pvalues, <span class="hljs-string">'bh'</span> );
+<span class="hljs-comment">// returns [ 0.04, 0.075, ~0.205, 0.6, 0.25 ]</span>
+
+out = padjust( pvalues, <span class="hljs-string">'bonferroni'</span> );
+<span class="hljs-comment">// returns [ 0.04, 0.15, 0.615, 1.0, 1.0 ]</span>
+
+out = padjust( pvalues, <span class="hljs-string">'by'</span> );
+<span class="hljs-comment">// returns [ ~0.457, ~0.856, 1.0, 1.0, 1.0 ]</span>
+
+out = padjust( pvalues, <span class="hljs-string">'holm'</span> );
+<span class="hljs-comment">// returns [ 0.2, 0.6, 1.0, 1.0, 1.0 ]</span>
+
+out = padjust( pvalues, <span class="hljs-string">'hommel'</span> );
+<span class="hljs-comment">// returns [ 0.16, 0.6, 1.0, 1.0, 1.0 ]</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

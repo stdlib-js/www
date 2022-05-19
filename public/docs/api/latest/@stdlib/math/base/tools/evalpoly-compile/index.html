@@ -1,0 +1,57 @@
+<h1 id="evalpoly">evalpoly</h1><blockquote><p>Compile a module for evaluating a <a href="/docs/api/latest/@stdlib/math/base/tools/evalpoly">polynomial</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> compile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/tools/evalpoly-compile'</span> );
+</code></pre><h4 id="compile-c-">compile( c )</h4><p>Compiles a module <code>string</code> containing an exported function which evaluates a <a href="/docs/api/latest/@stdlib/math/base/tools/evalpoly">polynomial</a> having coefficients <code>c</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = compile( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span> ] );
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre><p>In the example above, the output <code>string</code> would correspond to the following module:</p><pre><code class="hljs language-javascript"><span class="hljs-meta">'use strict'</span>;
+
+<span class="hljs-comment">// MAIN //</span>
+
+<span class="hljs-comment">/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* <span class="hljs-doctag">@private</span>
+* <span class="hljs-doctag">@param <span class="hljs-type">{number}</span> <span class="hljs-variable">x</span></span> - value at which to evaluate the polynomial
+* <span class="hljs-doctag">@returns <span class="hljs-type">{number}</span> </span>evaluated polynomial
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">evalpoly</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-keyword">if</span> ( x === <span class="hljs-number">0.0</span> ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">3.0</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3.0</span> + (x * (<span class="hljs-number">2.0</span> + (x * <span class="hljs-number">1.0</span>))); <span class="hljs-comment">// eslint-disable-line max-len</span>
+}
+
+
+<span class="hljs-comment">// EXPORTS //</span>
+
+<span class="hljs-built_in">module</span>.exports = evalpoly;
+</code></pre><p>The coefficients should be ordered in <strong>ascending</strong> degree, thus matching summation notation.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function is intended for <strong>non-browser</strong> environments for the purpose of generating module files.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> compile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/tools/evalpoly-compile'</span> );
+
+<span class="hljs-keyword">var</span> coef;
+<span class="hljs-keyword">var</span> sign;
+<span class="hljs-keyword">var</span> str;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Create an array of random coefficients...</span>
+coef = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; coef.length; i++ ) {
+    <span class="hljs-keyword">if</span> ( randu() &#x3C; <span class="hljs-number">0.5</span> ) {
+        sign = -<span class="hljs-number">1.0</span>;
+    } <span class="hljs-keyword">else</span> {
+        sign = <span class="hljs-number">1.0</span>;
+    }
+    coef[ i ] = sign * round( randu()*<span class="hljs-number">100.0</span> );
+}
+
+<span class="hljs-comment">// Compile a module for evaluating a polynomial:</span>
+str = compile( coef );
+<span class="hljs-built_in">console</span>.log( str );
+</code></pre></section><section class="related"></section><section class="links"></section>

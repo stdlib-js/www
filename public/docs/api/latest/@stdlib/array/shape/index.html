@@ -1,0 +1,112 @@
+<h1 id="array-shape">Array Shape</h1><blockquote><p>Determine (nested) array dimensions.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arrayShape = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/shape'</span> );
+</code></pre><h4 id="arrayshape-arr-">arrayShape( arr )</h4><p>Returns array dimensions.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
+    [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ],
+    [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span> ]
+];
+
+<span class="hljs-keyword">var</span> shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 3, 3 ]</span>
+</code></pre><p>The function <strong>ignores</strong> inconsistent dimensions.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
+    [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ],
+    [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ]
+];
+
+<span class="hljs-keyword">var</span> shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 3 ]</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arrayShape = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/shape'</span> );
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
+<span class="hljs-keyword">var</span> shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 3 ]</span>
+
+arr = [
+    [ <span class="hljs-number">1</span> ],
+    [ <span class="hljs-number">2</span> ],
+    [ <span class="hljs-number">3</span> ]
+];
+shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 3, 1 ]</span>
+
+arr = [
+    [],
+    [],
+    []
+];
+shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 3, 0 ]</span>
+
+arr = [
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ]
+];
+shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 1, 3 ]</span>
+
+arr = [
+    [ [ <span class="hljs-number">1</span> ] ],
+    [ [ <span class="hljs-number">2</span> ] ],
+    [ [ <span class="hljs-number">3</span> ] ]
+];
+shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 3, 1, 1 ]</span>
+
+arr = [ [ [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] ] ] ];
+shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 1, 1, 1, 3 ]</span>
+
+arr = [
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ],
+    [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ]
+];
+shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 2, 2 ]</span>
+
+arr = [
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
+    [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ],
+    [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span> ]
+];
+shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 3, 3 ]</span>
+
+arr = [
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
+    <span class="hljs-literal">null</span>,
+    [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span> ]
+];
+shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 3 ]</span>
+
+arr = [
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
+    [ [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ] ],
+    [ [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span> ] ]
+];
+shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 3 ]</span>
+
+arr = [
+    [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] ],
+    [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ],
+    [ [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span> ] ]
+];
+shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 3 ]</span>
+
+arr = [
+    [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] ],
+    [ [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ] ],
+    [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span> ]
+];
+shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 3 ]</span>
+
+arr = [
+    [ [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] ] ],
+    [ [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ] ],
+    [ [ [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span> ] ] ]
+];
+shape = arrayShape( arr );
+<span class="hljs-comment">// returns [ 3, 1 ]</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li></ul></section><section class="links"></section>

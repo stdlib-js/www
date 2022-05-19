@@ -1,0 +1,214 @@
+<h1 id="ind2sub">ind2sub</h1><blockquote><p>Convert a linear index to an array of subscripts.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ind2sub = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/ind2sub'</span> );
+</code></pre><h4 id="ind2sub-shape-strides-offset-order-idx-mode-">ind2sub( shape, strides, offset, order, idx, mode )</h4><p>Converts a linear index to an array of subscripts.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">var</span> subscripts = ind2sub( shape, strides, offset, order, <span class="hljs-number">1</span>, <span class="hljs-string">'throw'</span> );
+<span class="hljs-comment">// returns [ 0, 1 ]</span>
+</code></pre><p>The function supports the following <code>modes</code>:</p><ul><li><code>throw</code>: specifies that the function should throw an error when a linear index exceeds array dimensions.</li><li><code>wrap</code>: specifies that the function should wrap around a linear index exceeding array dimensions using modulo arithmetic.</li><li><code>clamp</code>: specifies that the function should set a linear index exceeding array dimensions to either <code>0</code> (minimum linear index) or the maximum linear index.</li></ul><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">var</span> idx = ind2sub( shape, strides, offset, order, -<span class="hljs-number">2</span>, <span class="hljs-string">'wrap'</span> );
+<span class="hljs-comment">// returns [ 1, 0 ]</span>
+
+idx = ind2sub( shape, strides, offset, order, <span class="hljs-number">10</span>, <span class="hljs-string">'clamp'</span> );
+<span class="hljs-comment">// returns [ 1, 1 ]</span>
+</code></pre><p>The <code>order</code> parameter specifies whether an array is <code>row-major</code> (C-style) or <code>column-major</code> (Fortran-style).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'column-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">var</span> idx = ind2sub( shape, strides, offset, order, <span class="hljs-number">2</span>, <span class="hljs-string">'throw'</span> );
+<span class="hljs-comment">// returns [ 0, 1 ]</span>
+</code></pre><h4 id="ind2subassign-shape-strides-offset-order-idx-mode-out-">ind2sub.assign( shape, strides, offset, order, idx, mode, out )</h4><p>Converts a linear index to an array of subscripts and assigns results to a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> subscripts = ind2sub.assign( shape, strides, offset, order, <span class="hljs-number">1</span>, <span class="hljs-string">'throw'</span>, out );
+<span class="hljs-comment">// returns [ 0, 1 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( subscripts === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>When provided a stride array containing negative strides, if an <code>offset</code> is greater than <code>0</code>, the function interprets the linear index as an index into the underlying data buffer for the array, thus returning subscripts from the perspective of that buffer. If an <code>offset</code> is equal to <code>0</code>, the function treats the linear index as an index into an array view, thus returning subscripts from the perspective of that view.</p><pre><code class="no-highlight language-text">Dims: 2x2
+Buffer: [ 1, 2, 3, 4 ]
+
+View = [ a00, a01,
+         a10, a11 ]
+
+Strides: 2,1
+Offset: 0
+
+View = [ 1, 2,
+         3, 4 ]
+
+Strides: 2,-1
+Offset: 1
+
+View = [ 2, 1,
+         4, 3 ]
+
+Strides: -2,1
+Offset: 2
+
+View = [ 3, 4,
+         1, 2 ]
+
+Strides: -2,-1
+Offset: 3
+
+View = [ 4, 3,
+         2, 1 ]
+</code></pre><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ -<span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">var</span> mode = <span class="hljs-string">'throw'</span>;
+
+<span class="hljs-comment">// From the perspective of a view...</span>
+<span class="hljs-keyword">var</span> s = ind2sub( shape, strides, <span class="hljs-number">0</span>, order, <span class="hljs-number">0</span>, mode );
+<span class="hljs-comment">// returns [ 0, 0 ]</span>
+
+s = ind2sub( shape, strides, <span class="hljs-number">0</span>, order, <span class="hljs-number">1</span>, mode );
+<span class="hljs-comment">// returns [ 0, 1 ]</span>
+
+s = ind2sub( shape, strides, <span class="hljs-number">0</span>, order, <span class="hljs-number">2</span>, mode );
+<span class="hljs-comment">// returns [ 1, 0 ]</span>
+
+s = ind2sub( shape, strides, <span class="hljs-number">0</span>, order, <span class="hljs-number">3</span>, mode );
+<span class="hljs-comment">// returns [ 1, 1 ]</span>
+
+<span class="hljs-comment">// From the perspective of an underlying buffer...</span>
+s = ind2sub( shape, strides, offset, order, <span class="hljs-number">0</span>, mode );
+<span class="hljs-comment">// returns [ 1, 0 ]</span>
+
+s = ind2sub( shape, strides, offset, order, <span class="hljs-number">1</span>, mode );
+<span class="hljs-comment">// returns [ 1, 1 ]</span>
+
+s = ind2sub( shape, strides, offset, order, <span class="hljs-number">2</span>, mode );
+<span class="hljs-comment">// returns [ 0, 0 ]</span>
+
+s = ind2sub( shape, strides, offset, order, <span class="hljs-number">3</span>, mode );
+<span class="hljs-comment">// returns [ 0, 1 ]</span>
+</code></pre><p>In short, from the perspective of a view, view data is always ordered.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> shape2strides = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/shape2strides'</span> );
+<span class="hljs-keyword">var</span> strides2offset = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/strides2offset'</span> );
+<span class="hljs-keyword">var</span> numel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/numel'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+<span class="hljs-keyword">var</span> ind2sub = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/ind2sub'</span> );
+
+<span class="hljs-comment">// Specify array characteristics:</span>
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+
+<span class="hljs-comment">// Compute array meta data:</span>
+<span class="hljs-keyword">var</span> ndims = shape.length;
+<span class="hljs-keyword">var</span> strides = shape2strides( shape, order );
+<span class="hljs-keyword">var</span> len = numel( shape );
+
+<span class="hljs-comment">// Determine stride indices to be used for formatting how views are displayed...</span>
+<span class="hljs-keyword">var</span> s0;
+<span class="hljs-keyword">var</span> s1;
+<span class="hljs-keyword">if</span> ( order === <span class="hljs-string">'column-major'</span> ) {
+    s0 = ndims - <span class="hljs-number">1</span>;
+    s1 = s0 - <span class="hljs-number">1</span>;
+} <span class="hljs-keyword">else</span> { <span class="hljs-comment">// row-major</span>
+    s0 = <span class="hljs-number">0</span>;
+    s1 = s0 + <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-comment">// Initialize a linear array...</span>
+<span class="hljs-keyword">var</span> arr = [];
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; len; i++ ) {
+    arr.push( <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-comment">// Generate random views and display the mapping of elements in the linear array to view subscripts...</span>
+<span class="hljs-keyword">var</span> offset;
+<span class="hljs-keyword">var</span> row;
+<span class="hljs-keyword">var</span> j;
+<span class="hljs-keyword">var</span> s;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">20</span>; i++ ) {
+    <span class="hljs-comment">// Randomly flip the sign of one of the strides...</span>
+    j = discreteUniform( <span class="hljs-number">0</span>, ndims-<span class="hljs-number">1</span> );
+    strides[ j ] *= ( randu() &#x3C; <span class="hljs-number">0.5</span> ) ? -<span class="hljs-number">1</span> : <span class="hljs-number">1</span>;
+    offset = strides2offset( shape, strides );
+
+    <span class="hljs-comment">// Print view meta data...</span>
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Dimensions: %s.'</span>, shape.join( <span class="hljs-string">'x'</span> ) );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Strides: %s.'</span>, strides.join( <span class="hljs-string">','</span> ) );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'View (subscripts):'</span> );
+
+    <span class="hljs-comment">// Print the mapping of elements in the linear array to view subscripts...</span>
+    row = <span class="hljs-string">'  '</span>;
+    <span class="hljs-keyword">for</span> ( j = <span class="hljs-number">0</span>; j &#x3C; len; j++ ) {
+        s = ind2sub( shape, strides, offset, order, j, <span class="hljs-string">'throw'</span> );
+        row += <span class="hljs-string">'('</span> + s.join( <span class="hljs-string">','</span> ) + <span class="hljs-string">')'</span>;
+        <span class="hljs-keyword">if</span> ( ndims === <span class="hljs-number">1</span> &#x26;&#x26; j === len-<span class="hljs-number">1</span> ) {
+            <span class="hljs-built_in">console</span>.log( row );
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( ndims === <span class="hljs-number">2</span> &#x26;&#x26; (j+<span class="hljs-number">1</span>)%abs( strides[ s0 ] ) === <span class="hljs-number">0</span> ) {
+            <span class="hljs-built_in">console</span>.log( row );
+            row = <span class="hljs-string">'  '</span>;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( ndims > <span class="hljs-number">2</span> &#x26;&#x26; (j+<span class="hljs-number">1</span>)%abs( strides[ s1 ] ) === <span class="hljs-number">0</span> ) {
+            <span class="hljs-built_in">console</span>.log( row );
+            <span class="hljs-keyword">if</span> ( (j+<span class="hljs-number">1</span>)%abs( strides[ s0 ] ) === <span class="hljs-number">0</span> ) {
+                <span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
+            }
+            row = <span class="hljs-string">'  '</span>;
+        } <span class="hljs-keyword">else</span> {
+            row += <span class="hljs-string">', '</span>;
+        }
+    }
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/ind2sub.h"</span></span>
+</code></pre><h4 id="stdlib_ndarray_ind2sub-ndims-shape-strides-offset-order-idx-mode-out-">stdlib_ndarray_ind2sub( ndims, *shape, *strides, offset, order, idx, mode, *out )</h4><p>Computes the minimum and maximum linear indices in an underlying data buffer accessible to an array view.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/index_modes.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/orders.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-keyword">int64_t</span> ndims = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span>, <span class="hljs-number">3</span> };
+<span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">-3</span>, <span class="hljs-number">1</span> };
+<span class="hljs-keyword">int64_t</span> offset = <span class="hljs-number">6</span>;
+
+<span class="hljs-keyword">int64_t</span> out[ <span class="hljs-number">2</span> ];
+
+<span class="hljs-keyword">int8_t</span> status = stdlib_ndarray_ind2sub( ndims, shape, strides, offset, STDLIB_NDARRAY_ROW_MAJOR, <span class="hljs-number">7</span>, STDLIB_NDARRAY_INDEX_ERROR, out );
+<span class="hljs-keyword">if</span> ( status == <span class="hljs-number">-1</span> ) {
+    <span class="hljs-comment">// Handle error...</span>
+}
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>ndims</strong>: <code>[in] int64_t</code> number of dimensions.</li><li><strong>shape</strong>: <code>[in] int64_t*</code> array shape (dimensions).</li><li><strong>strides</strong>: <code>[in] int64_t*</code> array strides.</li><li><strong>offset</strong>: <code>[in] int64_t</code> index offset.</li><li><strong>order</strong>: <code>[in] enum STDLIB_NDARRAY_ORDER</code> specifies whether an array is row-major (C-style) or column-major (Fortran-style).</li><li><strong>idx</strong>: <code>[in] int64_t</code> linear index in an array view.</li><li><strong>mode</strong>: <code>[in] enum STDLIB_NDARRAY_INDEX_MODE</code> specifies how to handle a linear index which exceeds array dimensions.</li><li><strong>out</strong>: <code>[out] int64_t*</code> output array.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">int8_t</span> <span class="hljs-title">stdlib_ndarray_ind2sub</span><span class="hljs-params">( <span class="hljs-keyword">int64_t</span> ndims, <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">int64_t</span> offset, <span class="hljs-keyword">enum</span> STDLIB_NDARRAY_ORDER order, <span class="hljs-keyword">int64_t</span> idx, <span class="hljs-keyword">enum</span> STDLIB_NDARRAY_INDEX_MODE mode, <span class="hljs-keyword">int64_t</span> *out )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/ind2sub.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/index_modes.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/orders.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;inttypes.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int64_t</span> ndims = <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">3</span>, <span class="hljs-number">3</span> };
+    <span class="hljs-keyword">int64_t</span> strides[] = { <span class="hljs-number">-3</span>, <span class="hljs-number">1</span> };
+    <span class="hljs-keyword">int64_t</span> offset = <span class="hljs-number">6</span>;
+
+    <span class="hljs-keyword">int64_t</span> out[ <span class="hljs-number">2</span> ];
+
+    stdlib_ndarray_ind2sub( ndims, shape, strides, offset, STDLIB_NDARRAY_ROW_MAJOR, <span class="hljs-number">7</span>, STDLIB_NDARRAY_INDEX_ERROR, out );
+
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-built_in">printf</span>( <span class="hljs-string">"subscripts = { "</span> );
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; ndims; i++ ) {
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"%"</span>PRId64<span class="hljs-string">""</span>, out[ i ] );
+        <span class="hljs-keyword">if</span> ( i &#x3C; ndims<span class="hljs-number">-1</span> ) {
+            <span class="hljs-built_in">printf</span>( <span class="hljs-string">", "</span> );
+        }
+    }
+    <span class="hljs-built_in">printf</span>( <span class="hljs-string">" }\n"</span> );
+}
+</code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

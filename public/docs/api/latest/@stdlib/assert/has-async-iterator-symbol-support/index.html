@@ -1,0 +1,20 @@
+<h1 id="async-iterator-symbol-support">Async Iterator Symbol Support</h1><blockquote><p>Detect native <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol.asyncIterator</code></a> support.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasAsyncIteratorSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-async-iterator-symbol-support'</span> );
+</code></pre><h4 id="hasasynciteratorsymbolsupport">hasAsyncIteratorSymbolSupport()</h4><p>Detects if a runtime environment supports ES2018 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol.asyncIterator</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasAsyncIteratorSymbolSupport();
+<span class="hljs-comment">// returns &#x3C;boolean></span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasAsyncIteratorSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-async-iterator-symbol-support'</span> );
+
+<span class="hljs-keyword">var</span> bool = hasAsyncIteratorSymbolSupport();
+<span class="hljs-keyword">if</span> ( bool ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment has Symbol.asyncIterator support.'</span> );
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment lacks Symbol.asyncIterator support.'</span> );
+}
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: has-async-iterator-symbol-support [options]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ has-async-iterator-symbol-support
+&#x3C;boolean>
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/has-iterator-symbol-support"><code>@stdlib/assert/has-iterator-symbol-support</code></a></span><span class="delimiter">: </span><span class="description">detect native Symbol.iterator support.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/has-symbol-support"><code>@stdlib/assert/has-symbol-support</code></a></span><span class="delimiter">: </span><span class="description">detect native Symbol support.</span></li></ul></section><section class="links"></section>

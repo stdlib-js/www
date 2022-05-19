@@ -1,0 +1,96 @@
+<h1 id="flignertest">flignerTest</h1><blockquote><p>Compute the Fligner-Killeen test for equal variances.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flignerTest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/fligner-test'</span> );
+</code></pre><h4 id="flignertest-abk-opts-">flignerTest( a[,b,...,k][, opts] )</h4><p>For input arrays <code>a</code>, <code>b</code>, ... holding numeric observations, this function calculates the Fligner-Killeen test, which tests the null hypothesis that the variances in all <code>k</code> groups are the same.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Data from Hollander &#x26; Wolfe (1973), p. 116:</span>
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span> ];
+<span class="hljs-keyword">var</span> z = [ <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span> ];
+
+<span class="hljs-keyword">var</span> out = flignerTest( x, y, z );
+<span class="hljs-comment">/* returns
+    {
+        'rejected': false,
+        'alpha': 0.05,
+        'df': 2,
+        'pValue': ~0.074,
+        'statistic': ~5.209,
+        ...
+    }
+*/</span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li><li><strong>groups</strong>: an <code>array</code> of group indicators. If set, the function assumes that only a single numeric array is provided holding all observations.</li></ul><p>By default, the test is carried out at a significance level of <code>0.05</code>. To choose a custom significance level, set the <code>alpha</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span> ];
+<span class="hljs-keyword">var</span> z = [ <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span> ];
+
+<span class="hljs-keyword">var</span> out = flignerTest( x, y, z, {
+    <span class="hljs-string">'alpha'</span>: <span class="hljs-number">0.1</span>
+});
+<span class="hljs-comment">/* returns
+    {
+        'rejected': true,
+        'alpha': 0.1,
+        'df': 2,
+        'pValue': ~0.074,
+        'statistic': ~5.209,
+        ...
+    }
+*/</span>
+</code></pre><p>The function provides an alternate interface by supplying an array of group indicators to the <code>groups</code> option. In this case, it is assumed that only a single numeric array holding all observations is provided to the function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
+    <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span>,
+    <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span>,
+    <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span>
+];
+<span class="hljs-keyword">var</span> groups = [
+    <span class="hljs-string">'a'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'a'</span>,
+    <span class="hljs-string">'b'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'b'</span>,
+    <span class="hljs-string">'c'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'c'</span>
+];
+out = flignerTest( arr, {
+    <span class="hljs-string">'groups'</span>: groups
+});
+</code></pre><p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the results of the hypothesis test. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span> ];
+<span class="hljs-keyword">var</span> z = [ <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span> ];
+
+<span class="hljs-keyword">var</span> out = flignerTest( x, y, z );
+<span class="hljs-built_in">console</span>.log( out.print() );
+<span class="hljs-comment">/* =>
+    Fligner-Killeen test of homogeneity of variances
+
+    Null hypothesis: The variances in all groups are the same.
+
+        pValue: 0.0739
+        statistic: 5.2092
+        df: 2
+
+    Test Decision: Fail to reject null in favor of alternative at 5% significance level
+*/</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flignerTest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/fligner-test'</span> );
+
+<span class="hljs-comment">// Data from Hollander &#x26; Wolfe (1973), p. 116:</span>
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span> ];
+<span class="hljs-keyword">var</span> z = [ <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span> ];
+
+<span class="hljs-keyword">var</span> out = flignerTest( x, y, z );
+<span class="hljs-comment">/* returns
+    {
+        'rejected': false,
+        'alpha': 0.05,
+        'df': 2,
+        'pValue': ~0.074,
+        'statistic': ~5.209,
+        ...
+    }
+*/</span>
+
+<span class="hljs-keyword">var</span> table = out.print();
+<span class="hljs-comment">/* returns
+    Fligner-Killeen test of homogeneity of variances
+
+    Null hypothesis: The variances in all groups are the same.
+
+        pValue: 0.0739
+        statistic: 5.2092
+        df: 2
+
+    Test Decision: Fail to reject null in favor of alternative at 5% significance level
+*/</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/bartlett-test"><code>@stdlib/stats/bartlett-test</code></a></span><span class="delimiter">: </span><span class="description">bartlett’s test for equal variances.</span></li></ul></section><section class="links"></section>

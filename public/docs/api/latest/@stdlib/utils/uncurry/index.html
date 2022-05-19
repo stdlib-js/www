@@ -1,0 +1,81 @@
+<h1 id="uncurry">uncurry</h1><blockquote><p>Transform a curried function into a function invoked with multiple arguments.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uncurry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/uncurry'</span> );
+</code></pre><h4 id="uncurry-fcn-arity-thisarg-">uncurry( fcn[, arity][, thisArg] )</h4><p>Transforms a curried function into a function invoked with multiple arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> y </span>) </span>{
+        <span class="hljs-keyword">return</span> x + y;
+    };
+}
+
+<span class="hljs-keyword">var</span> fcn = uncurry( add );
+
+<span class="hljs-keyword">var</span> sum = fcn( <span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 5</span>
+</code></pre><p>To enforce a fixed number of parameters, provide an <code>arity</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> y </span>) </span>{
+        <span class="hljs-keyword">return</span> x + y;
+    };
+}
+
+<span class="hljs-keyword">var</span> fcn = uncurry( add, <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> sum = fcn( <span class="hljs-number">9</span> );
+<span class="hljs-comment">// throws &#x3C;Error></span>
+</code></pre><p>To specify an execution context, provide a <code>thisArg</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addX</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-built_in">this</span>.x = x;
+    <span class="hljs-keyword">return</span> addY;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addY</span>(<span class="hljs-params"> y </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.x + y;
+}
+
+<span class="hljs-keyword">var</span> fcn = uncurry( addX, {} );
+
+<span class="hljs-keyword">var</span> sum = fcn( <span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 5</span>
+</code></pre><p>The function supports providing both an <code>arity</code> and execution context.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addX</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-built_in">this</span>.x = x;
+    <span class="hljs-keyword">return</span> addY;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addY</span>(<span class="hljs-params"> y </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.x + y;
+}
+
+<span class="hljs-keyword">var</span> fcn = uncurry( addX, <span class="hljs-number">2</span>, {} );
+
+<span class="hljs-keyword">var</span> sum = fcn( <span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 5</span>
+
+sum = fcn( <span class="hljs-number">4</span> );
+<span class="hljs-comment">// throws &#x3C;Error></span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> curry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/curry'</span> );
+<span class="hljs-keyword">var</span> uncurry = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/uncurry'</span> );
+
+<span class="hljs-keyword">var</span> uncurried;
+<span class="hljs-keyword">var</span> curried;
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y, z, w, t, s </span>) </span>{
+    <span class="hljs-keyword">return</span> x + y + z + w + t + s;
+}
+
+out = add( <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span> );
+<span class="hljs-comment">// returns 150</span>
+
+<span class="hljs-comment">// Transform `add` into a curried function:</span>
+curried = curry( add );
+out = curried;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; add.length; i++ ) {
+    out = out( i*<span class="hljs-number">10</span> );
+}
+bool = ( out === <span class="hljs-number">150</span> );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-comment">// Uncurry a curried function:</span>
+uncurried = uncurry( curried );
+
+out = uncurried( <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span> );
+<span class="hljs-comment">// returns 150</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/curry"><code>@stdlib/utils/curry</code></a></span><span class="delimiter">: </span><span class="description">transform a function into a sequence of functions each accepting a single argument.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/uncurry-right"><code>@stdlib/utils/uncurry-right</code></a></span><span class="delimiter">: </span><span class="description">transform a curried function into a function invoked with multiple arguments.</span></li></ul></section><section class="links"></section>

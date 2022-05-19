@@ -1,0 +1,19 @@
+<h1 id="zeros">zeros</h1><blockquote><p>Create a zero-filled "generic" array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zeros'</span> );
+</code></pre><h4 id="zeros-len-">zeros( len )</h4><p>Returns a zero-filled "generic" array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = zeros( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns [ 0.0, 0.0, 0.0 ]</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gfill = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gfill'</span> ).ndarray;
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zeros'</span> );
+
+<span class="hljs-comment">// Create a zero-filled array:</span>
+<span class="hljs-keyword">var</span> arr = zeros( <span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// Fill element pairs with the same value...</span>
+gfill( <span class="hljs-number">2</span>, <span class="hljs-number">1.0</span>, arr, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+gfill( <span class="hljs-number">2</span>, <span class="hljs-number">2.0</span>, arr, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+gfill( <span class="hljs-number">2</span>, <span class="hljs-number">3.0</span>, arr, <span class="hljs-number">1</span>, <span class="hljs-number">4</span> );
+gfill( <span class="hljs-number">2</span>, <span class="hljs-number">4.0</span>, arr, <span class="hljs-number">1</span>, <span class="hljs-number">6</span> );
+gfill( <span class="hljs-number">2</span>, <span class="hljs-number">5.0</span>, arr, <span class="hljs-number">1</span>, <span class="hljs-number">8</span> );
+
+<span class="hljs-built_in">console</span>.log( arr );
+<span class="hljs-comment">// => [ 1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 4.0, 4.0, 5.0, 5.0 ]</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,46 @@
+<h1 id="subf">subf</h1><blockquote><p>Subtract two single-precision floating-point numbers.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> subf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/subf'</span> );
+</code></pre><h4 id="subf-x-y-">subf( x, y )</h4><p>Subtracts two single-precision floating-point numbers.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = subf( -<span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns -6.0</span>
+
+v = subf( <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns -3.0</span>
+
+v = subf( <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns -5.0</span>
+
+v = subf( -<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns -0.0</span>
+
+v = subf( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> subf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/subf'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = rand( -<span class="hljs-number">50</span>, <span class="hljs-number">50</span> );
+    y = rand( -<span class="hljs-number">50</span>, <span class="hljs-number">50</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d - %d = %d'</span>, x, y, subf( x, y ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/ops/subf.h"</span></span>
+</code></pre><h4 id="stdlib_base_subf-x-y-">stdlib_base_subf( x, y )</h4><p>Subtracts two single-precision floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> v = stdlib_base_sub( <span class="hljs-number">-5.0f</span>, <span class="hljs-number">2.0f</span> );
+<span class="hljs-comment">// returns -7.0f</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] float</code> first input value.</li><li><strong>y</strong>: <code>[in] float</code> second input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_sub</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/ops/subf.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">3.14f</span>, <span class="hljs-number">-3.14f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span> };
+    <span class="hljs-keyword">float</span> y[] = { <span class="hljs-number">3.14f</span>, <span class="hljs-number">-3.14f</span>, <span class="hljs-number">-0.0f</span>, <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span> };
+
+    <span class="hljs-keyword">float</span> z;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        z = stdlib_base_subf( x[ i ], y[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"%f - %f = %f\n"</span>, x[ i ], y[ i ], z );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

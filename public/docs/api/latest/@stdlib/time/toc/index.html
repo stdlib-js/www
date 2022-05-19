@@ -1,0 +1,15 @@
+<h1 id="toc">toc</h1><blockquote><p>Return a high-resolution time difference.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/toc'</span> );
+</code></pre><h4 id="toc-time-">toc( time )</h4><p>Returns a high-resolution time difference, where <code>time</code> is a two-element <code>array</code> with format <code>[seconds, nanoseconds]</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> delta = toc( [ <span class="hljs-number">100</span>, <span class="hljs-number">123456789</span> ] );
+<span class="hljs-comment">// returns [&#x3C;number>,&#x3C;number>]</span>
+</code></pre><p>Similar to <code>time</code>, the returned <code>array</code> has format <code>[seconds, nanoseconds]</code>.</p></section><secton class="notes"><h2 id="notes">Notes</h2><ul><li>This function is intended to be used in conjunction with <a href="/docs/api/latest/@stdlib/time/tic"><code>tic</code></a> for measuring performance between intervals.</li></ul><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> tic = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/tic'</span> );
+<span class="hljs-keyword">var</span> toc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/toc'</span> );
+
+<span class="hljs-keyword">var</span> start = tic();
+
+<span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">2000</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> elapsed = toc( start );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Elapsed: %d seconds and %d nanoseconds'</span>, elapsed[<span class="hljs-number">0</span>], elapsed[<span class="hljs-number">1</span>] );
+}
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/time/tic"><code>@stdlib/time/tic</code></a></span><span class="delimiter">: </span><span class="description">return a high-resolution time.</span></li></ul></section><section class="links"></section></secton>

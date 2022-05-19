@@ -1,0 +1,51 @@
+<h1 id="copysign">copysign</h1><blockquote><p>Return a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> with the magnitude of <code>x</code> and the sign of <code>y</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> copysign = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/copysign'</span> );
+</code></pre><h4 id="copysign-x-y-">copysign( x, y )</h4><p>Returns a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> with the magnitude of <code>x</code> and the sign of <code>y</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> z = copysign( -<span class="hljs-number">3.14</span>, <span class="hljs-number">10.0</span> );
+<span class="hljs-comment">// returns 3.14</span>
+
+z = copysign( <span class="hljs-number">3.14</span>, -<span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns -3.14</span>
+
+z = copysign( <span class="hljs-number">1.0</span>, -<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns -1.0</span>
+
+z = copysign( -<span class="hljs-number">3.14</span>, -<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns -3.14</span>
+
+z = copysign( -<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>According to the <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">IEEE754</a> standard, a <code>NaN</code> has a biased exponent equal to <code>2047</code>, a significand greater than <code>0</code>, and a sign bit equal to <strong>either</strong> <code>1</code> <strong>or</strong> <code>0</code>. In which case, <code>NaN</code> may not correspond to just one but many binary representations. Accordingly, care should be taken to ensure that <code>y</code> is <strong>not</strong> <code>NaN</code>; otherwise, behavior may be indeterminate.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> copysign = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/copysign'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> z;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Generate random double-precision floating-point numbers `x` and `y` and copy the sign of `y` to `x`...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = (randu()*<span class="hljs-number">100.0</span>) - <span class="hljs-number">50.0</span>;
+    y = (randu()*<span class="hljs-number">10.0</span>) - <span class="hljs-number">5.0</span>;
+    z = copysign( x, y );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, y: %d => %d'</span>, x, y, z );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/copysign.h"</span></span>
+</code></pre><h4 id="stdlib_base_copysign-x-y-">stdlib_base_copysign( x, y )</h4><p>Returns a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> with the magnitude of <code>x</code> and the sign of <code>y</code>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> v = stdlib_base_copysign( <span class="hljs-number">-3.14</span>, <span class="hljs-number">10.0</span> );
+<span class="hljs-comment">// returns 3.14</span>
+
+<span class="hljs-keyword">double</span> v = stdlib_base_copysign( <span class="hljs-number">3.14</span>, <span class="hljs-number">-1.0</span> );
+<span class="hljs-comment">// returns -3.14</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> number from which to derive a magnitude.</li><li><strong>y</strong>: <code>[in] double</code> number from which to derive a sign.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_copysign</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> y )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/copysign.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">3.14</span>, <span class="hljs-number">-3.14</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span> };
+
+    <span class="hljs-keyword">double</span> y;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        y = stdlib_base_copysign( x[ i ], <span class="hljs-number">-3.0</span> );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"copysign(%lf, %lf) = %lf\n"</span>, x[ i ], <span class="hljs-number">-3.0</span>, y );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/flipsign"><code>@stdlib/math/base/special/flipsign</code></a></span><span class="delimiter">: </span><span class="description">return a double-precision floating-point number with the magnitude of x and the sign of x*y.</span></li></ul></section><section class="links"></section>

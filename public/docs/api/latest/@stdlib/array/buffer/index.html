@@ -1,0 +1,68 @@
+<h1 id="arraybuffer">ArrayBuffer</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">Constructor</a> which returns an object used to represent a generic, fixed-length raw binary data buffer.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+</code></pre><h4 id="arraybuffer-size-">ArrayBuffer( size )</h4><p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> having a specified number of bytes.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns &#x3C;ArrayBuffer></span>
+</code></pre><hr><h3 id="properties">Properties</h3><h4 id="arraybufferlength">ArrayBuffer.length</h4><p>Number of input arguments the constructor accepts.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = <span class="hljs-built_in">ArrayBuffer</span>.length;
+<span class="hljs-comment">// returns 1</span>
+</code></pre><h4 id="arraybufferprototypebytelength">ArrayBuffer.prototype.byteLength</h4><p><strong>Read-only</strong> property which returns the length (in bytes) of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">5</span> );
+<span class="hljs-keyword">var</span> byteLength = buf.byteLength;
+<span class="hljs-comment">// returns 5</span>
+</code></pre><hr><h3 id="methods">Methods</h3><h4 id="arraybufferisview-arr-">ArrayBuffer.isView( arr )</h4><p>Static method which returns a <code>boolean</code> indicating if provided a buffer view.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+
+<span class="hljs-keyword">var</span> bool = <span class="hljs-built_in">ArrayBuffer</span>.isView( view );
+<span class="hljs-comment">// returns true</span>
+</code></pre><h4 id="arraybufferprototypeslice-start-end-">ArrayBuffer.prototype.slice( [start[, end]] )</h4><p>Copies the bytes of an <code>ArrayBuffer</code> to a new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">10</span> );
+
+<span class="hljs-keyword">var</span> b2 = b1.slice();
+<span class="hljs-comment">// returns &#x3C;ArrayBuffer></span>
+
+<span class="hljs-keyword">var</span> bool = ( b2 === b1 );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>By default, the method copies from the beginning of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>. To beginning copying from a different byte index, provide a <code>start</code> argument, specifying the starting byte index (inclusive).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">10</span> );
+<span class="hljs-keyword">var</span> b2 = b1.slice( <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> nbytes = b2.byteLength;
+<span class="hljs-comment">// returns 8</span>
+</code></pre><p>If <code>start &#x3C; 0</code>, the index is relative to the end of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">10</span> );
+<span class="hljs-keyword">var</span> b2 = b1.slice( -<span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> nbytes = b2.byteLength;
+<span class="hljs-comment">// returns 2</span>
+</code></pre><p>By default, the method copies to the end of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>. To copy until a particular byte index, provide an <code>end</code> index, specifying the ending byte index (exclusive).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">10</span> );
+<span class="hljs-keyword">var</span> b2 = b1.slice( <span class="hljs-number">2</span>, <span class="hljs-number">6</span> );
+
+<span class="hljs-keyword">var</span> nbytes = b2.byteLength;
+<span class="hljs-comment">// returns 4</span>
+</code></pre><p>If <code>end &#x3C; 0</code>, the index is relative to the end of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">10</span> );
+<span class="hljs-keyword">var</span> b2 = b1.slice( <span class="hljs-number">2</span>, -<span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> nbytes = b2.byteLength;
+<span class="hljs-comment">// returns 6</span>
+</code></pre></section><hr><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> toBinaryString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint8/base/to-binary-string'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+
+<span class="hljs-keyword">var</span> bytes;
+<span class="hljs-keyword">var</span> buf;
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Create a new ArrayBuffer:</span>
+buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">64</span> );
+
+<span class="hljs-comment">// Create a Float64 array buffer view:</span>
+arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( buf.byteLength/<span class="hljs-number">8</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    arr[ i ] = randu() * <span class="hljs-number">100.0</span>;
+}
+
+<span class="hljs-comment">// Create a "bytes" view of the array buffer:</span>
+bytes = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( arr.buffer );
+
+<span class="hljs-comment">// Print the bytes:</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; bytes.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'byte %d: %s'</span>, i, toBinaryString( bytes[ i ] ) );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/ctor"><code>@stdlib/buffer/ctor</code></a></span><span class="delimiter">: </span><span class="description">Buffer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/float32"><code>@stdlib/array/float32</code></a></span><span class="delimiter">: </span><span class="description">Float32Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/float64"><code>@stdlib/array/float64</code></a></span><span class="delimiter">: </span><span class="description">Float64Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/int16"><code>@stdlib/array/int16</code></a></span><span class="delimiter">: </span><span class="description">Int16Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/int32"><code>@stdlib/array/int32</code></a></span><span class="delimiter">: </span><span class="description">Int32Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/int8"><code>@stdlib/array/int8</code></a></span><span class="delimiter">: </span><span class="description">Int8Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/shared-buffer"><code>@stdlib/array/shared-buffer</code></a></span><span class="delimiter">: </span><span class="description">SharedArrayBuffer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/uint16"><code>@stdlib/array/uint16</code></a></span><span class="delimiter">: </span><span class="description">Uint16Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/uint32"><code>@stdlib/array/uint32</code></a></span><span class="delimiter">: </span><span class="description">Uint32Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/uint8"><code>@stdlib/array/uint8</code></a></span><span class="delimiter">: </span><span class="description">Uint8Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/uint8c"><code>@stdlib/array/uint8c</code></a></span><span class="delimiter">: </span><span class="description">Uint8ClampedArray.</span></li></ul></section><section class="links"></section>

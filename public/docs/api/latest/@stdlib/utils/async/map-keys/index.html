@@ -1,0 +1,219 @@
+<h1 id="mapkeysasync">mapKeysAsync</h1><blockquote><p>Map keys from one object to a new object having the same values.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mapKeysAsync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/async/map-keys'</span> );
+</code></pre><h4 id="mapkeysasync-obj-options-transform-done-">mapKeysAsync( obj, [options,] transform, done )</h4><p>Map keys from one <code>object</code> to a new <code>object</code> having the same values.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, next </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">0</span> );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        next( <span class="hljs-literal">null</span>, key+<span class="hljs-string">':beep'</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, out </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( out );
+    <span class="hljs-comment">// => { 'a:beep': 1, 'b:beep': 2 }</span>
+}
+
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>
+};
+
+mapKeysAsync( obj, transform, done );
+</code></pre><p>The <code>next</code> callback accepts two arguments: <code>error</code> and <code>key</code>. The second argument to the <code>next</code> callback is the transformed property name. If a <code>transform</code> function calls the <code>next</code> callback with a truthy error argument, the function stops processing any additional own properties and calls the <code>done</code> callback for error processing.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value, next </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">if</span> ( value === <span class="hljs-number">1</span> ) {
+            <span class="hljs-keyword">return</span> next( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'boop'</span> ) );
+        }
+        next( <span class="hljs-literal">null</span>, key+<span class="hljs-string">':beep'</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-built_in">console</span>.error( error.message );
+        <span class="hljs-comment">// => 'boop'</span>
+    }
+}
+
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>
+};
+
+mapKeysAsync( obj, transform, done );
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><code>limit</code>: the maximum number of pending invocations at any one time. Default: <code>infinity</code>.</li><li><code>series</code>: <code>boolean</code> indicating whether to sequentially invoke the <code>transform</code> function for each own property. If <code>true</code>, the function sets <code>options.limit=1</code>. Default: <code>false</code>.</li><li><code>thisArg</code>: the execution context for <code>fcn</code>.</li></ul><p>By default, all properties are processed concurrently, which means that the function does <strong>not</strong> guarantee completion order. To process each property sequentially, set the <code>series</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value, next </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        next( <span class="hljs-literal">null</span>, key+<span class="hljs-string">':beep'</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, out </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( out );
+    <span class="hljs-comment">// => { 'a:beep': 1, 'b:beep': 2 }</span>
+}
+
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>
+};
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'series'</span>: <span class="hljs-literal">true</span>
+};
+
+mapKeysAsync( obj, opts, transform, done );
+</code></pre><p>To limit the maximum number of pending function invocations, set the <code>limit</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value, next </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        next( <span class="hljs-literal">null</span>, key+<span class="hljs-string">':beep'</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, out </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( out );
+    <span class="hljs-comment">// => { 'a:beep': 1, 'b:beep': 2, 'c:beep': 3 }</span>
+}
+
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>
+};
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'limit'</span>: <span class="hljs-number">2</span>
+};
+
+mapKeysAsync( obj, opts, transform, done );
+</code></pre><p>To set the execution context of the <code>transform</code> function, set the <code>thisArg</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value, next </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        next( <span class="hljs-literal">null</span>, key+<span class="hljs-string">':beep'</span> );
+    }
+}
+
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>
+};
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'thisArg'</span>: context
+};
+
+mapKeysAsync( obj, opts, transform, done );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, out </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( out );
+    <span class="hljs-comment">// => { 'a:beep': 1, 'b:beep': 2, 'c:beep': 3 }</span>
+
+    <span class="hljs-built_in">console</span>.log( context.count );
+    <span class="hljs-comment">// => 3</span>
+}
+</code></pre><p>When invoked, the <code>transform</code> function is provided a maximum of four arguments:</p><ul><li><code>key</code>: object key.</li><li><code>value</code>: object value corresponding to <code>key</code>.</li><li><code>obj</code>: source object.</li><li><code>next</code>: a callback which should be called once the <code>transform</code> function has finished processing a property.</li></ul><p>The actual number of provided arguments depends on function <code>length</code>. If the <code>transform</code> function accepts two arguments, the <code>transform</code> function is provided <code>key</code> and <code>next</code>. If the <code>transform</code> function accepts three arguments, the <code>transform</code> function is provided <code>key</code>, <code>value</code>, and <code>next</code>. For every other <code>transform</code> function signature, the <code>transform</code> function is provided all four arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value, obj, next </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'obj: %s. %s: %d'</span>, <span class="hljs-built_in">JSON</span>.stringify( obj ), key, value );
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        next( <span class="hljs-literal">null</span>, key+<span class="hljs-string">':'</span>+value );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, out </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( out );
+}
+
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>
+};
+
+mapKeysAsync( obj, transform, done );
+<span class="hljs-comment">/* => e.g.,
+    obj: {"a": 1, "b": 2}. a: 1
+    obj: {"a": 1, "b": 2}. b: 2
+    { 'a:1': 1, 'b:2': 2 }
+*/</span>
+</code></pre><h4 id="mapkeysasyncfactory-options-transform-">mapKeysAsync.factory( [options,] transform )</h4><p>Returns a <code>function</code> which invokes a <code>transform</code> function once for each own property.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value, next </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        next( <span class="hljs-literal">null</span>, key+<span class="hljs-string">':beep'</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, out </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( out );
+}
+
+<span class="hljs-keyword">var</span> f = mapKeysAsync.factory( transform );
+
+<span class="hljs-keyword">var</span> obj1 = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>
+};
+
+f( obj1, done );
+<span class="hljs-comment">// => { 'a:beep': 1, 'b:beep': 2 }</span>
+
+<span class="hljs-keyword">var</span> obj2 = {
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>,
+    <span class="hljs-string">'d'</span>: <span class="hljs-number">4</span>
+};
+
+f( obj2, done );
+<span class="hljs-comment">// => { 'c:beep': 3, 'd:beep': 4 }</span>
+</code></pre><p>The function accepts the same <code>options</code> as <code>mapKeysAsync()</code>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If a provided function calls the <code>next</code> callback with a truthy <code>error</code> argument, the function suspends execution and immediately calls the <code>done</code> callback for subsequent <code>error</code> handling.</li><li>If provided an empty <code>object</code>, the function calls the <code>done</code> callback with an empty <code>object</code>.</li><li>Key iteration order is <strong>not</strong> guaranteed, as <code>object</code> key enumeration is not specified according to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s keys, thus allowing for iteration order.</li><li>Key insertion order is <strong>not</strong> guaranteed.</li><li>The value returned by a <code>transform</code> function should be a value which can be serialized as an <code>object</code> key.</li><li>The function only maps <strong>own</strong> properties. Hence, the function does <strong>not</strong> map inherited properties.</li><li>The function <strong>shallow</strong> copies key values.</li><li><strong>Neither</strong> <code>mapKeysAsync</code> nor the function returned by the <code>factory</code> method <strong>guarantee</strong> asynchronous execution. To guarantee asynchrony, wrap the <code>done</code> callback in a function which either executes at the end of the current stack (e.g., <code>nextTick</code>) or during a subsequent turn of the event loop (e.g., <code>setImmediate</code>, <code>setTimeout</code>).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> resolve = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).resolve;
+<span class="hljs-keyword">var</span> readFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/read-file'</span> );
+<span class="hljs-keyword">var</span> mapKeysAsync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/async/map-keys'</span> );
+
+<span class="hljs-keyword">var</span> files = {
+    <span class="hljs-string">'file1'</span>: resolve( __dirname, <span class="hljs-string">'package.json'</span> ),
+    <span class="hljs-string">'file2'</span>: resolve( __dirname, <span class="hljs-string">'README.md'</span> )
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">read</span>(<span class="hljs-params"> key, value, next </span>) </span>{
+    <span class="hljs-keyword">var</span> opts = {
+        <span class="hljs-string">'encoding'</span>: <span class="hljs-string">'utf8'</span>
+    };
+    readFile( value, opts, onFile );
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onFile</span>(<span class="hljs-params"> error </span>) </span>{
+        <span class="hljs-keyword">if</span> ( error ) {
+            <span class="hljs-keyword">return</span> next( error, key+<span class="hljs-string">':unreadable'</span> );
+        }
+        next( <span class="hljs-literal">null</span>, key+<span class="hljs-string">':readable'</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, out </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( out );
+}
+
+mapKeysAsync( files, read, done );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/map-keys"><code>@stdlib/utils/map-keys</code></a></span><span class="delimiter">: </span><span class="description">map keys from one object to a new object having the same values.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/async/map-values"><code>@stdlib/utils/async/map-values</code></a></span><span class="delimiter">: </span><span class="description">map values from one object to a new object having the same keys.</span></li></ul></section><section class="links"></section>

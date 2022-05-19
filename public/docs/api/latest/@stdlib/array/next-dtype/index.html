@@ -1,0 +1,25 @@
+<h1 id="nextdatatype">nextDataType</h1><blockquote><p>Return the next larger array <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> of the same kind.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nextDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/next-dtype'</span> );
+</code></pre><h4 id="nextdatatype-dtype-">nextDataType( [dtype] )</h4><p>If provided a <code>dtype</code> argument, returns the next larger array <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> of the same kind.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = nextDataType( <span class="hljs-string">'float32'</span> );
+<span class="hljs-comment">// returns 'float64'</span>
+</code></pre><p>If a <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> does not have a next larger <a href="/docs/api/latest/@stdlib/array/dtypes">data type</a> or the next larger data type is not supported, the function returns <code>-1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = nextDataType( <span class="hljs-string">'complex128'</span> );
+<span class="hljs-comment">// returns -1</span>
+</code></pre><p>If not provided a <code>dtype</code> argument, the function returns a table.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = nextDataType();
+<span class="hljs-comment">// returns {...}</span>
+</code></pre><p>If provided an unrecognized or unsupported <code>dtype</code>, the function returns <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = nextDataType( <span class="hljs-string">'foo'</span> );
+<span class="hljs-comment">// returns null</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dtypes'</span> );
+<span class="hljs-keyword">var</span> nextDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/next-dtype'</span> );
+
+<span class="hljs-keyword">var</span> DTYPES;
+<span class="hljs-keyword">var</span> dt;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Get the list of supported array data types:</span>
+DTYPES = dtypes();
+
+<span class="hljs-comment">// Print the next larger data type for each supported data type...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; DTYPES.length; i++ ) {
+    dt = nextDataType( DTYPES[ i ] );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, DTYPES[ i ], dt );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/dtype"><code>@stdlib/array/dtype</code></a></span><span class="delimiter">: </span><span class="description">return the data type of an array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/dtypes"><code>@stdlib/array/dtypes</code></a></span><span class="delimiter">: </span><span class="description">list of array data types.</span></li></ul></section><section class="links"></section>

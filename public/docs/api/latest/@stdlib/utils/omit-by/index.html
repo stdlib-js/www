@@ -1,0 +1,29 @@
+<h1 id="omitby">omitBy</h1><blockquote><p>Return a partial object copy excluding properties for which a predicate (function) returns a truthy value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> omitBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/omit-by'</span> );
+</code></pre><h4 id="omitby-obj-predicate-">omitBy( obj, predicate )</h4><p>Returns a partial object copy excluding properties for which a <code>predicate</code> returns a truthy value.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> key, value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">1</span> );
+}
+
+<span class="hljs-keyword">var</span> obj1 = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>
+};
+
+<span class="hljs-keyword">var</span> obj2 = omitBy( obj1, predicate );
+<span class="hljs-comment">// returns { 'a': 1 }</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function returns a <strong>shallow</strong> copy.</li><li>The function <strong>only</strong> copies <strong>own</strong> properties. Hence, the function never copies inherited properties.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> omitBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/omit-by'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> key, value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( <span class="hljs-keyword">typeof</span> value === <span class="hljs-string">'number'</span> );
+}
+
+<span class="hljs-keyword">var</span> obj1 = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-string">'1'</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-literal">NaN</span>,
+    <span class="hljs-string">'d'</span>: <span class="hljs-literal">null</span>
+};
+
+<span class="hljs-keyword">var</span> obj2 = omitBy( obj1, predicate );
+<span class="hljs-comment">// returns { 'a': '1', 'd': null }</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/omit"><code>@stdlib/utils/omit</code></a></span><span class="delimiter">: </span><span class="description">return a partial object copy excluding specified keys.</span></li></ul></section><section class="links"></section>

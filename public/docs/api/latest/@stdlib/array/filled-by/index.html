@@ -1,0 +1,100 @@
+<h1 id="filledarrayby">filledarrayBy</h1><blockquote><p>Create a filled array according to a provided callback function.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+</code></pre><h4 id="filledarrayby-dtype-">filledarrayBy( [dtype] )</h4><p>Creates a filled array having a specified data type <code>dtype</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = filledarrayBy();
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+</code></pre><p>The function recognizes the following data types:</p><ul><li><code>float64</code>: double-precision floating-point numbers (IEEE 754)</li><li><code>float32</code>: single-precision floating-point numbers (IEEE 754)</li><li><code>complex128</code>: double-precision complex floating-point numbers</li><li><code>complex64</code>: single-precision complex floating-point numbers</li><li><code>int32</code>: 32-bit two's complement signed integers</li><li><code>uint32</code>: 32-bit unsigned integers</li><li><code>int16</code>: 16-bit two's complement signed integers</li><li><code>uint16</code>: 16-bit unsigned integers</li><li><code>int8</code>: 8-bit two's complement signed integers</li><li><code>uint8</code>: 8-bit unsigned integers</li><li><code>uint8c</code>: 8-bit unsigned integers clamped to <code>0-255</code></li><li><code>generic</code>: generic JavaScript values</li></ul><p>By default, the output array data type is <code>float64</code> (i.e., a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a>). To specify an alternative data type, provide a <code>dtype</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = filledarrayBy( <span class="hljs-string">'int32'</span> );
+<span class="hljs-comment">// returns &#x3C;Int32Array></span>
+</code></pre><h4 id="filledarrayby-length-dtype-clbk-thisarg-">filledarrayBy( length[, dtype], clbk[, thisArg] )</h4><p>Returns a filled array according to a provided callback function and having a specified <code>length</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">constant</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1.0</span>;
+}
+
+<span class="hljs-keyword">var</span> arr1 = filledarrayBy( <span class="hljs-number">5</span>, constant );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 1.0, 1.0, 1.0, 1.0, 1.0 ]</span>
+
+<span class="hljs-keyword">var</span> arr2 = filledarrayBy( <span class="hljs-number">5</span>, <span class="hljs-string">'uint8'</span>, constant );
+<span class="hljs-comment">// returns &#x3C;Uint8Array>[ 1, 1, 1, 1, 1 ]</span>
+</code></pre><h4 id="filledarrayby-array-dtype-clbk-thisarg-">filledarrayBy( array[, dtype], clbk[, thisArg] )</h4><p>Creates a filled array from another array (or array-like object) according to a provided callback function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr0 = {
+    <span class="hljs-string">'0'</span>: <span class="hljs-number">0.5</span>,
+    <span class="hljs-string">'1'</span>: <span class="hljs-number">0.5</span>,
+    <span class="hljs-string">'2'</span>: <span class="hljs-number">0.5</span>,
+    <span class="hljs-string">'length'</span>: <span class="hljs-number">3</span>
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk1</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1.0</span>;
+}
+<span class="hljs-keyword">var</span> arr1 = filledarrayBy( arr0, clbk1 );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 1.0, 1.0, 1.0 ]</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk2</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">2.0</span>;
+}
+<span class="hljs-keyword">var</span> arr2 = filledarrayBy( arr1, clbk2 );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 2.0, 2.0, 2.0 ]</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk3</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3.0</span>;
+}
+<span class="hljs-keyword">var</span> arr3 = filledarrayBy( arr1, <span class="hljs-string">'int32'</span>, clbk3 );
+<span class="hljs-comment">// returns &#x3C;Int32Array>[ 3, 3, 3 ]</span>
+</code></pre><h4 id="filledarrayby-iterable-dtype-clbk-thisarg-">filledarrayBy( iterable[, dtype], clbk[, thisArg] )</h4><p>Creates a filled array from an iterable according to a provided callback function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterConstant = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/constant'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1.0</span>;
+}
+
+<span class="hljs-keyword">var</span> it = iterConstant( <span class="hljs-number">3.0</span>, {
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">3</span>
+});
+
+<span class="hljs-keyword">var</span> arr1 = filledarrayBy( it, clbk );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 1.0, 1.0, 1.0 ]</span>
+
+<span class="hljs-keyword">var</span> arr2 = filledarrayBy( it, <span class="hljs-string">'float32'</span>, clbk );
+<span class="hljs-comment">// returns &#x3C;Float32Array>[ 1.0, 1.0, 1.0 ]</span>
+</code></pre><h4 id="filledarrayby-buffer-byteoffset-length-dtype-clbk-thisarg-">filledarrayBy( buffer[, byteOffset[, length]][, dtype], clbk[, thisArg] )</h4><p>Returns a filled <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> view of an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> according to a provided callback function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1.0</span>;
+}
+
+<span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">32</span> );
+<span class="hljs-keyword">var</span> arr = filledarrayBy( buf, clbk );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 1.0, 1.0, 1.0, 1.0 ]</span>
+
+buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">32</span> );
+arr = filledarrayBy( buf, <span class="hljs-string">'float32'</span>, clbk );
+<span class="hljs-comment">// returns &#x3C;Float32Array>[ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 ]</span>
+
+buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">32</span> );
+arr = filledarrayBy( buf, <span class="hljs-number">16</span>, clbk );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 1.0, 1.0 ]</span>
+
+buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">32</span> );
+arr = filledarrayBy( buf, <span class="hljs-number">16</span>, <span class="hljs-string">'float32'</span>, clbk );
+<span class="hljs-comment">// returns &#x3C;Float32Array>[ 1.0, 1.0, 1.0, 1.0 ]</span>
+
+buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">32</span> );
+arr = filledarrayBy( buf, <span class="hljs-number">16</span>, <span class="hljs-number">1</span>, clbk );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 1.0 ]</span>
+
+buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">32</span> );
+arr = filledarrayBy( buf, <span class="hljs-number">10</span>, <span class="hljs-number">4</span>, <span class="hljs-string">'int16'</span>, clbk );
+<span class="hljs-comment">// returns &#x3C;Int16Array>[ 1, 1, 1, 1 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Creating a generic <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> from an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> is <strong>not</strong> supported.</p></li><li><p>A callback function is provided a single argument:</p><ul><li><strong>index</strong>: the current array index.</li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/typed-real-dtypes'</span> );
+<span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+
+<span class="hljs-comment">// Create a pseudorandom number generator:</span>
+<span class="hljs-keyword">var</span> rand = discreteUniform( <span class="hljs-number">0</span>, <span class="hljs-number">100</span> );
+
+<span class="hljs-comment">// Get a list of array data types:</span>
+<span class="hljs-keyword">var</span> dt = dtypes();
+
+<span class="hljs-comment">// Generate filled arrays...</span>
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    arr = filledarrayBy( <span class="hljs-number">10</span>, dt[ i ], rand );
+    <span class="hljs-built_in">console</span>.log( arr );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

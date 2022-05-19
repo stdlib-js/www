@@ -1,0 +1,30 @@
+<h1 id="prevgraphemeclusterbreak">prevGraphemeClusterBreak</h1><blockquote><p>Return the previous extended grapheme cluster break in a string before a specified position.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> prevGraphemeClusterBreak = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/prev-grapheme-cluster-break'</span> );
+</code></pre><h4 id="prevgraphemeclusterbreak-string-fromindex-">prevGraphemeClusterBreak( string[, fromIndex] )</h4><p>Returns the previous extended grapheme cluster break in a string before a specified position.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = prevGraphemeClusterBreak( <span class="hljs-string">'last man standing'</span> );
+<span class="hljs-comment">// returns 15</span>
+</code></pre><p>By default, the last extended grapheme cluster break in the string is returned. For the previous extended grapheme cluster break before a specified position in the string, provide a <code>fromIndex</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = prevGraphemeClusterBreak( <span class="hljs-string">'last man standing'</span>, <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>string</code> is an empty string, the function returns <code>-1</code> irrespective of <code>fromIndex</code>.</li><li>If there is no extended grapheme cluster break before <code>fromIndex</code>, the function returns <code>-1</code>.</li><li>Note that <code>fromIndex</code> does <strong>not</strong> refer to a visual character position, but to an index in the ordered sequence of <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> code units.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> prevGraphemeClusterBreak = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/prev-grapheme-cluster-break'</span> );
+
+<span class="hljs-built_in">console</span>.log( prevGraphemeClusterBreak( <span class="hljs-string">'last man standing'</span>, <span class="hljs-number">4</span> ) );
+<span class="hljs-comment">// => 3</span>
+
+<span class="hljs-built_in">console</span>.log( prevGraphemeClusterBreak( <span class="hljs-string">'presidential election'</span>, <span class="hljs-number">8</span> ) );
+<span class="hljs-comment">// => 7</span>
+
+<span class="hljs-built_in">console</span>.log( prevGraphemeClusterBreak( <span class="hljs-string">'अनुच्छेद'</span>, <span class="hljs-number">2</span> ) );
+<span class="hljs-comment">// => 0</span>
+
+<span class="hljs-built_in">console</span>.log( prevGraphemeClusterBreak( <span class="hljs-string">'🌷'</span>, <span class="hljs-number">1</span> ) );
+<span class="hljs-comment">// => -1</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: prev-grapheme-cluster-break [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --fromIndex index     Position in string. Default: string.length-1.
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ prev-grapheme-cluster-break --fromIndex=2 अनुच्छेद
+0
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'अनुच्छेद'</span> | prev-grapheme-cluster-break --fromIndex=2
+0
+</code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

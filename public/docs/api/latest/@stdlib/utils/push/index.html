@@ -1,0 +1,43 @@
+<h1 id="push">push</h1><blockquote><p>Add one or more elements to the end of a collection.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> push = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/push'</span> );
+</code></pre><h4 id="push-collection-items-">push( collection, ...items )</h4><p>Adds one or more elements to the end of a <code>collection</code>. A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (i.e., an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> having a valid writable <code>length</code> property).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ];
+
+<span class="hljs-keyword">var</span> out = push( arr, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span> );
+<span class="hljs-comment">// returns [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === arr );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>In contrast to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push"><code>Array.prototype.push</code></a>, the function returns the extended collection, rather than the collection length. For <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a>, the returned value is a new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> view whose underlying <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> may <strong>not</strong> equal the underlying <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> for the input <code>collection</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">3</span>*<span class="hljs-number">8</span> ); <span class="hljs-comment">// 8 bytes per double</span>
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( buf, <span class="hljs-number">0</span>, <span class="hljs-number">2</span> );
+arr[ <span class="hljs-number">0</span> ] = <span class="hljs-number">1.0</span>;
+arr[ <span class="hljs-number">1</span> ] = <span class="hljs-number">2.0</span>;
+
+<span class="hljs-keyword">var</span> out = push( arr, <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 1.0, 2.0, 3.0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === arr );
+<span class="hljs-comment">// returns false</span>
+
+bool = ( out.buffer === arr.buffer );
+<span class="hljs-comment">// returns true</span>
+
+out = push( out, <span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 1.0, 2.0, 3.0, 4.0 ]</span>
+
+bool = ( out.buffer === arr.buffer );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function adds one or more elements to a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> by setting values in the underlying <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>. If an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> does not have enough bytes in which to store all elements, the function allocates a new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> capable of holding <code>2^n</code> elements, where <code>n</code> is the next power of <code>2</code>. This procedure is similar to how environments internally handle dynamic memory allocation for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Arrays</code></a>.</li><li>Beware when providing <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a> which are views pointing to a shared (or pooled) <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>. Because the function sets <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> bytes outside of a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">view</a>, the function may overwrite bytes belonging to one or more external views. This could be a potential <strong>security vulnerability</strong>. Prefer providing <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a> which have an exclusive <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>; otherwise, be sure to plan for and guard against mutated state.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> push = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/push'</span> );
+
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> i;
+
+arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>();
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    arr = push( arr, i );
+}
+<span class="hljs-built_in">console</span>.log( arr );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/pop"><code>@stdlib/utils/pop</code></a></span><span class="delimiter">: </span><span class="description">remove and return the last element of a collection.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/shift"><code>@stdlib/utils/shift</code></a></span><span class="delimiter">: </span><span class="description">remove and return the first element of a collection.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/unshift"><code>@stdlib/utils/unshift</code></a></span><span class="delimiter">: </span><span class="description">add one or more elements to the beginning of a collection.</span></li></ul></section><section class="links"></section>

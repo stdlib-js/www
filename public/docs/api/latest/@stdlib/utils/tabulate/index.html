@@ -1,0 +1,28 @@
+<h1 id="tabulate">tabulate</h1><blockquote><p>Generate a frequency table.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> tabulate = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/tabulate'</span> );
+</code></pre><h4 id="tabulate-collection-">tabulate( collection )</h4><p>Generates a frequency table.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'beep'</span> ];
+
+<span class="hljs-keyword">var</span> out = tabulate( arr );
+<span class="hljs-comment">// returns [ [ 'beep', 2, 0.5 ], [ 'boop', 1, 0.25 ], [ 'foo', 1, 0.25 ] ]</span>
+</code></pre><p>The returned frequency table is an <code>array</code> of <code>arrays</code>. Each sub-array corresponds to a unique value in the input <code>collection</code> and is structured as follows:</p><ul><li><code>0</code>: unique value</li><li><code>1</code>: value count</li><li><code>2</code>: frequency percentage</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+<span class="hljs-keyword">var</span> tabulate = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/tabulate'</span> );
+
+<span class="hljs-keyword">var</span> vals;
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> j;
+
+vals = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>, <span class="hljs-string">'woot'</span>, <span class="hljs-string">'woot'</span> ];
+
+<span class="hljs-comment">// Generate a random collection...</span>
+arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">100</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    j = floor( randu()*vals.length );
+    arr[ i ] = vals[ j ];
+}
+
+<span class="hljs-comment">// Generate a frequency table:</span>
+out = tabulate( arr );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/count-by"><code>@stdlib/utils/count-by</code></a></span><span class="delimiter">: </span><span class="description">group values according to an indicator function and return group counts.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/group-by"><code>@stdlib/utils/group-by</code></a></span><span class="delimiter">: </span><span class="description">group values according to an indicator function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/tabulate-by"><code>@stdlib/utils/tabulate-by</code></a></span><span class="delimiter">: </span><span class="description">generate a frequency table according to an indicator function.</span></li></ul></section><section class="links"></section>

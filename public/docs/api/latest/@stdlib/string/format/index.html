@@ -1,0 +1,106 @@
+<h1 id="format">format</h1><blockquote><p>Insert supplied variable values into a format string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> format = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/format'</span> );
+</code></pre><h4 id="format-str-args-">format( str, ...args )</h4><p>Inserts supplied variable values into a format string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello, %s! My name is %s.'</span>;
+<span class="hljs-keyword">var</span> out = format( str, <span class="hljs-string">'world'</span>, <span class="hljs-string">'Bob'</span> );
+<span class="hljs-comment">// returns 'Hello, world! My name is Bob.'</span>
+</code></pre><p>The format string is a string literal containing zero or more conversion specifications, each of which results in a string value being inserted to the output string. A conversion specification consists of a percent sign (<code>%</code>) followed by one or more of the following flags, width, precision, and conversion type characters. It thus takes the following form:</p><pre><code class="no-highlight language-text">%[flags][width][.precision]specifier
+</code></pre><p>Arguments following the format string are used to replace the placeholders in the format string. The number of arguments following the format string should be equal to the number of placeholders in the format string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'%s %s'</span>;
+<span class="hljs-keyword">var</span> out = format( str, <span class="hljs-string">'Hello'</span>, <span class="hljs-string">'World'</span> );
+<span class="hljs-comment">// returns 'Hello World'</span>
+</code></pre><p>To supply arguments in a different order than they appear in the format string, positional placeholders as indicated by a <code>$</code> character in the format string are used. In this case, the conversion specification takes the form:</p><pre><code class="no-highlight language-text">%[pos$][flags][width][.precision]specifier
+</code></pre><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'%3$s %2$s %1$s'</span>;
+<span class="hljs-keyword">var</span> out = format( str, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>, <span class="hljs-string">'baz'</span> );
+<span class="hljs-comment">// returns 'baz bar foo'</span>
+</code></pre><p>The following table summarizes the supported specifiers:</p><table><thead><tr><th>type</th><th>description</th><th>example</th></tr></thead><tbody><tr><td>s</td><td>string</td><td>beep boop</td></tr><tr><td>c</td><td>character</td><td>a</td></tr><tr><td>d, i</td><td>signed decimal integer</td><td>-12</td></tr><tr><td>u</td><td>unsigned decimal integer</td><td>390</td></tr><tr><td>b</td><td>unsigned binary integer</td><td>11011011</td></tr><tr><td>o</td><td>unsigned octal integer</td><td>510</td></tr><tr><td>x</td><td>unsigned hexadecimal (lowercase)</td><td>7b</td></tr><tr><td>X</td><td>unsigned hexadecimal (uppercase)</td><td>7B</td></tr><tr><td>f, F</td><td>decimal floating point</td><td>390.24</td></tr><tr><td>e</td><td>scientific notation (lowercase)</td><td>3.9e+1</td></tr><tr><td>E</td><td>scientific notation (uppercase)</td><td>3.9E+1</td></tr><tr><td>g</td><td>shortest representation (<code>e</code>/<code>f</code>)</td><td>3.9</td></tr><tr><td>G</td><td>shortest representation (<code>E</code>/<code>F</code>)</td><td>3.9</td></tr></tbody></table><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'%i written as a binary number is %b.'</span>;
+<span class="hljs-keyword">var</span> out = format( str, <span class="hljs-number">9</span>, <span class="hljs-number">9</span> );
+<span class="hljs-comment">// returns '9 written as a binary number is 1001.'</span>
+
+str = <span class="hljs-string">'%i written as an octal number is %o.'</span>;
+out = format( str, <span class="hljs-number">17</span>, <span class="hljs-number">17</span> );
+<span class="hljs-comment">// returns '17 written as an octal number is 21.'</span>
+
+str = <span class="hljs-string">'%i written as a hexadecimal number is %x.'</span>;
+out = format( str, <span class="hljs-number">255</span>, <span class="hljs-number">255</span> );
+<span class="hljs-comment">// returns '255 written as a hexadecimal number is ff.'</span>
+
+str = <span class="hljs-string">'%i written as a hexadecimal number is %X (uppercase letters).'</span>;
+out = format( str, <span class="hljs-number">255</span>, <span class="hljs-number">255</span> );
+<span class="hljs-comment">// returns '255 written as a hexadecimal number is FF (uppercase letters).'</span>
+
+str = <span class="hljs-string">'%i written as a floating point number with default precision is %f!'</span>;
+out = format( str, <span class="hljs-number">8</span>, <span class="hljs-number">8</span> );
+<span class="hljs-comment">// returns '8 written as a floating point number with default precision is 8.000000!'</span>
+
+str = <span class="hljs-string">'Scientific notation: %e'</span>;
+out = format( str, <span class="hljs-number">3.14159</span> );
+<span class="hljs-comment">// returns 'Scientific notation: 3.141590e+00'</span>
+
+str = <span class="hljs-string">'Scientific notation: %E (uppercase).'</span>;
+out = format( str, <span class="hljs-number">3.14159</span> );
+<span class="hljs-comment">// returns 'Scientific notation: 3.141590E+00 (uppercase).'</span>
+
+str = <span class="hljs-string">'%g (shortest representation)'</span>;
+out = format( str, <span class="hljs-number">3.14159</span> );
+<span class="hljs-comment">// returns '3.14159'</span>
+</code></pre><p>A conversion specification may contain zero or more flags, which modify the behavior of the conversion. The following flags are supported:</p><table><thead><tr><th>flag</th><th>description</th></tr></thead><tbody><tr><td>-</td><td>left-justify the output within the given field width by padding with spaces on the right</td></tr><tr><td>0</td><td>left-pad the output with zeros instead of spaces when padding is required</td></tr><tr><td>#</td><td>use an alternative format for <code>o</code> and <code>x</code> conversions</td></tr><tr><td>+</td><td>prefix the output with a plus (+) or minus (-) sign even if the value is a positive number</td></tr><tr><td>space</td><td>prefix the value with a space character if no sign is written</td></tr></tbody></table><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Always prefix with a sign: %+i'</span>;
+<span class="hljs-keyword">var</span> out = format( str, <span class="hljs-number">9</span> );
+<span class="hljs-comment">// returns 'Always prefix with a sign: +9'</span>
+
+out = format( str, -<span class="hljs-number">9</span> );
+<span class="hljs-comment">// returns 'Always prefix with a sign: -9'</span>
+
+str = <span class="hljs-string">'Only prefix with a sign if negative: %i'</span>;
+out = format( str, <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns 'Only prefix with a sign if negative: 6'</span>
+
+out = format( str, -<span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns 'Only prefix with a sign if negative: -6'</span>
+
+str = <span class="hljs-string">'Prefix with a sign if negative and a space if positive: % i'</span>;
+out = format( str, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 'Prefix with a sign if negative and a space if positive:  3'</span>
+
+out = format( str, -<span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 'Prefix with a sign if negative and a space if positive: -3'</span>
+</code></pre><p>The <code>width</code> may be specified as a decimal integer representing the minimum number of characters to be written to the output. If the value to be written is shorter than this number, the result is padded with spaces on the left. The value is not truncated even if the result is larger. Alternatively, the <code>width</code> may be specified as an asterisk character (<code>*</code>), in which case the argument preceding the conversion specification is used as the minimum field width.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'%5s'</span>;
+<span class="hljs-keyword">var</span> out = format( str, <span class="hljs-string">'baz'</span> );
+<span class="hljs-comment">// returns '  baz'</span>
+
+str = <span class="hljs-string">'%-5s'</span>;
+out = format( str, <span class="hljs-string">'baz'</span> );
+<span class="hljs-comment">// returns 'baz  '</span>
+
+str = <span class="hljs-string">'%05i'</span>;
+out = format( str, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns '00002'</span>
+
+str = <span class="hljs-string">'%*i'</span>;
+out = format( str, <span class="hljs-number">5</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns '   2'</span>
+</code></pre><p>The <code>precision</code> may be specified as a decimal integer or as an asterisk character (<code>*</code>), in which case the argument preceding the conversion specification is used as the precision value. The behavior of the <code>precision</code> differs depending on the conversion type:</p><ul><li>For <code>s</code> specifiers, the <code>precision</code> specifies the maximum number of characters to be written to the output.</li><li>For floating point specifiers (<code>f</code>, <code>F</code>, <code>e</code>, <code>E</code>), the <code>precision</code> specifies the number of digits after the decimal point to be written to the output (by default, this is <code>6</code>).</li><li>For <code>g</code> and <code>G</code> specifiers, the <code>precision</code> specifies the maximum number of significant digits to be written to the output.</li><li>For integer specifiers (<code>d</code>, <code>i</code>, <code>u</code>, <code>b</code>, <code>o</code>, <code>x</code>, <code>X</code>), the <code>precision</code> specifies the minimum number of digits to be written to the output. If the value to be written is shorter than this number, the result is padded with zeros on the left. The value is not truncated even if the result is longer. For</li></ul><p>Alternatively, the <code>precision</code> may be specified as an asterisk character (<code>*</code>), in which case the argument preceding the conversion specification is used as the minimum number of digits.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'%5.2s'</span>;
+<span class="hljs-keyword">var</span> out = format( str, <span class="hljs-string">'baz'</span> );
+<span class="hljs-comment">// returns '   ba'</span>
+
+str = <span class="hljs-string">'PI: ~%.2f'</span>;
+out = format( str, <span class="hljs-number">3.14159</span> );
+<span class="hljs-comment">// returns 'PI: ~3.14'</span>
+
+str = <span class="hljs-string">'Agent %.3i'</span>;
+out = format( str, <span class="hljs-number">7</span> );
+<span class="hljs-comment">// returns 'Agent 007'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> format = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/format'</span> );
+
+<span class="hljs-keyword">var</span> out = format( <span class="hljs-string">'%s %s!'</span>, <span class="hljs-string">'Hello'</span>, <span class="hljs-string">'World'</span> );
+<span class="hljs-comment">// returns 'Hello World!'</span>
+
+out = format( <span class="hljs-string">'Pi: ~%.2f'</span>, <span class="hljs-number">3.141592653589793</span> );
+<span class="hljs-comment">// returns 'Pi: ~3.14'</span>
+
+out = format( <span class="hljs-string">'%-10s %-10s'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span> );
+<span class="hljs-comment">// returns 'a       b       '</span>
+
+out = format( <span class="hljs-string">'%10s %10s'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span> );
+<span class="hljs-comment">// returns '       a       b'</span>
+
+out = format( <span class="hljs-string">'%2$s %1$s %3$s'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'c'</span> );
+<span class="hljs-comment">// returns 'a b c'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

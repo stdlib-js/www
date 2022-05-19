@@ -1,0 +1,37 @@
+<h1 id="char2dtype">char2dtype</h1><blockquote><p>Return the <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> string associated with a provided <a href="/docs/api/latest/@stdlib/ndarray/base/dtype-char">single letter character abbreviation</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> char2dtype = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/char2dtype'</span> );
+</code></pre><h4 id="char2dtype-ch-">char2dtype( [ch] )</h4><p>Returns the <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> string associated with a provided <a href="/docs/api/latest/@stdlib/ndarray/base/dtype-char">single letter character abbreviation</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = char2dtype( <span class="hljs-string">'d'</span> );
+<span class="hljs-comment">// returns 'float64'</span>
+
+out = char2dtype( <span class="hljs-string">'i'</span> );
+<span class="hljs-comment">// returns 'int32'</span>
+</code></pre><p>If provided an unknown or unsupported <a href="/docs/api/latest/@stdlib/ndarray/base/dtype-char">single letter character abbreviation</a>, the function returns <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = char2dtype( <span class="hljs-string">'('</span> );
+<span class="hljs-comment">// returns null</span>
+</code></pre><p>If not provided a <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> string, the function returns an object mapping <a href="/docs/api/latest/@stdlib/ndarray/base/dtype-char">single letter character abbreviations</a> to <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> strings.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = char2dtype();
+<span class="hljs-comment">// returns {...}</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypeChar = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/dtype-char'</span> );
+<span class="hljs-keyword">var</span> char2dtype = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/char2dtype'</span> );
+
+<span class="hljs-keyword">var</span> chars;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+
+chars = [
+    dtypeChar( <span class="hljs-string">'float64'</span> ),
+    dtypeChar( <span class="hljs-string">'float32'</span> ),
+    dtypeChar( <span class="hljs-string">'int8'</span> ),
+    dtypeChar( <span class="hljs-string">'uint8'</span> ),
+    dtypeChar( <span class="hljs-string">'uint8c'</span> ),
+    dtypeChar( <span class="hljs-string">'int16'</span> ),
+    dtypeChar( <span class="hljs-string">'uint16'</span> ),
+    dtypeChar( <span class="hljs-string">'int32'</span> ),
+    dtypeChar( <span class="hljs-string">'uint32'</span> ),
+    dtypeChar( <span class="hljs-string">'binary'</span> ),
+    dtypeChar( <span class="hljs-string">'generic'</span> ),
+    <span class="hljs-string">'('</span>
+];
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; chars.length; i++ ) {
+    out = char2dtype( chars[ i ] );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %s'</span>, chars[ i ], out );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

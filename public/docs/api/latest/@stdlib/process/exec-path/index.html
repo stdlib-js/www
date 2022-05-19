@@ -1,0 +1,11 @@
+<h1 id="executable-path">Executable Path</h1><blockquote><p>Absolute pathname of the executable which started the current Node.js process.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> EXEC_PATH = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/exec-path'</span> );
+</code></pre><h4 id="exec_path">EXEC_PATH</h4><p>Absolute pathname of the executable which started the current Node.js process.</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( EXEC_PATH );
+<span class="hljs-comment">// => &#x3C;string></span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In browser environments and environments other than Node.js, the absolute pathname of the executable is <code>null</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> EXEC_PATH = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/exec-path'</span> );
+
+<span class="hljs-keyword">if</span> ( EXEC_PATH ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Executable: %s'</span>, EXEC_PATH );
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Not running in Node.js.'</span> );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,34 @@
+<h1 id="right-trim">Right Trim</h1><blockquote><p>Trim whitespace characters from the end of a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rtrim = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/right-trim'</span> );
+</code></pre><h4 id="rtrim-str-">rtrim( str )</h4><p>Trims whitespace from the end of a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = rtrim( <span class="hljs-string">' \t\t\n  Beep \r\n\t  '</span> );
+<span class="hljs-comment">// returns ' \t\t\n  Beep'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Following <a href="https://en.wikipedia.org/wiki/Unicode">Unicode 6.3.0</a> and later, "whitespace" is defined as the following characters: <code>[ \\f\\n\\r\\t\\v\\u0020\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rtrim = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/right-trim'</span> );
+
+<span class="hljs-keyword">var</span> out = rtrim( <span class="hljs-string">'   Whitespace   '</span> );
+<span class="hljs-comment">// returns '   Whitespace'</span>
+
+out = rtrim( <span class="hljs-string">'\t\t\tTabs\t\t\t'</span> );
+<span class="hljs-comment">// returns '\t\t\tTabs'</span>
+
+out = rtrim( <span class="hljs-string">'\n\n\nNew Lines\n\n\n'</span> );
+<span class="hljs-comment">// returns '\n\n\nNew Lines'</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: rtrim [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'   foo   \n   bar   '</span> | rtrim --split /\r?\n/
+
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'   foo   \n   bar   '</span> | rtrim --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ rtrim <span class="hljs-string">'beep boop  '</span>
+beep boop
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep boop  '</span> | rtrim
+beep boop
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'   foo   \t   bar   \t   baz   '</span> | rtrim --split <span class="hljs-string">'\t'</span>
+   foo
+   bar
+   baz
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/left-trim"><code>@stdlib/string/left-trim</code></a></span><span class="delimiter">: </span><span class="description">trim whitespace characters from the beginning of a string.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/trim"><code>@stdlib/string/trim</code></a></span><span class="delimiter">: </span><span class="description">trim whitespace characters from the beginning and end of a string.</span></li></ul></section><section class="links"></section>

@@ -1,0 +1,48 @@
+<h1 id="funseq">funseq</h1><blockquote><p>Function sequence.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> funseq = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/function-sequence'</span> );
+</code></pre><h4 id="funseq-fcn-">funseq( ...fcn )</h4><p>Returns a pipeline function. Starting from the left, the pipeline function evaluates each function and passes the result as an argument to the next function. The result of the rightmost function is the result of the whole.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * x;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">b</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-keyword">return</span> x + <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">c</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-keyword">return</span> x / <span class="hljs-number">5</span>;
+}
+
+<span class="hljs-keyword">var</span> f = funseq( a, b, c );
+
+<span class="hljs-keyword">var</span> z = f( <span class="hljs-number">6</span> ); <span class="hljs-comment">// ((2*x)+3)/5</span>
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p><strong>Only</strong> the leftmost function is explicitly permitted to accept multiple arguments. All other functions are evaluated as <strong>unary</strong> functions.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"> x, y </span>) </span>{
+    <span class="hljs-keyword">return</span> (x*<span class="hljs-number">5</span>) + (y*<span class="hljs-number">3</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">b</span>(<span class="hljs-params"> r </span>) </span>{
+    <span class="hljs-keyword">return</span> r + <span class="hljs-number">12</span>;
+}
+
+<span class="hljs-keyword">var</span> f = funseq( a, b );
+
+<span class="hljs-keyword">var</span> z = f( <span class="hljs-number">4</span>, <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns 50</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function will throw if provided fewer than <code>2</code> input arguments.</li><li>The difference between this function and <a href="/docs/api/latest/@stdlib/utils/compose"><code>compose</code></a> is that this function evaluates input arguments from left-to-right, rather than right-to-left.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> funseq = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/function-sequence'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"> x, y </span>) </span>{
+    <span class="hljs-keyword">return</span> x * y;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">b</span>(<span class="hljs-params"> z </span>) </span>{
+    <span class="hljs-keyword">return</span> z + <span class="hljs-number">5</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">c</span>(<span class="hljs-params"> r </span>) </span>{
+    <span class="hljs-keyword">return</span> r / <span class="hljs-number">10</span>;
+}
+
+<span class="hljs-keyword">var</span> f = funseq( a, b, c );
+
+<span class="hljs-keyword">var</span> v = f( <span class="hljs-number">5</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 2</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/compose"><code>@stdlib/utils/compose</code></a></span><span class="delimiter">: </span><span class="description">function composition.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/async/function-sequence"><code>@stdlib/utils/async/function-sequence</code></a></span><span class="delimiter">: </span><span class="description">function sequence.</span></li></ul></section><section class="links"></section>

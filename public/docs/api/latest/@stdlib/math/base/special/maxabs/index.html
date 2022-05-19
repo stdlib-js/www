@@ -1,0 +1,31 @@
+<h1 id="maxabs">maxabs</h1><blockquote><p>Return the maximum absolute value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> maxabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/maxabs'</span> );
+</code></pre><h4 id="maxabs-x-y-args-">maxabs( [x[, y[, ...args]]] )</h4><p>Returns the maximum absolute value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = maxabs( -<span class="hljs-number">4.2</span>, <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns 4.2</span>
+
+v = maxabs( +<span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns +0.0</span>
+
+v = maxabs( <span class="hljs-number">4.2</span>, <span class="hljs-number">3.14</span>, -<span class="hljs-number">1.0</span>, <span class="hljs-number">6.8</span> );
+<span class="hljs-comment">// returns 6.8</span>
+</code></pre><p>If any argument is <code>NaN</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = maxabs( <span class="hljs-number">4.2</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = maxabs( <span class="hljs-literal">NaN</span>, <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre><p>If not provided any arguments, the function returns <code>+infinity</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = maxabs();
+<span class="hljs-comment">// returns Infinity</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>When an empty set is considered a subset of the extended reals (all real numbers, including positive and negative infinity), negative infinity is the least upper bound. Similar to zero being the identity element for the sum of an empty set and to one being the identity element for the product of an empty set, negative infinity is the identity element for the maximum, and thus, <code>maxabs() = +infinity</code> (i.e., the absolute value of negative infinity).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> maxabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/maxabs'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = ( randu()*<span class="hljs-number">1000.0</span> ) - <span class="hljs-number">500.0</span>;
+    y = ( randu()*<span class="hljs-number">1000.0</span> ) - <span class="hljs-number">500.0</span>;
+    v = maxabs( x, y );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'maxabs(%d,%d) = %d'</span>, x, y, v );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/max"><code>@stdlib/math/base/special/max</code></a></span><span class="delimiter">: </span><span class="description">return the maximum value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/minabs"><code>@stdlib/math/base/special/minabs</code></a></span><span class="delimiter">: </span><span class="description">return the minimum absolute value.</span></li></ul></section><section class="links"></section>

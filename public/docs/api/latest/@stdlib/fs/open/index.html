@@ -1,0 +1,74 @@
+<h1 id="open">Open</h1><blockquote><p>Open a file.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> open = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/open'</span> );
+</code></pre><h4 id="open-path-flags-mode-clbk-">open( path[, flags[, mode]], clbk )</h4><p>Asynchronously opens a file.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> closeSync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/close'</span> ).sync;
+
+open( __filename, onOpen );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onOpen</span>(<span class="hljs-params"> error, fd </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-built_in">console</span>.error( error.message );
+    } <span class="hljs-keyword">else</span> {
+        closeSync( fd );
+    }
+}
+</code></pre><p>The function has the same default parameter values as <a href="https://nodejs.org/api/fs.html"><code>fs.open()</code></a>.</p><h4 id="opensync-file-flags-mode-">open.sync( file[, flags[, mode]] )</h4><p>Synchronously opens a <code>file</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> closeSync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/close'</span> ).sync;
+
+<span class="hljs-keyword">var</span> fd = open.sync( __filename );
+<span class="hljs-keyword">if</span> ( fd <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
+    <span class="hljs-built_in">console</span>.error( fd.message );
+} <span class="hljs-keyword">else</span> {
+    closeSync( fd );
+}
+</code></pre><p>The function has the same default parameters as <a href="https://nodejs.org/api/fs.html"><code>fs.openSync()</code></a>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The difference between this API and <a href="https://nodejs.org/api/fs.html"><code>fs.openSync()</code></a> is that <a href="https://nodejs.org/api/fs.html"><code>fs.openSync()</code></a> will throw if an <code>error</code> is encountered (e.g., if given a non-existent <code>path</code>) and this API will return an <code>error</code>. Hence, the following anti-pattern</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'fs'</span> );
+
+<span class="hljs-keyword">var</span> fpath = <span class="hljs-string">'/path/to/file.js'</span>;
+<span class="hljs-keyword">var</span> fd;
+
+<span class="hljs-comment">// Check for existence to prevent an error being thrown...</span>
+<span class="hljs-keyword">if</span> ( fs.existsSync( fpath ) ) {
+    fd = fs.readFileSync( fpath );
+}
+</code></pre><p>can be replaced by an approach which addresses existence via <code>error</code> handling.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> open = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/open'</span> );
+
+<span class="hljs-keyword">var</span> fpath = <span class="hljs-string">'/path/to/file.js'</span>;
+
+<span class="hljs-comment">// Explicitly handle the error...</span>
+<span class="hljs-keyword">var</span> fd = open.sync( fpath );
+<span class="hljs-keyword">if</span> ( fd <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
+    <span class="hljs-comment">// You choose what to do...</span>
+    <span class="hljs-built_in">console</span>.error( fd.message );
+}
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+<span class="hljs-keyword">var</span> closeSync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/close'</span> ).sync;
+<span class="hljs-keyword">var</span> open = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/open'</span> );
+
+<span class="hljs-comment">/* Sync */</span>
+
+<span class="hljs-keyword">var</span> fd = open.sync( join( __dirname, <span class="hljs-string">'package.json'</span> ), <span class="hljs-string">'r+'</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+<span class="hljs-keyword">if</span> ( fd <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
+    <span class="hljs-built_in">console</span>.error( fd.message );
+} <span class="hljs-keyword">else</span> {
+    closeSync( fd );
+}
+
+fd = open.sync( <span class="hljs-string">'beepboop'</span> );
+<span class="hljs-comment">// returns &#x3C;Error></span>
+
+<span class="hljs-comment">/* Async */</span>
+
+open( join( __dirname, <span class="hljs-string">'package.json'</span> ), onOpen );
+open( <span class="hljs-string">'beepboop'</span>, onOpen );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onOpen</span>(<span class="hljs-params"> error, fd </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">if</span> ( error.code === <span class="hljs-string">'ENOENT'</span> ) {
+            <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'File does not exist.'</span> );
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-built_in">console</span>.error( error.message );
+        }
+    } <span class="hljs-keyword">else</span> {
+        closeSync( fd );
+    }
+}
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/close"><code>@stdlib/fs/close</code></a></span><span class="delimiter">: </span><span class="description">close a file descriptor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/exists"><code>@stdlib/fs/exists</code></a></span><span class="delimiter">: </span><span class="description">test whether a path exists on the filesystem.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/read-file"><code>@stdlib/fs/read-file</code></a></span><span class="delimiter">: </span><span class="description">read the entire contents of a file.</span></li></ul></section><section class="links"></section>

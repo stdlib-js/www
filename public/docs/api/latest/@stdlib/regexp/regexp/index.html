@@ -1,0 +1,41 @@
+<h1 id="regexp-string">RegExp String</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to parse a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reRegExp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/regexp'</span> );
+</code></pre><h4 id="reregexp">reRegExp()</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to parse a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_REGEXP = reRegExp();
+<span class="hljs-keyword">var</span> bool = RE_REGEXP.test( <span class="hljs-string">'/^beep$/'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_REGEXP.test( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns false</span>
+
+<span class="hljs-keyword">var</span> parts = RE_REGEXP.exec( <span class="hljs-string">'/^.*$/ig'</span> );
+<span class="hljs-comment">// returns [ '/^.*$/ig', '^.*$', 'ig', 'index': 0, 'input': '/^.*$/ig' ]</span>
+</code></pre><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> strings should be escaped.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_REGEXP = reRegExp();
+
+<span class="hljs-keyword">var</span> bool = RE_REGEXP.test( <span class="hljs-string">'/^\/([^\/]+)\/(.*)$/'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = RE_REGEXP.test( <span class="hljs-string">'/^\\/([^\\/]+)\\/(.*)$/'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre><h4 id="reregexpregexp">reRegExp.REGEXP</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to parse a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = reRegExp.REGEXP.test( <span class="hljs-string">'/^beep$/'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reRegExp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/regexp'</span> );
+
+<span class="hljs-keyword">var</span> RE_REGEXP = reRegExp();
+
+<span class="hljs-keyword">var</span> bool = RE_REGEXP.test( <span class="hljs-string">'/beep/'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_REGEXP.test( <span class="hljs-string">'/^.*$/ig'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_REGEXP.test( <span class="hljs-string">'/^\\/([^\\/]+)\\/(.*)$/'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_REGEXP.test( <span class="hljs-string">'/^\/([^\/]+)\/(.*)$/'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = RE_REGEXP.test( <span class="hljs-string">'/boop'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = RE_REGEXP.test( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/regexp-from-string"><code>@stdlib/utils/regexp-from-string</code></a></span><span class="delimiter">: </span><span class="description">create a regular expression from a regular expression string.</span></li></ul></section><section class="links"></section>

@@ -1,0 +1,25 @@
+<h1 id="log1pexp">log1pexp</h1><blockquote><p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>1+exp(x)</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log1pexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1pexp'</span> );
+</code></pre><h4 id="log1pexp-x-">log1pexp( x )</h4><p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>1+exp(x)</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = log1pexp( -<span class="hljs-number">10.0</span> );
+<span class="hljs-comment">// returns ~0.000045</span>
+
+y = log1pexp( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns ~0.693147</span>
+
+y = log1pexp( <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns ~5.006715</span>
+
+y = log1pexp( <span class="hljs-number">34.0</span> );
+<span class="hljs-comment">// returns 34.0</span>
+
+y = log1pexp( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/incrspace'</span> );
+<span class="hljs-keyword">var</span> log1pexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1pexp'</span> );
+
+<span class="hljs-keyword">var</span> x = incrspace( -<span class="hljs-number">10.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">0.01</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, f(x): %d'</span>, x[ i ], log1pexp( x[ i ] ) );
+}
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/exp"><code>@stdlib/math/base/special/exp</code></a></span><span class="delimiter">: </span><span class="description">natural exponential function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ln"><code>@stdlib/math/base/special/ln</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log1mexp"><code>@stdlib/math/base/special/log1mexp</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of 1-exp(-|x|).</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log1p"><code>@stdlib/math/base/special/log1p</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of 1+x.</span></li></ul></section><section class="links"></section>

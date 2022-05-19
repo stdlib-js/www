@@ -1,0 +1,34 @@
+<h1 id="iterany">iterAny</h1><blockquote><p>Test whether at least one <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> value is truthy.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterAny = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/any'</span> );
+</code></pre><h4 id="iterany-iterator-">iterAny( iterator )</h4><p>Tests whether at least one <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> value is truthy.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
+
+<span class="hljs-keyword">var</span> bool = iterAny( arr );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>If a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a> does not return any iterated values, the function returns <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> bool = iterAny( array2iterator( [] ) );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
+<span class="hljs-keyword">var</span> iterMap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/map'</span> );
+<span class="hljs-keyword">var</span> iterAny = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/any'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">threshold</span>(<span class="hljs-params"> r </span>) </span>{
+    <span class="hljs-keyword">return</span> ( r > <span class="hljs-number">0.95</span> );
+}
+
+<span class="hljs-comment">// Create an iterator which generates uniformly distributed pseudorandom numbers:</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">100</span>
+};
+<span class="hljs-keyword">var</span> riter = randu( opts );
+
+<span class="hljs-comment">// Create an iterator which applies a threshold to generated numbers:</span>
+<span class="hljs-keyword">var</span> miter = iterMap( riter, threshold );
+
+<span class="hljs-comment">// Determine if any values are "truthy":</span>
+<span class="hljs-keyword">var</span> bool = iterAny( miter );
+<span class="hljs-comment">// returns &#x3C;boolean></span>
+
+<span class="hljs-built_in">console</span>.log( bool );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/any-by"><code>@stdlib/iter/any-by</code></a></span><span class="delimiter">: </span><span class="description">test whether at least one iterated value passes a test implemented by a predicate function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/every"><code>@stdlib/iter/every</code></a></span><span class="delimiter">: </span><span class="description">test whether all iterated values are truthy.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/for-each"><code>@stdlib/iter/for-each</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which invokes a function for each iterated value before returning the iterated value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/none"><code>@stdlib/iter/none</code></a></span><span class="delimiter">: </span><span class="description">test whether all iterated values are falsy.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/some"><code>@stdlib/iter/some</code></a></span><span class="delimiter">: </span><span class="description">test whether at least <code>n</code> iterated values are truthy.</span></li></ul></section><section class="links"></section>

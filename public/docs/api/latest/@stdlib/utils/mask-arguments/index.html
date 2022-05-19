@@ -1,0 +1,62 @@
+<h1 id="maskarguments">maskArguments</h1><blockquote><p>Create a function that invokes a provided function according to an argument mask.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> maskArguments = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/mask-arguments'</span> );
+</code></pre><h4 id="maskarguments-fcn-mask-thisarg-">maskArguments( fcn, mask[, thisArg] )</h4><p>Returns a <code>function</code> that invokes a provided function according to an argument <code>mask</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"> a, b </span>) </span>{
+    <span class="hljs-keyword">return</span> [ a, b ];
+}
+
+<span class="hljs-keyword">var</span> bar = maskArguments( foo, [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
+
+<span class="hljs-keyword">var</span> out = bar( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns [ 1, 3 ]</span>
+</code></pre><p>To set the <code>this</code> context when invoking the provided function, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.x = <span class="hljs-number">1</span>;
+    <span class="hljs-built_in">this</span>.y = <span class="hljs-number">2</span>;
+}
+
+Foo.prototype.scale = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scale</span>(<span class="hljs-params"> a, b </span>) </span>{
+    <span class="hljs-keyword">return</span> [ <span class="hljs-built_in">this</span>.x*a, <span class="hljs-built_in">this</span>.y*b ];
+};
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'x'</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-string">'y'</span>: <span class="hljs-number">20</span>
+};
+
+<span class="hljs-keyword">var</span> foo = <span class="hljs-keyword">new</span> Foo();
+
+<span class="hljs-keyword">var</span> bar = maskArguments( foo.scale, [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ], ctx );
+
+<span class="hljs-keyword">var</span> out = bar( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns [ 10, 60 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Only those arguments having a truthy mask value are applied to a provided function.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+<span class="hljs-keyword">var</span> maskArguments = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/mask-arguments'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> i </span>) </span>{
+    <span class="hljs-keyword">return</span> i;
+}
+
+<span class="hljs-comment">// Create a data array:</span>
+<span class="hljs-keyword">var</span> x = filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'float64'</span>, fill );
+
+<span class="hljs-comment">// Create a mask array:</span>
+<span class="hljs-keyword">var</span> mask = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( x.length );
+
+<span class="hljs-comment">// "Unmask" the first element:</span>
+mask[ <span class="hljs-number">0</span> ] = <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">// Compute the sum of consecutive elements...</span>
+<span class="hljs-keyword">var</span> f;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">1</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-comment">// "Unmask" the next element:</span>
+    mask[ i ] = <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// Compute the sum:</span>
+    f = maskArguments( add, mask );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'sum(x_%d, x_%d) = %d'</span>, i-<span class="hljs-number">1</span>, i, f.apply( <span class="hljs-literal">null</span>, x ) );
+
+    <span class="hljs-comment">// Update the mask:</span>
+    mask[ i-<span class="hljs-number">1</span> ] = <span class="hljs-number">0</span>;
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

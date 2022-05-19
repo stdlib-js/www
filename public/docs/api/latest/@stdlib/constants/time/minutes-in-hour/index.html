@@ -1,0 +1,21 @@
+<h1 id="minutes-in-an-hour">Minutes in an Hour</h1><blockquote><p>Number of minutes in an hour.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> MINUTES_IN_HOUR = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/time/minutes-in-hour'</span> );
+</code></pre><h4 id="minutes_in_hour">MINUTES_IN_HOUR</h4><p>Number of minutes in an hour.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( MINUTES_IN_HOUR === <span class="hljs-number">60</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The value is a generalization and does <strong>not</strong> take into account inaccuracies due to daylight savings conventions, crossing timezones, or other complications with time and dates.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> roundn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/roundn'</span> );
+<span class="hljs-keyword">var</span> MINUTES_IN_HOUR = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/time/minutes-in-hour'</span> );
+
+<span class="hljs-keyword">var</span> h;
+<span class="hljs-keyword">var</span> m;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hrs2mins</span>(<span class="hljs-params"> hrs </span>) </span>{
+    <span class="hljs-keyword">return</span> hrs * MINUTES_IN_HOUR;
+}
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+    h = roundn( randu()*<span class="hljs-number">20.0</span>, -<span class="hljs-number">2</span> );
+    m = hrs2mins( h );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d hours => %d minutes'</span>, h, m );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

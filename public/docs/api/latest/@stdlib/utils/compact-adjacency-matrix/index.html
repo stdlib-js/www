@@ -1,0 +1,43 @@
+<h1 id="compactadjacencymatrix">CompactAdjacencyMatrix</h1><blockquote><p>Compact adjacency matrix constructor.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> CompactAdjacencyMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/compact-adjacency-matrix'</span> );
+</code></pre><h4 id="compactadjacencymatrix-n-">CompactAdjacencyMatrix( N )</h4><p>Returns a compact adjacency matrix instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> adj = <span class="hljs-keyword">new</span> CompactAdjacencyMatrix( <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns &#x3C;CompactAdjacencyMatrix></span>
+
+<span class="hljs-comment">// ...</span>
+
+adj.addEdge( <span class="hljs-number">0</span>, <span class="hljs-number">1</span> );
+adj.addEdge( <span class="hljs-number">0</span>, <span class="hljs-number">2</span> );
+adj.addEdge( <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+adj.addEdge( <span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> CompactAdjacencyMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/compact-adjacency-matrix'</span> );
+
+<span class="hljs-comment">// Create a new adjacency matrix:</span>
+<span class="hljs-keyword">var</span> adj = <span class="hljs-keyword">new</span> CompactAdjacencyMatrix( <span class="hljs-number">4</span> );
+
+<span class="hljs-comment">// Add edges:</span>
+adj.addEdge( <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+adj.addEdge( <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+adj.addEdge( <span class="hljs-number">0</span>, <span class="hljs-number">2</span> );
+adj.addEdge( <span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
+
+<span class="hljs-comment">// Compute the indegrees and outdegrees for each vertex:</span>
+<span class="hljs-keyword">var</span> id;
+<span class="hljs-keyword">var</span> od;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+    id = adj.inDegree( i );
+    od = adj.outDegree( i );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'vertex: %d. indegree: %d. outdegree: %d.'</span>, i, id, od );
+}
+
+<span class="hljs-comment">// Print the list of all edges:</span>
+<span class="hljs-built_in">console</span>.log( adj.edges );
+<span class="hljs-comment">// => [ [ 0, 2 ], [ 1, 0 ], [ 1, 2 ], [ 2, 3 ] ]</span>
+
+<span class="hljs-comment">// Convert the adjacency matrix to an adjacency list representation:</span>
+<span class="hljs-built_in">console</span>.log( adj.toAdjacencyList() );
+<span class="hljs-comment">// => [ [ 2 ], [ 0, 2 ], [ 3 ], [] ]</span>
+
+<span class="hljs-comment">// Compute a topological ordering:</span>
+<span class="hljs-built_in">console</span>.log( adj.toposort() );
+<span class="hljs-comment">// => [ [ 1, 0, 2, 3 ], null ]</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

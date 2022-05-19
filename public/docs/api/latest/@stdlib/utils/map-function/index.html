@@ -1,0 +1,31 @@
+<h1 id="mapfun">mapFun</h1><blockquote><p>Invoke a function <code>n</code> times and return an array of accumulated function return values.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mapFun = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/map-function'</span> );
+</code></pre><h4 id="mapfun-fcn-n-thisarg--">mapFun( fcn, n[, thisArg ] )</h4><p>Invokes a function <code>n</code> times and returns an <code>array</code> of accumulated function return values.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> i </span>) </span>{
+    <span class="hljs-keyword">return</span> i;
+}
+
+<span class="hljs-keyword">var</span> arr = mapFun( fcn, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4 ]</span>
+</code></pre><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> i </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> i;
+}
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> arr = mapFun( fcn, <span class="hljs-number">5</span>, context );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4 ]</span>
+
+<span class="hljs-built_in">console</span>.log( context.count );
+<span class="hljs-comment">// => 5</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The invoked <code>function</code> is provided a single argument: the invocation index (zero-based).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> mapFun = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/map-function'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rand</span>(<span class="hljs-params"> i </span>) </span>{
+    <span class="hljs-keyword">return</span> randu() * i * <span class="hljs-number">10.0</span>;
+}
+
+<span class="hljs-keyword">var</span> arr = mapFun( rand, <span class="hljs-number">100</span> );
+<span class="hljs-built_in">console</span>.log( arr );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/async/map-function"><code>@stdlib/utils/async/map-function</code></a></span><span class="delimiter">: </span><span class="description">invoke a function n times and return an array of accumulated function return values.</span></li></ul></section><section class="links"></section>

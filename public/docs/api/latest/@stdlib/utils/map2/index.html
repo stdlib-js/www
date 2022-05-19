@@ -1,0 +1,149 @@
+<h1 id="map2">map2</h1><blockquote><p>Apply a function to elements in two input arrays and assign the results to an output array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> map2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/map2'</span> );
+</code></pre><p><a name="fcn-map2"></a></p><h4 id="map2-x-y-fcn-thisarg-">map2( x, y, fcn[, thisArg] )</h4><p>Applies a function to elements in two input arrays and assigns the results to a new array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-keyword">var</span> out = map2( x, y, naryFunction( add, <span class="hljs-number">2</span> ) );
+<span class="hljs-comment">// returns [ 2, 3, 4, 5, 6, 7 ]</span>
+</code></pre><p>The function accepts both array-like objects and <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>-like objects.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+<span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+};
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ] ], opts );
+<span class="hljs-keyword">var</span> y = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ], [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ] ], opts );
+
+<span class="hljs-keyword">var</span> out = map2( x, y, naryFunction( add, <span class="hljs-number">2</span> ) );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> v = out.get( <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 6</span>
+</code></pre><p>The applied function is provided the following arguments:</p><ul><li><strong>v1</strong>: element from first input array.</li><li><strong>v2</strong>: element from second input array.</li><li><strong>idx</strong>: element index.</li><li><strong>x</strong>: first input array.</li><li><strong>y</strong>: second input array.</li></ul><p>To set the <code>this</code> context when invoking the input function, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v1, v2 </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> add( v1, v2 );
+}
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> out = map2( x, y, fcn, ctx );
+<span class="hljs-comment">// returns [ 2, 3, 4, 5, 6, 7 ]</span>
+
+<span class="hljs-keyword">var</span> cnt = ctx.count;
+<span class="hljs-comment">// returns 6</span>
+</code></pre><p><a name="method-map2-assign"></a></p><h4 id="map2assign-x-y-out-fcn-thisarg-">map2.assign( x, y, out, fcn[, thisArg] )</h4><p>Applies a function to elements in two input arrays and assigns the results to an output array <code>out</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+
+map2.assign( x, y, out, naryFunction( add, <span class="hljs-number">2</span> ) );
+
+<span class="hljs-built_in">console</span>.log( out );
+<span class="hljs-comment">// => [ 2, 3, 4, 5, 6, 7 ]</span>
+</code></pre><p>The method accepts both array-like objects and <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>-like objects.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+<span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ]
+};
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ] ], opts );
+<span class="hljs-keyword">var</span> y = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ], [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ] ], opts );
+<span class="hljs-keyword">var</span> out = array( opts );
+
+map2.assign( x, y, out, naryFunction( add, <span class="hljs-number">2</span> ) );
+
+<span class="hljs-keyword">var</span> v = out.get( <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 6</span>
+</code></pre><p>Input and output arrays must be either all array-like objects or all <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>-like objects. If input and output arrays are array-like objects, all arrays <strong>must</strong> have the same number of elements.</p><p>If input and output arrays are <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>-like objects, the arrays <strong>must</strong> be <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">broadcast compatible</a>. To map from one or more input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarrays</code></a> to an output <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> which has the same rank (i.e., dimensionality) and the same number of elements, but which is not <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">broadcast compatible</a>, reshape the arrays prior to invocation.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+<span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ]
+};
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ] ], opts );
+<span class="hljs-keyword">var</span> y = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ], [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ] ], opts );
+
+opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ]  <span class="hljs-comment">// broadcast compatible shape</span>
+};
+<span class="hljs-keyword">var</span> out = array( opts );
+
+map2.assign( x, y, out, naryFunction( add, <span class="hljs-number">2</span> ) );
+
+<span class="hljs-keyword">var</span> v = out.get( <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 6</span>
+
+v = out.get( <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 6</span>
+</code></pre><p>In general, avoid providing output <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>-like objects which are <a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-contiguous">non-contiguous</a> views containing one or more elements referring to the <strong>same</strong> memory location. Writing to an overlapping <a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-contiguous">non-contiguous</a> view is likely to simultaneously affect multiple elements and yield unexpected results.</p><p>The applied function is provided the same arguments as with <a href="#fcn-map2"><code>map2</code></a>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The <a href="#fcn-map2"><code>map2</code></a> function <strong>always</strong> returns an output value having a "generic" data type. For example, if provided array-like objects, the function returns a generic <code>array</code>. If provided <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarrays</code></a>, the function returns an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> having a "generic" data type.</p><p>Accordingly, when provided a typed array, the <a href="#fcn-map2"><code>map2</code></a> function does <strong>not</strong> return a typed array of the same type. To assign results to a typed array, use the <a href="#method-map2-assign"><code>map2.assign</code></a> method.</p></li><li><p>Both <a href="#fcn-map2"><code>map2</code></a> and <a href="#method-map2-assign"><code>map2.assign</code></a> accept array-like objects exposing getters and setters for array element access (e.g., <a href="/docs/api/latest/@stdlib/array/complex64"><code>Complex64Array</code></a>, <a href="/docs/api/latest/@stdlib/array/complex128"><code>Complex128Array</code></a>, etc).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
+<span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32'</span> );
+<span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/realf'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imagf'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/caddf'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ] );
+<span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> Complex64Array( <span class="hljs-number">4</span> );
+
+map2.assign( x, y, z, naryFunction( add, <span class="hljs-number">2</span> ) );
+
+<span class="hljs-keyword">var</span> v = z.get( <span class="hljs-number">0</span> );
+
+<span class="hljs-keyword">var</span> re = realf( v );
+<span class="hljs-comment">// returns 2.0</span>
+
+<span class="hljs-keyword">var</span> im = imagf( v );
+<span class="hljs-comment">// returns 3.0</span>
+</code></pre></li><li><p>When applying a function to <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>-like objects, performance will be best for <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>-like objects which are single-segment contiguous. For non-contiguous arrays, see <a href="/docs/api/latest/@stdlib/ndarray/base/binary"><code>@stdlib/ndarray/base/binary</code></a>.</p></li><li><p>Both <a href="#fcn-map2"><code>map2</code></a> and <a href="#method-map2-assign"><code>map2.assign</code></a> do <strong>not</strong> skip <code>undefined</code> elements.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+<span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> map2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/map2'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> i </span>) </span>{
+    <span class="hljs-keyword">var</span> rand = discreteUniform( -<span class="hljs-number">10</span>*(i+<span class="hljs-number">1</span>), <span class="hljs-number">10</span>*(i+<span class="hljs-number">1</span>) );
+    <span class="hljs-keyword">return</span> filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span>, rand );
+}
+
+<span class="hljs-comment">// Create two-dimensional ndarrays (i.e., matrices):</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'flatten'</span>: <span class="hljs-literal">true</span>
+};
+<span class="hljs-keyword">var</span> x = array( filledarrayBy( <span class="hljs-number">10</span>, opts.dtype, fill ), opts );
+<span class="hljs-keyword">var</span> y = array( filledarrayBy( <span class="hljs-number">10</span>, opts.dtype, fill ), opts );
+
+<span class="hljs-comment">// Create an explicit binary function:</span>
+<span class="hljs-keyword">var</span> f = naryFunction( add, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Compute element-wise sums...</span>
+<span class="hljs-keyword">var</span> z = map2( x, y, f );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x:'</span> );
+<span class="hljs-built_in">console</span>.log( x.data );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'y:'</span> );
+<span class="hljs-built_in">console</span>.log( y.data );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'z:'</span> );
+<span class="hljs-built_in">console</span>.log( z.data );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

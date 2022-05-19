@@ -1,0 +1,177 @@
+<h1 id="z-test">Z-Test</h1><blockquote><p>One-sample z-Test.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ztest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/ztest'</span> );
+</code></pre><h4 id="ztest-x-sigma-opts-">ztest( x, sigma[, opts] )</h4><p>The function performs a one-sample z-test for the null hypothesis that the data in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> <code>x</code> is drawn from a normal distribution with mean zero and known standard deviation <code>sigma</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
+
+<span class="hljs-keyword">var</span> rnorm = normal( <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span>, {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">5776</span>
+});
+
+<span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">300</span> );
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    arr[ i ] = rnorm();
+}
+
+<span class="hljs-keyword">var</span> out = ztest( arr, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">/* e.g., returns
+    {
+        'rejected': false,
+        'pValue': ~0.155,
+        'statistic': -1.422,
+        'ci': [~-0.391,~0.062],
+        // ...
+    }
+*/</span>
+</code></pre><p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the hypothesis test results. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option which when set to <code>false</code> will hide the test decision.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> table = out.print({
+    <span class="hljs-string">'digits'</span>: <span class="hljs-number">3</span>
+});
+<span class="hljs-built_in">console</span>.log( table );
+<span class="hljs-comment">/* e.g., =>
+    One-sample z-test
+
+    Alternative hypothesis: True mean is not equal to 0
+
+        pValue: 0.155
+        statistic: -1.422
+        95% confidence interval: [-0.391,0.062]
+
+    Test Decision: Fail to reject null in favor of alternative at 5% significance level
+*/</span>
+</code></pre><p>The <code>ztest</code> function accepts the following <code>options</code>:</p><ul><li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li><li><strong>alternative</strong>: Either <code>two-sided</code>, <code>less</code> or <code>greater</code>. Indicates whether the alternative hypothesis is that the mean of <code>x</code> is larger than <code>mu</code> (<code>greater</code>), smaller than <code>mu</code> (<code>less</code>) or equal to <code>mu</code> (<code>two-sided</code>). Default: <code>two-sided</code>.</li><li><strong>mu</strong>: <code>number</code> denoting the hypothesized true mean under the null hypothesis. Default: <code>0</code>.</li></ul><p>By default, the hypothesis test is carried out at a significance level of <code>0.05</code>. To choose a different significance level, set the <code>alpha</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> table;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> arr;
+
+arr = [ <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ];
+
+out = ztest( arr, <span class="hljs-number">2.0</span>, {
+    <span class="hljs-string">'alpha'</span>: <span class="hljs-number">0.01</span>
+});
+table = out.print();
+<span class="hljs-comment">/* e.g., returns
+    One-sample z-test
+
+    Alternative hypothesis: True mean is not equal to 0
+
+        pValue: 0.0253
+        statistic: 2.2361
+        99% confidence interval: [-0.3039,4.3039]
+
+    Test Decision: Fail to reject null in favor of alternative at 1% significance level
+*/</span>
+
+out = ztest( arr, <span class="hljs-number">2.0</span>, {
+    <span class="hljs-string">'alpha'</span>: <span class="hljs-number">0.1</span>
+});
+table = out.print();
+<span class="hljs-comment">/* e.g., returns
+    One-sample z-test
+
+    Alternative hypothesis: True mean is not equal to 0
+
+        pValue: 0.0253
+        statistic: 2.2361
+        90% confidence interval: [0.5288,3.4712]
+
+    Test Decision: Reject null in favor of alternative at 10% significance level
+*/</span>
+</code></pre><p>To test whether the data comes from a distribution with a mean different than zero, set the <code>mu</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> arr;
+
+arr = [ <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span> ];
+
+out = ztest( arr, <span class="hljs-number">1.0</span>, {
+    <span class="hljs-string">'mu'</span>: <span class="hljs-number">5.0</span>
+});
+<span class="hljs-comment">/* e.g., returns
+    {
+        'rejected': false,
+        'pValue': 1,
+        'statistic': 0,
+        'ci': [ ~4.123, ~5.877 ],
+        // ...
+    }
+*/</span>
+</code></pre><p>By default, a two-sided test is performed. To perform either of the one-sided tests, set the <code>alternative</code> option to <code>less</code> or <code>greater</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> table;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> arr;
+
+arr = [ <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span> ];
+
+out = ztest( arr, <span class="hljs-number">1.0</span>, {
+    <span class="hljs-string">'alternative'</span>: <span class="hljs-string">'less'</span>
+});
+table = out.print();
+<span class="hljs-comment">/* e.g., returns
+    One-sample z-test
+
+    Alternative hypothesis: True mean is less than 0
+
+        pValue: 1
+        statistic: 11.1803
+        95% confidence interval: [-Infinity,5.7356]
+
+    Test Decision: Fail to reject null in favor of alternative at 5% significance level
+*/</span>
+
+out = ztest( arr, <span class="hljs-number">1.0</span>, {
+    <span class="hljs-string">'alternative'</span>: <span class="hljs-string">'greater'</span>
+});
+table = out.print();
+<span class="hljs-comment">/* e.g., returns
+    One-sample z-test
+
+    Alternative hypothesis: True mean is greater than 0
+
+        pValue: 0
+        statistic: 11.1803
+        95% confidence interval: [4.2644,Infinity]
+
+    Test Decision: Reject null in favor of alternative at 5% significance level
+*/</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
+<span class="hljs-keyword">var</span> ztest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/ztest'</span> );
+
+<span class="hljs-keyword">var</span> rnorm;
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+
+rnorm = normal( <span class="hljs-number">5.0</span>, <span class="hljs-number">4.0</span>, {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">37827</span>
+});
+arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">500</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    arr[ i ] = rnorm();
+}
+
+<span class="hljs-comment">// Test whether true mean is equal to zero:</span>
+out = ztest( arr, <span class="hljs-number">4.0</span> );
+<span class="hljs-built_in">console</span>.log( out.print() );
+<span class="hljs-comment">/* e.g., =>
+    One-sample z-test
+
+    Alternative hypothesis: True mean is not equal to 0
+
+        pValue: 0
+        statistic: 28.6754
+        95% confidence interval: [4.779,5.4802]
+
+    Test Decision: Reject null in favor of alternative at 5% significance level
+*/</span>
+
+<span class="hljs-comment">// Test whether true mean is equal to five:</span>
+out = ztest( arr, <span class="hljs-number">4.0</span>, {
+    <span class="hljs-string">'mu'</span>: <span class="hljs-number">5.0</span>
+});
+<span class="hljs-built_in">console</span>.log( out.print() );
+<span class="hljs-comment">/* e.g., =>
+    One-sample z-test
+
+    Alternative hypothesis: True mean is not equal to 5
+
+        pValue: 0.4688
+        statistic: 0.7245
+        95% confidence interval: [4.779,5.4802]
+
+    Test Decision: Fail to reject null in favor of alternative at 5% significance level
+*/</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/ztest2"><code>@stdlib/stats/ztest2</code></a></span><span class="delimiter">: </span><span class="description">two-sample z-Test.</span></li></ul></section><section class="links"></section>

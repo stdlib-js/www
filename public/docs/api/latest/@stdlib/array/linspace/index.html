@@ -1,0 +1,136 @@
+<h1 id="linspace">linspace</h1><blockquote><p>Generate a linearly spaced array over a specified interval.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/linspace'</span> );
+</code></pre><h4 id="linspace-start-stop-length-options-">linspace( start, stop, length[, options] )</h4><p>Generates a linearly spaced array over a specified interval.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span>, <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, 20.0, 40.0, 60.0, 80.0, 100.0 ]</span>
+</code></pre><p>If <code>length</code> is <code>0</code>, the function returns an empty array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[]</span>
+</code></pre><p>If <code>length</code> is <code>1</code>, the function returns an array containing <code>stop</code>, but not <code>start</code>, when <code>endpoint</code> is <code>true</code>; otherwise, the function returns an array containing <code>start</code>, but not <code>stop</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 100.0 ]</span>
+
+arr = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span>, <span class="hljs-number">1</span>, {
+    <span class="hljs-string">'endpoint'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 100.0 ]</span>
+
+arr = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span>, <span class="hljs-number">1</span>, {
+    <span class="hljs-string">'endpoint'</span>: <span class="hljs-literal">false</span>
+});
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0 ]</span>
+</code></pre><p>For real-valued <code>start</code> and <code>stop</code>, if <code>start</code> is less than <code>stop</code>, the output array will contain ascending values, and, if <code>start</code> is greater than <code>stop</code>, the output array will contain descending values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = linspace( <span class="hljs-number">0.0</span>, -<span class="hljs-number">100.0</span>, <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, -20.0, -40.0, -60.0, -80.0, -100.0 ]</span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>dtype</strong>: output array data type. Must be a <a href="/docs/api/latest/@stdlib/array/typed-float-dtypes">floating-point data type</a> or <code>'generic'</code>. If both <code>start</code> and <code>stop</code> are the same type (either <code>'float64'</code>, <code>'complex64'</code>, or <code>'complex128'</code>), the default output array data type is the same type as the input values (either <code>'float64'</code>, <code>'complex64'</code>, or <code>'complex128'</code>, respectively). Otherwise, the default output array data type is <code>'complex128'</code>.</li><li><strong>endpoint</strong>: <code>boolean</code> indicating whether to include the <code>stop</code> value in the output array. If <code>false</code>, the function generates <code>length + 1</code> linearly spaced values over the interval <code>[start, stop]</code> and only writes <code>length</code> values to the output array, thus excluding <code>stop</code> from the output array. Accordingly, for a fixed <code>length</code>, the spacing between adjacent values in the output array changes depending on the value of <code>endpoint</code>. Default: <code>true</code>.</li></ul><p>By default, the function generates a linearly spaced array over the closed interval <code>[start, stop]</code>. To generate linearly spaced values over the half-open interval <code>[start, stop)</code>, set the <code>endpoint</code> option to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'endpoint'</span>: <span class="hljs-literal">false</span>
+};
+<span class="hljs-keyword">var</span> arr = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span>, <span class="hljs-number">5</span>, opts );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, 20.0, 40.0, 60.0, 80.0 ]</span>
+</code></pre><p>When both <code>start</code> and <code>stop</code> are real-valued, the default output array data type is <code>'float64'</code>. To return an output array having a different data type, set the <code>dtype</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+};
+<span class="hljs-keyword">var</span> arr = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">6</span>, opts );
+<span class="hljs-comment">// returns [ 0, 20, 40, 60, 80, 100 ]</span>
+</code></pre><p>When either <code>start</code> or <code>stop</code> is a complex number, the default output array data type is <code>'complex128'</code>. To return an output array having a different data type, set the <code>dtype</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+};
+
+<span class="hljs-keyword">var</span> start = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> );
+<span class="hljs-keyword">var</span> stop = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">100.0</span>, <span class="hljs-number">10.0</span> );
+
+<span class="hljs-keyword">var</span> arr = linspace( start, stop, <span class="hljs-number">6</span>, opts );
+<span class="hljs-comment">// returns [ &#x3C;Complex128>, &#x3C;Complex128>, &#x3C;Complex128>, &#x3C;Complex128>, &#x3C;Complex128>, &#x3C;Complex128> ]</span>
+
+<span class="hljs-keyword">var</span> z = arr[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( z );
+<span class="hljs-comment">// returns 0.0</span>
+
+<span class="hljs-keyword">var</span> im = imag( z );
+<span class="hljs-comment">// returns 0.0</span>
+
+z = arr[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+re = real( z );
+<span class="hljs-comment">// returns 20.0</span>
+
+im = imag( z );
+<span class="hljs-comment">// returns 2.0</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><h4 id="linspaceassign-start-stop-out-options-">linspace.assign( start, stop, out[, options] )</h4><p>Generates a linearly spaced sequence over a specified interval and assigns the results to a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">6</span> );
+<span class="hljs-keyword">var</span> arr = linspace.assign( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span>, out );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, 20.0, 40.0, 60.0, 80.0, 100.0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( arr === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>If the provided output array is empty, the function returns the provided output array unchanged.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = linspace.assign( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span>, [] );
+<span class="hljs-comment">// returns []</span>
+</code></pre><p>If the provided output array contains a single element, the function writes the <code>stop</code> value, but not <code>start</code>, when <code>endpoint</code> is <code>true</code>; otherwise, the function writes the <code>start</code> value, but not <code>stop</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = linspace.assign( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span>, [ -<span class="hljs-number">10.0</span> ] );
+<span class="hljs-comment">// returns [ 100.0 ]</span>
+
+arr = linspace.assign( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span>, [ -<span class="hljs-number">10.0</span> ], {
+    <span class="hljs-string">'endpoint'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-comment">// returns [ 100.0 ]</span>
+
+arr = linspace.assign( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span>, [ -<span class="hljs-number">10.0</span> ], {
+    <span class="hljs-string">'endpoint'</span>: <span class="hljs-literal">false</span>
+});
+<span class="hljs-comment">// returns [ 0.0 ]</span>
+</code></pre><p>For real-valued <code>start</code> and <code>stop</code>, if <code>start</code> is less than <code>stop</code>, the output array will contain ascending values, and, if <code>start</code> is greater than <code>stop</code>, the output array will contain descending values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">6</span> );
+<span class="hljs-keyword">var</span> arr = linspace.assign( <span class="hljs-number">0.0</span>, -<span class="hljs-number">100.0</span>, out );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, -20.0, -40.0, -60.0, -80.0, -100.0 ]</span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>endpoint</strong>: <code>boolean</code> indicating whether to include the <code>stop</code> value in the output array. If <code>false</code>, the function generates <code>N + 1</code> linearly spaced values (where <code>N</code> is the length of the provided output array) over the interval <code>[start, stop]</code> and only writes <code>N</code> values to the output array, thus excluding <code>stop</code> from the output array. Accordingly, for a fixed <code>N</code>, the spacing between adjacent values in the output array changes depending on the value of <code>endpoint</code>. Default: <code>true</code>.</li></ul><p>By default, the function generates a linearly spaced array over the closed interval <code>[start, stop]</code>. To generate linearly spaced values over the half-open interval <code>[start, stop)</code>, set the <code>endpoint</code> option to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'endpoint'</span>: <span class="hljs-literal">false</span>
+};
+
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">5</span> );
+<span class="hljs-keyword">var</span> arr = linspace.assign( <span class="hljs-number">0.0</span>, <span class="hljs-number">100.0</span>, out, opts );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, 20.0, 40.0, 60.0, 80.0 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>For <code>M >= 2</code>, the spacing between values is computed as</p><pre><code class="no-highlight language-text">delta = (stop-start) / (M-1)
+</code></pre><p>where <code>M</code> is the number of values to generate. Accordingly, values may not be evenly spaced due to floating-point rounding errors.</p></li><li><p>When the output array length is greater than <code>1</code> and <code>endpoint</code> is <code>true</code>, the output array is guaranteed to include the <code>start</code> and <code>stop</code> values. Beware, however, that values between <code>start</code> and <code>stop</code> are subject to floating-point rounding errors. Hence,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, ~0.5, 1.0 ]</span>
+</code></pre><p>where <code>arr[1]</code> is only guaranteed to be approximately equal to <code>0.5</code>. If you desire more control over element precision, consider using <a href="/docs/api/latest/@stdlib/math/base/special/roundn"><code>roundn</code></a>:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> roundn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/roundn'</span> );
+
+<span class="hljs-comment">// Create an array subject to floating-point rounding errors:</span>
+<span class="hljs-keyword">var</span> arr = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+
+<span class="hljs-comment">// Round each value to the nearest hundredth:</span>
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    arr[ i ] = roundn( arr[ i ], -<span class="hljs-number">2</span> );
+}
+<span class="hljs-built_in">console</span>.log( arr );
+<span class="hljs-comment">// => [ 0.0, 0.5, 1.0 ]</span>
+</code></pre></li><li><p>For both functions, if both <code>start</code> and <code>stop</code> are real-valued, the output array data type may be any <a href="/docs/api/latest/@stdlib/array/typed-float-dtypes">floating-point data type</a> or <code>'generic'</code>. However, if either <code>start</code> or <code>stop</code> are complex numbers, the output array type must be a <a href="/docs/api/latest/@stdlib/array/typed-complex-dtypes">complex floating-point data type</a> or <code>'generic'</code>.</p></li><li><p>While the <code>assign</code> method accepts any array-like object for the output array when both <code>start</code> and <code>stop</code> are real-valued, providing an integer-valued typed array (e.g., <a href="/docs/api/latest/@stdlib/array/int32"><code>Int32Array</code></a>, etc) is not encouraged due to potential rounding errors during value generation and assignment and, thus, irregular spacing between adjacent values. Instead, consider using <a href="/docs/api/latest/@stdlib/array/incrspace"><code>incrspace</code></a>.</p></li><li><p>When writing to a complex floating-point output array, real-valued <code>start</code> and <code>stop</code> values are treated as complex numbers having a real component equaling the provided value and having an imaginary component equaling <code>0</code>.</p></li><li><p>When generating linearly spaced complex floating-point numbers, the real and imaginary components are generated separately (i.e., real components are generated over the interval <code>[real(start), real(stop)]</code> and imaginary components are generated over the interval <code>[imag(start), imag(stop)]</code>).</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/linspace'</span> );
+
+<span class="hljs-comment">// Define function options:</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+};
+
+<span class="hljs-comment">// Create arrays of varying lengths...</span>
+<span class="hljs-keyword">var</span> out = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, opts );
+<span class="hljs-built_in">console</span>.log( out );
+
+out = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, opts );
+<span class="hljs-built_in">console</span>.log( out );
+
+out = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">21</span>, opts );
+<span class="hljs-built_in">console</span>.log( out );
+
+<span class="hljs-comment">// Create an array with decremented values:</span>
+out = linspace( <span class="hljs-number">10</span>, <span class="hljs-number">0</span>, <span class="hljs-number">11</span>, opts );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/incrspace"><code>@stdlib/array/incrspace</code></a></span><span class="delimiter">: </span><span class="description">generate a linearly spaced numeric array using a provided increment.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/logspace"><code>@stdlib/array/logspace</code></a></span><span class="delimiter">: </span><span class="description">generate a logarithmically spaced numeric array.</span></li></ul></section><section class="links"></section>

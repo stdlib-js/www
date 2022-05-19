@@ -1,0 +1,40 @@
+<h1 id="isabsoluteuri">isAbsoluteURI</h1><blockquote><p>Test whether a value is an absolute <a href="http://en.wikipedia.org/wiki/URI_scheme">URI</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isAbsoluteURI = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-absolute-uri'</span> );
+</code></pre><h4 id="isabsoluteuri-value-">isAbsoluteURI( value )</h4><p>Tests whether a value is an absolute <a href="http://en.wikipedia.org/wiki/URI_scheme">URI</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isAbsoluteURI( <span class="hljs-string">'http://example.com'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isAbsoluteURI( <span class="hljs-string">'./beep/boop'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>For more information regarding the URI scheme, see <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a> and <a href="http://en.wikipedia.org/wiki/URI_scheme">Wikipedia</a>.</li><li>On the distinction between URI, URL, and URN, see <a href="https://danielmiessler.com/study/url-uri/">The Difference Between URLs and URIs</a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isAbsoluteURI = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-absolute-uri'</span> );
+
+<span class="hljs-keyword">var</span> bool = isAbsoluteURI( <span class="hljs-string">'https://www.google.com/'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isAbsoluteURI( <span class="hljs-string">'https://www.google.com/search?q=node.js'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isAbsoluteURI( <span class="hljs-string">'https://www.google.com#footer'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isAbsoluteURI( <span class="hljs-string">'/search?q=node.js'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isAbsoluteURI( <span class="hljs-string">'C:\\Users\\nodejs\\node.js'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isAbsoluteURI( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: is-absolute-uri [options] [&#x3C;uri>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ is-absolute-uri https://google.com
+<span class="hljs-literal">true</span>
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'https://google.com'</span> | is-absolute-uri
+<span class="hljs-literal">true</span>
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'https://google.com\tbeep'</span> | is-absolute-uri --split <span class="hljs-string">'\t'</span>
+<span class="hljs-literal">true</span>
+<span class="hljs-literal">false</span>
+</code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

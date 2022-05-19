@@ -1,0 +1,37 @@
+<h1 id="fmtprodmsgfactory">fmtprodmsgFactory</h1><blockquote><p>Return a <code>function</code> which formats an error message for production.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fmtprodmsgFactory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/tools/fmtprodmsg-factory'</span> );
+</code></pre><h4 id="fmtprodmsgfactory-options-">fmtprodmsgFactory( [options] )</h4><p>Returns a <code>function</code> which formats an error message for production.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {};
+<span class="hljs-keyword">var</span> fcn = fmtprodmsgFactory( opts );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> msg = fcn( <span class="hljs-string">'3'</span> );
+<span class="hljs-comment">// returns 'Minified stdlib error code: 3. Visit https://stdlib.io/docs/api/latest/error-decoder.html?code=3 for the full message.'</span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>url</strong>: website URL for full error message.</li><li><strong>message</strong>: error message template with <code>{{url}}</code> and <code>{{code}}</code> placeholders that will be replaced.</li></ul><p>To set a custom URL, use the <code>url</code> option:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'url'</span>: <span class="hljs-string">'https://stdlib.io/error-decoder.html'</span>
+};
+
+<span class="hljs-keyword">var</span> fcn = fmtprodmsgFactory( opts );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> msg = fcn( <span class="hljs-string">'8'</span> );
+<span class="hljs-comment">// returns 'Minified stdlib error code: 8. Visit https://stdlib.io/error-decoder.html?code=8 for the full message.'</span>
+</code></pre><p>To change the error message template, use the <code>message</code> option:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'message'</span>: <span class="hljs-string">'Error code: {{code}}. See: {{url}}.'</span>
+};
+
+<span class="hljs-keyword">var</span> fcn = fmtprodmsgFactory( opts );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> msg = fcn( <span class="hljs-string">'27'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> );
+<span class="hljs-comment">// returns 'Error code: 27. See: https://stdlib.io/docs/api/latest/error-decoder.html?code=27&#x26;arg[]=foo&#x26;arg[]=bar.'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fmtprodmsgFactory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/tools/fmtprodmsg-factory'</span> );
+
+<span class="hljs-keyword">var</span> formatProdErrorMessage = fmtprodmsgFactory();
+<span class="hljs-keyword">var</span> msg = formatProdErrorMessage( <span class="hljs-string">'3'</span>, <span class="hljs-string">'foo'</span> );
+<span class="hljs-comment">// returns 'Minified stdlib error code: 3. Visit https://stdlib.io/docs/api/latest/error-decoder.html?code=3&#x26;arg[]=foo for the full message.'</span>
+
+msg = formatProdErrorMessage( <span class="hljs-string">'5'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> );
+<span class="hljs-comment">// returns 'Minified stdlib error code: 5. Visit https://stdlib.io/docs/api/latest/error-decoder.html?code=5&#x26;arg[]=foo&#x26;arg[]=bar for the full message.'</span>
+
+msg = formatProdErrorMessage( <span class="hljs-string">'5'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>, <span class="hljs-number">123</span> );
+<span class="hljs-comment">// returns 'Minified stdlib error code: 5. Visit https://stdlib.io/docs/api/latest/error-decoder.html?code=5&#x26;arg[]=foo&#x26;arg[]=bar&#x26;arg[]=123 for the full message.'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

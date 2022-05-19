@@ -1,0 +1,22 @@
+<h1 id="uppercasekeys">uppercaseKeys</h1><blockquote><p>Convert each object key to uppercase.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uppercaseKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/uppercase-keys'</span> );
+</code></pre><h4 id="uppercasekeys-obj-">uppercaseKeys( obj )</h4><p>Converts each <code>object</code> key to uppercase, mapping the transformed keys to a new <code>object</code> having the same values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj1 = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>
+};
+
+<span class="hljs-keyword">var</span> obj2 = uppercaseKeys( obj1 );
+<span class="hljs-comment">// returns { 'A': 1, 'B': 2 }</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function only transforms <strong>own</strong> properties. Hence, the function does <strong>not</strong> transform inherited properties.</li><li>The function <strong>shallow</strong> copies key values.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uppercaseKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/uppercase-keys'</span> );
+
+<span class="hljs-keyword">var</span> obj1 = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-string">'beep'</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-string">'boop'</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-string">'foo'</span>,
+    <span class="hljs-string">'d'</span>: <span class="hljs-string">'bar'</span>
+};
+
+<span class="hljs-keyword">var</span> obj2 = uppercaseKeys( obj1 );
+
+<span class="hljs-built_in">console</span>.dir( obj2 );
+<span class="hljs-comment">// => { 'A': 'beep', 'B': 'boop', 'C': 'foo', 'D': 'bar' }</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/capitalize-keys"><code>@stdlib/utils/capitalize-keys</code></a></span><span class="delimiter">: </span><span class="description">convert the first letter of each object key to uppercase.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/lowercase-keys"><code>@stdlib/utils/lowercase-keys</code></a></span><span class="delimiter">: </span><span class="description">convert each object key to lowercase.</span></li></ul></section><section class="links"></section>

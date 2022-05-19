@@ -1,0 +1,197 @@
+<h1 id="incrkmeans">incrkmeans</h1><blockquote><p>Incrementally partition data into <code>k</code> <a href="https://en.wikipedia.org/wiki/K-means_clustering">clusters</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrkmeans = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ml/incr/kmeans'</span> );
+</code></pre><h4 id="incrkmeans-k-ndims-options-">incrkmeans( k[, ndims][, options] )</h4><p>Returns an accumulator <code>function</code> which incrementally partitions <code>k</code> <a href="https://en.wikipedia.org/wiki/K-means_clustering">clusters</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Create an accumulator for partitioning 2-dimensional data into 5 clusters:</span>
+<span class="hljs-keyword">var</span> accumulator = incrkmeans( <span class="hljs-number">5</span>, <span class="hljs-number">2</span> );
+</code></pre><p>To specify initial centroids, provide a 2-dimensional <code>k</code>-by-<code>ndims</code> <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> containing centroid locations.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+
+<span class="hljs-comment">// Specify initial centroids:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>([
+    <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>,
+    <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>,
+    <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>,
+    -<span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>,
+    -<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>
+]);
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">5</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-keyword">var</span> centroids = ndarray( <span class="hljs-string">'float64'</span>, buffer, shape, strides, <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+
+<span class="hljs-comment">// Create an accumulator for partitioning 2-dimensional data into 5 clusters:</span>
+<span class="hljs-keyword">var</span> accumulator = incrkmeans( centroids );
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><p><strong>metric</strong>: distance metric. Must be one of the following:</p><ul><li><code>'euclidean'</code>: Euclidean distance (default).</li><li><code>'cosine'</code>: cosine distance.</li><li><code>'correlation</code>': correlation distance.</li></ul></li><li><p><strong>init</strong>: an <code>array</code> containing the centroid initialization method and associated (optional) parameters. The first array element specifies the initialization method and must be one of the following:</p><ul><li><code>'kmeans++'</code>: k-means++ initialization (default).</li><li><code>'sample'</code>: randomly sample from a specified number of data points.</li><li><code>'forgy'</code>: randomly assign data points to one of <code>k</code> clusters and compute cluster centroids.</li></ul><p>The second array element specifies the number of data points to use when calculating initial centroids. When performing kmeans++ initialization, the third array element specifies the number of trials to perform when randomly selecting candidate centroids. Typically, more trials is correlated with initial centroids which lead to better clustering; however, a greater number of trials increases computational overhead. Default: <code>[ 'kmeans++', k, 2+⌊ln(k)⌋ ]</code>.</p></li><li><p><strong>normalize</strong>: <code>boolean</code> indicating whether to normalize incoming data. This option is only relevant for non-Euclidean distance metrics. If set to <code>true</code>, an accumulator partitioning data based on cosine distance normalizes provided data to unit Euclidean length. If set to <code>true</code>, an accumulator partitioning data based on correlation distance first centers provided data and then normalizes data dimensions to have zero mean and unit variance. If this option is set to <code>false</code> and the metric is either cosine or correlation distance, then incoming data <strong>must</strong> already be normalized. Default: <code>true</code>.</p></li><li><p><strong>copy</strong>: <code>boolean</code> indicating whether to copy incoming data to prevent <strong>mutation</strong> during normalization. Default: <code>true</code>.</p></li><li><p><strong>seed</strong>: PRNG seed. Setting this option is useful when wanting reproducible centroid initialization.</p></li></ul><h4 id="accumulator-vector-">accumulator( [vector] )</h4><p>If provided a data point vector, the accumulator function returns updated cluster results. If not provided a data point vector, the accumulator function returns the current cluster results.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+
+<span class="hljs-comment">// Create a data vector:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">2</span> );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> vec = ndarray( <span class="hljs-string">'float64'</span>, buffer, shape, strides, <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+
+<span class="hljs-comment">// Create an accumulator for partitioning 2-dimensional data into 5 clusters:</span>
+<span class="hljs-keyword">var</span> accumulator = incrkmeans( <span class="hljs-number">5</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Provide data to the accumulator:</span>
+vec.set( <span class="hljs-number">0</span>, <span class="hljs-number">2.0</span> );
+vec.set( <span class="hljs-number">1</span>, <span class="hljs-number">1.0</span> );
+
+<span class="hljs-keyword">var</span> out = accumulator( vec );
+<span class="hljs-comment">// e.g., returns {...}</span>
+
+vec.set( <span class="hljs-number">0</span>, <span class="hljs-number">1.0</span> );
+vec.set( <span class="hljs-number">1</span>, -<span class="hljs-number">5.0</span> );
+
+out = accumulator( vec );
+<span class="hljs-comment">// e.g., returns {...}</span>
+
+vec.set( <span class="hljs-number">0</span>, <span class="hljs-number">3.0</span> );
+vec.set( <span class="hljs-number">1</span>, <span class="hljs-number">3.14</span> );
+
+out = accumulator( vec );
+<span class="hljs-comment">// e.g., returns {...}</span>
+
+out = accumulator();
+<span class="hljs-comment">// e.g., returns {...}</span>
+</code></pre><p>If not provided initial centroids, an accumulator caches data point vectors for subsequent centroid initialization. Until an accumulator computes initial centroids, an accumulator returns <code>null</code>. Once an accumulator has initial centroids (either provided or computed), an accumulator returns cluster results.</p><p>Cluster results are comprised of the following:</p><ul><li><strong>centroids</strong>: a <code>k</code>-by-<code>ndims</code> matrix containing centroid locations. Each centroid is the component-wise mean of the data points assigned to a centroid's corresponding cluster.</li><li><strong>stats</strong>: a <code>k</code>-by-<code>4</code> matrix containing cluster statistics.</li></ul><p>Cluster statistics consists of the following columns:</p><ul><li><code>0</code>: number of data points assigned to a cluster.</li><li><code>1</code>: total within-cluster sum of squared distances.</li><li><code>2</code>: arithmetic mean of squared distances.</li><li><code>3</code>: corrected sample standard deviation of squared distances.</li></ul><h4 id="accumulatorpredict-out-x-">accumulator.predict( [out,] X )</h4><p>Predicts centroid assignment for each data point in a provided matrix <code>X</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+
+<span class="hljs-comment">// Create a data vector:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">2</span> );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> vec = ndarray( <span class="hljs-string">'float64'</span>, buffer, shape, strides, <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+
+<span class="hljs-comment">// Create an accumulator for partitioning 2-dimensional into 2 clusters:</span>
+<span class="hljs-keyword">var</span> accumulator = incrkmeans( <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, {
+    <span class="hljs-string">'init'</span>: [ <span class="hljs-string">'sample'</span>, <span class="hljs-number">2</span> ]
+});
+
+<span class="hljs-comment">// Provide data to the accumulator:</span>
+vec.set( <span class="hljs-number">0</span>, <span class="hljs-number">2.0</span> );
+vec.set( <span class="hljs-number">1</span>, <span class="hljs-number">1.0</span> );
+accumulator( vec );
+
+vec.set( <span class="hljs-number">0</span>, <span class="hljs-number">1.0</span> );
+vec.set( <span class="hljs-number">1</span>, -<span class="hljs-number">5.0</span> );
+accumulator( vec );
+
+vec.set( <span class="hljs-number">0</span>, <span class="hljs-number">3.0</span> );
+vec.set( <span class="hljs-number">1</span>, <span class="hljs-number">3.14</span> );
+accumulator( vec );
+
+<span class="hljs-comment">// Create a matrix containing the data points for which we want to predict cluster assignment:</span>
+buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">4</span> );
+shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> mat = ndarray( <span class="hljs-string">'float64'</span>, buffer, shape, strides, <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+
+mat.set( <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.0</span> );
+mat.set( <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0.0</span> );
+
+mat.set( <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.5</span> );
+mat.set( <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, -<span class="hljs-number">0.5</span> );
+
+<span class="hljs-keyword">var</span> out = accumulator.predict( mat );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+</code></pre><p>To specify an output vector, provide a 1-dimensional <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> as the first argument. Each element in the returned vector corresponds to a predicted cluster index for a respective data point.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Because an accumulator incrementally partitions data, one should <strong>not</strong> expect cluster statistics to match similar statistics had provided data been analyzed via a batch algorithm. In an incremental context, data points which would not be considered part of a particular cluster when analyzed via a batch algorithm may contribute to that cluster's statistics when analyzed incrementally. In general, the more data provided to an accumulator, the more reliable the cluster statistics.</li><li>Forgy's method for centroid initialization is generally discouraged, as the method generates initial clusters without internal homogeneity and no theoretical basis. The method's inclusion is due to its historical usage.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
+<span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
+<span class="hljs-keyword">var</span> incrkmeans = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ml/incr/kmeans'</span> );
+
+<span class="hljs-comment">// Define the number of data points to simulate:</span>
+<span class="hljs-keyword">var</span> N = <span class="hljs-number">1e4</span>;
+
+<span class="hljs-comment">// Define the number of clusters:</span>
+<span class="hljs-keyword">var</span> k = <span class="hljs-number">5</span>;
+
+<span class="hljs-comment">// Define cluster properties:</span>
+<span class="hljs-keyword">var</span> clusters = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>([
+    <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-comment">// meanX, stdevX, meanY, stdevY</span>
+    -<span class="hljs-number">5.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">1.0</span>,
+    <span class="hljs-number">5.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">1.0</span>,
+    <span class="hljs-number">5.0</span>, <span class="hljs-number">1.0</span>, -<span class="hljs-number">5.0</span>, <span class="hljs-number">1.0</span>,
+    -<span class="hljs-number">5.0</span>, <span class="hljs-number">1.0</span>, -<span class="hljs-number">5.0</span>, <span class="hljs-number">1.0</span>
+]);
+clusters = ndarray( <span class="hljs-string">'float64'</span>, clusters, [ k, <span class="hljs-number">4</span> ], [ <span class="hljs-number">4</span>, <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+
+<span class="hljs-comment">// Define accumulator options:</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'metric'</span>: <span class="hljs-string">'euclidean'</span>,
+    <span class="hljs-string">'init'</span>: [ <span class="hljs-string">'kmeans++'</span>, <span class="hljs-number">100</span> ]
+};
+
+<span class="hljs-comment">// Initialize a 2-dimensional k-means accumulator:</span>
+<span class="hljs-keyword">var</span> acc = incrkmeans( k, <span class="hljs-number">2</span>, opts );
+
+<span class="hljs-comment">// Create PRNGs for generating pseudorandom numbers drawn from 2-d uncorrelated normal distributions...</span>
+<span class="hljs-keyword">var</span> randn = ndarray( <span class="hljs-string">'generic'</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( k*<span class="hljs-number">2</span> ), [ k, <span class="hljs-number">2</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; k; i++ ) {
+    randn.set( i, <span class="hljs-number">0</span>, normal( clusters.get( i, <span class="hljs-number">0</span> ), clusters.get( i, <span class="hljs-number">1</span> ) ) );
+    randn.set( i, <span class="hljs-number">1</span>, normal( clusters.get( i, <span class="hljs-number">2</span> ), clusters.get( i, <span class="hljs-number">3</span> ) ) );
+}
+
+<span class="hljs-comment">// Create a vector for storing simulated data:</span>
+<span class="hljs-keyword">var</span> v = ndarray( <span class="hljs-string">'float64'</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">2</span> ), [ <span class="hljs-number">2</span> ], [ <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+
+<span class="hljs-comment">// Wrap the vector in a matrix for generating cluster predictions:</span>
+<span class="hljs-keyword">var</span> m = ndarray( <span class="hljs-string">'float64'</span>, v.data, [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+
+<span class="hljs-comment">// Create a vector for storing cluster predictions:</span>
+<span class="hljs-keyword">var</span> p = ndarray( <span class="hljs-string">'int8'</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int8Array</span>( <span class="hljs-number">1</span> ), [ <span class="hljs-number">1</span> ], [ <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+
+<span class="hljs-comment">// Simulate data points and incrementally perform k-means clustering...</span>
+<span class="hljs-keyword">var</span> totals = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> X = [];
+<span class="hljs-keyword">var</span> Y = [];
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; k; i++ ) {
+    X.push( [] );
+    Y.push( [] );
+}
+
+<span class="hljs-keyword">var</span> results;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> c;
+<span class="hljs-keyword">var</span> r;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; N; i++ ) {
+    <span class="hljs-comment">// Pick a random cluster from which to sample:</span>
+    c = discreteUniform( <span class="hljs-number">0</span>, k-<span class="hljs-number">1</span> );
+    totals[ c ] += <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// Generate a random cluster data point:</span>
+    x = randn.get( c, <span class="hljs-number">0</span> )();
+    v.set( <span class="hljs-number">0</span>, x );
+    X[ c ].push( x );
+
+    y = randn.get( c, <span class="hljs-number">1</span> )();
+    v.set( <span class="hljs-number">1</span>, y );
+    Y[ c ].push( y );
+
+    <span class="hljs-comment">// Generate a cluster prediction:</span>
+    r = acc.predict( p, m );
+    <span class="hljs-keyword">if</span> ( r ) {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Data point: (%d, %d). Prediction: %d.'</span>, x.toFixed( <span class="hljs-number">3</span> ), y.toFixed( <span class="hljs-number">3</span> ), r.get( <span class="hljs-number">0</span> )+<span class="hljs-number">1</span> );
+    }
+    <span class="hljs-comment">// Update the accumulator:</span>
+    results = acc( v );
+}
+
+<span class="hljs-comment">// Print cluster results:</span>
+results = acc();
+<span class="hljs-keyword">if</span> ( results ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; k; i++ ) {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Cluster %d'</span>, i+<span class="hljs-number">1</span> );
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'  centroid: (%d, %d)'</span>, results.centroids.get( i, <span class="hljs-number">0</span> ), results.centroids.get( i, <span class="hljs-number">1</span> ) );
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'  size: %d'</span>, results.stats.get( i, <span class="hljs-number">0</span> ) );
+    }
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
+}
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'True cluster distribution: %s'</span>, totals.join( <span class="hljs-string">', '</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
+</code></pre></section><section class="references"><h2 id="references">References</h2><ul><li>Forgy, E. 1965. "Cluster Analysis of Multivariate Data: Efficiency versus Interpretability of Classification." <em>Biometrics</em> 21 (3): 768–69.</li><li>MacQueen, J. 1967. "Some methods for classification and analysis of multivariate observations." In <em>Proceedings of the Fifth Berkeley Symposium on Mathematical Statistics and Probability, Volume 1: Statistics</em>, 281–97. Berkeley, California, USA: University of California Press. <a href="https://projecteuclid.org/euclid.bsmsp/1200512992">https://projecteuclid.org/euclid.bsmsp/1200512992</a>.</li><li>Lloyd, S. 1982. "Least Squares Quantization in PCM." <em>IEEE Transactions on Information Theory</em> 28 (2). Piscataway, NJ, USA: IEEE Press: 129–37. doi:<a href="https://doi.org/10.1109/TIT.1982.1056489">10.1109/TIT.1982.1056489</a>.</li><li>Arthur, David, and Sergei Vassilvitskii. 2007. "K-means++: The Advantages of Careful Seeding." In <em>Proceedings of the Eighteenth Annual Acm-Siam Symposium on Discrete Algorithms</em>, 1027–35. SODA '07. Philadelphia, PA, USA: Society for Industrial and Applied Mathematics. <a href="http://dl.acm.org/citation.cfm?id=1283383.1283494">http://dl.acm.org/citation.cfm?id=1283383.1283494</a>.</li></ul></section><section class="related"></section><section class="links"></section>

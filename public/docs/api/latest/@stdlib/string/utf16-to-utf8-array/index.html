@@ -1,0 +1,33 @@
+<h1 id="utf-16-to-utf-8">UTF-16 to UTF-8</h1><blockquote><p>Convert a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> encoded string to an array of integers using <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> encoding.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> utf16ToUTF8Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/utf16-to-utf8-array'</span> );
+</code></pre><h4 id="utf16toutf8array-str-">utf16ToUTF8Array( str )</h4><p>Converts a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> encoded string to an <code>array</code> of integers using <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> encoding.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = utf16ToUTF8Array( <span class="hljs-string">'☃'</span> );
+<span class="hljs-comment">// returns [ 226, 152, 131 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p><a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> encoding uses one 16-bit unit for non-surrogates (<code>U+0000</code> to <code>U+D7FF</code> and <code>U+E000</code> to <code>U+FFFF</code>).</p></li><li><p><a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> encoding uses two 16-bit units (surrogate pairs) for <code>U+10000</code> to <code>U+10FFFF</code> and encodes <code>U+10000-U+10FFFF</code> by subtracting <code>0x10000</code> from the code point, expressing the result as a 20-bit binary, and splitting the 20 bits of <code>0x0-0xFFFFF</code> as upper and lower 10-bits. The respective 10-bits are stored in two 16-bit words: a <strong>high</strong> and a <strong>low</strong> surrogate.</p></li><li><p><a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> is defined to encode code points in one to four bytes, depending on the number of significant bits in the numerical value of the code point. Encoding uses the following byte sequences:</p><pre><code class="no-highlight language-text">0x00000000 - 0x0000007F:
+    0xxxxxxx
+
+0x00000080 - 0x000007FF:
+    110xxxxx 10xxxxxx
+
+0x00000800 - 0x0000FFFF:
+    1110xxxx 10xxxxxx 10xxxxxx
+
+0x00010000 - 0x001FFFFF:
+    11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+</code></pre><p>where an <code>x</code> represents a code point bit. Only the shortest possible multi-byte sequence which can represent a code point is used.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> utf16ToUTF8Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/utf16-to-utf8-array'</span> );
+
+<span class="hljs-keyword">var</span> values;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+
+values = [
+    <span class="hljs-string">'Ladies + Gentlemen'</span>,
+    <span class="hljs-string">'An encoded string!'</span>,
+    <span class="hljs-string">'Dogs, Cats &#x26; Mice'</span>,
+    <span class="hljs-string">'☃'</span>,
+    <span class="hljs-string">'æ'</span>,
+    <span class="hljs-string">'𐐷'</span>
+];
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; values.length; i++ ) {
+    out = utf16ToUTF8Array( values[ i ] );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %s'</span>, values[ i ], out.join( <span class="hljs-string">','</span> ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

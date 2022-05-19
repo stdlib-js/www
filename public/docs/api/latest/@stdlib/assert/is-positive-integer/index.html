@@ -1,0 +1,58 @@
+<h1 id="ispositiveinteger">isPositiveInteger</h1><blockquote><p>Test if a value is a number having a positive integer value.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isPositiveInteger = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-positive-integer'</span> );
+</code></pre><h4 id="ispositiveinteger-value-">isPositiveInteger( value )</h4><p>Tests if a <code>value</code> is a <code>number</code> having a positive <code>integer</code> value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isPositiveInteger( <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPositiveInteger( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">5.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPositiveInteger( -<span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isPositiveInteger( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isPositiveInteger( <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isPositiveInteger( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre><h4 id="ispositiveintegerisprimitive-value-">isPositiveInteger.isPrimitive( value )</h4><p>Tests if a <code>value</code> is a primitive <code>number</code> having a positive <code>integer</code> value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isPositiveInteger.isPrimitive( <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPositiveInteger.isPrimitive( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns false</span>
+</code></pre><h4 id="ispositiveintegerisobject-value-">isPositiveInteger.isObject( value )</h4><p>Tests if a <code>value</code> is a <code>Number</code> object having a positive <code>integer</code> value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isPositiveInteger.isObject( <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isPositiveInteger.isObject( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<span class="hljs-keyword">var</span> isPositiveInteger = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-positive-integer'</span> );
+
+<span class="hljs-keyword">var</span> bool = isPositiveInteger( <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPositiveInteger( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">5.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPositiveInteger( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isPositiveInteger( <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isPositiveInteger( -<span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isPositiveInteger( <span class="hljs-string">'5'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isPositiveInteger( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-integer"><code>@stdlib/assert/is-integer</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number having an integer value.</span></li></ul></section><section class="links"></section>

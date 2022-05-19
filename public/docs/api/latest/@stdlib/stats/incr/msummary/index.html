@@ -1,0 +1,79 @@
+<h1 id="incrmsummary">incrmsummary</h1><blockquote><p>Compute a moving statistical summary incrementally.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrmsummary = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/msummary'</span> );
+</code></pre><h4 id="incrmsummary-window-">incrmsummary( window )</h4><p>Returns an accumulator <code>function</code> which incrementally computes a moving statistical summary. The <code>window</code> parameter defines the number of values over which to compute the moving summary.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> accumulator = incrmsummary( <span class="hljs-number">3</span> );
+</code></pre><h4 id="accumulator-x-">accumulator( [x] )</h4><p>If provided an input value <code>x</code>, the accumulator function returns an updated summary. If not provided an input value <code>x</code>, the accumulator function returns the current summary.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> accumulator = incrmsummary( <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">var</span> summary = accumulator();
+<span class="hljs-comment">// returns {}</span>
+
+<span class="hljs-comment">// Fill the window...</span>
+summary = accumulator( <span class="hljs-number">2.0</span> ); <span class="hljs-comment">// [2.0]</span>
+<span class="hljs-comment">/* returns
+    {
+        'window': 3,
+        'sum': 2.0,
+        'mean': 2.0,
+        'variance': 0.0,
+        'stdev': 0.0,
+        'min': 2.0,
+        'max': 2.0,
+        'range': 0.0,
+        'midrange': 2.0
+    }
+*/</span>
+
+summary = accumulator( <span class="hljs-number">1.0</span> ); <span class="hljs-comment">// [2.0, 1.0]</span>
+<span class="hljs-comment">/* returns
+    {
+        'window': 3,
+        'sum': 3.0,
+        'mean': 1.5,
+        'variance': 0.5,
+        'stdev': 0.7071067811865476,
+        'min': 1.0,
+        'max': 2.0,
+        'range': 1.0,
+        'midrange': 1.5
+    }
+*/</span>
+
+summary = accumulator( -<span class="hljs-number">3.0</span> ); <span class="hljs-comment">// [2.0, 1.0, -3.0]</span>
+<span class="hljs-comment">/* returns
+    {
+        'window': 3,
+        'sum': 0.0,
+        'mean': 0.0,
+        'variance': 7.0,
+        'stdev': 2.6457513110645907,
+        'min': -3.0,
+        'max': 2.0,
+        'range': 5.0,
+        'midrange': -0.5
+    }
+*/</span>
+
+<span class="hljs-comment">// Window begins sliding...</span>
+summary = accumulator( -<span class="hljs-number">7.0</span> ); <span class="hljs-comment">// [1.0, -3.0, -7.0]</span>
+<span class="hljs-comment">// returns {...}</span>
+
+summary = accumulator( -<span class="hljs-number">5.0</span> ); <span class="hljs-comment">// [-3.0, -7.0, -5.0]</span>
+<span class="hljs-comment">// returns {...}</span>
+
+summary = accumulator();
+<span class="hljs-comment">// returns {...}</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Input values are <strong>not</strong> type checked. If non-numeric inputs are possible, you are advised to type check and handle accordingly <strong>before</strong> passing the value to the accumulator function.</li><li>As <code>W</code> values are needed to fill the window buffer, the first <code>W-1</code> returned summaries are calculated from smaller sample sizes. Until the window is full, each returned summary is calculated from all provided values.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> incrmsummary = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/msummary'</span> );
+
+<span class="hljs-keyword">var</span> accumulator;
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Initialize an accumulator:</span>
+accumulator = incrmsummary( <span class="hljs-number">5</span> );
+
+<span class="hljs-comment">// For each simulated datum, update the moving summary...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    v = randu() * <span class="hljs-number">100.0</span>;
+    accumulator( v );
+}
+<span class="hljs-built_in">console</span>.log( accumulator() );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/mmean"><code>@stdlib/stats/incr/mmean</code></a></span><span class="delimiter">: </span><span class="description">compute a moving arithmetic mean incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/mstdev"><code>@stdlib/stats/incr/mstdev</code></a></span><span class="delimiter">: </span><span class="description">compute a moving corrected sample standard deviation incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/msum"><code>@stdlib/stats/incr/msum</code></a></span><span class="delimiter">: </span><span class="description">compute a moving sum incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/mvariance"><code>@stdlib/stats/incr/mvariance</code></a></span><span class="delimiter">: </span><span class="description">compute a moving unbiased sample variance incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/summary"><code>@stdlib/stats/incr/summary</code></a></span><span class="delimiter">: </span><span class="description">compute a statistical summary incrementally.</span></li></ul></section><section class="links"></section>

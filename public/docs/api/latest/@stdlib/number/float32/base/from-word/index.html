@@ -1,0 +1,46 @@
+<h1 id="fromwordf">fromWordf</h1><blockquote><p>Create a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> from an unsigned integer corresponding to an <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">IEEE 754</a> binary representation.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fromWordf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/from-word'</span> );
+</code></pre><h4 id="fromwordf-word-">fromWordf( word )</h4><p>Creates a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> from an unsigned <code>integer</code> corresponding to an <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">IEEE 754</a> binary representation.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> word = <span class="hljs-number">1068180177</span>; <span class="hljs-comment">// => 0 01111111 01010110010001011010001</span>
+
+<span class="hljs-keyword">var</span> f32 = fromWordf( word ); <span class="hljs-comment">// when printed, implicitly promoted to float64</span>
+<span class="hljs-comment">// returns 1.3370000123977661</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The equivalent of this function in C/C++,</p><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">fromWordf</span><span class="hljs-params">(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> x)</span> </span>{
+  <span class="hljs-keyword">return</span> *(<span class="hljs-keyword">float</span>*)&#x26;x;
+}
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> MAX_UINT32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/uint32/max'</span> );
+<span class="hljs-keyword">var</span> fromWordf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/from-word'</span> );
+
+<span class="hljs-keyword">var</span> word;
+<span class="hljs-keyword">var</span> f32;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Create single-precision floating-point numbers from unsigned integers...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">1000</span>; i++ ) {
+    word = round( randu()*MAX_UINT32 );
+    f32 = fromWordf( word );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'word: %d => float32: %d'</span>, word, f32 );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float32/base/from_word.h"</span></span>
+</code></pre><h4 id="stdlib_base_float32_from_word-word-x-">stdlib_base_float32_from_word( word, *x )</h4><p>Creates a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> from an unsigned 32-bit integer corresponding to an <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">IEEE 754</a> binary representation.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-keyword">uint32_t</span> word = <span class="hljs-number">1078523331</span>;
+
+<span class="hljs-keyword">float</span> x;
+stdlib_base_float32_from_word( word, &#x26;x );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>word</strong>: <code>[in] uint32_t</code> input word.</li><li><strong>x</strong>: <code>[out] float*</code> destination for a single-precision floating-point number.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_base_float32_from_word</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">uint32_t</span> word, <span class="hljs-keyword">float</span> *x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float32/base/from_word.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">uint32_t</span> word = <span class="hljs-number">1078523331</span>;
+
+    <span class="hljs-keyword">float</span> x;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+        stdlib_base_float32_from_word( word+(<span class="hljs-keyword">uint32_t</span>)(i*<span class="hljs-number">10</span>), &#x26;x );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"word: %u => %f\n"</span>, word, x );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

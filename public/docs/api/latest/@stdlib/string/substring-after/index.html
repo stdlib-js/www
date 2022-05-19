@@ -1,0 +1,50 @@
+<h1 id="substringafter">substringAfter</h1><blockquote><p>Return the part of a string after a specified substring.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> substringAfter = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/substring-after'</span> );
+</code></pre><h4 id="substringafter-str-search-fromindex-">substringAfter( str, search[, fromIndex] )</h4><p>Returns the part of a string after a specified substring.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'beep boop'</span>;
+<span class="hljs-keyword">var</span> out = substringAfter( str, <span class="hljs-string">'o'</span> );
+<span class="hljs-comment">// returns 'op'</span>
+
+out = substringAfter( str, <span class="hljs-string">' '</span> );
+<span class="hljs-comment">// returns 'boop'</span>
+</code></pre><p>By default, the search starts at the beginning of the string. To start searching from a different index, provide a <code>fromIndex</code> argument:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'boop baz boop'</span>;
+<span class="hljs-keyword">var</span> out = substringAfter( str, <span class="hljs-string">'o'</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 'op'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If a substring is not present in a provided string, the function returns an empty string.</li><li>If provided an empty substring, the function returns the input string.</li><li>If <code>fromIndex</code> is less than <code>0</code> or greater than <code>str.length</code>, the search starts at index <code>0</code> and <code>str.length</code>, respectively.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> substringAfter = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/substring-after'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'To be, or not to be, that is the question.'</span>;
+<span class="hljs-keyword">var</span> out = substringAfter( str, <span class="hljs-string">', '</span> );
+<span class="hljs-comment">// returns 'or not to be, that is the question.'</span>
+
+out = substringAfter( str, <span class="hljs-string">'to be'</span> );
+<span class="hljs-comment">// returns ', that is the question.'</span>
+
+out = substringAfter( str, <span class="hljs-string">'question.'</span> );
+<span class="hljs-comment">// returns ''</span>
+
+out = substringAfter( str, <span class="hljs-string">'xyz'</span> );
+<span class="hljs-comment">// returns ''</span>
+
+out = substringAfter( str, <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns 'To be, or not to be, that is the question.'</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: substring-after [options] --search=&#x3C;string> [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --search string       Search string.
+         --from-index int      Start index. Default: 0.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'foo\nbar\nbaz'</span> | substring-after --search a --split /\r?\n/
+
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'foo\nbar\nbaz'</span> | substring-after --search a --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ substring-after abcdefg --search d
+efg
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'bar\nbaz'</span> | substring-after --search b
+ar
+az
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'bar\tbaz'</span> | substring-after --search b --split <span class="hljs-string">'\t'</span>
+ar
+az
+</code></pre></section></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/substring-before"><code>@stdlib/string/substring-before</code></a></span><span class="delimiter">: </span><span class="description">return the part of a string before a specified substring.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/substring-before-last"><code>@stdlib/string/substring-before-last</code></a></span><span class="delimiter">: </span><span class="description">return the part of a string before the last occurrence of a specified substring.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/substring-after-last"><code>@stdlib/string/substring-after-last</code></a></span><span class="delimiter">: </span><span class="description">return the part of a string after the last occurrence of a specified substring.</span></li></ul></section><section class="links"></section>

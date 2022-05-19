@@ -1,0 +1,50 @@
+<h1 id="truncate">truncate</h1><blockquote><p>Truncate a string to a specified length.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> truncate = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/truncate'</span> );
+</code></pre><h4 id="truncate-str-len-ending-">truncate( str, len[, ending] )</h4><p>Truncates a string to a specified length.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = truncate( <span class="hljs-string">'beep boop'</span>, <span class="hljs-number">7</span> );
+<span class="hljs-comment">// returns 'beep...'</span>
+</code></pre><p>By default, the truncated string is appended with <code>'...'</code>. To customize the truncated string, provide an <code>ending</code> argument:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = truncate( <span class="hljs-string">'beep boop'</span>, <span class="hljs-number">7</span>, <span class="hljs-string">'!'</span> );
+<span class="hljs-comment">// returns 'beep b!'</span>
+
+out = truncate( <span class="hljs-string">'beep boop'</span>, <span class="hljs-number">7</span>, <span class="hljs-string">'!!!'</span> );
+<span class="hljs-comment">// returns 'beep!!!'</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> truncate = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/truncate'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'</span>;
+<span class="hljs-keyword">var</span> out = truncate( str, <span class="hljs-number">14</span> );
+<span class="hljs-comment">// returns 'Lorem ipsum...'</span>
+
+str = <span class="hljs-string">'To be or not to be, that is the question'</span>;
+out = truncate( str, <span class="hljs-number">19</span>, <span class="hljs-string">'!'</span> );
+<span class="hljs-comment">// returns 'To be or not to be!'</span>
+
+str = <span class="hljs-string">'The quick fox jumps over the lazy dog.'</span>;
+out = truncate( str, <span class="hljs-number">16</span>, <span class="hljs-string">'...'</span> );
+<span class="hljs-comment">// returns 'The quick fox...'</span>
+
+str = <span class="hljs-string">'🐺 Wolf Brothers 🐺'</span>;
+out = truncate( str, <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns '🐺 W...'</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: truncate [options] [&#x3C;string>] --len &#x3C;length>
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --len length          String length.
+         --ending str          Custom ending. Default: '...'.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'Hello, World!\nBeep Boop Baz'</span> | truncate --len 6 --split /\r?\n/
+
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'Hello, World!\nBeep Boop Baz'</span> | truncate --len 6 --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ truncate <span class="hljs-string">'Hello, World!'</span> --len 8
+Hello...
+
+$ truncate <span class="hljs-string">'Hello, World!'</span> --len 6 --ending <span class="hljs-string">'!'</span>
+Hello!
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'Hello, World!'</span> | truncate --len 8
+Hello...
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'Hello, World!\tBeep Boop'</span> | truncate --split <span class="hljs-string">'\t'</span> --len 8
+Hello...
+Beep ...
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/truncate-middle"><code>@stdlib/string/truncate-middle</code></a></span><span class="delimiter">: </span><span class="description">truncate a string in the middle to a specified length.</span></li></ul></section><section class="links"></section>

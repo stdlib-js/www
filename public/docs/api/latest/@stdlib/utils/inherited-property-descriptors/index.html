@@ -1,0 +1,56 @@
+<h1 id="inheritedpropertydescriptors">inheritedPropertyDescriptors</h1><blockquote><p>Return an object's inherited <a href="/docs/api/latest/@stdlib/utils/property-descriptors">property descriptors</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inheritedPropertyDescriptors = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherited-property-descriptors'</span> );
+</code></pre><h4 id="inheritedpropertydescriptors-obj-level-">inheritedPropertyDescriptors( obj[, level] )</h4><p>Returns an object's inherited <a href="/docs/api/latest/@stdlib/utils/property-descriptors">property descriptors</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.a = <span class="hljs-string">'b'</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+
+Foo.prototype.beep = <span class="hljs-string">'boop'</span>;
+
+<span class="hljs-keyword">var</span> f = <span class="hljs-keyword">new</span> Foo();
+<span class="hljs-keyword">var</span> desc = inheritedPropertyDescriptors( f );
+<span class="hljs-comment">// returns { 'beep': {...}, ... }</span>
+</code></pre><p>By default, the function walks an object's entire prototype chain. To limit the inheritance level, provide a <code>level</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inherit = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherit'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Bar</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+
+Bar.prototype.boop = <span class="hljs-string">'beep'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    Bar.call( <span class="hljs-built_in">this</span> );
+    <span class="hljs-built_in">this</span>.a = <span class="hljs-string">'b'</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+
+inherit( Foo, Bar );
+Foo.prototype.beep = <span class="hljs-string">'boop'</span>;
+
+<span class="hljs-keyword">var</span> f = <span class="hljs-keyword">new</span> Foo();
+<span class="hljs-keyword">var</span> desc = inheritedPropertyDescriptors( f, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns { 'beep': {...}, ... }</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In contrast to the built-in <code>Object.getOwnPropertyDescriptors()</code>, if provided <code>null</code> or <code>undefined</code>, the function returns an empty <code>object</code>, rather than throwing an error.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
+<span class="hljs-keyword">var</span> inheritedPropertyDescriptors = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherited-property-descriptors'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.beep = <span class="hljs-string">'boop'</span>;
+    <span class="hljs-built_in">this</span>.a = {
+        <span class="hljs-string">'b'</span>: <span class="hljs-string">'c'</span>
+    };
+    defineProperty( <span class="hljs-built_in">this</span>, <span class="hljs-string">'baz'</span>, {
+        <span class="hljs-string">'value'</span>: <span class="hljs-string">'qux'</span>,
+        <span class="hljs-string">'configurable'</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">'writable'</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">'enumerable'</span>: <span class="hljs-literal">false</span>
+    });
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+
+Foo.prototype.foo = [ <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">new</span> Foo();
+<span class="hljs-keyword">var</span> desc = inheritedPropertyDescriptors( obj );
+
+<span class="hljs-built_in">console</span>.log( desc );
+<span class="hljs-comment">// => { 'foo': {...}, ... }</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-descriptors"><code>@stdlib/utils/property-descriptors</code></a></span><span class="delimiter">: </span><span class="description">return an object's own property descriptors.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-descriptors-in"><code>@stdlib/utils/property-descriptors-in</code></a></span><span class="delimiter">: </span><span class="description">return an object's own and inherited property descriptors.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-keys"><code>@stdlib/utils/inherited-keys</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's inherited enumerable property names.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-property-names"><code>@stdlib/utils/inherited-property-names</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's inherited enumerable and non-enumerable property names.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-property-symbols"><code>@stdlib/utils/inherited-property-symbols</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's inherited symbol properties.</span></li></ul></section><section class="links"></section>

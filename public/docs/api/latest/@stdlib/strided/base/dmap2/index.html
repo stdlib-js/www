@@ -1,0 +1,119 @@
+<h1 id="dmap2">dmap2</h1><blockquote><p>Apply a binary function to double-precision floating-point strided input arrays and assign results to a double-precision floating-point strided output array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dmap2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/dmap2'</span> );
+</code></pre><h4 id="dmap2-n-x-stridex-y-stridey-z-stridez-fcn-">dmap2( N, x, strideX, y, strideY, z, strideZ, fcn )</h4><p>Applies a binary function to double-precision floating-point strided input arrays and assigns results to a double-precision floating-point strided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ -<span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.0</span> ] );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span> ] );
+<span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+dmap2( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-number">1</span>, z, <span class="hljs-number">1</span>, add );
+<span class="hljs-comment">// z => &#x3C;Float64Array>[ 0.0, 2.0, 6.0, -7.0, 8.0, 1.0, -2.0, 0.0 ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li><li><strong>y</strong>: input <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li><li><strong>strideY</strong>: index increment for <code>y</code>.</li><li><strong>z</strong>: output <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li><li><strong>strideZ</strong>: index increment for <code>z</code>.</li><li><strong>fcn</strong>: function to apply.</li></ul><p>The <code>N</code> and <code>stride</code> parameters determine which strided array elements are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, -<span class="hljs-number">5.0</span>, -<span class="hljs-number">6.0</span> ] );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ] );
+<span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+dmap2( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, y, -<span class="hljs-number">1</span>, z, <span class="hljs-number">1</span>, add );
+<span class="hljs-comment">// z => &#x3C;Float64Array>[ 1.0, -2.0, -4.0, 0.0, 0.0, 0.0 ]</span>
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="/docs/api/latest/@stdlib/array/float64"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+
+<span class="hljs-comment">// Initial arrays...</span>
+<span class="hljs-keyword">var</span> x0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, -<span class="hljs-number">5.0</span>, -<span class="hljs-number">6.0</span> ] );
+<span class="hljs-keyword">var</span> y0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ] );
+<span class="hljs-keyword">var</span> z0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+<span class="hljs-comment">// Create offset views...</span>
+<span class="hljs-keyword">var</span> x1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( x0.buffer, x0.BYTES_PER_ELEMENT*<span class="hljs-number">1</span> ); <span class="hljs-comment">// start at 2nd element</span>
+<span class="hljs-keyword">var</span> y1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( y0.buffer, y0.BYTES_PER_ELEMENT*<span class="hljs-number">3</span> ); <span class="hljs-comment">// start at 4th element</span>
+<span class="hljs-keyword">var</span> z1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( z0.buffer, z0.BYTES_PER_ELEMENT*<span class="hljs-number">2</span> ); <span class="hljs-comment">// start at 3rd element</span>
+
+dmap2( <span class="hljs-number">3</span>, x1, -<span class="hljs-number">2</span>, y1, <span class="hljs-number">1</span>, z1, <span class="hljs-number">1</span>, add );
+<span class="hljs-comment">// z0 => &#x3C;Float64Array>[ 0.0, 0.0, -4.0, -1.0, 1.0, 0.0 ]</span>
+</code></pre><h4 id="dmap2ndarray-n-x-stridex-offsetx-y-stridey-offsety-z-stridez-offsetz-fcn-">dmap2.ndarray( N, x, strideX, offsetX, y, strideY, offsetY, z, strideZ, offsetZ, fcn )</h4><p>Applies a binary function to double-precision floating-point strided input arrays and assigns results to a double-precision floating-point strided output array using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, -<span class="hljs-number">5.0</span> ] );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ] );
+<span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+dmap2.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, z, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, add );
+<span class="hljs-comment">// z => &#x3C;Float64Array>[ 0.0, -1.0, -1.0, -2.0, -2.0 ]</span>
+</code></pre><p>The function accepts the following additional arguments:</p><ul><li><strong>offsetX</strong>: starting index for <code>x</code>.</li><li><strong>offsetY</strong>: starting index for <code>y</code>.</li><li><strong>offsetZ</strong>: starting index for <code>z</code>.</li></ul><p>While <a href="/docs/api/latest/@stdlib/array/float64"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the offset parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code> in reverse order,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, -<span class="hljs-number">5.0</span>, -<span class="hljs-number">6.0</span> ] );
+<span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span> ] );
+<span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+
+dmap2.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, y, -<span class="hljs-number">1</span>, y.length-<span class="hljs-number">1</span>, z, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, add );
+<span class="hljs-comment">// z => &#x3C;Float64Array>[ 0.0, 0.0, 0.0, 1.0, -1.0, -4.0 ]</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+<span class="hljs-keyword">var</span> dmap2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/dmap2'</span> );
+
+<span class="hljs-keyword">var</span> x = filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'float64'</span>, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> y = filledarrayBy( x.length, <span class="hljs-string">'float64'</span>, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( y );
+
+<span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( x.length );
+<span class="hljs-built_in">console</span>.log( z );
+
+dmap2.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, -<span class="hljs-number">1</span>, y.length-<span class="hljs-number">1</span>, z, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, add );
+<span class="hljs-built_in">console</span>.log( z );
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/base/dmap2.h"</span></span>
+</code></pre><h4 id="stdlib_strided_dmap2-n-x-stridex-y-stridey-z-stridez-fcn-">stdlib_strided_dmap2( N, *X, strideX, *Y, strideY, *Z, strideZ, fcn )</h4><p>Applies a binary function to double-precision floating-point strided input arrays and assigns results to a double-precision floating-point strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">add</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> y )</span> </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+
+<span class="hljs-keyword">double</span> X[] = { <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> };
+<span class="hljs-keyword">double</span> Y[] = { <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> };
+<span class="hljs-keyword">double</span> Z[] = { <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> };
+
+<span class="hljs-keyword">int64_t</span> N = <span class="hljs-number">6</span>;
+
+stdlib_strided_dmap2( N, X, <span class="hljs-number">1</span>, Y, <span class="hljs-number">1</span>, Z, <span class="hljs-number">1</span>, add );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: <code>[in] int64_t</code> number of indexed elements.</li><li><strong>X</strong>: <code>[in] double*</code> input array.</li><li><strong>strideX</strong> <code>[in] int64_t</code> index increment for <code>X</code>.</li><li><strong>Y</strong>: <code>[in] double*</code> input array.</li><li><strong>strideY</strong>: <code>[in] int64_t</code> index increment for <code>Y</code>.</li><li><strong>Z</strong>: <code>[out] double*</code> output array.</li><li><strong>strideZ</strong>: <code>[in] int64_t</code> index increment for <code>Z</code>.</li><li><strong>fcn</strong>: <code>[in] double (*fcn)( double, double )</code> binary function to apply.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_dmap2</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> N, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> *X, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strideX, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> *Y, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strideY, <span class="hljs-keyword">double</span> *Z, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strideZ, <span class="hljs-keyword">double</span> (*fcn)( <span class="hljs-keyword">double</span>, <span class="hljs-keyword">double</span> ) )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/base/dmap2.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;inttypes.h></span></span>
+
+<span class="hljs-comment">// Define a callback:</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">add</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> y )</span> </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// Create input strided arrays:</span>
+    <span class="hljs-keyword">double</span> X[] = { <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> };
+    <span class="hljs-keyword">double</span> Y[] = { <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> };
+
+    <span class="hljs-comment">// Create an output strided array:</span>
+    <span class="hljs-keyword">double</span> Z[] = { <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> };
+
+    <span class="hljs-comment">// Specify the number of elements:</span>
+    <span class="hljs-keyword">int64_t</span> N = <span class="hljs-number">6</span>;
+
+    <span class="hljs-comment">// Define the strides:</span>
+    <span class="hljs-keyword">int64_t</span> strideX = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">int64_t</span> strideY = <span class="hljs-number">-1</span>;
+    <span class="hljs-keyword">int64_t</span> strideZ = <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// Apply the callback:</span>
+    stdlib_strided_dmap2( N, X, strideX, Y, strideY, Z, strideZ, add );
+
+    <span class="hljs-comment">// Print the results:</span>
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int64_t</span> i = <span class="hljs-number">0</span>; i &#x3C; N; i++ ) {
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"Z[ %"</span>PRId64<span class="hljs-string">" ] = %lf\n"</span>, i, Z[ i ] );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,53 @@
+<h1 id="fromint64bytes">fromInt64Bytes</h1><blockquote><p>Convert a signed 64-bit integer byte array to a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fromInt64Bytes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/from-int64-bytes'</span> );
+</code></pre><h4 id="fromint64bytes-bytes-stride-offset-">fromInt64Bytes( bytes, stride, offset )</h4><p>Converts a signed 64-bit integer byte array to a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> bytes = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span> ] );
+<span class="hljs-keyword">var</span> out = fromInt64Bytes( bytes, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns -1.0</span>
+</code></pre><p>The function supports providing a <code>stride</code> and an index <code>offset</code> for indexing into a provided byte array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> bytes = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span> ] );
+<span class="hljs-keyword">var</span> out = fromInt64Bytes( bytes, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns -1.0</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function assumes host byte order (endianness).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_LITTLE_ENDIAN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-little-endian'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/bernoulli'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> fromInt64Bytes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/from-int64-bytes'</span> );
+
+<span class="hljs-keyword">var</span> bytes;
+<span class="hljs-keyword">var</span> sgn;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> b;
+<span class="hljs-keyword">var</span> s;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> j;
+<span class="hljs-keyword">var</span> k;
+
+bytes = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">8</span> );
+<span class="hljs-keyword">if</span> ( IS_LITTLE_ENDIAN ) {
+    k = <span class="hljs-number">0</span>;
+    s = <span class="hljs-number">1</span>;
+} <span class="hljs-keyword">else</span> {
+    k = <span class="hljs-number">7</span>;
+    s = -<span class="hljs-number">1</span>;
+}
+<span class="hljs-comment">// Generate random integer-valued doubles on the interval (-2^16, 2^16)...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+    <span class="hljs-comment">// Determine the sign:</span>
+    sgn = ( bernoulli( <span class="hljs-number">0.5</span> ) ) ? <span class="hljs-number">0</span> : <span class="hljs-number">128</span>; <span class="hljs-comment">// 2^7</span>
+
+    <span class="hljs-comment">// Set a subset of individual (lower-order) bytes:</span>
+    <span class="hljs-keyword">for</span> ( j = <span class="hljs-number">0</span>; j &#x3C; <span class="hljs-number">2</span>; j++ ) {
+        b = discreteUniform( <span class="hljs-number">0</span>, <span class="hljs-number">255</span> ); <span class="hljs-comment">// 2^8-1</span>
+        bytes[ k+(j*s) ] = b;
+    }
+    <span class="hljs-comment">// Set higher-order bytes using two's complement:</span>
+    <span class="hljs-keyword">for</span> ( j = <span class="hljs-number">2</span>; j &#x3C; <span class="hljs-number">8</span>; j++ ) {
+        bytes[ k+(j*s) ] = ( sgn ) ? <span class="hljs-number">255</span> : <span class="hljs-number">0</span>; <span class="hljs-comment">// 2^8-1</span>
+    }
+    <span class="hljs-comment">// Convert the bytes to a double:</span>
+    x = fromInt64Bytes( bytes, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+    <span class="hljs-built_in">console</span>.log( bytes + <span class="hljs-string">' => '</span> + x );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

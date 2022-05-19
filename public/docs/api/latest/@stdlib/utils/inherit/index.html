@@ -1,0 +1,45 @@
+<h1 id="prototypical-inheritance">Prototypical Inheritance</h1><blockquote><p>Implement prototypical inheritance by replacing the prototype of one constructor with the prototype of another constructor.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inherit = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherit'</span> );
+</code></pre><h4 id="inherit-ctor-superctor-">inherit( ctor, superCtor )</h4><p>Implements prototypical inheritance by replacing the prototype of one constructor with the prototype of another constructor.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+
+Foo.prototype.beep = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beep</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'boop'</span>;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Bar</span>(<span class="hljs-params"></span>) </span>{
+    Foo.call( <span class="hljs-built_in">this</span> );
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+
+inherit( Bar, Foo );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>This function is not designed to work with ES2015/ES6 classes. For ES2015/ES6 classes, use <code>class</code> with <code>extends</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inherit = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherit'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+Foo.prototype = {};
+Foo.prototype.beep = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beep</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'boop'</span>;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Bar</span>(<span class="hljs-params"></span>) </span>{
+    Foo.call( <span class="hljs-built_in">this</span> );
+    <span class="hljs-built_in">this</span>._super = Foo.prototype;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+
+<span class="hljs-comment">// Set up prototypical inheritance:</span>
+inherit( Bar, Foo );
+
+<span class="hljs-keyword">var</span> bar = <span class="hljs-keyword">new</span> Bar();
+
+<span class="hljs-keyword">var</span> bool = ( bar <span class="hljs-keyword">instanceof</span> Bar );
+<span class="hljs-comment">// returns true</span>
+
+bool = ( bar <span class="hljs-keyword">instanceof</span> Foo );
+<span class="hljs-comment">// returns true</span>
+
+bool = bar.beep();
+<span class="hljs-comment">// returns 'boop'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

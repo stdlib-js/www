@@ -1,0 +1,83 @@
+<h1 id="lda">LDA</h1><blockquote><p><a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation">Latent Dirichlet Allocation</a> via collapsed Gibbs sampling.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lda = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/lda'</span> );
+</code></pre><h4 id="lda-docs-k-options-">lda( docs, K[, options] )</h4><p><a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation">Latent Dirichlet Allocation</a> via collapsed Gibbs sampling. To create a model, call the <code>lda</code> function by passing it an <code>array</code> of <code>strings</code> and the number of topics <code>K</code> that should be identified.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> model;
+<span class="hljs-keyword">var</span> docs;
+
+docs = [
+    <span class="hljs-string">'I loved you first'</span>,
+    <span class="hljs-string">'For one is both and both are one in love'</span>,
+    <span class="hljs-string">'You never see my pain'</span>,
+    <span class="hljs-string">'My love is such that rivers cannot quench'</span>,
+    <span class="hljs-string">'See a lot of pain, a lot of tears'</span>
+];
+
+model = lda( docs, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns {}</span>
+</code></pre><p>After initialization, model parameters are estimated by calling the <code>.fit()</code> method, which performs collapsed Gibbs sampling.</p><p>The model object contains the following methods:</p><h4 id="modelfit-iter-burnin-thin-">model.fit( iter, burnin, thin )</h4><pre><code class="hljs language-javascript">model.fit( <span class="hljs-number">1000</span>, <span class="hljs-number">100</span>, <span class="hljs-number">10</span> );
+</code></pre><p>The <code>iter</code> parameter denotes the number of sampling iterations. While a common choice, one thousand iterations might not always be appropriate. Empirical diagnostics can be used to assess whether the constructed Markov Chain has converged. <code>burnin</code> denotes the number of estimates that are thrown away at the beginning, whereas <code>thin</code> controls the number of estimates discarded in-between iterations.</p><h4 id="modelgetterms-k-no--10-">model.getTerms( k[, no = 10] )</h4><p>Returns the <code>no</code> terms with the highest probabilities for chosen topic <code>k</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> words = model.getTerms( <span class="hljs-number">0</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">/* returns
+    [
+        { 'word': 'both', 'prob': 0.06315008476532499 },
+        { 'word': 'pain', 'prob': 0.05515729517235543 },
+        { 'word': 'one', 'prob': 0.05486669737616135 }
+    ]
+*/</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sotu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/sotu'</span> );
+<span class="hljs-keyword">var</span> roundn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/roundn'</span> );
+<span class="hljs-keyword">var</span> stopwords = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/stopwords-en'</span> );
+<span class="hljs-keyword">var</span> lowercase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/lowercase'</span> );
+<span class="hljs-keyword">var</span> lda = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/lda'</span> );
+
+<span class="hljs-keyword">var</span> speeches;
+<span class="hljs-keyword">var</span> words;
+<span class="hljs-keyword">var</span> terms;
+<span class="hljs-keyword">var</span> model;
+<span class="hljs-keyword">var</span> str;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> j;
+
+words = stopwords();
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; words.length; i++ ) {
+    words[ i ] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>( <span class="hljs-string">'\\b'</span>+words[ i ]+<span class="hljs-string">'\\b'</span>, <span class="hljs-string">'gi'</span> );
+}
+
+speeches = sotu({
+    <span class="hljs-string">'range'</span>: [ <span class="hljs-number">1930</span>, <span class="hljs-number">2010</span> ]
+});
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; speeches.length; i++ ) {
+    str = lowercase( speeches[ i ].text );
+    <span class="hljs-keyword">for</span> ( j = <span class="hljs-number">0</span>; j &#x3C; words.length; j++ ) {
+        str = str.replace( words[ j ], <span class="hljs-string">''</span> );
+    }
+    speeches[ i ] = str;
+}
+
+model = lda( speeches, <span class="hljs-number">3</span> );
+
+model.fit( <span class="hljs-number">1000</span>, <span class="hljs-number">100</span>, <span class="hljs-number">10</span> );
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C;= <span class="hljs-number">80</span>; i++ ) {
+    str = <span class="hljs-string">'Year: '</span> + (<span class="hljs-number">1930</span>+i) + <span class="hljs-string">'\t'</span>;
+    str += <span class="hljs-string">'Topic 1: '</span> + roundn( model.avgTheta.get( i, <span class="hljs-number">0</span> ), -<span class="hljs-number">3</span> ) + <span class="hljs-string">'\t'</span>;
+    str += <span class="hljs-string">'Topic 2: '</span> + roundn( model.avgTheta.get( i, <span class="hljs-number">1</span> ), -<span class="hljs-number">3</span> ) + <span class="hljs-string">'\t'</span>;
+    str += <span class="hljs-string">'Topic 3: '</span> + roundn( model.avgTheta.get( i, <span class="hljs-number">2</span> ), -<span class="hljs-number">3</span> );
+    <span class="hljs-built_in">console</span>.log( str );
+}
+
+terms = model.getTerms( <span class="hljs-number">0</span>, <span class="hljs-number">20</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; terms.length; i++ ) {
+    terms[ i ] = terms[ i ].word;
+}
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Words most associated with first topic:\n '</span> + terms.join( <span class="hljs-string">', '</span> ) );
+
+terms = model.getTerms( <span class="hljs-number">1</span>, <span class="hljs-number">20</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; terms.length; i++ ) {
+    terms[ i ] = terms[ i ].word;
+}
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Words most associated with second topic:\n '</span> + terms.join( <span class="hljs-string">', '</span> ) );
+
+terms = model.getTerms( <span class="hljs-number">2</span>, <span class="hljs-number">20</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; terms.length; i++ ) {
+    terms[ i ] = terms[ i ].word;
+}
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Words most associated with third topic:\n '</span> + terms.join( <span class="hljs-string">', '</span> ) );
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,35 @@
+<h1 id="iterfresnels">iterFresnels</h1><blockquote><p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which computes the <a href="/docs/api/latest/@stdlib/math/base/special/fresnels">Fresnel integral</a> S(x) for each iterated value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterFresnels = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/iter/special/fresnels'</span> );
+</code></pre><h4 id="iterfresnels-iterator-">iterFresnels( iterator )</h4><p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which iteratively computes the <a href="/docs/api/latest/@stdlib/math/base/special/fresnels">Fresnel integral</a> S(x).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> it = iterFresnels( array2iterator( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> ] ) );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 0.0</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns ~0.438</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the iterator is finished.</li><li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If an iterated value is non-numeric (including <code>NaN</code>), the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> returns <code>NaN</code>. If non-numeric iterated values are possible, you are advised to provide an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a> which type checks and handles non-numeric values accordingly.</li><li>If an environment supports <code>Symbol.iterator</code> <strong>and</strong> a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/uniform'</span> );
+<span class="hljs-keyword">var</span> iterFresnels = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/iter/special/fresnels'</span> );
+
+<span class="hljs-comment">// Create a seeded iterator for generating pseudorandom numbers:</span>
+<span class="hljs-keyword">var</span> rand = uniform( <span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>, {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>
+});
+
+<span class="hljs-comment">// Create an iterator which consumes the pseudorandom number iterator:</span>
+<span class="hljs-keyword">var</span> it = iterFresnels( rand );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it.next();
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( v.value );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/fresnels"><code>@stdlib/math/base/special/fresnels</code></a></span><span class="delimiter">: </span><span class="description">compute the Fresnel integral S(x).</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/iter/special/fresnelc"><code>@stdlib/math/iter/special/fresnelc</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which computes the Fresnel integral C(x) for each iterated value.</span></li></ul></section><section class="links"></section>

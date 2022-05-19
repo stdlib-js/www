@@ -1,0 +1,40 @@
+<h1 id="dale-chall">Dale-Chall</h1><blockquote><p>A <a href="https://books.google.com/books?id=2nbuAAAAMAAJ">list</a> of familiar American-English words.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> words = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/dale-chall-new'</span> );
+</code></pre><h4 id="words">words()</h4><p>Returns a <a href="https://books.google.com/books?id=2nbuAAAAMAAJ">list</a> of familiar American-English words.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = words();
+<span class="hljs-comment">/* returns
+    [
+        'a',
+        'able',
+        'aboard',
+        'about',
+        'above',
+        ...
+    ]
+*/</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> words = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/dale-chall-new'</span> );
+
+<span class="hljs-keyword">var</span> data = words();
+<span class="hljs-keyword">var</span> len = data.length;
+<span class="hljs-keyword">var</span> idx;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Select random words from the list...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    idx = floor( randu()*len );
+    <span class="hljs-built_in">console</span>.log( data[ idx ] );
+}
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: dale-chall-new [options]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ dale-chall-new
+a
+able
+aboard
+about
+above
+...
+</code></pre></section></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Chall, Jeanne Sternlicht, and Edgar Dale. 1995. <em>Readability revisited: the new Dale-Chall readability formula</em>. Brookline Books. <a href="https://books.google.com/books?id=2nbuAAAAMAAJ">https://books.google.com/books?id=2nbuAAAAMAAJ</a>.</li></ul></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"></section><section class="links"></section>

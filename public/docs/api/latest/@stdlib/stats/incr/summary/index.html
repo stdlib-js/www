@@ -1,0 +1,91 @@
+<h1 id="incrsummary">incrsummary</h1><blockquote><p>Compute a statistical summary incrementally.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrsummary = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/summary'</span> );
+</code></pre><h4 id="incrsummary-1">incrsummary()</h4><p>Returns an accumulator <code>function</code> which incrementally computes a statistical summary.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> accumulator = incrsummary();
+</code></pre><h4 id="accumulator-x-">accumulator( [x] )</h4><p>If provided an input value <code>x</code>, the accumulator function returns an updated summary. If not provided an input value <code>x</code>, the accumulator function returns the current summary.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> accumulator = incrsummary();
+
+<span class="hljs-keyword">var</span> summary = accumulator();
+<span class="hljs-comment">// returns {}</span>
+
+summary = accumulator( <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">/* returns
+    {
+        'count': 1,
+        'max': 2.0,
+        'min': 2.0,
+        'range': 0.0,
+        'midrange': 2.0,
+        'sum': 2.0,
+        'mean': 2.0,
+        'variance': 0.0,
+        'stdev': 0.0,
+        'skewness': null,
+        'kurtosis': null
+    }
+*/</span>
+
+summary = accumulator( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">/* returns
+    {
+        'count': 2,
+        'max': 2.0,
+        'min': 1.0,
+        'range': 1.0,
+        'midrange': 1.5,
+        'sum': 3.0,
+        'mean': 1.5,
+        'variance': 0.5,
+        'stdev': 0.7071067811865476,
+        'skewness': null,
+        'kurtosis': null
+    }
+*/</span>
+
+summary = accumulator( -<span class="hljs-number">3.0</span> );
+<span class="hljs-comment">/* returns
+    {
+        'count': 3,
+        'max': 2.0,
+        'min': -3.0,
+        'range': 5.0,
+        'midrange': -0.5,
+        'sum': 0.0,
+        'mean': 0.0,
+        'variance': 7,
+        'stdev': ~2.65,
+        'skewness': ~-1.46,
+        'kurtosis': null
+    }
+*/</span>
+
+summary = accumulator();
+<span class="hljs-comment">/* returns
+    {
+        'count': 3,
+        'max': 2.0,
+        'min': -3.0,
+        'range': 5.0,
+        'midrange': -0.5,
+        'sum': 0.0,
+        'mean': 0.0,
+        'variance': 7,
+        'stdev': ~2.65,
+        'skewness': ~-1.46,
+        'kurtosis': null
+    }
+*/</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Input values are <strong>not</strong> type checked. If non-numeric inputs are possible, you are advised to type check and handle accordingly <strong>before</strong> passing the value to the accumulator function.</li><li>For long running accumulations or accumulations of large numbers, care should be taken to prevent overflow.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> incrsummary = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/summary'</span> );
+
+<span class="hljs-keyword">var</span> accumulator;
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Initialize an accumulator:</span>
+accumulator = incrsummary();
+
+<span class="hljs-comment">// For each simulated datum, update the summary...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    v = randu() * <span class="hljs-number">100.0</span>;
+    accumulator( v );
+}
+<span class="hljs-built_in">console</span>.log( accumulator() );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/count"><code>@stdlib/stats/incr/count</code></a></span><span class="delimiter">: </span><span class="description">compute a count incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/kurtosis"><code>@stdlib/stats/incr/kurtosis</code></a></span><span class="delimiter">: </span><span class="description">compute a corrected sample excess kurtosis incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/max"><code>@stdlib/stats/incr/max</code></a></span><span class="delimiter">: </span><span class="description">compute a maximum value incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/mean"><code>@stdlib/stats/incr/mean</code></a></span><span class="delimiter">: </span><span class="description">compute an arithmetic mean incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/midrange"><code>@stdlib/stats/incr/midrange</code></a></span><span class="delimiter">: </span><span class="description">compute a mid-range incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/min"><code>@stdlib/stats/incr/min</code></a></span><span class="delimiter">: </span><span class="description">compute a minimum value incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/msummary"><code>@stdlib/stats/incr/msummary</code></a></span><span class="delimiter">: </span><span class="description">compute a moving statistical summary incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/range"><code>@stdlib/stats/incr/range</code></a></span><span class="delimiter">: </span><span class="description">compute a range incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/skewness"><code>@stdlib/stats/incr/skewness</code></a></span><span class="delimiter">: </span><span class="description">compute a corrected sample skewness incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/stdev"><code>@stdlib/stats/incr/stdev</code></a></span><span class="delimiter">: </span><span class="description">compute a corrected sample standard deviation incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/sum"><code>@stdlib/stats/incr/sum</code></a></span><span class="delimiter">: </span><span class="description">compute a sum incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/variance"><code>@stdlib/stats/incr/variance</code></a></span><span class="delimiter">: </span><span class="description">compute an unbiased sample variance incrementally.</span></li></ul></section><section class="links"></section>

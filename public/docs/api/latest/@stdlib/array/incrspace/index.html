@@ -1,0 +1,46 @@
+<h1 id="incrspace">Incrspace</h1><blockquote><p>Generate a linearly spaced numeric array using a provided increment.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/incrspace'</span> );
+</code></pre><h4 id="incrspace-start-stop-increment-">incrspace( start, stop[, increment] )</h4><p>Generates a linearly spaced numeric <code>array</code>. If an <code>increment</code> is not provided, the default <code>increment</code> is <code>1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = incrspace( <span class="hljs-number">0</span>, <span class="hljs-number">11</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns [ 0, 2, 4, 6, 8, 10 ]</span>
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>The output <code>array</code> is guaranteed to include the <code>start</code> value but does <strong>not</strong> include the <code>stop</code> value. Beware that values subsequent to the <code>start</code> value are subject to floating-point errors. Hence,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = incrspace( <span class="hljs-number">0.1</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.2</span> );
+<span class="hljs-comment">// returns [ 0.1, ~0.3 ]</span>
+</code></pre><p>where <code>arr[1]</code> is only guaranteed to be approximately equal to <code>0.3</code>.</p><p>If you desire more control over element precision, consider using <a href="/docs/api/latest/@stdlib/math/base/special/roundn">roundn</a>:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> roundn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/roundn'</span> );
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Create an array subject to floating-point errors:</span>
+arr = incrspace( <span class="hljs-number">0</span>, <span class="hljs-number">1.01</span>, <span class="hljs-number">0.02</span> );
+
+<span class="hljs-comment">// Round each value to the nearest hundredth:</span>
+out = [];
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    out.push( roundn( arr[ i ], -<span class="hljs-number">2</span> ) );
+}
+
+<span class="hljs-built_in">console</span>.log( out.join( <span class="hljs-string">'\n'</span> ) );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/incrspace'</span> );
+<span class="hljs-keyword">var</span> out;
+
+<span class="hljs-comment">// Default behavior:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nDefault:'</span> );
+out = incrspace( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> );
+<span class="hljs-built_in">console</span>.log( out.join( <span class="hljs-string">'\n'</span> ) );
+
+<span class="hljs-comment">// Specify increment:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nIncrement 2:'</span> );
+out = incrspace( <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span> );
+<span class="hljs-built_in">console</span>.log( out.join( <span class="hljs-string">'\n'</span> ) );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nIncrement 2:'</span> );
+out = incrspace( <span class="hljs-number">0</span>, <span class="hljs-number">11</span>, <span class="hljs-number">2</span> );
+<span class="hljs-built_in">console</span>.log( out.join( <span class="hljs-string">'\n'</span> ) );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nIncrement 0.02:'</span> );
+out = incrspace( <span class="hljs-number">0</span>, <span class="hljs-number">1.01</span>, <span class="hljs-number">0.02</span> );
+<span class="hljs-built_in">console</span>.log( out.join( <span class="hljs-string">'\n'</span> ) );
+
+<span class="hljs-comment">// Create an array using a negative increment:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'\nDecremented values:'</span> );
+out = incrspace( <span class="hljs-number">10</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">2</span> );
+<span class="hljs-built_in">console</span>.log( out.join( <span class="hljs-string">'\n'</span> ) );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/linspace"><code>@stdlib/array/linspace</code></a></span><span class="delimiter">: </span><span class="description">generate a linearly spaced numeric array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/logspace"><code>@stdlib/array/logspace</code></a></span><span class="delimiter">: </span><span class="description">generate a logarithmically spaced numeric array.</span></li></ul></section><section class="links"></section>

@@ -1,0 +1,41 @@
+<h1 id="smskmap">smskmap</h1><blockquote><p>C API for registering a Node-API module exporting a strided array interface for applying a unary callback to a single-precision floating-point strided input array according to a strided mask array and assigning results to a single-precision floating-point strided output array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/napi/smskmap'</span> );
+</code></pre><h4 id="headerdir">headerDir</h4><p>Absolute file path for the directory containing header files for C APIs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/napi/smskmap'</span> );
+
+<span class="hljs-built_in">console</span>.log( headerDir );
+<span class="hljs-comment">// => &#x3C;string></span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/napi/smskmap.h"</span></span>
+</code></pre><h4 id="stdlib_strided_napi_smskmap-env-info-fcn-">stdlib_strided_napi_smskmap( env, info, fcn )</h4><p>Invokes a strided array interface which applies a unary callback to a single-precision floating-point strided input array according to a strided mask array and assigns results to a single-precision floating-point strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">identityf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span> </span>{
+    <span class="hljs-keyword">return</span> x;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">/**
+* Receives JavaScript callback invocation data.
+*
+* @param env    environment under which the function is invoked
+* @param info   callback data
+* @return       Node-API value
+*/</span>
+<span class="hljs-function">napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    stdlib_strided_napi_smskmap( env, info, identityf );
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+}
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li><li><strong>fcn</strong>: <code>[in] float (*fcn)( float )</code> unary callback.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_napi_smskmap</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">float</span> (*fcn)( <span class="hljs-keyword">float</span> ) )</span></span>;
+</code></pre><h4 id="stdlib_strided_napi_module_smskmap-clbk-">STDLIB_STRIDED_NAPI_MODULE_SMSKMAP( clbk )</h4><p>Macro for registering a Node-API module exporting a strided array interface for applying a unary callback to a single-precision floating-point strided input array according to a strided mask array and assigning results to a single-precision floating-point strided output array.</p><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">scale</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span> </span>{
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">10.0f</span>;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_STRIDED_NAPI_MODULE_SMSKMAP( scale );
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>clbk</strong>: <code>float (*fcn)( float )</code> unary callback.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>The function expects that the callback <code>info</code> argument provides access to the following JavaScript arguments:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>X</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li><li><strong>strideX</strong>: <code>X</code> stride length.</li><li><strong>Mask</strong>: mask <a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a>.</li><li><strong>strideMask</strong>: <code>Mask</code> stride length.</li><li><strong>Y</strong>: destination <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li><li><strong>strideY</strong>: <code>Y</code> stride length.</li></ul></li></ul></section><section class="examples"></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

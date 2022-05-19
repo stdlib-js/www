@@ -1,0 +1,59 @@
+<h1 id="dataview">DataView</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView">Constructor</a> which returns a data view representing a provided array buffer.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">DataView</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dataview'</span> );
+</code></pre><h4 id="dataview-buffer-byteoffset-bytelength-">DataView( buffer[, byteOffset[, byteLength]] )</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView"><code>DataView</code></a> representing a provided array buffer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+
+<span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns &#x3C;ArrayBuffer></span>
+
+<span class="hljs-keyword">var</span> dv = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( buf );
+<span class="hljs-comment">// returns &#x3C;DataView></span>
+</code></pre><hr><h3 id="properties">Properties</h3><h4 id="dataviewprototypebuffer">DataView.prototype.buffer</h4><p><strong>Read-only</strong> property which returns the underlying array buffer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+
+<span class="hljs-keyword">var</span> buf1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">5</span> );
+<span class="hljs-keyword">var</span> dv = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( buf1 );
+
+<span class="hljs-keyword">var</span> buf2 = dv.buffer;
+<span class="hljs-comment">// returns &#x3C;ArrayBuffer></span>
+
+<span class="hljs-keyword">var</span> bool = ( buf1 === buf2 );
+<span class="hljs-comment">// returns true</span>
+</code></pre><h4 id="dataviewprototypebytelength">DataView.prototype.byteLength</h4><p><strong>Read-only</strong> property which returns the length (in bytes) of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView"><code>DataView</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+
+<span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">5</span> );
+<span class="hljs-keyword">var</span> dv = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( buf );
+
+<span class="hljs-keyword">var</span> byteLength = dv.byteLength;
+<span class="hljs-comment">// returns 5</span>
+</code></pre><h4 id="dataviewprototypebyteoffset">DataView.prototype.byteOffset</h4><p><strong>Read-only</strong> property which returns the number of bytes from the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView"><code>DataView</code></a> to the start of the underlying array buffer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+
+<span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">5</span> );
+<span class="hljs-keyword">var</span> dv = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( buf, <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">var</span> byteOffset = dv.byteOffset;
+<span class="hljs-comment">// returns 3</span>
+</code></pre><hr><h3 id="methods">Methods</h3><p>TODO: document methods</p></section><hr><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_LITTLE_ENDIAN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-little-endian'</span> );
+<span class="hljs-keyword">var</span> toBinaryString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint8/base/to-binary-string'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">DataView</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dataview'</span> );
+
+<span class="hljs-comment">// Create a new ArrayBuffer:</span>
+<span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">64</span> );
+
+<span class="hljs-comment">// Create a new DataView:</span>
+<span class="hljs-keyword">var</span> dv = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( buf );
+
+<span class="hljs-comment">// Set values in the view:</span>
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dv.byteLength/<span class="hljs-number">8</span>; i++ ) {
+    dv.setFloat64( i*<span class="hljs-number">8</span>, randu()*<span class="hljs-number">100.0</span>, IS_LITTLE_ENDIAN );
+}
+
+<span class="hljs-comment">// Create a "bytes" view of the underlying array buffer:</span>
+<span class="hljs-keyword">var</span> bytes = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( dv.buffer );
+
+<span class="hljs-comment">// Print the bytes:</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; bytes.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'byte %d: %s'</span>, i, toBinaryString( bytes[ i ] ) );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/buffer"><code>@stdlib/array/buffer</code></a></span><span class="delimiter">: </span><span class="description">ArrayBuffer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/typed"><code>@stdlib/array/typed</code></a></span><span class="delimiter">: </span><span class="description">create a typed array.</span></li></ul></section><section class="links"></section>

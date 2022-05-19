@@ -1,0 +1,76 @@
+<h1 id="noneby">noneBy</h1><blockquote><p>Test whether all elements in a collection fail a test implemented by a predicate function.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> noneBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/none-by'</span> );
+</code></pre><h4 id="noneby-collection-predicate-thisarg--">noneBy( collection, predicate[, thisArg ] )</h4><p>Tests whether all elements in a <code>collection</code> fail a test implemented by a <code>predicate</code> function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> arr = [ -<span class="hljs-number">1</span>, -<span class="hljs-number">2</span>, -<span class="hljs-number">3</span>, -<span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> bool = noneBy( arr, isPositive );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>If a <code>predicate</code> function returns a truthy value, the function <strong>immediately</strong> returns <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPositive</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> arr = [ -<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, -<span class="hljs-number">3</span>, -<span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> bool = noneBy( arr, isPositive );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>The invoked <code>function</code> is provided three arguments:</p><ul><li><code>value</code>: collection element</li><li><code>index</code>: collection index</li><li><code>collection</code>: input collection</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">if</span> ( value &#x3C; <span class="hljs-number">0</span> ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-built_in">this</span>.sum += value;
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'sum'</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> bool = noneBy( arr, sum, context );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">var</span> mean = context.sum / context.count;
+<span class="hljs-comment">// returns 2.5</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</p></li><li><p>If provided an empty collection, the function returns <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">truthy</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+<span class="hljs-keyword">var</span> bool = noneBy( [], truthy );
+<span class="hljs-comment">// returns true</span>
+</code></pre></li><li><p>The function does <strong>not</strong> skip <code>undefined</code> elements.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> value, index </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %s'</span>, index, value );
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, , , <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> bool = noneBy( arr, log );
+<span class="hljs-comment">/* =>
+    0: 1
+    1: undefined
+    2: undefined
+    3: 4
+*/</span>
+</code></pre></li><li><p>The function provides limited support for dynamic collections (i.e., collections whose <code>length</code> changes during execution).</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> noneBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/none-by'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNegative</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value &#x3C; <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> i;
+
+arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">100</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    arr[ i ] = randu();
+}
+
+bool = noneBy( arr, isNegative );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/any-by"><code>@stdlib/utils/any-by</code></a></span><span class="delimiter">: </span><span class="description">test whether at least one element in a collection passes a test implemented by a predicate function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/every-by"><code>@stdlib/utils/every-by</code></a></span><span class="delimiter">: </span><span class="description">test whether all elements in a collection pass a test implemented by a predicate function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/for-each"><code>@stdlib/utils/for-each</code></a></span><span class="delimiter">: </span><span class="description">invoke a function for each element in a collection.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/none"><code>@stdlib/utils/none</code></a></span><span class="delimiter">: </span><span class="description">test whether all elements in a collection are falsy.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/none-by-right"><code>@stdlib/utils/none-by-right</code></a></span><span class="delimiter">: </span><span class="description">test whether all elements in a collection fail a test implemented by a predicate function, iterating from right to left.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/some-by"><code>@stdlib/utils/some-by</code></a></span><span class="delimiter">: </span><span class="description">test whether a collection contains at least <code>n</code> elements which pass a test implemented by a predicate function.</span></li></ul></section><section class="links"></section>

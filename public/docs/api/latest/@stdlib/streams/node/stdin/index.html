@@ -1,0 +1,59 @@
+<h1 id="standard-input">Standard Input</h1><blockquote><p><a href="https://en.wikipedia.org/wiki/Standard_streams">Standard input</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdin'</span> );
+</code></pre><h4 id="stdin">stdin</h4><p><a href="https://en.wikipedia.org/wiki/Standard_streams">Standard input</a> as a <a href="https://nodejs.org/api/stream.html#stream_class_stream_readable">Readable stream</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
+<span class="hljs-keyword">var</span> Buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/ctor'</span> );
+
+<span class="hljs-keyword">var</span> data = [];
+<span class="hljs-keyword">var</span> len = <span class="hljs-number">0</span>;
+
+stdin.on( <span class="hljs-string">'readable'</span>, onReadable );
+stdin.on( <span class="hljs-string">'error'</span>, onError );
+stdin.on( <span class="hljs-string">'end'</span>, onEnd );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onReadable</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> chunk;
+    <span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+        chunk = stdin.read();
+        <span class="hljs-keyword">if</span> ( chunk === <span class="hljs-literal">null</span> ) {
+            <span class="hljs-keyword">break</span>;
+        }
+        <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> chunk === <span class="hljs-string">'string'</span> ) {
+            chunk = string2buffer( chunk );
+        }
+        data.push( chunk );
+        len += chunk.length;
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onError</span>(<span class="hljs-params"> error </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-built_in">console</span>.error( error.message );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onEnd</span>(<span class="hljs-params"></span>) </span>{
+    data = Buffer.concat( data, len );
+    <span class="hljs-built_in">console</span>.log( data.toString() );
+    <span class="hljs-comment">// => '...'</span>
+}
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> proc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'process'</span> );
+<span class="hljs-keyword">var</span> stdin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdin'</span> );
+<span class="hljs-keyword">var</span> stdout = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdout'</span> );
+
+<span class="hljs-comment">// Set the encoding:</span>
+stdin.setEncoding( <span class="hljs-string">'utf8'</span> );
+
+<span class="hljs-comment">// Create an echo stream:</span>
+stdin.pipe( stdout );
+
+<span class="hljs-comment">// Push data to `stdin`:</span>
+stdin.push( <span class="hljs-string">'beep'</span> );
+stdin.push( <span class="hljs-string">' '</span> );
+stdin.push( <span class="hljs-string">'boop'</span> );
+stdin.push( <span class="hljs-string">'\n'</span> );
+
+<span class="hljs-comment">// End the stream:</span>
+stdin.push( <span class="hljs-literal">null</span> );
+
+<span class="hljs-comment">// Ensure the process closes:</span>
+<span class="hljs-built_in">setTimeout</span>( proc.exit, <span class="hljs-number">1000</span> );
+</code></pre></section><section class="related"></section><section class="links"></section>

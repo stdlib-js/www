@@ -1,0 +1,41 @@
+<h1 id="repeat">Repeat</h1><blockquote><p>Repeat a string a specified number of times and return the concatenated result.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> repeat = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/repeat'</span> );
+</code></pre><h4 id="repeat-str-n-">repeat( str, n )</h4><p>Repeats a string <code>n</code> times and returns the concatenated result.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = repeat( <span class="hljs-string">'a'</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 'aaaaa'</span>
+
+str = repeat( <span class="hljs-string">''</span>, <span class="hljs-number">100</span> );
+<span class="hljs-comment">// returns ''</span>
+
+str = repeat( <span class="hljs-string">'beep'</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns ''</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> repeat = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/repeat'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'beep'</span>;
+<span class="hljs-keyword">var</span> n;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    n = round( randu()*<span class="hljs-number">3.0</span> );
+    <span class="hljs-built_in">console</span>.log( repeat( str, n ) );
+}
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: repstr [options] [&#x3C;string>] --n &#x3C;repeats>
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --n repeats           Number of repetitions.
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'beep\nboop'</span> | repstr --n 3 --split /\r?\n/
+
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'beep\nboop'</span> | repstr --n 3 --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ repstr beep --n 5
+beepbeepbeepbeepbeep
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'ab'</span> | repstr --n 3
+ababab
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'beep\tboop'</span> | repstr --n 3 --split <span class="hljs-string">'\t'</span>
+beepbeepbeep
+boopboopboop
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/pad"><code>@stdlib/string/pad</code></a></span><span class="delimiter">: </span><span class="description">pad a string.</span></li></ul></section><section class="links"></section>

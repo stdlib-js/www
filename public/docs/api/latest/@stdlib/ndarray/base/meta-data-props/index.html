@@ -1,0 +1,53 @@
+<h1 id="setprops">setProps</h1><blockquote><p>Define non-enumerable read-only properties which expose ndarray function meta data.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setProps = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/meta-data-props'</span> );
+</code></pre><h4 id="setprops-meta-dtypes-obj-">setProps( meta, dtypes, obj )</h4><p>Defines non-enumerable read-only properties which expose ndarray function meta data.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Define ndarray function meta data:</span>
+<span class="hljs-keyword">var</span> meta = {
+    <span class="hljs-string">'nargs'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'nin'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'nout'</span>: <span class="hljs-number">1</span>
+};
+
+<span class="hljs-comment">// Define the list of ndarray data types:</span>
+<span class="hljs-keyword">var</span> dtypes = [
+    <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float64'</span>
+];
+
+<span class="hljs-comment">// Define an object/function on which to set the properties:</span>
+<span class="hljs-keyword">var</span> obj = {};
+
+<span class="hljs-comment">// Set the properties:</span>
+setProps( meta, dtypes, obj );
+</code></pre><p>The <code>meta</code> data argument should be an <code>object</code> with the following properties:</p><ul><li><strong>nargs</strong>: total number of arguments. This value is one more than might be expected, as the output array is treated as an implicit argument, even when not explicitly provided.</li><li><strong>nin</strong>: number of input ndarrays.</li><li><strong>nout</strong>: number of output ndarrays.</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setProps = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/meta-data-props'</span> );
+
+<span class="hljs-comment">// Define ndarray function meta data:</span>
+<span class="hljs-keyword">var</span> meta = {
+    <span class="hljs-string">'nargs'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'nin'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'nout'</span>: <span class="hljs-number">1</span>
+};
+
+<span class="hljs-comment">// Define the list of ndarray data types:</span>
+<span class="hljs-keyword">var</span> types = [
+    <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'float32'</span>, <span class="hljs-string">'float32'</span>,
+    <span class="hljs-string">'generic'</span>, <span class="hljs-string">'generic'</span>
+];
+
+<span class="hljs-comment">// Define an object/function on which to set the properties:</span>
+<span class="hljs-keyword">var</span> obj = {};
+
+<span class="hljs-comment">// Set the properties:</span>
+setProps( meta, types, obj );
+
+<span class="hljs-comment">// Retrieve ndarray function data...</span>
+<span class="hljs-keyword">var</span> nargs = obj.nargs;
+<span class="hljs-comment">// returns 2</span>
+
+<span class="hljs-keyword">var</span> nin = obj.nin;
+<span class="hljs-comment">// returns 1</span>
+
+<span class="hljs-keyword">var</span> nout = obj.nout;
+<span class="hljs-comment">// returns 1</span>
+
+<span class="hljs-keyword">var</span> sigs = obj.types;
+<span class="hljs-comment">// returns [...]</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

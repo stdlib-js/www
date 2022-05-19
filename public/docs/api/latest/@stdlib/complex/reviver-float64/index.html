@@ -1,0 +1,28 @@
+<h1 id="reviver">Reviver</h1><blockquote><p>Revive a JSON-serialized 128-bit <a href="/docs/api/latest/@stdlib/complex/float64">complex number</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reviver = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/reviver-float64'</span> );
+</code></pre><h4 id="reviver-key-value-">reviver( key, value )</h4><p>Revives a JSON-serialized 128-bit <a href="/docs/api/latest/@stdlib/complex/float64">complex number</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'{"type":"Complex128","re":5,"im":3}'</span>;
+
+<span class="hljs-keyword">var</span> z = parseJSON( str, reviver );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+</code></pre><p>For details on the JSON serialization format, see <a href="/docs/api/latest/@stdlib/complex/float64"><code>Complex128</code></a>.</p></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+<span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
+<span class="hljs-keyword">var</span> reviver = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/reviver-float64'</span> );
+
+<span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-keyword">var</span> str = <span class="hljs-built_in">JSON</span>.stringify( z );
+<span class="hljs-comment">// returns '{"type":"Complex128","re":5,"im":3}'</span>
+
+<span class="hljs-keyword">var</span> w = parseJSON( str, reviver );
+<span class="hljs-keyword">if</span> ( w <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
+    <span class="hljs-keyword">throw</span> w;
+}
+<span class="hljs-keyword">var</span> bool = ( w <span class="hljs-keyword">instanceof</span> z.constructor );
+<span class="hljs-comment">// returns true</span>
+
+bool = ( w.re === z.re );
+<span class="hljs-comment">// returns true</span>
+
+bool = ( w.im === z.im );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/float64"><code>@stdlib/complex/float64</code></a></span><span class="delimiter">: </span><span class="description">128-bit complex number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/reviver-float32"><code>@stdlib/complex/reviver-float32</code></a></span><span class="delimiter">: </span><span class="description">revive a JSON-serialized 64-bit complex number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/reviver"><code>@stdlib/complex/reviver</code></a></span><span class="delimiter">: </span><span class="description">revive a JSON-serialized complex number.</span></li></ul></section><section class="links"></section>

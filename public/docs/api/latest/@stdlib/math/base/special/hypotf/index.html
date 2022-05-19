@@ -1,0 +1,44 @@
+<h1 id="hypotf">hypotf</h1><blockquote><p>Compute the <a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a> avoiding overflow and underflow (single-precision).</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hypotf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/hypotf'</span> );
+</code></pre><h4 id="hypotf-x-y-">hypotf( x, y )</h4><p>Computes the <a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a> avoiding overflow and underflow (single-precision).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypotf( -<span class="hljs-number">5.0</span>, <span class="hljs-number">12.0</span> );
+<span class="hljs-comment">// returns 13.0</span>
+
+h = hypotf( -<span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns +0.0</span>
+</code></pre><p>If either argument is <code>NaN</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypotf( <span class="hljs-literal">NaN</span>, <span class="hljs-number">12.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+h = hypotf( <span class="hljs-number">5.0</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> hypotf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/hypotf'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> h;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = round( randu()*<span class="hljs-number">100.0</span> ) - <span class="hljs-number">50.0</span>;
+    y = round( randu()*<span class="hljs-number">100.0</span> ) - <span class="hljs-number">50.0</span>;
+    h = hypotf( x, y );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'h(%d,%d) = %d'</span>, x, y, h );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/hypotf.h
+</span></span></code></pre><h4 id="stdlib_base_hypotf-x-y-">stdlib_base_hypotf( x, y )</h4><p>Computes the hypotenuse avoiding overflow and underflow (single-precision).</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> h = stdlib_base_hypotf( <span class="hljs-number">5.0f</span>, <span class="hljs-number">12.0f</span> );
+<span class="hljs-comment">// returns 13.0f</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] float</code> input value.</li><li><strong>y</strong>: <code>[in] float</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_hypotf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/hypotf.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">3.0f</span>, <span class="hljs-number">4.0f</span>, <span class="hljs-number">5.0f</span>, <span class="hljs-number">12.0f</span> };
+
+    <span class="hljs-keyword">float</span> y;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i += <span class="hljs-number">2</span> ) {
+        y = stdlib_base_hypotf( x[ i ], x[ i+<span class="hljs-number">1</span> ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"hypot(%f, %f) = %f\n"</span>, x[ i ], x[ i+<span class="hljs-number">1</span> ], y );
+    }
+}
+</code></pre></section></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/hypot"><code>@stdlib/math/base/special/hypot</code></a></span><span class="delimiter">: </span><span class="description">compute the hypotenuse avoiding overflow and underflow.</span></li></ul></section><section class="links"></section>

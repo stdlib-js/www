@@ -1,0 +1,113 @@
+<h1 id="itermap3">iterMap3</h1><blockquote><p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which invokes a ternary function accepting numeric arguments for each iterated value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterMap3 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/iter/tools/map3'</span> );
+</code></pre><h4 id="itermap3-iter0-iter1-iter2-fcn-options-">iterMap3( iter0, iter1, iter2, fcn[, options] )</h4><p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which invokes a ternary <code>function</code> accepting numeric arguments for each iterated value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+<span class="hljs-keyword">var</span> clamp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/clamp'</span> );
+
+<span class="hljs-keyword">var</span> x = array2iterator( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">14.0</span> ] );
+<span class="hljs-keyword">var</span> min = array2iterator( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ] );
+<span class="hljs-keyword">var</span> max = array2iterator( [ <span class="hljs-number">10.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">10.0</span> ] );
+
+<span class="hljs-keyword">var</span> it = iterMap3( x, min, max, clamp );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> r = it.next().value;
+<span class="hljs-comment">// returns 1.0</span>
+
+r = it.next().value;
+<span class="hljs-comment">// returns 0.0</span>
+
+r = it.next().value;
+<span class="hljs-comment">// returns 2.0</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the iterator is finished.</li><li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li></ul><p>The invoked <code>function</code> is provided three arguments:</p><ul><li><code>x</code>: iterated value from first input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>.</li><li><code>y</code>: iterated value from second input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>.</li><li><code>z</code>: iterated value from third input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>.</li></ul><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> x, y, z </span>) </span>{
+    <span class="hljs-keyword">return</span> x + y + z + <span class="hljs-number">10</span>;
+}
+
+<span class="hljs-keyword">var</span> it1 = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> it2 = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> it3 = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+
+<span class="hljs-keyword">var</span> it = iterMap3( it1, it2, it3, fcn );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> r = it.next().value;
+<span class="hljs-comment">// returns 13</span>
+
+r = it.next().value;
+<span class="hljs-comment">// returns 16</span>
+
+r = it.next().value;
+<span class="hljs-comment">// returns 19</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The function supports the following <code>options</code>:</p><ul><li><strong>invalid</strong>: return value when an input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> yields a non-numeric value. Default: <code>NaN</code>.</li></ul><p>By default, the function returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which returns <code>NaN</code> when an input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> yields a non-numeric value. To specify a different return value, set the <code>invalid</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+<span class="hljs-keyword">var</span> clamp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/clamp'</span> );
+
+<span class="hljs-keyword">var</span> it1 = array2iterator( [ <span class="hljs-string">'1.0'</span>, <span class="hljs-string">'2.0'</span>, <span class="hljs-string">'3.0'</span> ] );
+<span class="hljs-keyword">var</span> it2 = array2iterator( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
+<span class="hljs-keyword">var</span> it3 = array2iterator( [ <span class="hljs-number">10.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">10.0</span> ] );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'invalid'</span>: <span class="hljs-literal">null</span>
+};
+<span class="hljs-keyword">var</span> it = iterMap3( it1, it2, it3, clamp, opts );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns null</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns null</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>If provided a numeric value as an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a> argument, the value is broadcast as an <strong>infinite</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which <strong>always</strong> returns the provided value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+<span class="hljs-keyword">var</span> clamp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/clamp'</span> );
+
+<span class="hljs-keyword">var</span> x = array2iterator( [ -<span class="hljs-number">1.0</span>, <span class="hljs-number">20.0</span> ] );
+
+<span class="hljs-keyword">var</span> it = iterMap3( x, <span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>, clamp );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 0.0</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 10.0</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If an iterated value is non-numeric (including <code>NaN</code>), the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> returns <code>NaN</code>. If non-numeric iterated values are possible, you are advised to provide an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a> which type checks and handles non-numeric values accordingly.</li><li>The length of the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is equal to the length of the shortest provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>. In other words, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> ends once <strong>one</strong> of the provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterators</a> ends.</li><li>If an environment supports <code>Symbol.iterator</code> <strong>and</strong> a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/uniform'</span> );
+<span class="hljs-keyword">var</span> clamp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/clamp'</span> );
+<span class="hljs-keyword">var</span> iterMap3 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/iter/tools/map3'</span> );
+
+<span class="hljs-comment">// Create seeded iterators for generating pseudorandom numbers:</span>
+<span class="hljs-keyword">var</span> x = uniform( <span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span>, {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>
+});
+
+<span class="hljs-keyword">var</span> min = uniform( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">4567</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>
+});
+
+<span class="hljs-keyword">var</span> max = uniform( <span class="hljs-number">9.0</span>, <span class="hljs-number">10.0</span>, {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">7895</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>
+});
+
+<span class="hljs-comment">// Create an iterator which consumes the pseudorandom number iterators:</span>
+<span class="hljs-keyword">var</span> it = iterMap3( x, min, max, clamp );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> r;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    r = it.next();
+    <span class="hljs-keyword">if</span> ( r.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( r.value );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,59 @@
+<h1 id="stdin">stdin</h1><blockquote><p>Read data from <a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/read-stdin'</span> );
+</code></pre><h4 id="stdin-encoding-clbk-">stdin( [encoding,] clbk )</h4><p>Reads data from <a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRead</span>(<span class="hljs-params"> error, data </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Error: %s'</span>, error.message );
+    }
+    <span class="hljs-built_in">console</span>.log( data.toString() );
+    <span class="hljs-comment">// => '...'</span>
+}
+
+stdin( onRead );
+</code></pre><p>By default, returned <code>data</code> is a <a href="https://nodejs.org/api/buffer.html"><code>Buffer</code></a>. To return a <code>string</code> of a specified encoding, provide an <code>encoding</code> parameter.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRead</span>(<span class="hljs-params"> error, data </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Error: %s'</span>, error.message );
+    }
+    <span class="hljs-built_in">console</span>.log( data );
+    <span class="hljs-comment">// => '...'</span>
+}
+
+stdin( <span class="hljs-string">'utf8'</span>, onRead );
+</code></pre><p>When a file's calling Node.js process is running in a <a href="https://nodejs.org/api/tty.html#tty_tty">TTY</a> context (i.e., no <a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a>), <code>data</code> will either be an empty <a href="https://nodejs.org/api/buffer.html"><code>Buffer</code></a> (no encoding provided) or an empty <code>string</code> (encoding provided).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdin'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRead</span>(<span class="hljs-params"> error, data </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Error: %s'</span>, error.message );
+    }
+    <span class="hljs-built_in">console</span>.log( data );
+    <span class="hljs-comment">// => ''</span>
+}
+
+stream.isTTY = <span class="hljs-literal">true</span>;
+
+stdin( <span class="hljs-string">'utf8'</span>, onRead );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
+<span class="hljs-keyword">var</span> stream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdin'</span> );
+<span class="hljs-keyword">var</span> stdin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/read-stdin'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRead</span>(<span class="hljs-params"> error, data </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Error: %s'</span>, error.message );
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log( data.toString() );
+        <span class="hljs-comment">// => 'beep boop'</span>
+    }
+}
+
+<span class="hljs-comment">// Fake not being in a terminal context:</span>
+stream.isTTY = <span class="hljs-literal">false</span>;
+
+<span class="hljs-comment">// Provide a callback to consume all data from `stdin`:</span>
+stdin( onRead );
+
+<span class="hljs-comment">// Push some data to `stdin`:</span>
+stream.push( string2buffer( <span class="hljs-string">'beep'</span> ) );
+stream.push( string2buffer( <span class="hljs-string">' '</span> ) );
+stream.push( string2buffer( <span class="hljs-string">'boop'</span> ) );
+
+<span class="hljs-comment">// End the stream:</span>
+stream.push( <span class="hljs-literal">null</span> );
+</code></pre></section><section class="related"></section><section class="links"></section>

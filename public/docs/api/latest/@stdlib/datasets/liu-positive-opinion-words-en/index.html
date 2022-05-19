@@ -1,0 +1,46 @@
+<h1 id="positive-opinion-words">Positive Opinion Words</h1><blockquote><p>A <a href="http://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html#lexicon">list</a> of positive opinion words.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> words = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/liu-positive-opinion-words-en'</span> );
+</code></pre><h4 id="words">words()</h4><p>Returns a <a href="http://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html#lexicon">list</a> of positive opinion words.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = words();
+<span class="hljs-comment">/* returns
+    [
+        'a+',
+        'abound',
+        'abounds',
+        'abundance',
+        'abundant',
+        'accessable',
+        'accessible',
+        'acclaim',
+        'acclaimed',
+        'acclamation',
+        'accolade',
+        'accolades',
+        ...
+    ]
+*/</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>A word's appearance in a sentence does <strong>not</strong> necessarily imply a positive or negative opinion. See <a href="#references">Liu (2010)</a>.</li><li>The list includes misspelled words. Their presence is intentional, as such misspellings frequently occur in social media content.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> words = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/liu-positive-opinion-words-en'</span> );
+
+<span class="hljs-keyword">var</span> list = words();
+<span class="hljs-keyword">var</span> len = list.length;
+<span class="hljs-keyword">var</span> idx;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Select random words from the list...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    idx = floor( randu()*len );
+    <span class="hljs-built_in">console</span>.log( list[ idx ] );
+}
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: liu-positive-opinion-words-en [options]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ liu-positive-opinion-words-en
+a+
+abound
+abounds
+abundance
+...
+</code></pre></section></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Hu, Minqing, and Bing Liu. 2004. "Mining and Summarizing Customer Reviews." In <em>Proceedings of the Tenth Acm Sigkdd International Conference on Knowledge Discovery and Data Mining</em>, 168–77. KDD '04. New York, NY, USA: ACM. doi:<a href="https://doi.org/10.1145/1014052.1014073">10.1145/1014052.1014073</a>.</li><li>Liu, Bing, Minqing Hu, and Junsheng Cheng. 2005. "Opinion Observer: Analyzing and Comparing Opinions on the Web." In <em>Proceedings of the 14th International Conference on World Wide Web</em>, 342–51. WWW '05. New York, NY, USA: ACM. doi:<a href="https://doi.org/10.1145/1060745.1060797">10.1145/1060745.1060797</a>.</li><li>Liu, Bing. 2010. "Sentiment Analysis and Subjectivity." In <em>Handbook of Natural Language Processing</em>, edited by Nitin Indurkhya and Fred J. Damerau, 2nd ed., 627–66. Chapman &#x26; Hall/CRC. <a href="https://www.crcpress.com/Handbook-of-Natural-Language-Processing-Second-Edition/Indurkhya-Damerau/p/book/9781420085921">https://www.crcpress.com/Handbook-of-Natural-Language-Processing-Second-Edition/Indurkhya-Damerau/p/book/9781420085921</a>.</li></ul></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/by/1.0/">Open Data Commons Attribution 1.0 License</a> and their contents are licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International Public License</a>. The original dataset is attributed to Bing Liu and Minqing Hu and can be found <a href="http://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html#lexicon">here</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/liu-negative-opinion-words-en"><code>@stdlib/datasets/liu-negative-opinion-words-en</code></a></span><span class="delimiter">: </span><span class="description">A list of negative opinion words.</span></li></ul></section><section class="links"></section>

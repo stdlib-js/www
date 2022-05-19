@@ -1,0 +1,22 @@
+<h1 id="csch">csch</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Hyperbolic_functions">hyperbolic cosecant</a> of a number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> csch = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/csch'</span> );
+</code></pre><h4 id="csch-x-">csch( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Hyperbolic_functions">hyperbolic cosecant</a> of <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = csch( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns Infinity</span>
+
+v = csch( <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~0.2757</span>
+
+v = csch( -<span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~-0.2757</span>
+
+v = csch( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> csch = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/csch'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( -<span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">100</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( csch( x[ i ] ) );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

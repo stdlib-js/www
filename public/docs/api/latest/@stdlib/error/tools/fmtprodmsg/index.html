@@ -1,0 +1,14 @@
+<h1 id="fmtprodmsg">fmtprodmsg</h1><blockquote><p>Format an error message for production.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fmtprodmsg = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/tools/fmtprodmsg'</span> );
+</code></pre><h4 id="fmtprodmsg-code-args-">fmtprodmsg( code, ...args )</h4><p>Formats an error message for production.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> msg = fmtprodmsg( <span class="hljs-string">'27'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> );
+<span class="hljs-comment">// returns 'https://stdlib.io/e/27?arg[]=foo&#x26;arg[]=bar'</span>
+</code></pre><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fmtprodmsg = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/tools/fmtprodmsg'</span> );
+
+<span class="hljs-keyword">var</span> msg = fmtprodmsg( <span class="hljs-string">'3'</span>, <span class="hljs-string">'foo'</span> );
+<span class="hljs-comment">// returns 'https://stdlib.io/e?code=3&#x26;arg[]=foo'</span>
+
+msg = fmtprodmsg( <span class="hljs-string">'5'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> );
+<span class="hljs-comment">// returns 'https://stdlib.io/e/5?arg[]=foo&#x26;arg[]=bar'</span>
+
+msg = fmtprodmsg( <span class="hljs-string">'5'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>, <span class="hljs-number">123</span> );
+<span class="hljs-comment">// returns 'https://stdlib.io/e/5?arg[]=foo&#x26;arg[]=bar&#x26;arg[]=123'</span>
+</code></pre></section><section class="related"></section><section class="links"></section></section>

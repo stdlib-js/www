@@ -1,0 +1,32 @@
+<h1 id="isalphagram">isAlphagram</h1><blockquote><p>Test if a value is an <a href="https://en.wiktionary.org/wiki/alphagram">alphagram</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isAlphagram = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-alphagram'</span> );
+</code></pre><h4 id="isalphagram-value-">isAlphagram( value )</h4><p>Tests if a <code>value</code> is an <a href="https://en.wiktionary.org/wiki/alphagram">alphagram</a> (i.e., a sequence of characters arranged in alphabetical order).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> value = <span class="hljs-string">'beep'</span>;
+
+<span class="hljs-keyword">var</span> bool = isAlphagram( value );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function first checks that an input <code>value</code> is a <code>string</code> before validating that the <code>value</code> is an <a href="https://en.wiktionary.org/wiki/alphagram">alphagram</a>. For non-string values, the function returns <code>false</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isAlphagram = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-alphagram'</span> );
+
+<span class="hljs-keyword">var</span> out = isAlphagram( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns true</span>
+
+out = isAlphagram( <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>( <span class="hljs-string">'beep'</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+out = isAlphagram( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns false</span>
+
+out = isAlphagram( <span class="hljs-string">'zba'</span> );
+<span class="hljs-comment">// returns false</span>
+
+out = isAlphagram( <span class="hljs-number">123</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: is-alphagram [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ is-alphagram beep
+<span class="hljs-literal">true</span>
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'hello'</span> | is-alphagram
+<span class="hljs-literal">false</span>
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-anagram"><code>@stdlib/assert/is-anagram</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an anagram.</span></li></ul></section><section class="links"></section>

@@ -1,0 +1,18 @@
+<h1 id="logspace">Logspace</h1><blockquote><p>Generate a logarithmically spaced numeric array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> logspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/logspace'</span> );
+</code></pre><h4 id="logspace-a-b-length-">logspace( a, b[, length] )</h4><p>Generates a logarithmically spaced numeric <code>array</code> between <code>10^a</code> and <code>10^b</code>. If a <code>length</code> is not provided, the default output <code>array</code> length is <code>10</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = logspace( <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns [ 1, ~2.5, ~6.31, ~15.85, ~39.81, 100 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The output <code>array</code> includes the values <code>10^a</code> and <code>10^b</code>. <strong>Beware</strong> of floating point errors, including for the first and last <code>array</code> elements.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> logspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/logspace'</span> );
+<span class="hljs-keyword">var</span> out;
+
+<span class="hljs-comment">// Default behavior:</span>
+out = logspace( <span class="hljs-number">0</span>, <span class="hljs-number">3</span> );
+<span class="hljs-built_in">console</span>.log( out.join( <span class="hljs-string">'\n'</span> ) );
+
+<span class="hljs-comment">// Specify length:</span>
+out = logspace( <span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-number">100</span> );
+<span class="hljs-built_in">console</span>.log( out.join( <span class="hljs-string">'\n'</span> ) );
+
+<span class="hljs-comment">// Create an array with decremented values:</span>
+out = logspace( <span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-number">10</span> );
+<span class="hljs-built_in">console</span>.log( out.join( <span class="hljs-string">'\n'</span> ) );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/incrspace"><code>@stdlib/array/incrspace</code></a></span><span class="delimiter">: </span><span class="description">generate a linearly spaced numeric array using a provided increment.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/linspace"><code>@stdlib/array/linspace</code></a></span><span class="delimiter">: </span><span class="description">generate a linearly spaced numeric array.</span></li></ul></section><section class="links"></section>

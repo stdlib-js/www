@@ -1,0 +1,67 @@
+<h1 id="transpose">transpose</h1><blockquote><p>Transpose a matrix (or a stack of matrices).</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> transpose = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/transpose'</span> );
+</code></pre><h4 id="transpose-x-">transpose( x )</h4><p>Transposes a matrix (or a stack of matrices) <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = x.shape;
+<span class="hljs-comment">// returns [ 2, 3 ]</span>
+
+<span class="hljs-keyword">var</span> y = transpose( x );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+sh = y.shape;
+<span class="hljs-comment">// returns [ 3, 2 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( x.data === y.data );
+<span class="hljs-comment">// returns true</span>
+
+bool = ( x.get( <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ) === y.get( <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ) );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The returned ndarray is a <strong>view</strong> of the input ndarray. Accordingly, writing to the original ndarray will <strong>mutate</strong> the returned ndarray and vice versa. While powerful, this can lead to subtle bugs. In general, one should handle the returned ndarray as <strong>read-only</strong>.</li><li>If provided an ndarray with fewer than two dimensions, the function raises an exception.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<span class="hljs-keyword">var</span> rpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/right-pad'</span> );
+<span class="hljs-keyword">var</span> transpose = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/transpose'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span>(<span class="hljs-params"> arr, name </span>) </span>{
+    <span class="hljs-keyword">var</span> str;
+    <span class="hljs-keyword">var</span> sh;
+    <span class="hljs-keyword">var</span> p;
+    <span class="hljs-keyword">var</span> i;
+    <span class="hljs-keyword">var</span> j;
+    <span class="hljs-keyword">var</span> k;
+
+    sh = arr.shape;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; sh[<span class="hljs-number">0</span>]; i++ ) {
+        str = name+<span class="hljs-string">'['</span>+i+<span class="hljs-string">',:,:] = [ '</span>;
+        p = str.length + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span> ( j = <span class="hljs-number">0</span>; j &#x3C; sh[<span class="hljs-number">1</span>]; j++ ) {
+            <span class="hljs-keyword">if</span> ( j > <span class="hljs-number">0</span> ) {
+                str += rpad( <span class="hljs-string">'\n'</span>, p, <span class="hljs-string">' '</span> );
+            }
+            <span class="hljs-keyword">for</span> ( k = <span class="hljs-number">0</span>; k &#x3C; sh[<span class="hljs-number">2</span>]; k++ ) {
+                str += arr.get( i, j, k );
+                <span class="hljs-keyword">if</span> ( k &#x3C; sh[<span class="hljs-number">2</span>]-<span class="hljs-number">1</span> ) {
+                    str += <span class="hljs-string">', '</span>;
+                }
+            }
+        }
+        <span class="hljs-built_in">console</span>.log( str + <span class="hljs-string">' ]\n'</span> );
+    }
+}
+
+<span class="hljs-comment">// Create a data buffer:</span>
+<span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
+
+<span class="hljs-comment">// Create a stack of matrices:</span>
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> ndarray( <span class="hljs-string">'float64'</span>, buf, [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+
+<span class="hljs-comment">// Transpose the stack of matrices:</span>
+<span class="hljs-keyword">var</span> y = transpose( x );
+
+<span class="hljs-comment">// Print the stacks:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
+print( x, <span class="hljs-string">'X'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
+print( y, <span class="hljs-string">'Y'</span> );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

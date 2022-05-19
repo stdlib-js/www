@@ -1,0 +1,71 @@
+<h1 id="ternary">ternary</h1><blockquote><p>C APIs for registering a Node-API module exporting interfaces for invoking ternary numerical functions.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/napi/ternary'</span> );
+</code></pre><h4 id="headerdir">headerDir</h4><p>Absolute file path for the directory containing header files for C APIs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/napi/ternary'</span> );
+
+<span class="hljs-built_in">console</span>.log( headerDir );
+<span class="hljs-comment">// => &#x3C;string></span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/napi/ternary.h"</span></span>
+</code></pre><h4 id="stdlib_math_base_napi_ddd_d-env-info-fcn-">stdlib_math_base_napi_ddd_d( env, info, fcn )</h4><p>Invokes a ternary function accepting and returning double-precision floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">add</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> y, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> z )</span> </span>{
+    <span class="hljs-keyword">return</span> x + y + z;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">/**
+* Receives JavaScript callback invocation data.
+*
+* @param env    environment under which the function is invoked
+* @param info   callback data
+* @return       Node-API value
+*/</span>
+<span class="hljs-function">napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-keyword">return</span> stdlib_math_base_napi_ddd_d( env, info, add );
+}
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li><li><strong>fcn</strong>: <code>[in] double (*fcn)( double, double, double )</code> ternary function.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_math_base_napi_ddd_d</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">double</span> (*fcn)( <span class="hljs-keyword">double</span>, <span class="hljs-keyword">double</span>, <span class="hljs-keyword">double</span> ) )</span></span>;
+</code></pre><h4 id="stdlib_math_base_napi_fff_f-env-info-fcn-">stdlib_math_base_napi_fff_f( env, info, fcn )</h4><p>Invokes a ternary function accepting and returning single-precision floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">addf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> z )</span> </span>{
+    <span class="hljs-keyword">return</span> x + y + z;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">/**
+* Receives JavaScript callback invocation data.
+*
+* @param env    environment under which the function is invoked
+* @param info   callback data
+* @return       Node-API value
+*/</span>
+<span class="hljs-function">napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    <span class="hljs-keyword">return</span> stdlib_math_base_napi_fff_f( env, info, addf );
+}
+
+<span class="hljs-comment">// ...</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li><li><strong>fcn</strong>: <code>[in] float (*fcn)( float, float, float )</code> ternary function.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_math_base_napi_fff_f</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">float</span> (*fcn)( <span class="hljs-keyword">float</span>, <span class="hljs-keyword">float</span>, <span class="hljs-keyword">float</span> ) )</span></span>;
+</code></pre><h4 id="stdlib_math_base_napi_module_ddd_d-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_DDD_D( fcn )</h4><p>Macro for registering a Node-API module exporting an interface for invoking a ternary function accepting and returning double-precision floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">add</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> y, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> z )</span> </span>{
+    <span class="hljs-keyword">return</span> x + y + z;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_MATH_BASE_NAPI_MODULE_DDD_D( add );
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>double (*fcn)( double, double, double )</code> ternary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p><h4 id="stdlib_math_base_napi_module_fff_f-fcn-">STDLIB_MATH_BASE_NAPI_MODULE_FFF_F( fcn )</h4><p>Macro for registering a Node-API module exporting an interface for invoking a ternary function accepting and returning single-precision floating-point numbers.</p><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">addf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> y, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> z )</span> </span>{
+    <span class="hljs-keyword">return</span> x + y + z;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_MATH_BASE_NAPI_MODULE_FFF_F( addf );
+</code></pre><p>The macro expects the following arguments:</p><ul><li><strong>fcn</strong>: <code>float (*fcn)( float, float, float )</code> ternary function.</li></ul><p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>The C-API functions expect that the callback <code>info</code> argument provides access to the following JavaScript arguments:</p><ul><li><code>x</code>: input value.</li><li><code>y</code>: input value.</li><li><code>z</code>: input value.</li></ul></li></ul></section><section class="examples"></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

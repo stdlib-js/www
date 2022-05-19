@@ -1,0 +1,17 @@
+<h1 id="constructors">Constructors</h1><blockquote><p>Integer-valued typed array constructors.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ctors = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/typed-integer-ctors'</span> );
+</code></pre><h4 id="ctors-dtype-">ctors( dtype )</h4><p>Returns an integer-valued typed array constructor for a specified data type.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ctor = ctors( <span class="hljs-string">'int32'</span> );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre><p>The function returns constructors for the following data types:</p><ul><li><code>int16</code>: signed 16-bit integers.</li><li><code>int32</code>: signed 32-bit integers.</li><li><code>int8</code>: signed 8-bit integers.</li><li><code>uint16</code>: unsigned 16-bit integers.</li><li><code>uint32</code>: unsigned 32-bit integers.</li><li><code>uint8</code>: unsigned 8-bit integers.</li><li><code>uint8c</code>: unsigned clamped 8-bit integers.</li></ul><p>If provided an unknown or unsupported data type, the function returns <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ctor = ctors( <span class="hljs-string">'int'</span> );
+<span class="hljs-comment">// returns null</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/typed-integer-dtypes'</span> );
+<span class="hljs-keyword">var</span> ctors = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/typed-integer-ctors'</span> );
+
+<span class="hljs-keyword">var</span> DTYPES = dtypes();
+<span class="hljs-keyword">var</span> ctor;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; DTYPES.length; i++ ) {
+    ctor = ctors( DTYPES[ i ] );
+    <span class="hljs-built_in">console</span>.log( ctor );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

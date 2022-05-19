@@ -1,0 +1,87 @@
+<h1 id="multidimensional-arrays">Multidimensional Arrays</h1><blockquote><p>Create a multidimensional array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+</code></pre><p><a name="main"></a></p><h4 id="array-buffer-options-">array( [buffer,] [options] )</h4><p>Returns a multidimensional array.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a 2x2 matrix:</span>
+<span class="hljs-keyword">var</span> arr = array( [ [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ], [ <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+</code></pre><p>To initialize multidimensional array data, provide a <code>buffer</code> argument, which may be a <a href="/docs/api/latest/@stdlib/array/generic">generic array</a>, <a href="/docs/api/latest/@stdlib/array/typed">typed array</a>, <a href="/docs/api/latest/@stdlib/buffer/ctor">Buffer</a>, or <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> allocUnsafe = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/alloc-unsafe'</span> );
+
+<span class="hljs-comment">// Create an ndarray from a generic array linear data buffer:</span>
+<span class="hljs-keyword">var</span> arr = array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ], { <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ] } );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Create an ndarray from a typed array linear data buffer:</span>
+arr = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] ), { <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ] } );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Create an ndarray as a view over a Buffer:</span>
+arr = array( allocUnsafe( <span class="hljs-number">4</span> ), { <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ] } );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Create an ndarray from another ndarray:</span>
+arr = array( array( [ [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ], [ <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] ] ) );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><p><strong>buffer</strong>: data source. If provided along with a <code>buffer</code> argument, the argument takes precedence.</p></li><li><p><strong>dtype</strong>: underlying storage <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>. If not specified and a data source is provided, the data type is inferred from the provided data source. If an input data source is not of the same type, this option specifies the data type to which to cast the input data. For non-<a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> generic array data sources, the function casts generic array data elements to the default data type. In order to prevent this cast, the <code>dtype</code> option <strong>must</strong> be explicitly set to <code>'generic'</code>. Any time a cast is required, the <code>copy</code> option is set to <code>true</code>, as memory must be copied from the data source to an output data buffer. Default: <code>'float64'</code>.</p></li><li><p><strong>order</strong>: specifies the memory layout of the data source as either row-major (C-style) or column-major (Fortran-style). The option may be one of the following values:</p><ul><li><code>row-major</code>: the order of the returned array is row-major.</li><li><code>column-major</code>: the order of the returned array is column-major.</li><li><code>any</code>: if a data source is column-major and not row-major, the order of the returned array is column-major; otherwise, the order of the returned array is row-major.</li><li><code>same</code>: the order of the returned array matches the order of an input data source.</li></ul><p>Note that specifying an order which differs from the order of a provided data source does <strong>not</strong> entail a conversion from one memory layout to another. In short, this option is descriptive, not prescriptive. Default: <code>'row-major'</code>.</p></li><li><p><strong>shape</strong>: array shape (dimensions). If a shape is not specified, the function attempts to infer a shape based on a provided data source. For example, if provided a nested array, the function resolves nested array dimensions. If provided a multidimensional array data source, the function uses the array's associated shape. For most use cases, such inference suffices. For the remaining use cases, specifying a shape is necessary. For example, provide a shape to create a multidimensional array view over a linear data buffer, ignoring any existing shape meta data associated with a provided data source.</p></li><li><p><strong>flatten</strong>: <code>boolean</code> indicating whether to automatically flatten generic array data sources. If an array shape is not specified, the shape is inferred from the dimensions of nested arrays prior to flattening. If a use case requires partial flattening, partially flatten <strong>prior</strong> to invoking this function and set the option value to <code>false</code> to prevent further flattening during invocation. Default: <code>true</code>.</p></li><li><p><strong>copy</strong>: <code>boolean</code> indicating whether to (shallow) copy source data to a new data buffer. The function does <strong>not</strong> perform a deep copy. To prevent undesired shared changes in state for generic arrays containing objects, perform a deep copy <strong>prior</strong> to invoking this function. Default: <code>false</code>.</p></li><li><p><strong>ndmin</strong>: specifies the minimum number of dimensions. If an array shape has fewer dimensions than required by <code>ndmin</code>, the function <strong>prepends</strong> singleton dimensions to the array shape in order to satisfy the dimensions requirement. Default: <code>0</code>.</p></li><li><p><strong>casting</strong>: specifies the casting rule used to determine acceptable casts. The option may be one of the following values:</p><ul><li><code>none</code>: only allow casting between identical types.</li><li><code>equiv</code>: allow casting between identical and byte swapped types.</li><li><code>safe</code>: only allow "safe" casts.</li><li><code>same-kind</code>: allow "safe" casts and casts within the same kind (e.g., between signed integers or between floats).</li><li><code>unsafe</code>: allow casting between all types (including between integers and floats).</li></ul><p>Default: <code>'safe'</code>.</p></li><li><p><strong>mode</strong>: specifies how to handle indices which exceed array dimensions.</p><ul><li><code>throw</code>: specifies that an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance should throw an error when an index exceeds array dimensions.</li><li><code>wrap</code>: specifies that an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance should wrap around an index exceeding array dimensions using modulo arithmetic.</li><li><code>clamp</code>: specifies that an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance should set an index exceeding array dimensions to either <code>0</code> (minimum index) or the maximum index.</li></ul><p>Default: <code>'throw'</code>.</p></li><li><p><strong>submode</strong>: a mode array which specifies for each dimension how to handle subscripts which exceed array dimensions. If provided fewer modes than dimensions, the function recycles modes using modulo arithmetic. Default: <code>[ options.mode ]</code>.</p></li><li><p><strong>readonly</strong>: <code>boolean</code> indicating whether an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance should be <strong>read-only</strong>. Default: <code>false</code>.</p></li></ul><p>By default, an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance <strong>throws</strong> when provided an index which exceeds array dimensions. To support alternative indexing behavior, set the <code>mode</code> option, which will affect all public methods for getting and setting array elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'mode'</span>: <span class="hljs-string">'clamp'</span>
+};
+
+<span class="hljs-keyword">var</span> arr = array( [ [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ], [ <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] ], opts );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Attempt to access an out-of-bounds linear index (clamped):</span>
+<span class="hljs-keyword">var</span> v = arr.iget( <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre><p>By default, the <code>mode</code> option is applied to subscripts which exceed array dimensions. To specify behavior for each dimension, set the <code>submode</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'submode'</span>: [ <span class="hljs-string">'wrap'</span>, <span class="hljs-string">'clamp'</span> ]
+};
+
+<span class="hljs-keyword">var</span> arr = array( [ [[<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>], [<span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>]], [[<span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>], [<span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span>]] ], opts );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Attempt to access out-of-bounds subscripts:</span>
+<span class="hljs-keyword">var</span> v = arr.get( -<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, -<span class="hljs-number">1</span> ); <span class="hljs-comment">// linear index: 3</span>
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre><p>By default, the function automatically flattens <a href="/docs/api/latest/@stdlib/array/generic">generic array</a> data sources. To prevent flattening, set the <code>flatten</code> option to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'flatten'</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+};
+
+<span class="hljs-comment">// Create a generic array which will serve as our ndarray data source:</span>
+<span class="hljs-keyword">var</span> buf = [ [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ], [ <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] ];
+
+<span class="hljs-comment">// Create a 2-element vector:</span>
+<span class="hljs-keyword">var</span> arr = array( buf, opts );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Retrieve the first vector element:</span>
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ 1.0, 2.0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( v === buf[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><hr><h2 id="notes">Notes</h2><ul><li>The number of elements in a data source <code>buffer</code> <strong>must</strong> agree with a specified array <code>shape</code> (i.e., the function assumes a single-segment contiguous <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>). To create arbitrary multidimensional views over linear data buffers, use a <a href="/docs/api/latest/@stdlib/ndarray/ctor">lower-level constructor</a>.</li><li>The function supports arbitrary casting between data types. Note, however, that casting from a larger data type to a smaller data type (e.g., <code>int32</code> to <code>int8</code>) and between signed and unsigned types of the same size should be considered <strong>unsafe</strong>.</li></ul></section><section class="examples"><hr><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-comment">// Create a 4-dimensional array containing single-precision floating-point numbers:</span>
+<span class="hljs-keyword">var</span> arr = array({
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float32'</span>,
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ]
+});
+
+<span class="hljs-comment">// Retrieve an array value:</span>
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+<span class="hljs-comment">// Set an array value:</span>
+arr.set( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10.0</span> );
+
+<span class="hljs-comment">// Retrieve the array value:</span>
+v = arr.get( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 10.0</span>
+
+<span class="hljs-comment">// Serialize the array as a string:</span>
+<span class="hljs-keyword">var</span> str = arr.toString();
+<span class="hljs-comment">// returns "ndarray( 'float32', new Float32Array( [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ), [ 3, 3, 3, 3 ], [ 27, 9, 3, 1 ], 0, 'row-major' )"</span>
+
+<span class="hljs-comment">// Serialize the array as JSON:</span>
+str = <span class="hljs-built_in">JSON</span>.stringify( arr.toJSON() );
+<span class="hljs-comment">// returns '{"type":"ndarray","dtype":"float32","flags":{},"order":"row-major","shape":[3,3,3,3],"strides":[27,9,3,1],"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}'</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li></ul></section><section class="links"></section>

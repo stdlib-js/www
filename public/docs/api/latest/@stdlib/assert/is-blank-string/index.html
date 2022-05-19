@@ -1,0 +1,39 @@
+<h1 id="isblankstring">isBlankString</h1><blockquote><p>Test if a value is a blank string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isBlankString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-blank-string'</span> );
+</code></pre><h4 id="isblankstring-value-">isBlankString( value )</h4><p>Tests if a <code>value</code> is a blank <code>string</code> (i.e., an empty string or a string consisting only of whitespace characters).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isBlankString( <span class="hljs-string">'   '</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isBlankString( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isBlankString( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isBlankString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-blank-string'</span> );
+
+<span class="hljs-keyword">var</span> out = isBlankString( <span class="hljs-string">'   '</span> );
+<span class="hljs-comment">// returns true</span>
+
+out = isBlankString( <span class="hljs-string">'\t\t\t'</span> );
+<span class="hljs-comment">// returns true</span>
+
+out = isBlankString( <span class="hljs-string">'\r\n'</span> );
+<span class="hljs-comment">// returns true</span>
+
+out = isBlankString( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns true</span>
+
+out = isBlankString( <span class="hljs-string">'beep boop'</span> );
+<span class="hljs-comment">// returns false</span>
+
+out = isBlankString( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: is-blank-string [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ is-blank-string baz
+<span class="hljs-literal">false</span>
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">' \t '</span> | is-blank-string
+<span class="hljs-literal">true</span>
+</code></pre></section></section><section class="related"><section class="links"></section></section>

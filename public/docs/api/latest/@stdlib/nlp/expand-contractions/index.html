@@ -1,0 +1,26 @@
+<h1 id="expand-contractions">Expand Contractions</h1><blockquote><p>Expand all contractions to their formal equivalents.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> expandContractions = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/expand-contractions'</span> );
+</code></pre><h4 id="expandcontractions-str-">expandContractions( str )</h4><p>Expands all contractions to their formal equivalents.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'I won\'t be able to get y\'all out of this one.'</span>;
+<span class="hljs-keyword">var</span> out = expandContractions( str );
+<span class="hljs-comment">// returns 'I will not be able to get you all out of this one.'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>This expansion is done via a simple table look-up. Hence, it will not correctly replace contractions for which there are multiple possible expansions such as <code>"She'd"</code>, which can be expanded to both <code>"She would"</code> or <code>"She had"</code>. In such cases, the package expands to a chosen default, in the given example <code>"She would"</code>. Should you desire higher accuracy, consider using a fully-fledged NLP disambiguation algorithm for English contractions.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> expandContractions = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/expand-contractions'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'I won\'t be able to, sorry.'</span>;
+<span class="hljs-keyword">var</span> out = expandContractions( str );
+<span class="hljs-comment">// returns 'I will not be able to, sorry.'</span>
+
+str = <span class="hljs-string">'She\'ll be coming around the mountain...'</span>;
+out = expandContractions( str );
+<span class="hljs-comment">// returns 'She will be coming around the mountain...'</span>
+
+str = <span class="hljs-string">'Y\'all\'d be surprised if you know what I\'ll do.'</span>;
+out = expandContractions( str );
+<span class="hljs-comment">// returns 'You all would be surprised if you know what I will do.'</span>
+
+str = <span class="hljs-string">'Y\'all\'d\'ve come to the park if y\'all could\'ve, right?'</span>;
+out = expandContractions( str );
+<span class="hljs-comment">// returns 'You all would have come to the park if you all could have, right?'</span>
+
+str = <span class="hljs-string">'If Parker hadn\'t been sent off for a foul, they\'d\'ve won.'</span>;
+out = expandContractions( str );
+<span class="hljs-comment">// returns 'If Parker had not been sent off for a foul, they would have won.'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,14 @@
+<h1 id="ispow2uint32">isPow2Uint32</h1><blockquote><p>Test whether an unsigned integer is a power of 2.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isPow2Uint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/uint32-is-pow2'</span> );
+</code></pre><h4 id="ispow2uint32-x-">isPow2Uint32( x )</h4><p>Tests whether <code>x</code> is a power of 2.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isPow2Uint32( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPow2Uint32( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isPow2Uint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/uint32-is-pow2'</span> );
+
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'isPow2( %d ) = %s'</span>, i, isPow2Uint32( i ) );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

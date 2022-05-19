@@ -1,0 +1,84 @@
+<h1 id="read-file">Read File</h1><blockquote><p>Read the entire contents of a file.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> readFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/read-file'</span> );
+</code></pre><h4 id="readfile-file-options-clbk-">readFile( file[, options], clbk )</h4><p>Asynchronously reads the entire contents of a file.</p><pre><code class="hljs language-javascript">readFile( __filename, onFile );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onFile</span>(<span class="hljs-params"> error, data </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( data );
+}
+</code></pre><p>The function accepts the same <code>options</code> and has the same defaults as <a href="https://nodejs.org/api/fs.html"><code>fs.readFile()</code></a>.</p><h4 id="readfilesync-file-options-">readFile.sync( file[, options] )</h4><p>Synchronously reads the entire contents of a <code>file</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = readFile.sync( __filename );
+<span class="hljs-keyword">if</span> ( out <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
+    <span class="hljs-keyword">throw</span> out;
+}
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre><p>The function accepts the same <code>options</code> and has the same defaults as <a href="https://nodejs.org/api/fs.html"><code>fs.readFileSync()</code></a>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The difference between this API and <a href="https://nodejs.org/api/fs.html"><code>fs.readFileSync()</code></a> is that <a href="https://nodejs.org/api/fs.html"><code>fs.readFileSync()</code></a> will throw if an <code>error</code> is encountered (e.g., if given a non-existent <code>path</code>) and this API will return an <code>error</code>. Hence, the following anti-pattern</li></ul><pre><code class="hljs language-scheme">```javascript
+var fs = require( <span class="hljs-symbol">'fs</span>' )<span class="hljs-comment">;</span>
+
+var file = <span class="hljs-symbol">'/path/to/file.js</span>'<span class="hljs-comment">;</span>
+
+// Check for existence to prevent an error being thrown...
+if ( fs.existsSync( file ) ) {
+    file = fs.readFileSync( file )<span class="hljs-comment">;</span>
+}
+```
+
+can be replaced by an approach which addresses existence via `error` handling.
+
+```javascript
+var readFile = require( <span class="hljs-symbol">'@stdlib/fs/read-file</span>' )<span class="hljs-comment">;</span>
+
+var file = <span class="hljs-symbol">'/path/to/file.js</span>'<span class="hljs-comment">;</span>
+
+// Explicitly handle the error...
+file = readFile.sync( file )<span class="hljs-comment">;</span>
+if ( file instanceof Error ) {
+    // You choose what to do...
+    console.error( file.message )<span class="hljs-comment">;</span>
+}
+```
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> readFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/read-file'</span> );
+
+<span class="hljs-comment">/* Sync */</span>
+
+<span class="hljs-keyword">var</span> file = readFile.sync( __filename, <span class="hljs-string">'utf8'</span> );
+<span class="hljs-comment">// returns &#x3C;string></span>
+
+<span class="hljs-built_in">console</span>.log( file <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> );
+<span class="hljs-comment">// => false</span>
+
+file = readFile.sync( <span class="hljs-string">'beepboop'</span>, {
+    <span class="hljs-string">'encoding'</span>: <span class="hljs-string">'utf8'</span>
+});
+<span class="hljs-comment">// returns &#x3C;Error></span>
+
+<span class="hljs-built_in">console</span>.log( file <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> );
+<span class="hljs-comment">// => true</span>
+
+<span class="hljs-comment">/* Async */</span>
+
+readFile( __filename, onFile );
+readFile( <span class="hljs-string">'beepboop'</span>, onFile );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onFile</span>(<span class="hljs-params"> error, data </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">if</span> ( error.code === <span class="hljs-string">'ENOENT'</span> ) {
+            <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'File does not exist.'</span> );
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">throw</span> error;
+        }
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log( data );
+    }
+}
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: read-file [options] &#x3C;filepath>
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+  --enc, --encoding encoding   Encoding.
+         --flag flag           Flag. Default: 'r'.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li>Relative file paths are resolved relative to the current working directory.</li><li>Errors are written to <code>stderr</code>.</li><li>File contents are written to <code>stdout</code>.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ read-file ./README.md
+&#x3C;file_contents>
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/exists"><code>@stdlib/fs/exists</code></a></span><span class="delimiter">: </span><span class="description">test whether a path exists on the filesystem.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/open"><code>@stdlib/fs/open</code></a></span><span class="delimiter">: </span><span class="description">open a file.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/read-dir"><code>@stdlib/fs/read-dir</code></a></span><span class="delimiter">: </span><span class="description">read the entire contents of a directory.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/read-json"><code>@stdlib/fs/read-json</code></a></span><span class="delimiter">: </span><span class="description">read a file as JSON.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/write-file"><code>@stdlib/fs/write-file</code></a></span><span class="delimiter">: </span><span class="description">write data to a file.</span></li></ul></section><section class="links"></section>

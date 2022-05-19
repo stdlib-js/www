@@ -1,0 +1,107 @@
+<h1 id="mapreduceright">mapReduceRight</h1><blockquote><p>Perform a single-pass map-reduce operation against each element in an array while iterating from right to left and return the accumulated result.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mapReduceRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/map-reduce-right'</span> );
+</code></pre><h4 id="mapreduceright-arr-initial-mapper-reducer-thisarg--">mapReduceRight( arr, initial, mapper, reducer[, thisArg ] )</h4><p>Performs a map-reduce operation against each element in an array while iterating from right to left and returns the accumulated result.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> value * value;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> accumulator, value </span>) </span>{
+    <span class="hljs-keyword">return</span> accumulator + value;
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> out = mapReduceRight( arr, <span class="hljs-number">0</span>, square, sum );
+<span class="hljs-comment">// returns 30</span>
+</code></pre><p>The function accepts both array-like objects and <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>-like objects.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> value * value;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> accumulator, value </span>) </span>{
+    <span class="hljs-keyword">return</span> accumulator + value;
+}
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+};
+<span class="hljs-keyword">var</span> arr = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ] ], opts );
+
+<span class="hljs-keyword">var</span> out = mapReduceRight( arr, <span class="hljs-number">0</span>, square, sum );
+<span class="hljs-comment">// returns 91</span>
+</code></pre><p>The mapping function is provided the following arguments:</p><ul><li><strong>value</strong>: array element.</li><li><strong>index</strong>: element index.</li><li><strong>arr</strong>: input array.</li></ul><p>The reducing function is provided the following arguments:</p><ul><li><strong>accumulator</strong>: accumulated value.</li><li><strong>value</strong>: result of applying the mapping function to the current array element.</li><li><strong>index</strong>: element index.</li><li><strong>arr</strong>: input array.</li></ul><p>To set the <code>this</code> context when invoking the reducing function, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-keyword">return</span> value * value;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> accumulator, value </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> accumulator + value;
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> out = mapReduceRight( arr, <span class="hljs-number">0</span>, square, sum, ctx );
+<span class="hljs-comment">// returns 30</span>
+
+<span class="hljs-keyword">var</span> mean = out / ctx.count;
+<span class="hljs-comment">// returns 7.5</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The function supports array-like objects exposing getters and setters for array element access (e.g., <a href="/docs/api/latest/@stdlib/array/complex64"><code>Complex64Array</code></a>, <a href="/docs/api/latest/@stdlib/array/complex128"><code>Complex128Array</code></a>, etc).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/complex64'</span> );
+<span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32'</span> );
+<span class="hljs-keyword">var</span> cceil = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cceil'</span> );
+<span class="hljs-keyword">var</span> realf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/realf'</span> );
+<span class="hljs-keyword">var</span> imagf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imagf'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> acc, z </span>) </span>{
+    <span class="hljs-keyword">var</span> re1 = realf( acc );
+    <span class="hljs-keyword">var</span> im1 = imagf( acc );
+    <span class="hljs-keyword">var</span> re2 = realf( z );
+    <span class="hljs-keyword">var</span> im2 = imagf( z );
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Complex64( re1+re2, im1+im2 );
+}
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex64Array( [ <span class="hljs-number">1.5</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">3.5</span>, <span class="hljs-number">4.5</span>, <span class="hljs-number">5.5</span>, <span class="hljs-number">6.5</span>, <span class="hljs-number">7.5</span>, <span class="hljs-number">8.5</span> ] );
+
+<span class="hljs-keyword">var</span> v = mapReduceRight( x, <span class="hljs-keyword">new</span> Complex64( <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ), cceil, sum );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+<span class="hljs-keyword">var</span> re = realf( v );
+<span class="hljs-comment">// returns 20.0</span>
+
+<span class="hljs-keyword">var</span> im = imagf( v );
+<span class="hljs-comment">// returns 24.0</span>
+</code></pre></li><li><p>For <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>-like objects, the function performs a single-pass map-reduce operation over the entire input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> (i.e., higher-order <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> dimensions are flattened to a single-dimension).</p></li><li><p>When applying a function to <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>-like objects, performance will be best for <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>-like objects which are single-segment contiguous.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+<span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+<span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> mapReduceRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/map-reduce-right'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> i </span>) </span>{
+    <span class="hljs-keyword">var</span> rand = discreteUniform( -<span class="hljs-number">10</span>*(i+<span class="hljs-number">1</span>), <span class="hljs-number">10</span>*(i+<span class="hljs-number">1</span>) );
+    <span class="hljs-keyword">return</span> filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span>, rand );
+}
+
+<span class="hljs-comment">// Create a two-dimensional ndarray (i.e., a matrix):</span>
+<span class="hljs-keyword">var</span> x = array( filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span>, fill ), {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>,
+    <span class="hljs-string">'flatten'</span>: <span class="hljs-literal">true</span>
+});
+
+<span class="hljs-comment">// Create an explicit unary function:</span>
+<span class="hljs-keyword">var</span> f1 = naryFunction( abs, <span class="hljs-number">1</span> );
+
+<span class="hljs-comment">// Create an explicit binary function:</span>
+<span class="hljs-keyword">var</span> f2 = naryFunction( add, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Compute the sum of absolute values:</span>
+<span class="hljs-keyword">var</span> out = mapReduceRight( x, <span class="hljs-number">0</span>, f1, f2 );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x:'</span> );
+<span class="hljs-built_in">console</span>.log( x.data );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'sum: %d'</span>, out );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

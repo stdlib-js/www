@@ -1,0 +1,34 @@
+<h1 id="iterlast">iterLast</h1><blockquote><p>Consume an entire <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and return the last <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterLast = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/last'</span> );
+</code></pre><h4 id="iterlast-iterator-">iterLast( iterator )</h4><p>Consumes an entire <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns the last <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
+
+<span class="hljs-keyword">var</span> v = iterLast( arr );
+<span class="hljs-comment">// returns 1</span>
+</code></pre><p>If a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a> does not return any <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> values, the function returns <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterEmpty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/empty'</span> );
+
+<span class="hljs-keyword">var</span> v = iterLast( iterEmpty() );
+<span class="hljs-comment">// returns undefined</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
+<span class="hljs-keyword">var</span> iterMap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/map'</span> );
+<span class="hljs-keyword">var</span> iterLast = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/last'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">threshold</span>(<span class="hljs-params"> r </span>) </span>{
+    <span class="hljs-keyword">return</span> ( r > <span class="hljs-number">0.95</span> );
+}
+
+<span class="hljs-comment">// Create an iterator which generates uniformly distributed pseudorandom numbers:</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">100</span>
+};
+<span class="hljs-keyword">var</span> riter = randu( opts );
+
+<span class="hljs-comment">// Create an iterator which applies a threshold to generated numbers:</span>
+<span class="hljs-keyword">var</span> miter = iterMap( riter, threshold );
+
+<span class="hljs-comment">// Return the last threshold result:</span>
+<span class="hljs-keyword">var</span> bool = iterLast( miter );
+<span class="hljs-comment">// returns &#x3C;boolean></span>
+
+<span class="hljs-built_in">console</span>.log( bool );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/first"><code>@stdlib/iter/first</code></a></span><span class="delimiter">: </span><span class="description">return the first iterated value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/nth"><code>@stdlib/iter/nth</code></a></span><span class="delimiter">: </span><span class="description">return the nth iterated value.</span></li></ul></section><section class="links"></section>

@@ -1,0 +1,42 @@
+<h1 id="substringbefore">substringBefore</h1><blockquote><p>Return the part of a string before a specified substring.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> substringBefore = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/substring-before'</span> );
+</code></pre><h4 id="substringbefore-str-search-">substringBefore( str, search )</h4><p>Returns the part of a string before a specified substring.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'beep boop'</span>;
+<span class="hljs-keyword">var</span> out = substringBefore( str, <span class="hljs-string">' '</span> );
+<span class="hljs-comment">// returns 'beep'</span>
+
+out = substringBefore( str, <span class="hljs-string">'o'</span> );
+<span class="hljs-comment">// returns 'beep b'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If a substring is not present in a provided string, the function returns the input string.</li><li>If provided an empty substring, the function returns an empty string.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> substringBefore = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/substring-before'</span> );
+
+<span class="hljs-keyword">var</span> out = substringBefore( <span class="hljs-string">'beep boop'</span>, <span class="hljs-string">'p'</span> );
+<span class="hljs-comment">// returns 'bee'</span>
+
+out = substringBefore( <span class="hljs-string">'Hello World!'</span>, <span class="hljs-string">'xyz'</span> );
+<span class="hljs-comment">// returns 'Hello World!'</span>
+
+out = substringBefore( <span class="hljs-string">'Hello World!'</span>, <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns ''</span>
+
+out = substringBefore( <span class="hljs-string">''</span>, <span class="hljs-string">'xyz'</span> );
+<span class="hljs-comment">// returns ''</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: substring-before [options] --search=&#x3C;string> [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --search string       Search string.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'foo\nbar\nbaz'</span> | substring-before --search a --split /\r?\n/
+
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'foo\nbar\nbaz'</span> | substring-before --search a --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ substring-before abcdefg --search d
+abc
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'beep\nboop'</span> | substring-before --search p
+bee
+boo
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep\tboop'</span> | substring-before --search p --split <span class="hljs-string">'\t'</span>
+bee
+boo
+</code></pre></section></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/substring-before-last"><code>@stdlib/string/substring-before-last</code></a></span><span class="delimiter">: </span><span class="description">return the part of a string before the last occurrence of a specified substring.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/substring-after"><code>@stdlib/string/substring-after</code></a></span><span class="delimiter">: </span><span class="description">return the part of a string after a specified substring.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/substring-after-last"><code>@stdlib/string/substring-after-last</code></a></span><span class="delimiter">: </span><span class="description">return the part of a string after the last occurrence of a specified substring.</span></li></ul></section><section class="links"></section>

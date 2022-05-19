@@ -1,0 +1,17 @@
+<h1 id="iswhitespace">isWhitespace</h1><blockquote><p>Test whether a string contains only <a href="https://en.wikipedia.org/wiki/Whitespace_character">white space</a> characters.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isWhitespace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-whitespace'</span> );
+</code></pre><h4 id="iswhitespace-value-">isWhitespace( value )</h4><p>Tests whether a string contains only <a href="https://en.wikipedia.org/wiki/Whitespace_character">white space</a> characters.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isWhitespace( <span class="hljs-string">'             '</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>A <a href="https://en.wikipedia.org/wiki/Whitespace_character">white space</a> character is defined as one of the 25 characters defined as a <a href="https://en.wikipedia.org/wiki/Whitespace_character">white space</a> ("WSpace=Y","WS") character in the Unicode 9.0 character database, as well as one related <a href="https://en.wikipedia.org/wiki/Whitespace_character">white space</a> character without the Unicode character property "WSpace=Y" (zero width non-breaking space which was deprecated as of Unicode 3.2).</li><li>For non-string values, the function returns <code>false</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isWhitespace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-whitespace'</span> );
+
+<span class="hljs-keyword">var</span> out = isWhitespace( <span class="hljs-string">'              '</span> );
+<span class="hljs-comment">// returns true</span>
+
+out = isWhitespace( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns false</span>
+
+out = isWhitespace( <span class="hljs-string">'\\r\\n'</span> );
+<span class="hljs-comment">// returns false</span>
+
+out = isWhitespace( <span class="hljs-number">123</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/whitespace"><code>@stdlib/regexp/whitespace</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to match a white space character.</span></li></ul></section><section class="links"></section>

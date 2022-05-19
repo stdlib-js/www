@@ -1,0 +1,31 @@
+<h1 id="str2enum">str2enum</h1><blockquote><p>Return the enumeration constant associated with a strided array data type string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str2enum = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/dtype-str2enum'</span> );
+</code></pre><h4 id="str2enum-dtype-">str2enum( dtype )</h4><p>Return the enumeration constant associated with a strided array data type <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = str2enum( <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre><p>If unable to resolve an enumeration constant, the function returns <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = str2enum( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns null</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Downstream consumers of this function should <strong>not</strong> rely on specific integer values (e.g., <code>INT8 == 0</code>). Instead, the function should be used in an opaque manner.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str2enum = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/dtype-str2enum'</span> );
+
+<span class="hljs-keyword">var</span> v = str2enum( <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+v = str2enum( <span class="hljs-string">'float32'</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+v = str2enum( <span class="hljs-string">'int32'</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+v = str2enum( <span class="hljs-string">'int16'</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+v = str2enum( <span class="hljs-string">'int8'</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+v = str2enum( <span class="hljs-string">'uint32'</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+v = str2enum( <span class="hljs-string">'uint16'</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+v = str2enum( <span class="hljs-string">'uint8'</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,50 @@
+<h1 id="offsetview">offsetView</h1><blockquote><p>Return a typed array view having the same data type as a provided input typed array and starting at a specified index offset.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> offsetView = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/offset-view'</span> );
+</code></pre><h4 id="offsetview-x-offset-">offsetView( x, offset )</h4><p>Returns a typed array view having the same data type as a provided input typed array and starting at a specified index offset.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+
+<span class="hljs-keyword">var</span> view = offsetView( x, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+<span class="hljs-keyword">var</span> bool = ( view.buffer === x.buffer );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">var</span> len = view.length;
+<span class="hljs-comment">// returns 10</span>
+</code></pre><p>The <code>offset</code> argument specifies the starting index of the returned typed array view relative to the input array <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+
+<span class="hljs-keyword">var</span> view = offsetView( x, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+<span class="hljs-keyword">var</span> len = view.length;
+<span class="hljs-comment">// returns 6</span>
+
+<span class="hljs-keyword">var</span> v1 = view[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns 3.0</span>
+
+<span class="hljs-keyword">var</span> v2 = view[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> offsetView = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/offset-view'</span> );
+
+<span class="hljs-comment">// Define a typed array:</span>
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ] );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+<span class="hljs-comment">// Create a view of the array:</span>
+<span class="hljs-keyword">var</span> view = offsetView( x, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+<span class="hljs-comment">// Set view elements:</span>
+view[ <span class="hljs-number">0</span> ] = <span class="hljs-number">9.0</span>;
+view[ <span class="hljs-number">1</span> ] = <span class="hljs-number">10.0</span>;
+
+<span class="hljs-comment">// Get the first two elements of the original array:</span>
+<span class="hljs-keyword">var</span> v0 = x[ <span class="hljs-number">0</span> ];
+<span class="hljs-comment">// returns 9.0</span>
+
+<span class="hljs-keyword">var</span> v1 = x[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns 10.0</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

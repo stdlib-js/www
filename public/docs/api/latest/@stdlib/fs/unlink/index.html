@@ -1,0 +1,62 @@
+<h1 id="unlink">Unlink</h1><blockquote><p>Remove a directory entry.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unlink = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/unlink'</span> );
+</code></pre><h4 id="unlink-path-clbk-">unlink( path, clbk )</h4><p>Asynchronously remove a directory entry specified by <code>path</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+<span class="hljs-keyword">var</span> fpath = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.txt'</span> );
+
+unlink( fpath, done );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+}
+</code></pre><h4 id="unlinksync-path-">unlink.sync( path )</h4><p>Synchronously removes a directory entry specified by <code>path</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+<span class="hljs-keyword">var</span> fpath = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.txt'</span> );
+
+<span class="hljs-keyword">var</span> err = unlink.sync( fpath );
+<span class="hljs-keyword">if</span> ( err <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
+    <span class="hljs-keyword">throw</span> err;
+}
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If a provided <code>path</code> is a symbolic link, the function removes the symbolic link named by the <code>path</code> and does not affect any file or directory named by the contents of the symbolic link. Otherwise, the function removes the link named by the provided <code>path</code> and decrements the link count of the file referenced by the link.</p><p>When a file's link count becomes <code>0</code> and no process has the file open, the space occupied by the file is freed and the file is no longer accessible. If one or more processes have the file open when the last link is removed, the link is removed before the function returns; however, the removal of file contents is postponed until all references to the file are closed.</p><p>If the <code>path</code> refers to a socket, FIFO, or device, processes which have the object open may continue to use it.</p></li><li><p>The path argument should <strong>not</strong> be a directory. To remove a directory, use <a href="/docs/api/latest/@stdlib/fs/rmdir"><code>rmdir()</code></a>.</p></li><li><p>The difference between <code>unlink.sync</code> and <a href="https://nodejs.org/api/fs.html"><code>fs.unlinkSync()</code></a> is that <a href="https://nodejs.org/api/fs.html"><code>fs.unlinkSync()</code></a> will throw if an <code>error</code> is encountered (e.g., if given a non-existent path) and this API will return an <code>error</code>. Hence, the following anti-pattern</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'fs'</span> );
+
+<span class="hljs-comment">// Check for path existence to prevent an error being thrown...</span>
+<span class="hljs-keyword">if</span> ( fs.existsSync( <span class="hljs-string">'/path/to'</span> ) ) {
+    fs.unlinkSync( <span class="hljs-string">'/path/to/file.txt'</span> );
+}
+</code></pre><p>can be replaced by an approach which addresses existence via <code>error</code> handling.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unlink = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/unlink'</span> );
+
+<span class="hljs-comment">// Explicitly handle the error...</span>
+<span class="hljs-keyword">var</span> err = unlink.sync( <span class="hljs-string">'/path/to/file.txt'</span> );
+<span class="hljs-keyword">if</span> ( err <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
+    <span class="hljs-comment">// You choose what to do...</span>
+    <span class="hljs-keyword">throw</span> err;
+}
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+<span class="hljs-keyword">var</span> readFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/read-file'</span> ).sync;
+<span class="hljs-keyword">var</span> writeFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/write-file'</span> ).sync;
+<span class="hljs-keyword">var</span> exists = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/exists'</span> ).sync;
+<span class="hljs-keyword">var</span> unlink = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/unlink'</span> ).sync;
+
+<span class="hljs-keyword">var</span> src = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.txt'</span> );
+<span class="hljs-keyword">var</span> dest = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'tmp.txt'</span> );
+
+<span class="hljs-comment">// Create a temporary file:</span>
+writeFile( dest, readFile( src ) );
+
+<span class="hljs-comment">// Confirm that the temporary file exists:</span>
+<span class="hljs-built_in">console</span>.log( exists( dest ) );
+<span class="hljs-comment">// => true</span>
+
+<span class="hljs-comment">// Delete the temporary file:</span>
+unlink( dest );
+
+<span class="hljs-comment">// Confirm that the temporary file no longer exists:</span>
+<span class="hljs-built_in">console</span>.log( exists( dest ) );
+<span class="hljs-comment">// => false</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: unlink [options] &#x3C;path>
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li>Relative paths are resolved relative to the current working directory.</li><li>Errors are written to <code>stderr</code>.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ unlink ./examples/fixtures/file.txt
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/exists"><code>@stdlib/fs/exists</code></a></span><span class="delimiter">: </span><span class="description">test whether a path exists on the filesystem.</span></li></ul></section><section class="links"></section>

@@ -1,0 +1,55 @@
+<h1 id="acronym">acronym</h1><blockquote><p>Generate an acronym for a given string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> acronym = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/acronym'</span> );
+</code></pre><h4 id="acronym-str-options-">acronym( str[, options] )</h4><p>Generates an acronym for a given string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = acronym( <span class="hljs-string">'the quick brown fox'</span> );
+<span class="hljs-comment">// returns 'QBF'</span>
+
+out = acronym( <span class="hljs-string">'Hard-boiled eggs'</span> );
+<span class="hljs-comment">// returns 'HBE'</span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>stopwords</strong>: list of custom stop words. If not specified, the function uses a default set of stop words from the English language that were deemed words one would likely want to exclude from the acronym generation (a subset of the stop words from <a href="/docs/api/latest/@stdlib/datasets/stopwords-en">@stdlib/datasets/stopwords-en</a>).</li></ul><p>By default, the function uses a list of common English stop words. To use a custom list, set the <code>stopwords</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = acronym( <span class="hljs-string">'the quick brown fox'</span>, {
+    <span class="hljs-string">'stopwords'</span>: []
+});
+<span class="hljs-comment">// returns 'TQBF'</span>
+
+out = acronym( <span class="hljs-string">'the quick brown fox'</span>, {
+    <span class="hljs-string">'stopwords'</span>: [ <span class="hljs-string">'the'</span>, <span class="hljs-string">'quick'</span>, <span class="hljs-string">'brown'</span>, <span class="hljs-string">'fox'</span> ]
+});
+<span class="hljs-comment">// returns ''</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> acronym = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/acronym'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Test-driven development'</span>;
+<span class="hljs-keyword">var</span> out = acronym( str );
+<span class="hljs-comment">// returns 'TDD'</span>
+
+str = <span class="hljs-string">'Industrial Business Machines'</span>;
+out = acronym( str );
+<span class="hljs-comment">// returns 'IBM'</span>
+
+str = <span class="hljs-string">'National Aeronautics and Space Administration'</span>;
+out = acronym( str );
+<span class="hljs-comment">// returns 'NASA'</span>
+
+str = <span class="hljs-string">'To be determined...'</span>;
+out = acronym( str, {
+    <span class="hljs-string">'stopwords'</span>: []
+});
+<span class="hljs-comment">// returns 'TBD'</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: acronym [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --stopwords str       Comma-separated list of custom stop words.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'quick brown fox\nAlpha-Centauri'</span> | acronym --split /\r?\n/
+
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'quick brown fox\nAlpha-Centauri'</span> | acronym --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ acronym <span class="hljs-string">'the quick brown fox'</span>
+QBF
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'the quick brown fox'</span><span class="hljs-string">' | acronym
+QBF
+</span></code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'quick brown fox\tAlpha-Centauri'</span> | acronym --split <span class="hljs-string">'\t'</span>
+QBF
+AC
+</code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

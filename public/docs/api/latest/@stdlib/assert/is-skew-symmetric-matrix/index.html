@@ -1,0 +1,22 @@
+<h1 id="isskewsymmetricmatrix">isSkewSymmetricMatrix</h1><blockquote><p>Test if a value is a <a href="https://en.wikipedia.org/wiki/Skew-symmetric_matrix">skew-symmetric matrix</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSkewSymmetricMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-skew-symmetric-matrix'</span> );
+</code></pre><h4 id="isskewsymmetricmatrix-value-">isSkewSymmetricMatrix( value )</h4><p>Tests if a value is a <a href="https://en.wikipedia.org/wiki/Skew-symmetric_matrix">skew-symmetric matrix</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+
+<span class="hljs-keyword">var</span> arr = ndarray( <span class="hljs-string">'generic'</span>, [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">0</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-keyword">var</span> bool = isSkewSymmetricMatrix( arr );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<span class="hljs-keyword">var</span> isSkewSymmetricMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-skew-symmetric-matrix'</span> );
+
+<span class="hljs-keyword">var</span> arr = ndarray( <span class="hljs-string">'generic'</span>, [ <span class="hljs-number">0</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-keyword">var</span> out = isSkewSymmetricMatrix( arr );
+<span class="hljs-comment">// returns true</span>
+
+out = isSkewSymmetricMatrix( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+out = isSkewSymmetricMatrix( {} );
+<span class="hljs-comment">// returns false</span>
+
+out = isSkewSymmetricMatrix( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-matrix-like"><code>@stdlib/assert/is-matrix-like</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 2-dimensional ndarray-like object.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-skew-symmetric-matrix"><code>@stdlib/assert/is-skew-symmetric-matrix</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a skew-symmetric matrix.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-square-matrix"><code>@stdlib/assert/is-square-matrix</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 2-dimensional ndarray-like object having equal dimensions.</span></li></ul></section><section class="links"></section>

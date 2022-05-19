@@ -1,0 +1,32 @@
+<h1 id="alias2pkg">alias2pkg</h1><blockquote><p>Return the package name associated with a specified alias.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> alias2pkg = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/namespace/alias2pkg'</span> );
+</code></pre><h4 id="alias2pkg-alias-">alias2pkg( alias )</h4><p>Returns the package name associated with a specified <code>alias</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = alias2pkg( <span class="hljs-string">'base.sin'</span> );
+<span class="hljs-comment">// returns '@stdlib/math/base/special/sin'</span>
+</code></pre><p>If provided an unrecognized <code>alias</code>, the function returns <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = alias2pkg( <span class="hljs-string">'unrecognized_alias_beep_boop_bop_bip'</span> );
+<span class="hljs-comment">// returns null</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> aliases = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/namespace/aliases'</span> );
+<span class="hljs-keyword">var</span> alias2pkg = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/namespace/alias2pkg'</span> );
+
+<span class="hljs-keyword">var</span> list;
+<span class="hljs-keyword">var</span> len;
+<span class="hljs-keyword">var</span> idx;
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+list = aliases();
+len = list.length;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    idx = discreteUniform( <span class="hljs-number">0</span>, len-<span class="hljs-number">1</span> );
+    v = list[ idx ];
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'alias: %s. pkg: %s.'</span>, v, alias2pkg( v ) );
+}
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: stdlib-alias2pkg [options] &#x3C;alias>
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ stdlib-alias2pkg <span class="hljs-string">'base.sin'</span>
+@stdlib/math/base/special/sin
+</code></pre></section></section><section class="references"></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/namespace/alias2related"><code>@stdlib/namespace/alias2related</code></a></span><span class="delimiter">: </span><span class="description">return aliases related to a specified alias.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/namespace/aliases"><code>@stdlib/namespace/aliases</code></a></span><span class="delimiter">: </span><span class="description">standard library aliases.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/namespace/pkg2alias"><code>@stdlib/namespace/pkg2alias</code></a></span><span class="delimiter">: </span><span class="description">return the alias associated with a specified package name.</span></li></ul></section><section class="links"></section>

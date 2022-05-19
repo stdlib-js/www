@@ -1,0 +1,102 @@
+<h1 id="itermapn">iterMapN</h1><blockquote><p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which transforms iterated values from two or more <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterators</a> by applying the iterated values as arguments to a provided function.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterMapN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/mapn'</span> );
+</code></pre><h4 id="itermapn-iter0-iterator-fcn-thisarg-">iterMapN( iter0, ...iterator, fcn[, thisArg] )</h4><p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which transforms iterated values from two or more <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterators</a> by applying the iterated values as arguments to a provided function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> x, y </span>) </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+
+<span class="hljs-keyword">var</span> it1 = array2iterator( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-keyword">var</span> it2 = array2iterator( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+
+<span class="hljs-keyword">var</span> it = iterMapN( it1, it2, transform );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 4.0</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 6.0</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li><li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li></ul><p>The invoked <code>function</code> is provided <code>N+1</code> arguments, where <code>N</code> is the number of provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterators</a> and the last argument is the iteration index:</p><ul><li><code>...value</code>: iterated values</li><li><code>index</code>: iteration index (zero-based)</li></ul><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> x, y, i </span>) </span>{
+    <span class="hljs-keyword">return</span> x + y + i;
+}
+
+<span class="hljs-keyword">var</span> it1 = array2iterator( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-keyword">var</span> it2 = array2iterator( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+
+<span class="hljs-keyword">var</span> it = iterMapN( it1, it2, transform );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 4.0</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 7.0</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> x, y </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> x + y;
+}
+
+<span class="hljs-keyword">var</span> it1 = array2iterator( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-keyword">var</span> it2 = array2iterator( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+<span class="hljs-keyword">var</span> it = iterMapN( it1, it2, transform, ctx );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 4.0</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 6.0</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">var</span> count = ctx.count;
+<span class="hljs-comment">// returns 2</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The length of the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is equal to the length of the shortest provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>. In other words, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> ends once <strong>one</strong> of the provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterators</a> ends.</li><li>If an environment supports <code>Symbol.iterator</code> <strong>and</strong> provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterators</a> are iterable, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterSineWave = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/simulate/iter/sine-wave'</span> );
+<span class="hljs-keyword">var</span> iterMapN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/mapn'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y </span>) </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+
+<span class="hljs-comment">// Create an iterator which generates a sine wave:</span>
+<span class="hljs-keyword">var</span> sine1 = iterSineWave({
+    <span class="hljs-string">'period'</span>: <span class="hljs-number">50</span>,
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">100</span>
+});
+
+<span class="hljs-comment">// Create another iterator which generates a higher frequency sine wave:</span>
+<span class="hljs-keyword">var</span> sine2 = iterSineWave({
+    <span class="hljs-string">'period'</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">100</span>
+});
+
+<span class="hljs-comment">// Create an iterator which adds the two waveforms:</span>
+<span class="hljs-keyword">var</span> it = iterMapN( sine1, sine2, add );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it.next();
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( v.value );
+}
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/map"><code>@stdlib/iter/map</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which invokes a function for each iterated value.</span></li></ul></section><section class="links"></section>

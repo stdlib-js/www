@@ -1,0 +1,27 @@
+<h1 id="zeroslike">zerosLike</h1><blockquote><p>Create a zero-filled array having the same length and data type as a provided array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zerosLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros-like'</span> );
+</code></pre><h4 id="zeroslike-x-dtype-">zerosLike( x[, dtype] )</h4><p>Creates a zero-filled array having the same length and data type as a provided array <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ];
+
+<span class="hljs-keyword">var</span> arr = zerosLike( x );
+<span class="hljs-comment">// returns [ 0, 0, 0, 0, 0 ]</span>
+</code></pre><p>The function supports the following data types:</p><ul><li><code>float64</code>: double-precision floating-point numbers (IEEE 754)</li><li><code>float32</code>: single-precision floating-point numbers (IEEE 754)</li><li><code>complex128</code>: double-precision complex floating-point numbers</li><li><code>complex64</code>: single-precision complex floating-point numbers</li><li><code>int32</code>: 32-bit two's complement signed integers</li><li><code>uint32</code>: 32-bit unsigned integers</li><li><code>int16</code>: 16-bit two's complement signed integers</li><li><code>uint16</code>: 16-bit unsigned integers</li><li><code>int8</code>: 8-bit two's complement signed integers</li><li><code>uint8</code>: 8-bit unsigned integers</li><li><code>uint8c</code>: 8-bit unsigned integers clamped to <code>0-255</code></li><li><code>generic</code>: generic JavaScript values</li></ul><p>By default, the output array data type is inferred from the provided array <code>x</code>. To return an array having a different data type, provide a <code>dtype</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> arr = zerosLike( x, <span class="hljs-string">'int32'</span> );
+<span class="hljs-comment">// returns &#x3C;Int32Array>[ 0, 0 ]</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dtypes'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros'</span> );
+<span class="hljs-keyword">var</span> zerosLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/zeros-like'</span> );
+
+<span class="hljs-comment">// Create a zero-filled array:</span>
+<span class="hljs-keyword">var</span> x = zeros( <span class="hljs-number">4</span>, <span class="hljs-string">'complex128'</span> );
+
+<span class="hljs-comment">// Get a list of array data types:</span>
+<span class="hljs-keyword">var</span> dt = dtypes();
+
+<span class="hljs-comment">// Generate additional zero-filled arrays...</span>
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    y = zerosLike( x, dt[ i ] );
+    <span class="hljs-built_in">console</span>.log( y );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

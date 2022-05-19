@@ -1,0 +1,59 @@
+<h1 id="endswith">endsWith</h1><blockquote><p>Test if a string ends with the characters of another string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> endsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/ends-with'</span> );
+</code></pre><h4 id="endswith-str-search-len-">endsWith( str, search[, len] )</h4><p>Tests if a <code>string</code> ends with the characters of another <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Remember the story I used to tell you when you were a boy?'</span>;
+
+<span class="hljs-keyword">var</span> bool = endsWith( str, <span class="hljs-string">'boy?'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = endsWith( str, <span class="hljs-string">'Boy?'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>To search for a match at the end of a substring, provide a <code>len</code> argument. If <code>len</code> is positive, the function restricts the search to a substring with length <code>len</code>, beginning with the leftmost character. If <code>len</code> is negative, <code>len</code> indicates to ignore the last <code>len</code> characters (equivalent of <code>str.length + len</code>).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'To be, or not to be, that is the question.'</span>;
+
+<span class="hljs-keyword">var</span> bool = endsWith( str, <span class="hljs-string">'to be'</span>, <span class="hljs-number">19</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = endsWith( str, <span class="hljs-string">'to be'</span>, -<span class="hljs-number">23</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>If provided an empty <code>search</code> string, the function <strong>always</strong> returns <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'beep boop'</span>;
+
+<span class="hljs-keyword">var</span> bool = endsWith( str, <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> endsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/ends-with'</span> );
+
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> str;
+
+str = <span class="hljs-string">'Fair is foul, and foul is fair, hover through fog and filthy air'</span>;
+
+bool = endsWith( str, <span class="hljs-string">'air'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = endsWith( str, <span class="hljs-string">'fair'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = endsWith( str, <span class="hljs-string">'fair'</span>, <span class="hljs-number">30</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = endsWith( str, <span class="hljs-string">'fair'</span>, -<span class="hljs-number">34</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: ends-with [options] --search=&#x3C;string> [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --search string       Search string.
+         --len int             Substring length.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'Hello, World!\nBeep Boop Baz'</span> | ends-with --search=Beep --split /\r?\n/
+
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'Hello, World!\nBeep Boop Baz'</span> | ends-with --search=Beep --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ ends-with --search=ep beep
+<span class="hljs-literal">true</span>
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'boop'</span> | ends-with --search=ep
+<span class="hljs-literal">false</span>
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'Hello, World!\tBeep Boop'</span> | ends-with --search=Boop --split <span class="hljs-string">'\t'</span>
+<span class="hljs-literal">false</span>
+<span class="hljs-literal">true</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/starts-with"><code>@stdlib/string/starts-with</code></a></span><span class="delimiter">: </span><span class="description">test if a string starts with the characters of another string.</span></li></ul></section><section class="links"></section>

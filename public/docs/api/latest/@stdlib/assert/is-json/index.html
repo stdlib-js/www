@@ -1,0 +1,13 @@
+<h1 id="isjson">isJSON</h1><blockquote><p>Test if a value is a parseable JSON string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-json'</span> );
+</code></pre><h4 id="isjson-value-">isJSON( value )</h4><p>Tests if a <code>value</code> is a parseable JSON <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> value = <span class="hljs-string">'{"a":5}'</span>;
+
+<span class="hljs-keyword">var</span> bool = isJSON( value );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The implementation validates that the input <code>value</code> is a <code>string</code> literal. For all other inputs, the method returns <code>false</code>.</p></li><li><p>The implementation validates that a <code>string</code> begins with either <code>[</code> or <code>{</code> and ends with a corresponding <code>]</code> or <code>}</code>, respectively. Hence, the method will return <code>false</code> for the following <code>strings</code>, despite <code>JSON.parse</code> accepting their input:</p><ul><li><code>'&#x3C;number>'</code> (e.g., <code>'5'</code>)</li><li><code>'&#x3C;boolean>'</code> (e.g., <code>'true'</code>)</li><li><code>'null'</code></li></ul></li><li><p>The implementation wraps <code>JSON.parse</code> inside a <code>try/catch</code>. Hence, this function cannot be optimized by the compiler during runtime. Nevertheless, using this function is better than embedding a <code>try/catch</code> within a larger <code>function</code> which could be optimized in the absence of a <code>try/catch</code>.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-json'</span> );
+
+<span class="hljs-keyword">var</span> bool = isJSON( <span class="hljs-string">'{"a":5}'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isJSON( <span class="hljs-string">'{a":5}'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

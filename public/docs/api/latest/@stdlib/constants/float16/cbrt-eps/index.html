@@ -1,0 +1,30 @@
+<h1 id="cube-root-of-epsilon">Cube Root of Epsilon</h1><blockquote><p><a href="/docs/api/latest/@stdlib/math/base/special/cbrt">Cube root</a> of <a href="/docs/api/latest/@stdlib/constants/float16/eps">half-precision floating-point epsilon</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT16_CBRT_EPSILON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float16/cbrt-eps'</span> );
+</code></pre><h4 id="float16_cbrt_epsilon">FLOAT16_CBRT_EPSILON</h4><p><a href="/docs/api/latest/@stdlib/math/base/special/cbrt">Cube root</a> of <a href="/docs/api/latest/@stdlib/constants/float16/eps">half-precision floating-point epsilon</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( FLOAT16_CBRT_EPSILON === <span class="hljs-number">0.09921256574801247</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+<span class="hljs-keyword">var</span> maxabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/maxabs'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> FLOAT16_CBRT_EPSILON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float16/cbrt-eps'</span> );
+
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> a;
+<span class="hljs-keyword">var</span> b;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isApprox</span>(<span class="hljs-params"> a, b </span>) </span>{
+    <span class="hljs-keyword">var</span> delta;
+    <span class="hljs-keyword">var</span> tol;
+
+    delta = abs( a - b );
+    tol = FLOAT16_CBRT_EPSILON * maxabs( a, b );
+
+    <span class="hljs-keyword">return</span> ( delta &#x3C;= tol );
+}
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    a = randu() * <span class="hljs-number">10.0</span>;
+    b = a + randu() - <span class="hljs-number">0.5</span>;
+    bool = isApprox( a, b );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d %s approximately equal to %d'</span>, a, ( bool ) ? <span class="hljs-string">'is'</span> : <span class="hljs-string">'is not'</span>, b );
+}
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float16/eps"><code>@stdlib/constants/float16/eps</code></a></span><span class="delimiter">: </span><span class="description">difference between one and the smallest value greater than one that can be represented as a half-precision floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float16/sqrt-eps"><code>@stdlib/constants/float16/sqrt-eps</code></a></span><span class="delimiter">: </span><span class="description">square root of half-precision floating-point epsilon.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float32/cbrt-eps"><code>@stdlib/constants/float32/cbrt-eps</code></a></span><span class="delimiter">: </span><span class="description">cube root of single-precision floating-point epsilon.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float64/cbrt-eps"><code>@stdlib/constants/float64/cbrt-eps</code></a></span><span class="delimiter">: </span><span class="description">cube root of double-precision floating-point epsilon.</span></li></ul></section><section class="links"></section>

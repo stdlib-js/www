@@ -1,0 +1,27 @@
+<h1 id="isdigitstring">isDigitString</h1><blockquote><p>Test whether a string contains only numeric digits.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isDigitString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-digit-string'</span> );
+</code></pre><h4 id="isdigitstring-value-">isDigitString( value )</h4><p>Tests whether a string contains only numeric digits.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isDigitString( <span class="hljs-string">'0123456789'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>For non-string values, the function returns <code>false</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isDigitString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-digit-string'</span> );
+
+<span class="hljs-keyword">var</span> out = isDigitString( <span class="hljs-string">'0123456789'</span> );
+<span class="hljs-comment">// returns true</span>
+
+out = isDigitString( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns false</span>
+
+out = isDigitString( <span class="hljs-string">'0xffffff'</span> );
+<span class="hljs-comment">// returns false</span>
+
+out = isDigitString( <span class="hljs-number">123</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: is-digit-string [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ is-digit-string 0123456789
+<span class="hljs-literal">true</span>
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'0123456789'</span> | is-digit-string
+<span class="hljs-literal">true</span>
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-hex-string"><code>@stdlib/assert/is-hex-string</code></a></span><span class="delimiter">: </span><span class="description">test whether a string contains only hexadecimal digits.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-string"><code>@stdlib/assert/is-string</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a string.</span></li></ul></section><section class="links"></section>

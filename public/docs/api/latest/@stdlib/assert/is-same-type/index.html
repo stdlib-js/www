@@ -1,0 +1,32 @@
+<h1 id="issametype">isSameType</h1><blockquote><p>Test if two arguments have the same type.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-type'</span> );
+</code></pre><h4 id="issametype-a-b-">isSameType( a, b )</h4><p>Tests if two arguments <code>a</code> and <code>b</code> have the same type.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isSameType( <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameType( <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameType( <span class="hljs-number">0.0</span>, <span class="hljs-string">'0.0'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function uses the <code>typeof</code> operator to determine the type of each argument.</li><li>The function returns <code>true</code> if the types are the same and <code>false</code> otherwise.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-type'</span> );
+
+<span class="hljs-keyword">var</span> bool = isSameType( <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameType( <span class="hljs-number">3.14</span>, -<span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameType( {}, [] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameType( <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameType( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSameType( <span class="hljs-literal">null</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isSameType( <span class="hljs-number">0.0</span>, <span class="hljs-string">'0.0'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

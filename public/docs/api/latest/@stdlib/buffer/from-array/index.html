@@ -1,0 +1,23 @@
+<h1 id="array2buffer">array2buffer</h1><blockquote><p>Allocate a <a href="/docs/api/latest/@stdlib/buffer/ctor">buffer</a> using an octet array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-array'</span> );
+</code></pre><h4 id="array2buffer-arr-">array2buffer( arr )</h4><p>Allocates a <a href="/docs/api/latest/@stdlib/buffer/ctor">buffer</a> using an <code>array</code> (or array-like <code>object</code>) of octets.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = array2buffer( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-comment">// returns &#x3C;Buffer>[ 1, 2, 3, 4 ]</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-array'</span> );
+
+<span class="hljs-keyword">var</span> octets;
+<span class="hljs-keyword">var</span> buf;
+<span class="hljs-keyword">var</span> str;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Define a string we want to convert to a buffer:</span>
+str = <span class="hljs-string">'this is a string.'</span>;
+
+<span class="hljs-comment">// Manually convert the string to an array of octets...</span>
+octets = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( str.length );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; str.length; i++ ) {
+    octets[ i ] = str.charCodeAt( i ) % <span class="hljs-number">256</span>;
+}
+
+<span class="hljs-comment">// Create a buffer from the octet array:</span>
+buf = array2buffer( octets );
+<span class="hljs-built_in">console</span>.log( buf.toString() );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/ctor"><code>@stdlib/buffer/ctor</code></a></span><span class="delimiter">: </span><span class="description">Buffer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/from-arraybuffer"><code>@stdlib/buffer/from-arraybuffer</code></a></span><span class="delimiter">: </span><span class="description">allocate a buffer from an ArrayBuffer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/from-buffer"><code>@stdlib/buffer/from-buffer</code></a></span><span class="delimiter">: </span><span class="description">copy buffer data to a new Buffer instance.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/from-string"><code>@stdlib/buffer/from-string</code></a></span><span class="delimiter">: </span><span class="description">allocate a buffer containing a provided string.</span></li></ul></section><section class="links"></section>

@@ -1,0 +1,44 @@
+<h1 id="quantile-function">Quantile Function</h1><blockquote><p>Wilcoxon signed rank test statistic <a href="https://en.wikipedia.org/wiki/Quantile_function">quantile function</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> quantile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/signrank/quantile'</span> );
+</code></pre><h4 id="quantile-p-n-">quantile( p, n )</h4><p>Evaluates the <a href="https://en.wikipedia.org/wiki/Quantile_function">quantile function</a> for the Wilcoxon signed rank test statistic with <code>n</code> observations.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = quantile( <span class="hljs-number">0.8</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 11</span>
+
+y = quantile( <span class="hljs-number">0.5</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre><p>If provided a probability <code>p</code> outside the interval <code>[0,1]</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = quantile( <span class="hljs-number">1.9</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = quantile( -<span class="hljs-number">0.1</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre><p>If provided <code>NaN</code> as any argument, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = quantile( <span class="hljs-literal">NaN</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = quantile( <span class="hljs-number">0.0</span>, <span class="hljs-literal">NaN</span>);
+<span class="hljs-comment">// returns NaN</span>
+</code></pre><p>If not provided a positive integer for <code>n</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = quantile( <span class="hljs-number">0.4</span>, -<span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = quantile( <span class="hljs-number">0.4</span>, <span class="hljs-number">3.7</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre><h4 id="quantilefactory-n-">quantile.factory( n )</h4><p>Returns a function for evaluating the <a href="https://en.wikipedia.org/wiki/Quantile_function">quantile function</a> of the Wilcoxon signed rank test statistic with <code>n</code> observations.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> myQuantile = quantile.factory( <span class="hljs-number">8</span> );
+
+<span class="hljs-keyword">var</span> y = myQuantile( <span class="hljs-number">0.4</span> );
+<span class="hljs-comment">// returns 16</span>
+
+y = myQuantile( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns 36</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randint = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> quantile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/signrank/quantile'</span> );
+
+<span class="hljs-keyword">var</span> n;
+<span class="hljs-keyword">var</span> p;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+    p = randu();
+    n = randint( <span class="hljs-number">1</span>, <span class="hljs-number">20</span> );
+    y = quantile( p, n );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'p: %d, n: %d, Q(p;n): %d'</span>, p.toFixed( <span class="hljs-number">4</span> ), n, y.toFixed( <span class="hljs-number">4</span> ) );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

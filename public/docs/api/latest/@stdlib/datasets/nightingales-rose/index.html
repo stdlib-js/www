@@ -1,0 +1,46 @@
+<h1 id="nightingales-rose">Nightingale's Rose</h1><blockquote><p>Dataset for <a href="https://en.wikipedia.org/wiki/Florence_Nightingale">Florence Nightingale</a>'s famous <a href="https://en.wikipedia.org/wiki/Polar_area_diagram">polar area diagram</a>.</p></blockquote><section class="intro"><div class="image" align="center"><img src="https://cdn.jsdelivr.net/gh/stdlib-js/stdlib@aeef456ddeeb9af2a4d17f11cb0e002fa5e535d6/lib/node_modules/%40stdlib/datasets/nightingales-rose/docs/img/charts.png" alt="Nightingale&#x27;s famous polar area diagram."><br></div></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rose = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/nightingales-rose'</span> );
+</code></pre><h4 id="rose">rose()</h4><p>Returns dataset for <a href="https://en.wikipedia.org/wiki/Florence_Nightingale">Florence Nightingale</a>'s famous <a href="https://en.wikipedia.org/wiki/Polar_area_diagram">polar area diagram</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = rose();
+<span class="hljs-comment">/* returns
+    [
+        {
+            'date': '1854-04-01T07:00:00.000Z',
+            'army_size': 8571,
+            'disease': 1,
+            'wounds': 0,
+            'other': 5
+        },
+        ...
+    ]
+*/</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rose = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/nightingales-rose'</span> );
+
+<span class="hljs-keyword">var</span> scalar;
+<span class="hljs-keyword">var</span> data;
+<span class="hljs-keyword">var</span> d;
+<span class="hljs-keyword">var</span> i;
+
+data = rose();
+
+<span class="hljs-comment">// As done by Nightingale, calculate the average annual mortality per 1000 for each cause. See http://understandinguncertainty.org/node/214.</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; data.length; i++ ) {
+    d = data[ i ];
+    scalar = <span class="hljs-number">1000.0</span> * <span class="hljs-number">12.0</span> / d.army_size;
+    d.disease *= scalar;
+    d.wounds *= scalar;
+    d.other *= scalar;
+}
+<span class="hljs-built_in">console</span>.dir( data );
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: nightingales-rose [options]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --format fmt          Output format: 'csv' or 'ndjson'.
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li>The CLI supports two output formats: comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>) and newline-delimited JSON (<a href="http://specs.frictionlessdata.io/ndjson/">NDJSON</a>). The default output format is <a href="https://tools.ietf.org/html/rfc4180">CSV</a>.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ nightingales-rose
+date,army_size,disease,wounds,other
+1854-04-01T07:00:00.000Z,8571,1,0,5
+1854-05-01T07:00:00.000Z,23333,12,0,9
+1854-06-01T07:00:00.000Z,28333,11,0,6
+...
+</code></pre></section></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Nightingale, Florence. 1859. <a href="https://curiosity.lib.harvard.edu/contagion/catalog/36-990101646750203941"><em>A contribution to the sanitary history of the British army during the late war with Russia</em></a>. London, United Kingdom: John W. Parker and Son.</li></ul></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under a <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"></section><section class="links"></section>

@@ -1,0 +1,64 @@
+<h1 id="iscomposite">isComposite</h1><blockquote><p>Test if a value is a composite number.</p></blockquote><section class="intro"><p>A <strong>composite number</strong> is defined as a positive integer value greater than <code>1</code> which has <strong>at least</strong> one divisor other than <code>1</code> and itself (i.e., an integer value which can be formed by multiplying two smaller positive integers).</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isComposite = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-composite'</span> );
+</code></pre><h4 id="iscomposite-value-">isComposite( value )</h4><p>Tests if a <code>value</code> is a composite number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isComposite( <span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isComposite( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">4.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isComposite( <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isComposite( -<span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isComposite( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isComposite( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre><h4 id="iscompositeisprimitive-value-">isComposite.isPrimitive( value )</h4><p>Tests if a <code>value</code> is a primitive composite number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isComposite.isPrimitive( <span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isComposite.isPrimitive( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">4.0</span> ) );
+<span class="hljs-comment">// returns false</span>
+</code></pre><h4 id="iscompositeisobject-value-">isComposite.isObject( value )</h4><p>Tests if a <code>value</code> is a <code>Number</code> object having a value which is a composite number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isComposite.isObject( <span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isComposite.isObject( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">4.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<span class="hljs-keyword">var</span> isComposite = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-composite'</span> );
+
+<span class="hljs-keyword">var</span> bool = isComposite( <span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isComposite( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">4.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isComposite( <span class="hljs-number">10.0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isComposite( <span class="hljs-number">7.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isComposite( <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isComposite( -<span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isComposite( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isComposite( <span class="hljs-string">'0.5'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isComposite( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-integer"><code>@stdlib/assert/is-integer</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number having an integer value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-number"><code>@stdlib/assert/is-number</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-prime"><code>@stdlib/assert/is-prime</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a prime number.</span></li></ul></section><section class="links"></section>

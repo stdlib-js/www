@@ -1,0 +1,25 @@
+<h1 id="identity-function">Identity Function</h1><blockquote><p>Identity function.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> identity = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/identity-function'</span> );
+</code></pre><h4 id="identity-x-">identity( x )</h4><p>Returns <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = identity( <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns 3.14</span>
+
+<span class="hljs-keyword">var</span> input = [];
+<span class="hljs-keyword">var</span> output = identity( input );
+<span class="hljs-keyword">var</span> bool = ( input === output );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> identity = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/identity-function'</span> );
+
+<span class="hljs-keyword">var</span> v = identity( <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns 3.14</span>
+
+v = identity( <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns true</span>
+
+v = identity( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns null</span>
+
+v = identity( <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns undefined</span>
+
+v = identity();
+<span class="hljs-comment">// returns undefined</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/constant-function"><code>@stdlib/utils/constant-function</code></a></span><span class="delimiter">: </span><span class="description">constant function.</span></li></ul></section><section class="links"></section>

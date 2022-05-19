@@ -1,0 +1,33 @@
+<h1 id="reviveerror">reviveError</h1><blockquote><p>Revive a JSON-serialized <a href="/docs/api/latest/@stdlib/error/to-json">error</a> object.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reviveError = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/reviver'</span> );
+</code></pre><h4 id="reviveerror-key-value-">reviveError( key, value )</h4><p>Revives a JSON-serialized <a href="/docs/api/latest/@stdlib/error/to-json">error</a> object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'{"type":"TypeError","message":"beep"}'</span>;
+
+<span class="hljs-keyword">var</span> err = <span class="hljs-built_in">JSON</span>.parse( str, reviveError );
+<span class="hljs-comment">// returns &#x3C;TypeError></span>
+</code></pre><p>For details on the JSON serialization format, see <a href="/docs/api/latest/@stdlib/error/to-json">error-to-json</a>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Supported built-in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"><code>error</code></a> types:</p><ul><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"><code>Error</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError"><code>URIError</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError"><code>ReferenceError</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError"><code>SyntaxError</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError"><code>RangeError</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError"><code>EvalError</code></a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a></li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> err2json = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/to-json'</span> );
+<span class="hljs-keyword">var</span> reviveError = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/reviver'</span> );
+
+<span class="hljs-keyword">var</span> err1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">SyntaxError</span>( <span class="hljs-string">'bad syntax'</span> );
+<span class="hljs-comment">// returns &#x3C;SyntaxError></span>
+
+<span class="hljs-keyword">var</span> json = err2json( err1 );
+<span class="hljs-comment">/* returns
+    {
+        'type': 'SyntaxError',
+        'name': 'SyntaxError',
+        'message': 'bad syntax',
+        'stack': '...'
+    }
+*/</span>
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-built_in">JSON</span>.stringify( json );
+<span class="hljs-comment">// returns '{"type":"SyntaxError","name":"SyntaxError","message":"bad syntax","stack":"..."}'</span>
+
+<span class="hljs-keyword">var</span> err2 = <span class="hljs-built_in">JSON</span>.parse( str, reviveError );
+<span class="hljs-comment">// returns &#x3C;SyntaxError></span>
+
+<span class="hljs-keyword">var</span> bool = ( err1.message === err2.message );
+<span class="hljs-comment">// returns true</span>
+
+bool = ( err1.stack === err2.stack );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/error/to-json"><code>@stdlib/error/to-json</code></a></span><span class="delimiter">: </span><span class="description">return a JSON representation of an error object.</span></li></ul></section><section class="links"></section>

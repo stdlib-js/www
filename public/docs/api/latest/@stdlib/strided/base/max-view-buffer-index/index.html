@@ -1,0 +1,20 @@
+<h1 id="maxviewbufferindex">maxViewBufferIndex</h1><blockquote><p>Return the maximum accessible index based on a set of provided strided array parameters.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> maxViewBufferIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/max-view-buffer-index'</span> );
+</code></pre><h4 id="maxviewbufferindex-n-stride-offset-">maxViewBufferIndex( N, stride, offset )</h4><p>Returns the maximum accessible index based on a set of provided strided array parameters.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = maxViewBufferIndex( <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 14</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, the function returns the specified <code>offset</code>; however, do note that, when <code>N</code> equals zero, no strided array elements should be accessed.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> maxViewBufferIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/max-view-buffer-index'</span> );
+
+<span class="hljs-comment">// Generate a random number of indexed elements:</span>
+<span class="hljs-keyword">var</span> N = discreteUniform( <span class="hljs-number">10</span>, <span class="hljs-number">20</span> );
+
+<span class="hljs-comment">// Generate a random stride length:</span>
+<span class="hljs-keyword">var</span> stride = discreteUniform( -<span class="hljs-number">10</span>, <span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// Generate a random offset:</span>
+<span class="hljs-keyword">var</span> offset = discreteUniform( <span class="hljs-number">0</span>, <span class="hljs-number">100</span> ) + ( ( stride &#x3C; <span class="hljs-number">0</span> ) ? (<span class="hljs-number">1</span>-N)*stride : <span class="hljs-number">0</span> );
+
+<span class="hljs-comment">// Compute the maximum accessible index:</span>
+<span class="hljs-keyword">var</span> idx = maxViewBufferIndex( N, stride, offset );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'N: %d, stride: %d, offset: %d => %d'</span>, N, stride, offset, idx );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

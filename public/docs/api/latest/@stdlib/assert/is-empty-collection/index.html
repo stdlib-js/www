@@ -1,0 +1,53 @@
+<h1 id="isemptycollection">isEmptyCollection</h1><blockquote><p>Test if a value is an empty collection.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isEmptyCollection = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-empty-collection'</span> );
+</code></pre><h4 id="isemptycollection-value-">isEmptyCollection( value )</h4><p>Tests if a value is an empty collection.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isEmptyCollection( [] );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8ClampedArray</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8c'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int16'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint16'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint32'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> isEmptyCollection = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-empty-collection'</span> );
+
+<span class="hljs-keyword">var</span> bool = isEmptyCollection( [] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isEmptyCollection( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [] ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isEmptyCollection( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [] ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isEmptyCollection( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [] ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isEmptyCollection( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint32Array</span>( [] ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isEmptyCollection( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int16Array</span>( [] ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isEmptyCollection( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint16Array</span>( [] ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isEmptyCollection( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int8Array</span>( [] ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isEmptyCollection( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [] ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isEmptyCollection( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8ClampedArray</span>( [] ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isEmptyCollection( { <span class="hljs-string">'length'</span>: <span class="hljs-number">0</span> } );
+<span class="hljs-comment">// returns true</span>
+
+bool = isEmptyCollection( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isEmptyCollection( {} );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

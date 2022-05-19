@@ -1,0 +1,32 @@
+<h1 id="grapheme">grapheme</h1><blockquote><p>Grapheme cluster break tooling.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> grapheme = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/tools/grapheme-cluster-break'</span> );
+</code></pre><h4 id="grapheme-1">grapheme</h4><p>A collection of functions for performing grapheme cluster break operations.</p><hr><h3 id="methods">Methods</h3><h4 id="graphemebreakproperty-code-">grapheme.breakProperty( code )</h4><p>Returns the grapheme break property from the <a href="https://www.unicode.org/Public/13.0.0/ucd/auxiliary/GraphemeBreakProperty.txt">Unicode Standard</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = grapheme.breakProperty( <span class="hljs-number">0x008f</span> );
+<span class="hljs-comment">// returns 2</span>
+
+out = grapheme.breakProperty( <span class="hljs-number">0x111C2</span> );
+<span class="hljs-comment">// returns 12</span>
+
+out = grapheme.breakProperty( <span class="hljs-number">0x1F3FC</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre><h4 id="graphemeemojiproperty-code-">grapheme.emojiProperty( code )</h4><p>Returns the emoji property from the <a href="https://www.unicode.org/Public/13.0.0/ucd/emoji/emoji-data.txt">Unicode Standard</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = grapheme.emojiProperty( <span class="hljs-number">0x23EC</span> );
+<span class="hljs-comment">// returns 101</span>
+
+out = grapheme.emojiProperty( <span class="hljs-number">0x1FFFE</span> );
+<span class="hljs-comment">// returns 11</span>
+</code></pre><h4 id="graphemebreaktype-breaks-emoji-">grapheme.breakType( breaks, emoji )</h4><p>Returns the break type between grapheme breaking classes according to <em>UAX #29 3.1.1 Grapheme Cluster Boundary Rules</em> on extended grapheme clusters.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = grapheme.breakType( [ <span class="hljs-number">11</span>, <span class="hljs-number">3</span>, <span class="hljs-number">11</span> ], [ <span class="hljs-number">11</span>, <span class="hljs-number">11</span>, <span class="hljs-number">11</span> ] );
+<span class="hljs-comment">// returns 1</span>
+</code></pre><hr><h3 id="properties">Properties</h3><h4 id="graphemeconstants">grapheme.constants</h4><p>An object mapping break type names to integer values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = grapheme.constants;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> grapheme = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/tools/grapheme-cluster-break'</span> );
+
+<span class="hljs-keyword">var</span> out = grapheme.breakProperty( <span class="hljs-number">0x008f</span> );
+<span class="hljs-comment">// returns 2</span>
+
+out = grapheme.emojiProperty( <span class="hljs-number">0x23EC</span> );
+<span class="hljs-comment">// returns 101</span>
+
+out = grapheme.breakType( [ <span class="hljs-number">11</span>, <span class="hljs-number">3</span>, <span class="hljs-number">11</span> ], [ <span class="hljs-number">11</span>, <span class="hljs-number">11</span>, <span class="hljs-number">11</span> ] );
+<span class="hljs-comment">// returns 1</span>
+
+out = grapheme.constants;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

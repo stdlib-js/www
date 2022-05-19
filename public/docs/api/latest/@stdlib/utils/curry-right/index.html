@@ -1,0 +1,94 @@
+<h1 id="curryright">curryRight</h1><blockquote><p>Transform a function into a sequence of functions each accepting a single argument.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> curryRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/curry-right'</span> );
+</code></pre><h4 id="curryright-fcn-arity-thisarg-">curryRight( fcn[, arity][, thisArg] )</h4><p>Transforms a function into a sequence of functions each accepting a single argument.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y </span>) </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+
+<span class="hljs-keyword">var</span> fcn = curryRight( add );
+
+<span class="hljs-keyword">var</span> sum = fcn( <span class="hljs-number">2</span> )( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 5</span>
+</code></pre><p>By default, <code>arity</code> is equal to <code>fcn.length</code>. For functions without explicit parameters, provide an <code>arity</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">arguments</span>[ <span class="hljs-number">0</span> ] + <span class="hljs-built_in">arguments</span>[ <span class="hljs-number">1</span> ];
+}
+
+<span class="hljs-keyword">var</span> fcn = curryRight( add, <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> sum = fcn( <span class="hljs-number">2</span> )( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 5</span>
+</code></pre><p>To specify the curried function execution context, provide a <code>thisArg</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'name'</span>: <span class="hljs-string">'Ada'</span>,
+    <span class="hljs-string">'greet'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"> word1, word2 </span>) </span>{
+        <span class="hljs-keyword">return</span> word1 + <span class="hljs-string">' '</span> + word2 + <span class="hljs-string">', '</span> + <span class="hljs-built_in">this</span>.name + <span class="hljs-string">'!'</span>;
+    }
+};
+
+<span class="hljs-keyword">var</span> fcn = curryRight( obj.greet, obj );
+
+<span class="hljs-keyword">var</span> str = fcn( <span class="hljs-string">'there'</span> )( <span class="hljs-string">'Hello'</span> );
+<span class="hljs-comment">// returns 'Hello there, Ada!'</span>
+</code></pre><p>The function supports providing both an <code>arity</code> and execution context.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'name'</span>: <span class="hljs-string">'Ada'</span>,
+    <span class="hljs-string">'greet'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">arguments</span>[ <span class="hljs-number">0</span> ] + <span class="hljs-string">' '</span> + <span class="hljs-built_in">arguments</span>[ <span class="hljs-number">1</span> ] + <span class="hljs-string">', '</span> + <span class="hljs-built_in">this</span>.name + <span class="hljs-string">'!'</span>;
+    }
+};
+
+<span class="hljs-keyword">var</span> fcn = curryRight( obj.greet, <span class="hljs-number">2</span>, obj );
+
+<span class="hljs-keyword">var</span> str = fcn( <span class="hljs-string">'there'</span> )( <span class="hljs-string">'Hello'</span> );
+<span class="hljs-comment">// returns 'Hello there, Ada!'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Until return value resolution, each invocation returns a new partially applied curry function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y, z </span>) </span>{
+    <span class="hljs-keyword">return</span> x + y + z;
+}
+
+<span class="hljs-keyword">var</span> fcn = curryRight( add );
+
+<span class="hljs-keyword">var</span> s0 = fcn( <span class="hljs-number">1</span> )( <span class="hljs-number">2</span> )( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 6</span>
+
+s0 = fcn( -<span class="hljs-number">1</span> )( -<span class="hljs-number">2</span> )( -<span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns -6</span>
+
+s0 = fcn( <span class="hljs-number">10</span> )( <span class="hljs-number">20</span> )( <span class="hljs-number">30</span> );
+<span class="hljs-comment">// returns 60</span>
+
+<span class="hljs-comment">// Return a partially applied curry function:</span>
+<span class="hljs-keyword">var</span> f1 = fcn( <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">var</span> s1 = f1( <span class="hljs-number">4</span> )( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 12</span>
+
+s1 = f1( <span class="hljs-number">6</span> )( <span class="hljs-number">7</span> );
+<span class="hljs-comment">// returns 16</span>
+
+s1 = f1( <span class="hljs-number">8</span> )( <span class="hljs-number">9</span> );
+<span class="hljs-comment">// returns 20</span>
+
+<span class="hljs-comment">// Return a partially applied curry function:</span>
+<span class="hljs-keyword">var</span> f2 = fcn( <span class="hljs-number">4</span> )( <span class="hljs-number">5</span> );
+
+<span class="hljs-keyword">var</span> s2 = f2( <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns 15</span>
+
+s2 = f2( <span class="hljs-number">70</span> );
+<span class="hljs-comment">// returns 79</span>
+
+s2 = f2( <span class="hljs-number">700</span> );
+<span class="hljs-comment">// returns 709</span>
+</code></pre></li><li><p>The difference between this function and <a href="/docs/api/latest/@stdlib/utils/curry"><code>curry</code></a> is the order in which arguments are applied. This function applies arguments starting from the right.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> curryRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/curry-right'</span> );
+
+<span class="hljs-keyword">var</span> fcn;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y, z, w, t, s </span>) </span>{
+    <span class="hljs-keyword">return</span> x + y + z + w + t + s;
+}
+
+fcn = curryRight( add );
+out = fcn;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; add.length; i++ ) {
+    out = out( i*<span class="hljs-number">10</span> );
+}
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/curry"><code>@stdlib/utils/curry</code></a></span><span class="delimiter">: </span><span class="description">transform a function into a sequence of functions each accepting a single argument.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/uncurry"><code>@stdlib/utils/uncurry</code></a></span><span class="delimiter">: </span><span class="description">transform a curried function into a function invoked with multiple arguments.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/uncurry-right"><code>@stdlib/utils/uncurry-right</code></a></span><span class="delimiter">: </span><span class="description">transform a curried function into a function invoked with multiple arguments.</span></li></ul></section><section class="links"></section>

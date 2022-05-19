@@ -1,0 +1,52 @@
+<h1 id="removelast">removeLast</h1><blockquote><p>Remove the last character(s) of a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeLast = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/remove-last'</span> );
+</code></pre><h4 id="removelast-str-n-">removeLast( str[, n] )</h4><p>Removes the last character of a <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = removeLast( <span class="hljs-string">'last man standing'</span> );
+<span class="hljs-comment">// returns 'last man standin'</span>
+
+out = removeLast( <span class="hljs-string">'Hidden Treasures'</span> );
+<span class="hljs-comment">// returns 'Hidden Treasure'</span>
+</code></pre><p>If provided a second argument, the function removes the last <code>n</code> characters.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = removeLast( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns 'foo'</span>
+
+out = removeLast( <span class="hljs-string">'foo bar'</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 'foo bar'</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeLast = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/remove-last'</span> );
+
+<span class="hljs-keyword">var</span> str = removeLast( <span class="hljs-string">'last man standing'</span> );
+<span class="hljs-comment">// returns 'last man standin'</span>
+
+str = removeLast( <span class="hljs-string">'presidential election'</span> );
+<span class="hljs-comment">// returns 'presidential electio'</span>
+
+str = removeLast( <span class="hljs-string">'javaScript'</span> );
+<span class="hljs-comment">// returns 'javaScrip'</span>
+
+str = removeLast( <span class="hljs-string">'Hidden Treasures'</span> );
+<span class="hljs-comment">// returns 'Hidden Treasure'</span>
+
+str = removeLast( <span class="hljs-string">'Lorem ipsum dolor sit amet'</span>, <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns 'Lorem ipsum dolor sit '</span>
+
+str = removeLast( <span class="hljs-string">'🐮🐷🐸🐵'</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns '🐮🐷'</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: remove-last [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --n                   Number of characters to remove. Default: 1.
+         --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'beep\nboop'</span> | remove-last --split /\r?\n/
+
+<span class="hljs-comment"># Escaped...</span>
+$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'beep\nboop'</span> | remove-last --split /\\r?\\n/
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ remove-last beep
+bee
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep\nboop'</span> | remove-last --n 2
+be
+bo
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep\tboop'</span> | remove-last --split <span class="hljs-string">'\t'</span>
+bee
+boo
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/remove-first"><code>@stdlib/string/remove-first</code></a></span><span class="delimiter">: </span><span class="description">remove the first character of a string.</span></li></ul></section><section class="links"></section>

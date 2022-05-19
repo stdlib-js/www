@@ -1,0 +1,46 @@
+<h1 id="cube-root">Cube Root</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Cube_root">cube root</a> of a double-precision floating-point number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cbrt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cbrt'</span> );
+</code></pre><h4 id="cbrt-x-">cbrt( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Cube_root">cube root</a> of a double-precision floating-point number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = cbrt( <span class="hljs-number">64.0</span> );
+<span class="hljs-comment">// returns 4.0</span>
+
+v = cbrt( <span class="hljs-number">27.0</span> );
+<span class="hljs-comment">// returns 3.0</span>
+
+v = cbrt( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = cbrt( -<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns -0.0</span>
+
+v = cbrt( -<span class="hljs-number">9.0</span> );
+<span class="hljs-comment">// returns ~-2.08</span>
+
+v = cbrt( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> cbrt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cbrt'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = (randu()*<span class="hljs-number">200.0</span>) - <span class="hljs-number">100.0</span>;
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'cbrt(%d) = %d'</span>, x, cbrt( x ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/cbrt.h"</span></span>
+</code></pre><h4 id="stdlib_base_cbrt-x-">stdlib_base_cbrt( x )</h4><p>Computes the cube root of a double-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> y = stdlib_base_cbrt( <span class="hljs-number">27.0</span> );
+<span class="hljs-comment">// returns 3.0</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_cbrt</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/cbrt.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">3.14</span>, <span class="hljs-number">9.00</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span> };
+
+    <span class="hljs-keyword">double</span> y;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        y = stdlib_base_cbrt( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"cbrt(%lf) = %lf\n"</span>, x[ i ], y );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/pow"><code>@stdlib/math/base/special/pow</code></a></span><span class="delimiter">: </span><span class="description">exponential function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/sqrt"><code>@stdlib/math/base/special/sqrt</code></a></span><span class="delimiter">: </span><span class="description">compute the principal square root of a double-precision floating-point number.</span></li></ul></section><section class="links"></section>

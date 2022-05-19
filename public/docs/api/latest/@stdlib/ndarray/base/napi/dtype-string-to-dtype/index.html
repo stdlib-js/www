@@ -1,0 +1,34 @@
+<h1 id="node-api-ndarray-dtype">Node-API ndarray dtype</h1><blockquote><p>C API for returning the ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> corresponding to a data type string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/napi/dtype_string_to_dtype.h"</span></span>
+</code></pre><h4 id="stdlib_ndarray_napi_dtype_string_to_dtype-const-char-str-">stdlib_ndarray_napi_dtype_string_to_dtype( const char *str )</h4><p>Returns the ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> corresponding to a data type string.</p><pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/napi/dtype_string_to_dtype.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/dtypes.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;assert.h></span></span>
+
+<span class="hljs-comment">// Add-on function export...</span>
+<span class="hljs-function">napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-comment">// Get function arguments...</span>
+    <span class="hljs-keyword">size_t</span> argc = <span class="hljs-number">1</span>;
+    napi_value argv[ <span class="hljs-number">1</span> ];
+    napi_status status = <span class="hljs-built_in">napi_get_cb_info</span>( env, info, &#x26;argc, argv, <span class="hljs-literal">nullptr</span>, <span class="hljs-literal">nullptr</span> );
+    <span class="hljs-built_in">assert</span>( status == napi_ok );
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-comment">// Get a string argument...</span>
+    <span class="hljs-keyword">char</span> str[ <span class="hljs-number">1024</span> ];
+    <span class="hljs-keyword">size_t</span> len;
+    status = <span class="hljs-built_in">napi_get_value_string_utf8</span>( env, argv[ <span class="hljs-number">0</span> ], (<span class="hljs-keyword">char</span> *)str, <span class="hljs-number">1024</span>, &#x26;len );
+    <span class="hljs-built_in">assert</span>( status == napi_ok );
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-comment">// Return the corresponding ndarray data type for the input typed array:</span>
+    <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">STDLIB_NDARRAY_DTYPE</span> <span class="hljs-title">dtype</span> =</span> <span class="hljs-built_in">stdlib_ndarray_napi_dtype_string_to_dtype</span>( str );
+
+    <span class="hljs-comment">// ...</span>
+
+}
+</code></pre></section><section class="notes"></section><section class="examples"></section><section class="references"></section><section class="related"></section><section class="links"></section>

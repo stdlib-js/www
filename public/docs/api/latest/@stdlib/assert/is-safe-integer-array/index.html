@@ -1,0 +1,55 @@
+<h1 id="issafeintegerarray">isSafeIntegerArray</h1><blockquote><p>Test if a value is an array-like object containing only <a href="/docs/api/latest/@stdlib/assert/is-safe-integer">safe integers</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSafeIntegerArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-safe-integer-array'</span> );
+</code></pre><h4 id="issafeintegerarray-value-">isSafeIntegerArray( value )</h4><p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> <a href="/docs/api/latest/@stdlib/assert/is-safe-integer">safe <code>integer</code></a> values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isSafeIntegerArray( [ -<span class="hljs-number">3</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">3</span>) ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSafeIntegerArray( [ -<span class="hljs-number">1e100</span>, <span class="hljs-number">2e200</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isSafeIntegerArray( [ -<span class="hljs-number">3</span>, <span class="hljs-string">'abc'</span> ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre><h4 id="issafeintegerarrayprimitives-value-">isSafeIntegerArray.primitives( value )</h4><p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> primitive <a href="/docs/api/latest/@stdlib/assert/is-safe-integer">safe <code>integer</code></a> values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isSafeIntegerArray.primitives( [ -<span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSafeIntegerArray.primitives( [ -<span class="hljs-number">1.0</span>, <span class="hljs-number">2.2</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isSafeIntegerArray.primitives( [ -<span class="hljs-number">3.0</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">2.0</span>) ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre><h4 id="issafeintegerarrayobjects-value-">isSafeIntegerArray.objects( value )</h4><p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> <code>Number</code> objects holding <a href="/docs/api/latest/@stdlib/assert/is-safe-integer">safe <code>integer</code></a> values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isSafeIntegerArray.objects( [ <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(-<span class="hljs-number">1.0</span>), <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">2.0</span>) ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSafeIntegerArray.objects( [ -<span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isSafeIntegerArray.objects( [ -<span class="hljs-number">3.0</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">1.0</span>) ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<span class="hljs-keyword">var</span> isSafeIntegerArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-safe-integer-array'</span> );
+
+<span class="hljs-keyword">var</span> bool = isSafeIntegerArray( [ -<span class="hljs-number">5</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSafeIntegerArray( [ -<span class="hljs-number">4</span>, -<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSafeIntegerArray( [ -<span class="hljs-number">1</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( -<span class="hljs-number">6</span> ), <span class="hljs-number">2</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isSafeIntegerArray( [ <span class="hljs-number">1e100</span>, <span class="hljs-number">2e200</span>, <span class="hljs-number">3e300</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isSafeIntegerArray( [ -<span class="hljs-number">1</span>, <span class="hljs-string">'abc'</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isSafeIntegerArray( [ -<span class="hljs-number">2.3</span>, <span class="hljs-number">0</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isSafeIntegerArray( [] );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-array"><code>@stdlib/assert/is-array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-safe-integer"><code>@stdlib/assert/is-safe-integer</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number having a safe integer value.</span></li></ul></section><section class="links"></section>

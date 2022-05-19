@@ -1,0 +1,31 @@
+<h1 id="sincospi">sincospi</h1><blockquote><p>Simultaneously compute the <a href="/docs/api/latest/@stdlib/math/base/special/sin">sine</a> and <a href="/docs/api/latest/@stdlib/math/base/special/cos">cosine</a> of a number times <a href="/docs/api/latest/@stdlib/constants/float64/pi">π</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sincospi = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sincospi'</span> );
+</code></pre><h4 id="sincospi-out-x-">sincospi( [out,] x )</h4><p>Simultaneously computes the <a href="/docs/api/latest/@stdlib/math/base/special/sin">sine</a> and <a href="/docs/api/latest/@stdlib/math/base/special/cos">cosine</a> of a <code>number</code> times <a href="/docs/api/latest/@stdlib/constants/float64/pi">π</a> more accurately than <code>sincos(pi*x)</code>, especially for large <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = sincospi( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns [ 0.0, 1.0 ]</span>
+
+v = sincospi( <span class="hljs-number">0.5</span> );
+<span class="hljs-comment">// returns [ 1.0, 0.0 ]</span>
+
+v = sincospi( <span class="hljs-number">0.1</span> );
+<span class="hljs-comment">// returns [ ~0.309, ~0.951 ]</span>
+
+v = sincospi( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns [ NaN, NaN ]</span>
+</code></pre><p>By default, the function returns a two-element <code>array</code> containing <code>sin(πx)</code> and <code>cos(πx)</code>. To avoid extra memory allocation, the function supports providing an output (destination) object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> v = sincospi( out, <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, 1.0 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( v === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> sincospi = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sincospi'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">101</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( sincospi( x[ i ] ) );
+}
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/cospi"><code>@stdlib/math/base/special/cospi</code></a></span><span class="delimiter">: </span><span class="description">compute cos(πx).</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/sincos"><code>@stdlib/math/base/special/sincos</code></a></span><span class="delimiter">: </span><span class="description">simultaneously compute the sine and cosine of a number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/sinpi"><code>@stdlib/math/base/special/sinpi</code></a></span><span class="delimiter">: </span><span class="description">compute sin(πx).</span></li></ul></section><section class="links"></section>

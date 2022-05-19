@@ -1,0 +1,70 @@
+<h1 id="naryfunction">naryFunction</h1><blockquote><p>Create a function that invokes a provided function with a specified number of arguments.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+</code></pre><h4 id="naryfunction-fcn-arity-thisarg-">naryFunction( fcn, arity[, thisArg] )</h4><p>Returns a <code>function</code> that invokes a provided function with a specified number of arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> s;
+    <span class="hljs-keyword">var</span> i;
+
+    s = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-built_in">arguments</span>.length; i++ ) {
+        s += <span class="hljs-built_in">arguments</span>[ i ];
+    }
+    <span class="hljs-keyword">return</span> s;
+}
+
+<span class="hljs-keyword">var</span> fcn = naryFunction( sum, <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> out = fcn( -<span class="hljs-number">1</span>, -<span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns -3</span>
+</code></pre><p>To set the <code>this</code> context when invoking the provided function, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.scalar = <span class="hljs-number">1</span>;
+}
+
+Foo.prototype.sum = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> s;
+    <span class="hljs-keyword">var</span> i;
+
+    s = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-built_in">arguments</span>.length; i++ ) {
+        s += <span class="hljs-built_in">arguments</span>[ i ] * <span class="hljs-built_in">this</span>.scalar;
+    }
+    <span class="hljs-keyword">return</span> s;
+};
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'scalar'</span>: <span class="hljs-number">3</span>
+};
+
+<span class="hljs-keyword">var</span> foo = <span class="hljs-keyword">new</span> Foo();
+
+<span class="hljs-keyword">var</span> fcn = naryFunction( foo.sum, <span class="hljs-number">2</span>, ctx );
+
+<span class="hljs-keyword">var</span> out = fcn( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 9</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The returned function <strong>always</strong> invokes the wrapped function with a specified number of arguments, even when the returned function is provided fewer arguments. The value for the missing arguments is equal to <code>undefined</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> i </span>) </span>{
+    <span class="hljs-keyword">return</span> i;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> s;
+    <span class="hljs-keyword">var</span> i;
+
+    s = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-built_in">arguments</span>.length; i++ ) {
+        s += <span class="hljs-built_in">arguments</span>[ i ];
+    }
+    <span class="hljs-keyword">return</span> s;
+}
+
+<span class="hljs-comment">// Create a data array:</span>
+<span class="hljs-keyword">var</span> x = filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'float64'</span>, fill );
+
+<span class="hljs-comment">// Compute cumulative sums...</span>
+<span class="hljs-keyword">var</span> f;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C;= x.length; i++ ) {
+    f = naryFunction( sum, i );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'sum_%d = %d'</span>, i, f.apply( <span class="hljs-literal">null</span>, x ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

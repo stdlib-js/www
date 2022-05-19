@@ -1,0 +1,36 @@
+<h1 id="commonkeysin">commonKeysIn</h1><blockquote><p>Return the common own and inherited property names of two or more objects.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> commonKeysIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/common-keys-in'</span> );
+</code></pre><h4 id="commonkeysin-obj1-obj2-obj3objn-">commonKeysIn( obj1, obj2[, obj3[,...,objN]] )</h4><p>Returns the common own and inherited property names of two or more objects.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>
+};
+
+<span class="hljs-keyword">var</span> obj2 = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>
+};
+
+<span class="hljs-keyword">var</span> keys = commonKeysIn( obj, obj2 );
+<span class="hljs-comment">// returns [ 'a', 'b' ]</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> commonKeysIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/common-keys-in'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.beep = <span class="hljs-string">'boop'</span>;
+    <span class="hljs-built_in">this</span>.a = {
+        <span class="hljs-string">'b'</span>: <span class="hljs-string">'c'</span>
+    };
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+
+Foo.prototype.foo = [ <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> obj1 = <span class="hljs-keyword">new</span> Foo();
+
+<span class="hljs-keyword">var</span> obj2 = {
+    <span class="hljs-string">'beep'</span>: <span class="hljs-string">'boop'</span>,
+    <span class="hljs-string">'foo'</span>: <span class="hljs-string">'bar'</span>
+};
+
+<span class="hljs-keyword">var</span> keys = commonKeysIn( obj1, obj2 );
+<span class="hljs-comment">// returns [ 'beep', 'foo' ]</span>
+</code></pre></section><section class="references"></section><section class="links"></section>

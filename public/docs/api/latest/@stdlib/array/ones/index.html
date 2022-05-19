@@ -1,0 +1,19 @@
+<h1 id="ones">ones</h1><blockquote><p>Create an array filled with ones and having a specified length.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ones = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/ones'</span> );
+</code></pre><h4 id="ones-length-dtype-">ones( length[, dtype] )</h4><p>Creates an array filled with ones and having a specified length.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = ones( <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 1.0, 1.0 ]</span>
+</code></pre><p>The function recognizes the following data types:</p><ul><li><code>float64</code>: double-precision floating-point numbers (IEEE 754)</li><li><code>float32</code>: single-precision floating-point numbers (IEEE 754)</li><li><code>complex128</code>: double-precision complex floating-point numbers</li><li><code>complex64</code>: single-precision complex floating-point numbers</li><li><code>int32</code>: 32-bit two's complement signed integers</li><li><code>uint32</code>: 32-bit unsigned integers</li><li><code>int16</code>: 16-bit two's complement signed integers</li><li><code>uint16</code>: 16-bit unsigned integers</li><li><code>int8</code>: 8-bit two's complement signed integers</li><li><code>uint8</code>: 8-bit unsigned integers</li><li><code>uint8c</code>: 8-bit unsigned integers clamped to <code>0-255</code></li><li><code>generic</code>: generic JavaScript values</li></ul><p>By default, the output array data type is <code>float64</code> (i.e., a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a>). To specify an alternative data type, provide a <code>dtype</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = ones( <span class="hljs-number">2</span>, <span class="hljs-string">'int32'</span> );
+<span class="hljs-comment">// returns &#x3C;Int32Array>[ 1, 1 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>For complex number arrays, each entry of the returned array has a real component equal to <code>1</code> and an imaginary component equal to <code>0</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dtypes'</span> );
+<span class="hljs-keyword">var</span> ones = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/ones'</span> );
+
+<span class="hljs-comment">// Get a list of array data types:</span>
+<span class="hljs-keyword">var</span> dt = dtypes();
+
+<span class="hljs-comment">// Generate filled arrays...</span>
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    arr = ones( <span class="hljs-number">4</span>, dt[ i ] );
+    <span class="hljs-built_in">console</span>.log( arr );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

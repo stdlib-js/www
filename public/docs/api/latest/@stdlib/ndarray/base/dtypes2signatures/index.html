@@ -1,0 +1,82 @@
+<h1 id="dtypes2signatures">dtypes2signatures</h1><blockquote><p>Transform a list of array argument data types into a list of signatures.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes2signatures = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/dtypes2signatures'</span> );
+</code></pre><h4 id="dtypes2signatures-dtypes-nin-nout-">dtypes2signatures( dtypes, nin, nout )</h4><p>Transforms a list of array argument data types into a list of signatures, where <code>nin</code> is the number of input array arguments and <code>nout</code> is the number of output array arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = [ <span class="hljs-string">'float32'</span>, <span class="hljs-string">'float64'</span> ];
+
+<span class="hljs-keyword">var</span> out = dtypes2signatures( dtypes, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns [ '(float32) => (float64)' ]</span>
+
+out = dtypes2signatures( dtypes, <span class="hljs-number">2</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ '(float32, float64) => ()' ]</span>
+
+out = dtypes2signatures( dtypes, <span class="hljs-number">0</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns [ '() => (float32, float64)' ]</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes2signatures = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/dtypes2signatures'</span> );
+
+<span class="hljs-keyword">var</span> dtypes = [
+    <span class="hljs-string">'float64'</span>, <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'float64'</span>, <span class="hljs-string">'generic'</span>,
+
+    <span class="hljs-string">'float32'</span>, <span class="hljs-string">'float32'</span>,
+    <span class="hljs-string">'float32'</span>, <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'float32'</span>, <span class="hljs-string">'generic'</span>,
+
+    <span class="hljs-string">'generic'</span>, <span class="hljs-string">'generic'</span>,
+
+    <span class="hljs-string">'int32'</span>, <span class="hljs-string">'int32'</span>,
+    <span class="hljs-string">'int32'</span>, <span class="hljs-string">'uint32'</span>,
+    <span class="hljs-string">'int32'</span>, <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'int32'</span>, <span class="hljs-string">'generic'</span>,
+
+    <span class="hljs-string">'int16'</span>, <span class="hljs-string">'int16'</span>,
+    <span class="hljs-string">'int16'</span>, <span class="hljs-string">'int32'</span>,
+    <span class="hljs-string">'int16'</span>, <span class="hljs-string">'uint16'</span>,
+    <span class="hljs-string">'int16'</span>, <span class="hljs-string">'uint32'</span>,
+    <span class="hljs-string">'int16'</span>, <span class="hljs-string">'float32'</span>,
+    <span class="hljs-string">'int16'</span>, <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'int16'</span>, <span class="hljs-string">'generic'</span>,
+
+    <span class="hljs-string">'int8'</span>, <span class="hljs-string">'int8'</span>,
+    <span class="hljs-string">'int8'</span>, <span class="hljs-string">'int16'</span>,
+    <span class="hljs-string">'int8'</span>, <span class="hljs-string">'int32'</span>,
+    <span class="hljs-string">'int8'</span>, <span class="hljs-string">'uint8'</span>,
+    <span class="hljs-string">'int8'</span>, <span class="hljs-string">'uint8c'</span>,
+    <span class="hljs-string">'int8'</span>, <span class="hljs-string">'uint16'</span>,
+    <span class="hljs-string">'int8'</span>, <span class="hljs-string">'uint32'</span>,
+    <span class="hljs-string">'int8'</span>, <span class="hljs-string">'float32'</span>,
+    <span class="hljs-string">'int8'</span>, <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'int8'</span>, <span class="hljs-string">'generic'</span>,
+
+    <span class="hljs-string">'uint32'</span>, <span class="hljs-string">'uint32'</span>,
+    <span class="hljs-string">'uint32'</span>, <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'uint32'</span>, <span class="hljs-string">'generic'</span>,
+
+    <span class="hljs-string">'uint16'</span>, <span class="hljs-string">'int32'</span>,
+    <span class="hljs-string">'uint16'</span>, <span class="hljs-string">'uint16'</span>,
+    <span class="hljs-string">'uint16'</span>, <span class="hljs-string">'uint32'</span>,
+    <span class="hljs-string">'uint16'</span>, <span class="hljs-string">'float32'</span>,
+    <span class="hljs-string">'uint16'</span>, <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'uint16'</span>, <span class="hljs-string">'generic'</span>,
+
+    <span class="hljs-string">'uint8'</span>, <span class="hljs-string">'int16'</span>,
+    <span class="hljs-string">'uint8'</span>, <span class="hljs-string">'int32'</span>,
+    <span class="hljs-string">'uint8'</span>, <span class="hljs-string">'uint8'</span>,
+    <span class="hljs-string">'uint8'</span>, <span class="hljs-string">'uint8c'</span>,
+    <span class="hljs-string">'uint8'</span>, <span class="hljs-string">'uint16'</span>,
+    <span class="hljs-string">'uint8'</span>, <span class="hljs-string">'uint32'</span>,
+    <span class="hljs-string">'uint8'</span>, <span class="hljs-string">'float32'</span>,
+    <span class="hljs-string">'uint8'</span>, <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'uint8'</span>, <span class="hljs-string">'generic'</span>,
+
+    <span class="hljs-string">'uint8c'</span>, <span class="hljs-string">'int16'</span>,
+    <span class="hljs-string">'uint8c'</span>, <span class="hljs-string">'int32'</span>,
+    <span class="hljs-string">'uint8c'</span>, <span class="hljs-string">'uint8'</span>,
+    <span class="hljs-string">'uint8c'</span>, <span class="hljs-string">'uint8c'</span>,
+    <span class="hljs-string">'uint8c'</span>, <span class="hljs-string">'uint16'</span>,
+    <span class="hljs-string">'uint8c'</span>, <span class="hljs-string">'uint32'</span>,
+    <span class="hljs-string">'uint8c'</span>, <span class="hljs-string">'float32'</span>,
+    <span class="hljs-string">'uint8c'</span>, <span class="hljs-string">'float64'</span>,
+    <span class="hljs-string">'uint8c'</span>, <span class="hljs-string">'generic'</span>
+];
+
+<span class="hljs-keyword">var</span> sigs = dtypes2signatures( dtypes, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-built_in">console</span>.log( sigs );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

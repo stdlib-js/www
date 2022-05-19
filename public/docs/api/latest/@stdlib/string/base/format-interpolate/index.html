@@ -1,0 +1,26 @@
+<h1 id="formatinterpolate">formatInterpolate</h1><blockquote><p>Generate string from a token array by interpolating values.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> formatInterpolate = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/format-interpolate'</span> );
+</code></pre><h4 id="formatinterpolate-tokens-args-">formatInterpolate( tokens, ...args )</h4><p>Generates string from a token array by interpolating values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> formatTokenize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/format-tokenize'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello, %s! My name is %s.'</span>;
+<span class="hljs-keyword">var</span> tokens = formatTokenize( str );
+<span class="hljs-keyword">var</span> out = formatInterpolate( tokens, <span class="hljs-string">'World'</span>, <span class="hljs-string">'Bob'</span> );
+<span class="hljs-comment">// returns 'Hello, World! My name is Bob.'</span>
+</code></pre><p>The array of <code>tokens</code> should contain string parts and format identifier objects.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> tokens = [ <span class="hljs-string">'beep '</span>, { <span class="hljs-string">'specifier'</span>: <span class="hljs-string">'s'</span> } ];
+<span class="hljs-keyword">var</span> out = formatInterpolate( tokens, <span class="hljs-string">'boop'</span> );
+<span class="hljs-comment">// returns 'beep boop'</span>
+</code></pre><p>Format identifier objects can have the following properties:</p><table><thead><tr><th>property</th><th>description</th></tr></thead><tbody><tr><td>specifier</td><td>format specifier (one of 's', 'c', 'd', 'i', 'u', 'b', 'o', 'x', 'X', 'e', 'E', 'f', 'F', 'g', 'G')</td></tr><tr><td>flags</td><td>format flags (string with any of '0', ' ', '+', '-', '#')</td></tr><tr><td>width</td><td>minimum field width (integer or <code>'*'</code>)</td></tr><tr><td>precision</td><td>precision (integer or <code>'*'</code>)</td></tr><tr><td>mapping</td><td>positional mapping from format specifier to argument index</td></tr></tbody></table></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> formatTokenize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/format-tokenize'</span> );
+<span class="hljs-keyword">var</span> PI = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/pi'</span> );
+<span class="hljs-keyword">var</span> formatInterpolate = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/base/format-interpolate'</span> );
+
+<span class="hljs-keyword">var</span> tokens = formatTokenize( <span class="hljs-string">'Hello %s!'</span> );
+<span class="hljs-keyword">var</span> out = formatInterpolate( tokens, <span class="hljs-string">'World'</span> );
+<span class="hljs-comment">// returns 'Hello World!'</span>
+
+tokens = formatTokenize( <span class="hljs-string">'Pi: ~%.2f'</span> );
+out = formatInterpolate( tokens, PI );
+<span class="hljs-comment">// returns 'Pi: ~3.14'</span>
+
+tokens = formatTokenize( <span class="hljs-string">'Index: %d, Value: %s'</span> );
+out = formatInterpolate( tokens, <span class="hljs-number">0</span>, <span class="hljs-string">'foo'</span> );
+<span class="hljs-comment">// returns 'Index: 0, Value: foo'</span>
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,22 @@
+<h1 id="coth">coth</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Hyperbolic_functions">hyperbolic cotangent</a> of a number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> coth = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/coth'</span> );
+</code></pre><h4 id="coth-x-">coth( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Hyperbolic_functions">hyperbolic cotangent</a> of <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = coth( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns Infinity</span>
+
+v = coth( <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~1.0373</span>
+
+v = coth( -<span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~-1.0373</span>
+
+v = coth( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> coth = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/coth'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( -<span class="hljs-number">10.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">100</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( coth( x[ i ] ) );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

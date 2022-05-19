@@ -1,0 +1,55 @@
+<h1 id="clamp">clamp</h1><blockquote><p>Restrict a double-precision floating-point number to a specified range.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> clamp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/clamp'</span> );
+</code></pre><h4 id="clamp-v-min-max-">clamp( v, min, max )</h4><p>Restricts a double-precision floating-point number to a specified range.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = clamp( <span class="hljs-number">3.14</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns 3.14</span>
+
+v = clamp( -<span class="hljs-number">3.14</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = clamp( <span class="hljs-number">10.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns 5.0</span>
+
+v = clamp( -<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = clamp( <span class="hljs-number">0.0</span>, -<span class="hljs-number">3.14</span>, -<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns -0.0</span>
+</code></pre><p>If provided <code>NaN</code> for any argument, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = clamp( <span class="hljs-literal">NaN</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = clamp( <span class="hljs-number">0.0</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = clamp( <span class="hljs-number">3.14</span>, <span class="hljs-number">0.0</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> clamp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/clamp'</span> );
+
+<span class="hljs-keyword">var</span> min;
+<span class="hljs-keyword">var</span> max;
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    min = discreteUniform( <span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span> );
+    max = discreteUniform( <span class="hljs-number">5.0</span>, <span class="hljs-number">15.0</span> );
+    v = discreteUniform( -<span class="hljs-number">20.0</span>, <span class="hljs-number">20.0</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'clamp(%d,%d,%d) => %d'</span>, v, min, max, clamp( v, min, max ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/clamp.h"</span></span>
+</code></pre><h4 id="stdlib_base_clamp-v-min-max-">stdlib_base_clamp( v, min, max )</h4><p>Restricts a double-precision floating-point number to a specified range.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> y = stdlib_base_clamp( <span class="hljs-number">-3.14</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>v</strong>: <code>[in] double</code> input value.</li><li><strong>min</strong>: <code>[in] double</code> minimum value.</li><li><strong>max</strong>: <code>[in] double</code> maximum value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_clamp</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> v, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> min, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> max )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/clamp.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">3.14</span>, <span class="hljs-number">-3.14</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span> };
+
+    <span class="hljs-keyword">double</span> y;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        y = stdlib_base_clamp( x[ i ], <span class="hljs-number">-3.0</span>, <span class="hljs-number">3.0</span> );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"clamp(%lf, %lf, %lf) = %lf\n"</span>, x[ i ], <span class="hljs-number">-3.0</span>, <span class="hljs-number">3.0</span>, y );
+    }
+}
+</code></pre></section></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/clampf"><code>@stdlib/math/base/special/clampf</code></a></span><span class="delimiter">: </span><span class="description">restrict a single-precision floating-point number to a specified range.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/wrap"><code>@stdlib/math/base/special/wrap</code></a></span><span class="delimiter">: </span><span class="description">wrap a value on the half-open interval [min,max).</span></li></ul></section><section class="links"></section>

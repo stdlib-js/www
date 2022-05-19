@@ -1,0 +1,169 @@
+<h1 id="fifo">FIFO</h1><blockquote><p>First-in-first-out (FIFO) queue.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fifo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/fifo'</span> );
+</code></pre><h4 id="fifo-1">fifo()</h4><p>Returns a new first-in-first-out (FIFO) queue instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> queue = fifo();
+<span class="hljs-comment">// returns &#x3C;FIFO></span>
+</code></pre><h5 id="queueclear">queue.clear()</h5><p>Clears a queue.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> queue = fifo();
+<span class="hljs-comment">// returns &#x3C;FIFO></span>
+
+<span class="hljs-comment">// Add values to the queue:</span>
+queue.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
+
+<span class="hljs-comment">// Peek at the first value:</span>
+<span class="hljs-keyword">var</span> v = queue.first();
+<span class="hljs-comment">// returns 'foo'</span>
+
+<span class="hljs-comment">// Examine the queue length:</span>
+<span class="hljs-keyword">var</span> len = queue.length;
+<span class="hljs-comment">// returns 2</span>
+
+<span class="hljs-comment">// Clear all queue items:</span>
+queue.clear();
+
+<span class="hljs-comment">// Peek at the first value:</span>
+v = queue.first();
+<span class="hljs-comment">// returns undefined</span>
+
+<span class="hljs-comment">// Examine the queue length:</span>
+len = queue.length;
+<span class="hljs-comment">// returns 0</span>
+</code></pre><h5 id="queuefirst">queue.first()</h5><p>Returns the "oldest" queue value (i.e., the value which is "first-out"). If the queue is currently empty, the returned value is <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> queue = fifo();
+<span class="hljs-comment">// returns &#x3C;FIFO></span>
+
+<span class="hljs-comment">// Add values to the queue:</span>
+queue.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
+
+<span class="hljs-comment">// Peek at the first value:</span>
+<span class="hljs-keyword">var</span> v = queue.first();
+<span class="hljs-comment">// returns 'foo'</span>
+</code></pre><h5 id="queueiterator">queue.iterator()</h5><p>Returns an iterator for iterating over a queue. If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> queue = fifo();
+
+<span class="hljs-comment">// Add values to the queue:</span>
+queue.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
+
+<span class="hljs-comment">// Create an iterator:</span>
+<span class="hljs-keyword">var</span> it = queue.iterator();
+
+<span class="hljs-comment">// Iterate over the queue...</span>
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 'foo'</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 'bar'</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre><p><strong>Note</strong>: in order to prevent confusion arising from queue mutation during iteration, a returned iterator <strong>always</strong> iterates over a queue "snapshot", which is defined as the list of queue elements at the time of <code>queue.iterator()</code> invocation.</p><h5 id="queuelast">queue.last()</h5><p>Returns the "newest" queue value (i.e., the value which is "last-out"). If the queue is currently empty, the returned value is <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> queue = fifo();
+<span class="hljs-comment">// returns &#x3C;FIFO></span>
+
+<span class="hljs-comment">// Add values to the queue:</span>
+queue.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
+
+<span class="hljs-comment">// Peek at the last value:</span>
+<span class="hljs-keyword">var</span> v = queue.last();
+<span class="hljs-comment">// returns 'bar'</span>
+</code></pre><h5 id="queuelength">queue.length</h5><p>Queue length.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> queue = fifo();
+
+<span class="hljs-comment">// Examine the initial queue length:</span>
+<span class="hljs-keyword">var</span> len = queue.length;
+<span class="hljs-comment">// returns 0</span>
+
+<span class="hljs-comment">// Add values to the queue:</span>
+queue.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
+
+<span class="hljs-comment">// Retrieve the current queue length:</span>
+len = queue.length;
+<span class="hljs-comment">// returns 2</span>
+</code></pre><h5 id="queuepop">queue.pop()</h5><p>Removes a value from the queue. If the queue is currently empty, the returned value is <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> queue = fifo();
+
+<span class="hljs-comment">// Add values to the queue:</span>
+queue.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
+
+<span class="hljs-comment">// Remove the first value:</span>
+<span class="hljs-keyword">var</span> v = queue.pop();
+<span class="hljs-comment">// returns 'foo'</span>
+
+<span class="hljs-comment">// Add a new value to the queue:</span>
+queue.push( <span class="hljs-string">'beep'</span> );
+
+<span class="hljs-comment">// Remove the "oldest" queue value:</span>
+v = queue.pop();
+<span class="hljs-comment">// returns 'bar'</span>
+</code></pre><h5 id="queuepush-value-">queue.push( value )</h5><p>Adds a value to the queue.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> queue = fifo();
+
+<span class="hljs-comment">// Add values to the queue:</span>
+queue.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
+
+<span class="hljs-comment">// Remove the first value:</span>
+<span class="hljs-keyword">var</span> v = queue.pop();
+<span class="hljs-comment">// returns 'foo'</span>
+
+<span class="hljs-comment">// Add a new value to the queue:</span>
+queue.push( <span class="hljs-string">'beep'</span> );
+
+<span class="hljs-comment">// Remove the "oldest" queue value:</span>
+v = queue.pop();
+<span class="hljs-comment">// returns 'bar'</span>
+</code></pre><h5 id="queuetoarray">queue.toArray()</h5><p>Returns an array of queue values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> queue = fifo();
+
+<span class="hljs-comment">// Add values to the queue:</span>
+queue.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
+
+<span class="hljs-comment">// Get an array of queue values:</span>
+<span class="hljs-keyword">var</span> vals = queue.toArray();
+<span class="hljs-comment">// returns [ 'foo', 'bar' ]</span>
+</code></pre><h5 id="queuetojson">queue.toJSON()</h5><p>Serializes a queue as JSON.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> queue = fifo();
+
+<span class="hljs-comment">// Add values to the queue:</span>
+queue.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
+
+<span class="hljs-comment">// Serialize to JSON:</span>
+<span class="hljs-keyword">var</span> o = queue.toJSON();
+<span class="hljs-comment">// returns { 'type': 'fifo', 'data': [ 'foo', 'bar' ] }</span>
+</code></pre><p><strong>Note</strong>: <code>JSON.stringify()</code> implicitly calls this method when stringifying a queue instance.</p></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fifo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/fifo'</span> );
+
+<span class="hljs-keyword">var</span> queue;
+<span class="hljs-keyword">var</span> iter;
+<span class="hljs-keyword">var</span> len;
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Create a new FIFO queue:</span>
+queue = fifo();
+
+<span class="hljs-comment">// Add some values to the queue:</span>
+queue.push( <span class="hljs-string">'foo'</span> );
+queue.push( <span class="hljs-string">'bar'</span> );
+queue.push( <span class="hljs-string">'beep'</span> );
+queue.push( <span class="hljs-string">'boop'</span> );
+
+<span class="hljs-comment">// Peek at the first and last queue values:</span>
+v = queue.first();
+<span class="hljs-comment">// returns 'foo'</span>
+
+v = queue.last();
+<span class="hljs-comment">// returns 'boop'</span>
+
+<span class="hljs-comment">// Inspect the queue length:</span>
+len = queue.length;
+<span class="hljs-comment">// returns 4</span>
+
+<span class="hljs-comment">// Remove the "oldest" queue value:</span>
+v = queue.pop();
+<span class="hljs-comment">// returns 'foo'</span>
+
+<span class="hljs-comment">// Inspect the queue length:</span>
+len = queue.length;
+<span class="hljs-comment">// returns 3</span>
+
+<span class="hljs-comment">// Iterate over the queue:</span>
+iter = queue.iterator();
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; len; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Queue value #%d: %s'</span>, i+<span class="hljs-number">1</span>, iter.next().value );
+}
+
+<span class="hljs-comment">// Clear the queue:</span>
+queue.clear();
+
+<span class="hljs-comment">// Inspect the queue length:</span>
+len = queue.length;
+<span class="hljs-comment">// returns 0</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/stack"><code>@stdlib/utils/stack</code></a></span><span class="delimiter">: </span><span class="description">stack.</span></li></ul></section><section class="links"></section>

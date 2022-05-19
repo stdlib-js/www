@@ -1,0 +1,22 @@
+<h1 id="any">any</h1><blockquote><p>Test whether at least one element in a collection is truthy.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> any = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/any'</span> );
+</code></pre><h4 id="any-collection-">any( collection )</h4><p>Tests whether at least one element in a <code>collection</code> is truthy.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-keyword">var</span> bool = any( arr );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>If provided an empty <code>collection</code>, the function returns <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = any( [] );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</li><li>The function does <strong>not</strong> skip <code>undefined</code> elements and is thus not optimized for sparse collections.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> any = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/any'</span> );
+
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> i;
+
+arr = [];
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    arr.push( ( randu() > <span class="hljs-number">0.95</span> ) );
+}
+
+bool = any( arr );
+<span class="hljs-comment">// returns &#x3C;boolean></span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/any-by"><code>@stdlib/utils/any-by</code></a></span><span class="delimiter">: </span><span class="description">test whether at least one element in a collection passes a test implemented by a predicate function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/every"><code>@stdlib/utils/every</code></a></span><span class="delimiter">: </span><span class="description">test whether all elements in a collection are truthy.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/for-each"><code>@stdlib/utils/for-each</code></a></span><span class="delimiter">: </span><span class="description">invoke a function for each element in a collection.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/none"><code>@stdlib/utils/none</code></a></span><span class="delimiter">: </span><span class="description">test whether all elements in a collection are falsy.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/some"><code>@stdlib/utils/some</code></a></span><span class="delimiter">: </span><span class="description">test whether a collection contains at least <code>n</code> elements which are truthy.</span></li></ul></section><section class="links"></section>

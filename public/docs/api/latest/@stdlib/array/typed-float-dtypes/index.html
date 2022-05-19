@@ -1,0 +1,27 @@
+<h1 id="data-types">Data Types</h1><blockquote><p>List of typed array floating-point data types.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/typed-float-dtypes'</span> );
+</code></pre><h4 id="dtypes">dtypes()</h4><p>Returns a list of typed array floating-point data types.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = dtypes();
+<span class="hljs-comment">// e.g., returns [ 'float32', 'float64', 'complex64', 'complex128' ]</span>
+</code></pre><p>The output <code>array</code> contains the following data types:</p><ul><li><code>float32</code>: single-precision floating-point numbers.</li><li><code>float64</code>: double-precision floating-point numbers.</li><li><code>complex64</code>: single-precision complex floating-point numbers.</li><li><code>complex128</code>: double-precision complex floating-point numbers.</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indexOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/index-of'</span> );
+<span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/typed-float-dtypes'</span> );
+
+<span class="hljs-keyword">var</span> DTYPES = dtypes();
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isdtype</span>(<span class="hljs-params"> str </span>) </span>{
+    <span class="hljs-keyword">if</span> ( indexOf( DTYPES, str ) === -<span class="hljs-number">1</span> ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-keyword">var</span> bool = isdtype( <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isdtype( <span class="hljs-string">'complex128'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isdtype( <span class="hljs-string">'float32'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isdtype( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,50 @@
+<h1 id="cflipsign">cflipsign</h1><blockquote><p>Return a double-precision complex floating-point number with the same magnitude as <code>z</code> and the sign of <code>y*z</code>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cflipsign = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cflipsign'</span> );
+</code></pre><h4 id="cflipsign-z-y-">cflipsign( z, y )</h4><p>Returns a double-precision complex floating-point number with the same magnitude as <code>z</code> and the sign of <code>y*z</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+
+<span class="hljs-keyword">var</span> v = cflipsign( <span class="hljs-keyword">new</span> Complex128( -<span class="hljs-number">4.2</span>, <span class="hljs-number">5.5</span> ), -<span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> re = real( v );
+<span class="hljs-comment">// returns 4.2</span>
+
+<span class="hljs-keyword">var</span> im = imag( v );
+<span class="hljs-comment">// returns -5.5</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+<span class="hljs-keyword">var</span> cflipsign = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cflipsign'</span> );
+
+<span class="hljs-keyword">var</span> rand = uniform( -<span class="hljs-number">50.0</span>, <span class="hljs-number">50.0</span> );
+
+<span class="hljs-keyword">var</span> z;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    z = <span class="hljs-keyword">new</span> Complex128( rand(), rand() );
+    y = rand();
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'cflipsign(%s, %d) = %s'</span>, z, y, cflipsign( z, y ) );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/cflipsign.h"</span></span>
+</code></pre><h4 id="stdlib_base_cflipsign-z-y-">stdlib_base_cflipsign( z, y )</h4><p>Returns a double-precision complex floating-point number with the same magnitude as <code>z</code> and the sign of <code>y*z</code>.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;complex.h></span></span>
+
+<span class="hljs-keyword">double</span> <span class="hljs-built_in">complex</span> y = stdlib_base_cflipsign( <span class="hljs-number">2.5</span><span class="hljs-number">-1.5</span>*I, <span class="hljs-number">-1.0</span> );
+<span class="hljs-comment">// returns -2.5+1.5*I</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>z</strong>: <code>[in] double complex</code> input value.</li><li><strong>y</strong>: <code>[in] double</code> number from which to derive the sign.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-built_in">complex</span> <span class="hljs-title">stdlib_base_cflipsign</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> <span class="hljs-built_in">complex</span> z, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> y )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/cflipsign.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;complex.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">double</span> <span class="hljs-built_in">complex</span> x[] = { <span class="hljs-number">3.14</span>+<span class="hljs-number">1.5</span>*I, <span class="hljs-number">-3.14</span><span class="hljs-number">-1.5</span>*I, <span class="hljs-number">0.0</span>+<span class="hljs-number">0.0</span>*I, <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span>+<span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span>*I };
+
+    <span class="hljs-keyword">double</span> <span class="hljs-built_in">complex</span> v;
+    <span class="hljs-keyword">double</span> <span class="hljs-built_in">complex</span> y;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        v = x[ i ];
+        y = stdlib_base_cflipsign( v, <span class="hljs-number">-1.0</span> );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"cflipsign(%lf + %lfi, %lf) = %lf + %lfi\n"</span>, creal( v ), cimag( v ), <span class="hljs-number">-1.0</span>, creal( y ), cimag( y ) );
+    }
+}
+</code></pre></section></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/ops/cneg"><code>@stdlib/math/base/ops/cneg</code></a></span><span class="delimiter">: </span><span class="description">negate a complex number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/csignum"><code>@stdlib/math/base/special/csignum</code></a></span><span class="delimiter">: </span><span class="description">evaluate the signum function of a complex number.</span></li></ul></section><section class="links"></section>

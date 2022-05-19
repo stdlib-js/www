@@ -1,0 +1,43 @@
+<h1 id="typemax">typemax</h1><blockquote><p>Return the maximum value of a specified numeric type.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> typemax = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/type-max'</span> );
+</code></pre><h4 id="typemax-dtype-">typemax( dtype )</h4><p>Returns the maximum value of a specified numeric type.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = typemax( <span class="hljs-string">'int8'</span> );
+<span class="hljs-comment">// returns 127</span>
+</code></pre><p>The following numeric types are supported:</p><ul><li><code>float64</code>: double-precision floating-point numbers</li><li><code>float32</code>: single-precision floating-point numbers</li><li><code>float16</code>: half-precision floating-point numbers</li><li><code>int32</code>: 32-bit two's complement signed integers</li><li><code>uint32</code>: 32-bit unsigned integers</li><li><code>int16</code>: 16-bit two's complement signed integers</li><li><code>uint16</code>: 16-bit unsigned integers</li><li><code>int8</code>: 8-bit two's complement signed integers</li><li><code>uint8</code>: 8-bit unsigned integers</li><li><code>uint8c</code>: 8-bit unsigned integers clamped to <code>0-255</code></li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> typemax = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/type-max'</span> );
+
+<span class="hljs-keyword">var</span> m = typemax( <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns Infinity</span>
+
+m = typemax( <span class="hljs-string">'float32'</span> );
+<span class="hljs-comment">// returns Infinity</span>
+
+m = typemax( <span class="hljs-string">'float16'</span> );
+<span class="hljs-comment">// returns Infinity</span>
+
+m = typemax( <span class="hljs-string">'int32'</span> );
+<span class="hljs-comment">// returns 2147483647</span>
+
+m = typemax( <span class="hljs-string">'uint32'</span> );
+<span class="hljs-comment">// returns 4294967295</span>
+
+m = typemax( <span class="hljs-string">'int16'</span> );
+<span class="hljs-comment">// returns 32767</span>
+
+m = typemax( <span class="hljs-string">'uint16'</span> );
+<span class="hljs-comment">// returns 65535</span>
+
+m = typemax( <span class="hljs-string">'int8'</span> );
+<span class="hljs-comment">// returns 127</span>
+
+m = typemax( <span class="hljs-string">'uint8'</span> );
+<span class="hljs-comment">// returns 255</span>
+
+m = typemax( <span class="hljs-string">'uint8c'</span> );
+<span class="hljs-comment">// returns 255</span>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: typemax [options] &#x3C;dtype>
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ typemax int16
+32767
+</code></pre></section></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/real-max"><code>@stdlib/utils/real-max</code></a></span><span class="delimiter">: </span><span class="description">return the maximum finite value capable of being represented by a numeric real type.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/type-min"><code>@stdlib/utils/type-min</code></a></span><span class="delimiter">: </span><span class="description">return the minimum value of a specified numeric type.</span></li></ul></section><section class="links"></section>

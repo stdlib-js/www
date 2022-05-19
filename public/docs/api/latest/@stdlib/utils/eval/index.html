@@ -1,0 +1,55 @@
+<h1 id="eval">eval</h1><blockquote><p>Alias for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval"><code>eval</code></a> global.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> evil = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/eval'</span> );
+</code></pre><h4 id="evil-str-">evil( str )</h4><p>Alias for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval"><code>eval</code></a> global.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = evil( <span class="hljs-string">'5*4*3*2*1'</span> );
+<span class="hljs-comment">// returns 120</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>A reference to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval"><code>eval</code></a> <strong>is</strong> treated differently by the compiler. For example, when evaluating code containing block-scoped declarations (e.g., <code>let</code>, <code>const</code>, <code>function</code>, <code>class</code>), the compiler may throw an <code>error</code> complaining that block-scoped declarations are <strong>not</strong> yet supported outside of <code>strict mode</code>. One possible workaround is to include <code>"use strict";</code> in the evaluated code, as done in the example below.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> evil = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/eval'</span> );
+
+<span class="hljs-keyword">var</span> ctors;
+<span class="hljs-keyword">var</span> fcn;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compile</span>(<span class="hljs-params"> ctor </span>) </span>{
+    <span class="hljs-keyword">var</span> name;
+    <span class="hljs-keyword">var</span> str;
+
+    name = ctor.match( <span class="hljs-regexp">/^(\w*)Array$/</span> )[ <span class="hljs-number">1</span> ];
+    name += <span class="hljs-string">'DataArray'</span>;
+
+    str = <span class="hljs-string">''</span>;
+    str += <span class="hljs-string">'(function create(){'</span>;
+    str += <span class="hljs-string">'"use strict";'</span>;
+    str += <span class="hljs-string">'class '</span>+name+<span class="hljs-string">' extends '</span>+ctor+<span class="hljs-string">'{'</span>;
+    str += <span class="hljs-string">'constructor(x){'</span>;
+    str += <span class="hljs-string">'super(x);'</span>;
+    str += <span class="hljs-string">'}'</span>;
+    str += <span class="hljs-string">'}'</span>;
+    str += <span class="hljs-string">'return '</span>+name+<span class="hljs-string">';'</span>;
+    str += <span class="hljs-string">'})();'</span>;
+    <span class="hljs-keyword">return</span> str;
+}
+
+ctors = [
+    <span class="hljs-string">'Int8Array'</span>,
+    <span class="hljs-string">'Uint8Array'</span>,
+    <span class="hljs-string">'Uint8ClampedArray'</span>,
+    <span class="hljs-string">'Int16Array'</span>,
+    <span class="hljs-string">'Uint16Array'</span>,
+    <span class="hljs-string">'Int32Array'</span>,
+    <span class="hljs-string">'Uint32Array'</span>,
+    <span class="hljs-string">'Float32Array'</span>,
+    <span class="hljs-string">'Float64Array'</span>,
+    <span class="hljs-string">'Array'</span>
+];
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; ctors.length; i++ ) {
+    fcn = evil( compile( ctors[i] ) );
+    <span class="hljs-built_in">console</span>.log( fcn.toString() );
+}
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: js-eval [options] &#x3C;code>
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ js-eval <span class="hljs-string">'5*4*3*2*1'</span>
+120
+</code></pre></section></section><section class="related"></section><section class="links"></section>

@@ -1,0 +1,59 @@
+<h1 id="reduce2d">reduce2d</h1><blockquote><p>Reduce the number of dimensions by one of a two-dimensional nested array by applying a function against an accumulator and each element along the innermost dimension and returning the accumulation results as a one-dimensional array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reduce2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/reduce2d'</span> );
+</code></pre><h4 id="reduce2d-arr-initial-fcn-thisarg-">reduce2d( arr, initial, fcn[, thisArg] )</h4><p>Reduces the number of dimensions by one of a two-dimensional nested array by applying a function against an accumulator and each element along the innermost dimension and returning the accumulation results as a one-dimensional array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+
+<span class="hljs-keyword">var</span> arr = [
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
+    [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ]
+];
+
+<span class="hljs-keyword">var</span> out = reduce2d( arr, [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ], naryFunction( add, <span class="hljs-number">2</span> ) );
+<span class="hljs-comment">// returns [ 6, 15 ]</span>
+</code></pre><p>The applied function is provided the following arguments:</p><ul><li><strong>accumulator</strong>: accumulated value.</li><li><strong>value</strong>: array element.</li><li><strong>i</strong>: index of the first dimension.</li><li><strong>j</strong>: index of the second dimension.</li><li><strong>arr</strong>: input array.</li></ul><p>To set the <code>this</code> context when invoking the input function, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> acc, v </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> add( acc, v );
+}
+
+<span class="hljs-keyword">var</span> arr = [
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
+    [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ]
+];
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> out = reduce2d( arr, [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ], fcn, ctx );
+<span class="hljs-comment">// returns [ 6, 15 ]</span>
+
+<span class="hljs-keyword">var</span> cnt = ctx.count;
+<span class="hljs-comment">// returns 6</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function <strong>requires</strong> an array-like object containing an <code>initial</code> value for the accumulator for each reduction. The number of <code>initial</code> values must equal the size of the outermost input array dimension.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> filledarrayBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled-by'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add'</span> );
+<span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zeros'</span> );
+<span class="hljs-keyword">var</span> reduce2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/reduce2d'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> i </span>) </span>{
+    <span class="hljs-keyword">var</span> rand = discreteUniform( -<span class="hljs-number">10</span>*(i+<span class="hljs-number">1</span>), <span class="hljs-number">10</span>*(i+<span class="hljs-number">1</span>) );
+    <span class="hljs-keyword">return</span> filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'float64'</span>, rand );
+}
+
+<span class="hljs-comment">// Create a nested array of arrays:</span>
+<span class="hljs-keyword">var</span> x = filledarrayBy( <span class="hljs-number">10</span>, <span class="hljs-string">'generic'</span>, fill );
+
+<span class="hljs-comment">// Create an explicit binary function:</span>
+<span class="hljs-keyword">var</span> f = naryFunction( add, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Compute the sums along the innermost dimension...</span>
+<span class="hljs-keyword">var</span> y = reduce2d( x, zeros( x.length ), f );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x:'</span> );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'y:'</span> );
+<span class="hljs-built_in">console</span>.log( y );
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

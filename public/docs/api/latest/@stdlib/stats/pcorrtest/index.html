@@ -1,0 +1,141 @@
+<h1 id="correlation-test">Correlation Test</h1><blockquote><p>Compute a Pearson product-moment correlation test between paired samples.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pcorrtest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/pcorrtest'</span> );
+</code></pre><h4 id="pcorrtest-x-y-opts-">pcorrtest( x, y[, opts] )</h4><p>By default, the function performs a t-test for the null hypothesis that the paired data in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">arrays</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a> <code>x</code> and <code>y</code> have a <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson correlation coefficient</a> of zero.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.7</span>, -<span class="hljs-number">1.6</span>, -<span class="hljs-number">0.2</span>, -<span class="hljs-number">1.2</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1.9</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">1.1</span>, <span class="hljs-number">0.1</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">4.4</span>, <span class="hljs-number">5.5</span>, <span class="hljs-number">1.6</span>, <span class="hljs-number">4.6</span>, <span class="hljs-number">3.4</span> ];
+
+<span class="hljs-keyword">var</span> out = pcorrtest( x, y );
+<span class="hljs-comment">/* e.g., returns
+    {
+        'alpha': 0.05,
+        'rejected': true,
+        'pValue': ~0.006,
+        'statistic': ~3.709,
+        'ci': [ ~0.332, ~0.95 ],
+        'nullValue': 0,
+        'pcorr': ~0.795,
+        // ...
+    }
+*/</span>
+</code></pre><p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the results of the hypothesis test. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( out.print() );
+<span class="hljs-comment">/* e.g., =>
+    t-test for Pearson correlation coefficient
+
+    Alternative hypothesis: True correlation coefficient is not equal to 0
+
+        pValue: 0.006
+        statistic: 3.709
+        95% confidence interval: [0.3315,0.9494]
+
+    Test Decision: Reject null in favor of alternative at 5% significance level
+*/</span>
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li><li><strong>alternative</strong>: Either <code>two-sided</code>, <code>less</code> or <code>greater</code>. Indicates whether the alternative hypothesis is that <code>x</code> has a larger mean than <code>y</code> (<code>greater</code>), <code>x</code> has a smaller mean than <code>y</code> (<code>less</code>) or the means are the same (<code>two-sided</code>). Default: <code>two-sided</code>.</li><li><strong>rho</strong>: <code>number</code> denoting the correlation between the <code>x</code> and <code>y</code> variables under the null hypothesis. Default: <code>0</code>.</li></ul><p>By default, the hypothesis test is carried out at a significance level of <code>0.05</code>. To choose a different significance level, set the <code>alpha</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.7</span>, -<span class="hljs-number">1.6</span>, -<span class="hljs-number">0.2</span>, -<span class="hljs-number">1.2</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1.9</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">1.1</span>, <span class="hljs-number">0.1</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">4.4</span>, <span class="hljs-number">5.5</span>, <span class="hljs-number">1.6</span>, <span class="hljs-number">4.6</span>, <span class="hljs-number">3.4</span> ];
+
+<span class="hljs-keyword">var</span> out = pcorrtest( x, y, {
+    <span class="hljs-string">'alpha'</span>: <span class="hljs-number">0.1</span>
+});
+<span class="hljs-keyword">var</span> table = out.print();
+<span class="hljs-comment">/* e.g., returns
+    t-test for Pearson correlation coefficient
+
+    Alternative hypothesis: True correlation coefficient is not equal to 0
+
+        pValue: 0.006
+        statistic: 3.709
+        90% confidence interval: [0.433,0.9363]
+
+    Test Decision: Reject null in favor of alternative at 10% significance level
+*/</span>
+</code></pre><p>By default, a two-sided test is performed. To perform either of the one-sided tests, set the <code>alternative</code> option to <code>less</code> or <code>greater</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.7</span>, -<span class="hljs-number">1.6</span>, -<span class="hljs-number">0.2</span>, -<span class="hljs-number">1.2</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1.9</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">1.1</span>, <span class="hljs-number">0.1</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">4.4</span>, <span class="hljs-number">5.5</span>, <span class="hljs-number">1.6</span>, <span class="hljs-number">4.6</span>, <span class="hljs-number">3.4</span> ];
+
+<span class="hljs-keyword">var</span> out = pcorrtest( x, y, {
+    <span class="hljs-string">'alternative'</span>: <span class="hljs-string">'less'</span>
+});
+<span class="hljs-keyword">var</span> table = out.print();
+<span class="hljs-comment">/* e.g., returns
+    t-test for Pearson correlation coefficient
+
+    Alternative hypothesis: True correlation coefficient is less than 0
+
+        pValue: 0.997
+        statistic: 3.709
+        95% confidence interval: [-1,0.9363]
+
+    Test Decision: Fail to reject null in favor of alternative at 5% significance level
+*/</span>
+
+out = pcorrtest( x, y, {
+    <span class="hljs-string">'alternative'</span>: <span class="hljs-string">'greater'</span>
+});
+table = out.print();
+<span class="hljs-comment">/* e.g., returns
+    t-test for Pearson correlation coefficient
+
+    Alternative hypothesis: True correlation coefficient is greater than 0
+
+        pValue: 0.003
+        statistic: 3.709
+        95% confidence interval: [0.433,1]
+
+    Test Decision: Reject null in favor of alternative at 5% significance level
+*/</span>
+</code></pre><p>To test whether the correlation coefficient is equal to some other value than <code>0</code>, set the <code>rho</code> option. Hypotheses tests for correlation coefficients besides zero are carried out using the <a href="https://en.wikipedia.org/wiki/Fisher_transformation">Fisher z-transformation</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.7</span>, -<span class="hljs-number">1.6</span>, -<span class="hljs-number">0.2</span>, -<span class="hljs-number">1.2</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1.9</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">1.1</span>, <span class="hljs-number">0.1</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">4.4</span>, <span class="hljs-number">5.5</span>, <span class="hljs-number">1.6</span>, <span class="hljs-number">4.6</span>, <span class="hljs-number">3.4</span> ];
+
+<span class="hljs-keyword">var</span> out = pcorrtest( x, y, {
+    <span class="hljs-string">'rho'</span>: <span class="hljs-number">0.8</span>
+});
+<span class="hljs-comment">/* e.g., returns
+    {
+        'alpha': 0.05,
+        'rejected': false,
+        'pValue': ~0.972,
+        'statistic': ~-0.035,
+        'ci': [ ~0.332, ~0.949 ],
+        'nullValue': 0.8,
+        'pcorr': ~0.795,
+        // ...
+    }
+*/</span>
+
+<span class="hljs-keyword">var</span> table = out.print();
+<span class="hljs-comment">/* e.g., returns
+    Fisher's z transform test for Pearson correlation coefficient
+
+    Alternative hypothesis: True correlation coefficient is not equal to 0.8
+
+        pValue: 0.972
+        statistic: -0.0351
+        95% confidence interval: [0.3315,0.9494]
+
+    Test Decision: Fail to reject null in favor of alternative at 5% significance level
+*/</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rnorm = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> );
+<span class="hljs-keyword">var</span> sqrt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sqrt'</span> );
+<span class="hljs-keyword">var</span> pcorrtest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/pcorrtest'</span> );
+
+<span class="hljs-keyword">var</span> table;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> rho;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+rho = <span class="hljs-number">0.5</span>;
+x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">300</span> );
+y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">300</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">300</span>; i++ ) {
+    x[ i ] = rnorm( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
+    y[ i ] = ( rho * x[ i ] ) + rnorm( <span class="hljs-number">0.0</span>, sqrt( <span class="hljs-number">1.0</span> - (rho*rho) ) );
+}
+
+out = pcorrtest( x, y );
+table = out.print();
+<span class="hljs-built_in">console</span>.log( table );
+
+out = pcorrtest( x, y, {
+    <span class="hljs-string">'rho'</span>: <span class="hljs-number">0.5</span>
+});
+table = out.print();
+<span class="hljs-built_in">console</span>.log( table );
+</code></pre></section><section class="related"></section><section class="links"></section>

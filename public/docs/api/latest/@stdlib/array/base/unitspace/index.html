@@ -1,0 +1,37 @@
+<h1 id="unitspace">unitspace</h1><blockquote><p>Generate a linearly spaced numeric array whose elements increment by 1.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unitspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/unitspace'</span> );
+</code></pre><h4 id="unitspace-start-stop-increment-">unitspace( start, stop, increment )</h4><p>Generates a linearly spaced numeric <code>array</code> whose elements increment by <code>1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = unitspace( <span class="hljs-number">0</span>, <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4, 5 ]</span>
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>The output <code>array</code> is guaranteed to include the <code>start</code> value but does <strong>not</strong> include the <code>stop</code> value. Beware that values subsequent to the <code>start</code> value are subject to floating-point errors. Hence,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = unitspace( -<span class="hljs-number">0.7</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns [ -0.7, ~0.3 ]</span>
+</code></pre><p>where <code>arr[1]</code> is only guaranteed to be approximately equal to <code>0.3</code>.</p><p>If you desire more control over element precision, consider using <a href="/docs/api/latest/@stdlib/math/base/special/roundn">roundn</a>:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> roundn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/roundn'</span> );
+
+<span class="hljs-comment">// Create an array subject to floating-point errors:</span>
+<span class="hljs-keyword">var</span> arr = unitspace( -<span class="hljs-number">10.7</span>, <span class="hljs-number">11.7</span> );
+
+<span class="hljs-comment">// Round each value to the nearest hundredth:</span>
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    arr[ i ] = roundn( arr[ i ], -<span class="hljs-number">2</span> );
+}
+
+<span class="hljs-built_in">console</span>.log( arr.join( <span class="hljs-string">'\n'</span> ) );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sort2hp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gsort2hp'</span> );
+<span class="hljs-keyword">var</span> filledBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/filled-by'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> unitspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/unitspace'</span> );
+
+<span class="hljs-comment">// Generate an array of random numbers:</span>
+<span class="hljs-keyword">var</span> x = filledBy( <span class="hljs-number">10</span>, randu );
+
+<span class="hljs-comment">// Generate an array of indices:</span>
+<span class="hljs-keyword">var</span> idx = unitspace( <span class="hljs-number">0</span>, x.length );
+
+<span class="hljs-comment">// Create a temporary array to avoid mutation:</span>
+<span class="hljs-keyword">var</span> tmp = x.slice();
+
+<span class="hljs-comment">// Sort the index array according to the sort order of `x`:</span>
+sort2hp( x.length, <span class="hljs-number">1</span>, tmp, <span class="hljs-number">1</span>, idx, <span class="hljs-number">1</span> );
+
+<span class="hljs-built_in">console</span>.log( x );
+<span class="hljs-built_in">console</span>.log( idx );
+</code></pre></section><section class="related"></section><section class="links"></section>

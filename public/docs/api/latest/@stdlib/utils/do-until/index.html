@@ -1,0 +1,46 @@
+<h1 id="dountil">doUntil</h1><blockquote><p>Invoke a function until a test condition is true.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> doUntil = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/do-until'</span> );
+</code></pre><h4 id="dountil-fcn-predicate-thisarg--">doUntil( fcn, predicate[, thisArg ] )</h4><p>Invokes a <code>function</code> until a <code>predicate</code> function returns <code>true</code>. Note that the <code>predicate</code> function is evaluated <strong>after</strong> executing <code>fcn</code>; thus, <code>fcn</code> <strong>always</strong> executes at least once.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> i </span>) </span>{
+    <span class="hljs-keyword">return</span> ( i >= <span class="hljs-number">5</span> );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beep</span>(<span class="hljs-params"> i </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'boop: %d'</span>, i );
+}
+
+doUntil( beep, predicate );
+<span class="hljs-comment">/* =>
+    boop: 0
+    boop: 1
+    boop: 2
+    boop: 3
+    boop: 4
+*/</span>
+</code></pre><p>Both the <code>predicate</code> function and the <code>function</code> to invoke are provided a single argument:</p><ul><li><code>i</code>: iteration number (starting from zero)</li></ul><p>To set the function execution context for the invoked function, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> i </span>) </span>{
+    <span class="hljs-keyword">return</span> ( i >= <span class="hljs-number">5</span> );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">count</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+doUntil( count, predicate, context );
+
+<span class="hljs-built_in">console</span>.log( context.count );
+<span class="hljs-comment">// => 5</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> doUntil = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/do-until'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> ( randu() &#x3C;= <span class="hljs-number">0.05</span> );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> i </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( i );
+}
+
+doUntil( log, predicate );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/async/do-until"><code>@stdlib/utils/async/do-until</code></a></span><span class="delimiter">: </span><span class="description">invoke a function until a test condition is true.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/do-until-each"><code>@stdlib/utils/do-until-each</code></a></span><span class="delimiter">: </span><span class="description">until a test condition is true, invoke a function for each element in a collection.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/do-while"><code>@stdlib/utils/do-while</code></a></span><span class="delimiter">: </span><span class="description">invoke a function while a test condition is true.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/until"><code>@stdlib/utils/until</code></a></span><span class="delimiter">: </span><span class="description">invoke a function until a test condition is true.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/while"><code>@stdlib/utils/while</code></a></span><span class="delimiter">: </span><span class="description">invoke a function while a test condition is true.</span></li></ul></section><section class="links"></section>

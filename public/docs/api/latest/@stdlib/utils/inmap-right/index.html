@@ -1,0 +1,98 @@
+<h1 id="inmapright">inmapRight</h1><blockquote><p>Invoke a function for each element in a collection and update the collection in-place, iterating from right to left.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inmapRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inmap-right'</span> );
+</code></pre><h4 id="inmapright-collection-fcn-thisarg--">inmapRight( collection, fcn[, thisArg ] )</h4><p>Invokes a <code>function</code> for each element in a <code>collection</code> and updates the <code>collection</code> in-place, iterating from right to left.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scale</span>(<span class="hljs-params"> value, index </span>) </span>{
+    <span class="hljs-keyword">return</span> value * index;
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> out = inmapRight( arr, scale );
+<span class="hljs-comment">// returns [ 0, 2, 6, 12 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( out === arr );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>The invoked <code>function</code> is provided three arguments:</p><ul><li><code>value</code>: collection element</li><li><code>index</code>: collection index</li><li><code>collection</code>: input collection</li></ul><p>Basic support for dynamic collections is provided. Note, however, that index incrementation is <strong>not</strong> guaranteed to be monotonically <strong>decreasing</strong>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scale1</span>(<span class="hljs-params"> value, index, collection </span>) </span>{
+    i += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span> ( index === <span class="hljs-number">0</span> &#x26;&#x26; collection.length &#x3C; <span class="hljs-number">10</span> ) {
+        collection.unshift( i+<span class="hljs-number">1</span> );
+    }
+    <span class="hljs-keyword">return</span> value * index;
+}
+
+<span class="hljs-keyword">var</span> out = inmapRight( arr, scale1 );
+<span class="hljs-comment">// returns [ 0, 0, 0, 0, 0, 0, 0, 2, 6, 12 ]</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scale2</span>(<span class="hljs-params"> value, index, collection </span>) </span>{
+    collection.shift();
+    <span class="hljs-keyword">return</span> value * index;
+}
+
+arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+out = inmapRight( arr, scale2 );
+<span class="hljs-comment">// returns [ 3, 12 ]</span>
+</code></pre><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> value </span>) </span>{
+    <span class="hljs-built_in">this</span>.sum += value;
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> value;
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'sum'</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> out = inmapRight( arr, sum, context );
+<span class="hljs-comment">// returns [ 1, 2, 3, 4 ]</span>
+
+<span class="hljs-keyword">var</span> mean = context.sum / context.count;
+<span class="hljs-comment">// returns 2.5</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</p></li><li><p>The function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"><code>Array.prototype.map</code></a> in the following ways:</p><ul><li><p>The function returns the input <code>collection</code>.</p></li><li><p>The function modifies <code>collection</code> elements in-place.</p></li><li><p>The function does <strong>not</strong> skip <code>undefined</code> elements.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> value, index </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %s'</span>, index, value );
+    <span class="hljs-keyword">return</span> value;
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, , , <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> out = inmapRight( arr, log );
+<span class="hljs-comment">/* =>
+    3: 4
+    2: undefined
+    1: undefined
+    0: 1
+*/</span>
+</code></pre></li><li><p>The function provides limited support for dynamic collections (i.e., collections whose <code>length</code> changes during execution).</p></li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isEven = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-even'</span> ).isPrimitive;
+<span class="hljs-keyword">var</span> inmapRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inmap-right'</span> );
+
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scale</span>(<span class="hljs-params"> value, index, collection </span>) </span>{
+    i += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span> ( isEven( i ) ) {
+        collection.pop();
+    } <span class="hljs-keyword">else</span> {
+        collection.unshift( i+<span class="hljs-number">1</span> );
+    }
+    <span class="hljs-keyword">return</span> value * index;
+}
+
+arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">100</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    arr[ i ] = i;
+}
+
+i = <span class="hljs-number">0</span>;
+out = inmapRight( arr, scale );
+
+bool = ( out === arr );
+<span class="hljs-built_in">console</span>.log( bool );
+
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/for-each-right"><code>@stdlib/utils/for-each-right</code></a></span><span class="delimiter">: </span><span class="description">invoke a function for each element in a collection, iterating from right to left.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inmap"><code>@stdlib/utils/inmap</code></a></span><span class="delimiter">: </span><span class="description">invoke a function for each element in a collection and update the collection in-place.</span></li></ul></section><section class="links"></section>

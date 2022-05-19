@@ -1,0 +1,20 @@
+<h1 id="utf-16-unpaired-surrogate">UTF-16 Unpaired Surrogate</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match an unpaired <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> surrogate.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reUtf16UnpairedSurrogate = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/utf16-unpaired-surrogate'</span> );
+</code></pre><h4 id="reutf16unpairedsurrogate">reUtf16UnpairedSurrogate()</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to match an unpaired <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> surrogate.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_UTF16_UNPAIRED_SURROGATE = reUtf16UnpairedSurrogate();
+
+<span class="hljs-keyword">var</span> bool = RE_UTF16_UNPAIRED_SURROGATE.test( <span class="hljs-string">'abc\uD800def'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre><h4 id="reutf16unpairedsurrogateregexp">reUtf16UnpairedSurrogate.REGEXP</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match an unpaired <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> surrogate.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = reUtf16UnpairedSurrogate.REGEXP.test( <span class="hljs-string">'abc\uD800def'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reUtf16UnpairedSurrogate = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/utf16-unpaired-surrogate'</span> );
+
+<span class="hljs-keyword">var</span> RE_UTF16_UNPAIRED_SURROGATE = reUtf16UnpairedSurrogate();
+
+<span class="hljs-keyword">var</span> bool = RE_UTF16_UNPAIRED_SURROGATE.test( <span class="hljs-string">'\uD800'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_UTF16_UNPAIRED_SURROGATE.test( <span class="hljs-string">'\uDC00'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_UTF16_UNPAIRED_SURROGATE.test( <span class="hljs-string">'abc'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/utf16-surrogate-pair"><code>@stdlib/regexp/utf16-surrogate-pair</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to match a UTF-16 surrogate pair.</span></li></ul></section><section class="links"></section>

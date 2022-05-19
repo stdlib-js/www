@@ -1,0 +1,56 @@
+<h1 id="itersomeby">iterSomeBy</h1><blockquote><p>Test whether at least <code>n</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> values pass a test implemented by a predicate function.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterSomeBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/some-by'</span> );
+</code></pre><h4 id="itersomeby-iterator-n-predicate-thisarg-">iterSomeBy( iterator, n, predicate[, thisArg] )</h4><p>Tests whether at least <code>n</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> values <strong>pass</strong> a test implemented by a <code>predicate</code> function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> ( v > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
+
+<span class="hljs-keyword">var</span> bool = iterSomeBy( arr, <span class="hljs-number">4</span>, predicate );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>If a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a> does not return any iterated values, the function returns <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-keyword">var</span> bool = iterSomeBy( array2iterator( [] ), <span class="hljs-number">1</span>, predicate );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>A <code>predicate</code> function is provided two arguments:</p><ul><li><strong>value</strong>: iterated value</li><li><strong>index</strong>: iteration index (zero-based)</li></ul><p>To set the execution context of the <code>predicate</code> function, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> ( v > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ] );
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> bool = iterSomeBy( arr, <span class="hljs-number">3</span>, predicate, ctx );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-keyword">var</span> n = ctx.count;
+<span class="hljs-comment">// returns 4</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function immediately returns upon encountering <code>n</code> truthy return values.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
+<span class="hljs-keyword">var</span> iterSomeBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/some-by'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">threshold</span>(<span class="hljs-params"> r </span>) </span>{
+    <span class="hljs-keyword">return</span> ( r >= <span class="hljs-number">0.95</span> );
+}
+
+<span class="hljs-comment">// Create an iterator which generates uniformly distributed pseudorandom numbers:</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">100</span>
+};
+<span class="hljs-keyword">var</span> riter = randu( opts );
+
+<span class="hljs-comment">// Determine if at least 5 values exceed a threshold:</span>
+<span class="hljs-keyword">var</span> bool = iterSomeBy( riter, <span class="hljs-number">5</span>, threshold );
+<span class="hljs-comment">// returns &#x3C;boolean></span>
+
+<span class="hljs-built_in">console</span>.log( bool );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/any-by"><code>@stdlib/iter/any-by</code></a></span><span class="delimiter">: </span><span class="description">test whether at least one iterated value passes a test implemented by a predicate function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/every-by"><code>@stdlib/iter/every-by</code></a></span><span class="delimiter">: </span><span class="description">test whether every iterated value passes a test implemented by a predicate function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/for-each"><code>@stdlib/iter/for-each</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which invokes a function for each iterated value before returning the iterated value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/none-by"><code>@stdlib/iter/none-by</code></a></span><span class="delimiter">: </span><span class="description">test whether every iterated value fails a test implemented by a predicate function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/some"><code>@stdlib/iter/some</code></a></span><span class="delimiter">: </span><span class="description">test whether at least <code>n</code> iterated values are truthy.</span></li></ul></section><section class="links"></section>

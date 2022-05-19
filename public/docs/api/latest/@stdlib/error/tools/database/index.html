@@ -1,0 +1,19 @@
+<h1 id="error-database">Error Database</h1><blockquote><p>Standard library error code database.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> database = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/tools/database'</span> );
+</code></pre><h4 id="database">database()</h4><p>Returns a mapping of standard library error codes to their corresponding error messages.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> db = database();
+<span class="hljs-comment">// returns {...}</span>
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> invertObject = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/object-inverse'</span> );
+<span class="hljs-keyword">var</span> replace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/replace'</span> );
+<span class="hljs-keyword">var</span> database = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/error/tools/database'</span> );
+
+<span class="hljs-keyword">var</span> db = database();
+<span class="hljs-keyword">var</span> errorMap = invertObject( db );
+<span class="hljs-keyword">var</span> RE_ERR_MSG = <span class="hljs-regexp">/Error\( '([^']+)' \)/</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replacer</span>(<span class="hljs-params"> match, p1 </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'Error( formatProdErrorMessage( \''</span> + errorMap[ p1 ] + <span class="hljs-string">'\' ) )'</span>;
+}
+
+<span class="hljs-keyword">var</span> code = <span class="hljs-string">'throw new Error( \'insufficient input arguments. Must provide at least one iterator function.\' );'</span>;
+<span class="hljs-keyword">var</span> transformed = replace( code, RE_ERR_MSG, replacer );
+<span class="hljs-comment">// returns 'throw new Error( formatProdErrorMessage( \'04\' ) );'</span>
+</code></pre></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"></section><section class="links"></section>

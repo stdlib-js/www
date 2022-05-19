@@ -1,0 +1,21 @@
+<h1 id="seconds-in-a-week">Seconds in a Week</h1><blockquote><p>Number of seconds in a week.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> SECONDS_IN_WEEK = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/time/seconds-in-week'</span> );
+</code></pre><h4 id="seconds_in_week">SECONDS_IN_WEEK</h4><p>Number of seconds in a week.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( SECONDS_IN_WEEK === <span class="hljs-number">604800</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The value is a generalization and does <strong>not</strong> take into account inaccuracies due to daylight savings conventions, crossing timezones, or other complications with time and dates.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> roundn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/roundn'</span> );
+<span class="hljs-keyword">var</span> SECONDS_IN_WEEK = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/time/seconds-in-week'</span> );
+
+<span class="hljs-keyword">var</span> secs;
+<span class="hljs-keyword">var</span> wks;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">wks2secs</span>(<span class="hljs-params"> wks </span>) </span>{
+    <span class="hljs-keyword">return</span> wks * SECONDS_IN_WEEK;
+}
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+    wks = roundn( randu()*<span class="hljs-number">20.0</span>, -<span class="hljs-number">2</span> );
+    secs = wks2secs( wks );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d weeks => %d seconds'</span>, wks, secs );
+}
+</code></pre></section><section class="related"></section><section class="links"></section>

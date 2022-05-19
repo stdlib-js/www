@@ -1,0 +1,83 @@
+<h1 id="iswriteonlypropertyin">isWriteOnlyPropertyIn</h1><blockquote><p>Test if an object's own or inherited property is <a href="/docs/api/latest/@stdlib/utils/define-write-only-accessor">write-only</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isWriteOnlyPropertyIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-write-only-property-in'</span> );
+</code></pre><h4 id="iswriteonlypropertyin-value-property-">isWriteOnlyPropertyIn( value, property )</h4><p>Returns a <code>boolean</code> indicating if a <code>value</code> has a <a href="/docs/api/latest/@stdlib/utils/define-write-only-accessor">write-only</a> <code>property</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
+
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> obj;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.foo = <span class="hljs-string">'bar'</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+
+defineProperty( Foo.prototype, <span class="hljs-string">'beep'</span>, {
+    <span class="hljs-string">'configurable'</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">'enumerable'</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">'writable'</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">'value'</span>: <span class="hljs-string">'boop'</span>
+});
+
+defineProperty( Foo.prototype, <span class="hljs-string">'accessor'</span>, {
+    <span class="hljs-string">'configurable'</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">'enumerable'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'set'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setter</span>(<span class="hljs-params"> v </span>) </span>{
+        obj.foo = v;
+    }
+});
+
+obj = <span class="hljs-keyword">new</span> Foo();
+
+bool = isWriteOnlyPropertyIn( obj, <span class="hljs-string">'foo'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isWriteOnlyPropertyIn( obj, <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isWriteOnlyPropertyIn( obj, <span class="hljs-string">'accessor'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Value arguments other than <code>null</code> or <code>undefined</code> are coerced to <code>objects</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isWriteOnlyPropertyIn( <span class="hljs-string">'beep'</span>, <span class="hljs-string">'length'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></li><li><p>Property arguments are coerced to <code>strings</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
+
+<span class="hljs-keyword">var</span> obj = {};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setter</span>(<span class="hljs-params"> v </span>) </span>{
+    obj.null = v;
+}
+
+defineProperty( obj, <span class="hljs-string">'null'</span>, {
+    <span class="hljs-string">'configurable'</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">'enumerable'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'set'</span>: setter
+});
+
+<span class="hljs-keyword">var</span> bool = isWriteOnlyPropertyIn( obj, <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isWriteOnlyPropertyIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-write-only-property-in'</span> );
+
+<span class="hljs-keyword">var</span> bool = isWriteOnlyPropertyIn( <span class="hljs-string">'a'</span>, <span class="hljs-string">'length'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isWriteOnlyPropertyIn( { <span class="hljs-string">'a'</span>: <span class="hljs-string">'b'</span> }, <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isWriteOnlyPropertyIn( [ <span class="hljs-string">'a'</span> ], <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isWriteOnlyPropertyIn( { <span class="hljs-string">'null'</span>: <span class="hljs-literal">false</span> }, <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isWriteOnlyPropertyIn( { <span class="hljs-string">'[object Object]'</span>: <span class="hljs-literal">false</span> }, {} );
+<span class="hljs-comment">// returns false</span>
+
+bool = isWriteOnlyPropertyIn( {}, <span class="hljs-string">'toString'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isWriteOnlyPropertyIn( {}, <span class="hljs-string">'hasOwnProperty'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isWriteOnlyPropertyIn( <span class="hljs-literal">null</span>, <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isWriteOnlyPropertyIn( <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>, <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-read-only-property-in"><code>@stdlib/assert/is-read-only-property-in</code></a></span><span class="delimiter">: </span><span class="description">test if an object's own or inherited property is read-only.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-read-write-property-in"><code>@stdlib/assert/is-read-write-property-in</code></a></span><span class="delimiter">: </span><span class="description">test if an object's own and inherited property is readable and writable.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-writable-property-in"><code>@stdlib/assert/is-writable-property-in</code></a></span><span class="delimiter">: </span><span class="description">test if an object's own or inherited property is writable.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-write-only-property"><code>@stdlib/assert/is-write-only-property</code></a></span><span class="delimiter">: </span><span class="description">test if an object's own property is write-only.</span></li></ul></section><section class="links"></section>

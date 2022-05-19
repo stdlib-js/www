@@ -1,0 +1,24 @@
+<h1 id="ceilsd">ceilsd</h1><blockquote><p>Round a numeric value to the nearest number toward positive infinity with N significant figures.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ceilsd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ceilsd'</span> );
+</code></pre><h4 id="ceilsd-x-n-b-">ceilsd( x, n[, b] )</h4><p>Rounds a <code>numeric</code> value to the nearest <code>number</code> toward positive infinity with <code>n</code> significant figures.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = ceilsd( <span class="hljs-number">3.141592653589793</span>, <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns 3.1416</span>
+
+v = ceilsd( <span class="hljs-number">3.141592653589793</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 4.0</span>
+
+v = ceilsd( <span class="hljs-number">12368.0</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 13000.0</span>
+</code></pre><p>The default base is <code>10</code> (decimal). To round using a different base, provide a third argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = ceilsd( <span class="hljs-number">0.0313</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 0.046875</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> ceilsd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ceilsd'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = (randu()*<span class="hljs-number">10000.0</span>) - <span class="hljs-number">5000.0</span>;
+    y = ceilsd( x, <span class="hljs-number">5</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d. Rounded: %d.'</span>, x, y );
+}
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ceil"><code>@stdlib/math/base/special/ceil</code></a></span><span class="delimiter">: </span><span class="description">round a double-precision floating-point number toward positive infinity.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/floorsd"><code>@stdlib/math/base/special/floorsd</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest number toward negative infinity with N significant figures.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/roundsd"><code>@stdlib/math/base/special/roundsd</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest number with N significant figures.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/truncsd"><code>@stdlib/math/base/special/truncsd</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest number toward zero with N significant figures.</span></li></ul></section><section class="links"></section>
