@@ -47,7 +47,9 @@ class Feedback extends React.Component {
 		super( props );
 		this.state = {
 			'sentiment': '',
-			'explanation': ''
+			'explanation': '',
+			'error': false,
+			'submitted': false
 		};
 	}
 
@@ -83,7 +85,9 @@ class Feedback extends React.Component {
 	_cancelSubmission = () => {
 		this.setState({
 			'sentiment': '',
-			'explanation': ''
+			'explanation': '',
+			'error': false,
+			'submitted': false
 		});
 	}
 
@@ -94,10 +98,89 @@ class Feedback extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onSubmit = ( event ) => {
-		event.preventDefault();
+		var blob;
+		var self;
+		var el;
 
-		// TODO: add AJAX logic => https://formsubmit.co/7a22568a376a058e7a22f1e4d8eead4a
-		console.log( 'Form submitted' );
+		self = this;
+
+		event.preventDefault();
+		el = event.target;
+
+		this.setState({
+			'error': false,
+			'submitted': false
+		});
+
+		blob = {
+			'method': 'POST',
+			'headers': {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			'body': JSON.stringify({
+				'pkg': this.props.pkg,
+				'version': this.props.version,
+
+				'sentiment': this.state.sentiment,
+				'explanation': this.state.explanation,
+
+				'_subject': 'Re: [feedback] @stdlib/' + this.props.pkg,
+				'_template': 'table',
+				'_url': 'https://stdlib.io',
+				'_cc': 'pburckhardt@outlook.com',
+				'_captcha': 'false',
+				'_honey': el.elements[ '__invisible_input__' ].value
+			})
+		};
+
+		fetch( 'https://formsubmit.co/ajax/7a22568a376a058e7a22f1e4d8eead4a', blob )
+			.then( toJSON )
+			.then( onData )
+			.catch( onError );
+
+		/**
+		* Callback invoked upon receiving a JSON resource.
+		*
+		* @private
+		* @param {Object} res - response
+		* @returns {Promise} promise to resolve the response as JSON
+		*/
+		function toJSON( res ) {
+			return res.json();
+		}
+
+		/**
+		* Callback invoked upon resolving response data.
+		*
+		* @private
+		* @param {Object} data - response data
+		* @returns {void}
+		*/
+		function onData( data ) {
+			var err = ( data.success === 'false' );
+			if ( err ) {
+				console.log( 'Error: unexpected error. Unable to submit feedback. ' + data.message );
+			}
+			self.setState({
+				'error': err,
+				'submitted': true
+			});
+		}
+
+		/**
+		* Callback invoked upon encountering an error.
+		*
+		* @private
+		* @param {Error} error - error object
+		*/
+		function onError( error ) {
+			console.log( 'Error: unexpected error. Unable to submit feedback. ' + error.message );
+			self.setState({
+				'error': true,
+				'submitted': false
+			});
+		}
 	}
 
 	/**
@@ -156,43 +239,97 @@ class Feedback extends React.Component {
 	}
 
 	/**
+	* Renders a form element for providing an explanation.
+	*
+	* @private
+	* @returns {ReactElement} react element
+	*/
+	_renderExplanation() {
+		return (
+			<TextField
+				name="explanation"
+				label={ this.state.sentiment === 'positive' ? 'What do you like about this page?' : 'How can we improve this page?' }
+				multiline
+				rows={ 3 }
+				maxRows={ 12 }
+				value={ this.state.explanation }
+				onChange={ this._onExplanationChange }
+				fullWidth
+			/>
+		);
+	}
+
+	/**
+	* Renders form elements providing buttons for submitting feedback.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	_renderSubmitButtons() {
+		return (
+			<div className="readme-feedback-submit-buttons">
+				<button
+					type="button"
+					className="readme-feedback-cancel-button"
+					onClick={ this._cancelSubmission }
+				>
+					Cancel
+				</button>
+				<button
+					type="submit"
+					className="readme-feedback-submit-button"
+				>
+					Submit
+				</button>
+			</div>
+		);
+	}
+
+	/**
+	* Renders a form footnote.
+	*
+	* @private
+	*/
+	_renderFootnote() {
+		if ( this.state.error ) {
+			return (
+				<div className="readme-feedback-footnote readme-feedback-error">
+					<p>
+						Uh oh! An unexpected error occurred when attempting to submit your feedback. Please try again.
+					</p>
+					<p>
+						If this issue persists, please reach out to us over chat! Thank you again for choosing stdlib. Your feedback is greatly appreciated!
+					</p>
+				</div>
+			);
+		}
+		return (
+			<div className="readme-feedback-footnote">
+				<p>
+					<sup>*</sup>Please note that we can't reply to your submitted feedback. If you have questions, please reach out to us over chat!
+				</p>
+			</div>
+		);
+	}
+
+	/**
 	* Renders form elements for submitting feedback.
 	*
 	* @private
 	* @returns {ReactElement} React element
 	*/
 	_renderSubmit() {
+		if ( this.state.submitted && !this.state.error ) {
+			return (
+				<h3>Thank you for your feedback! Your feedback has been received!</h3>
+			);
+		}
 		return (
 			<Fragment>
 				<h3>Thank you for your feedback!</h3>
-				<TextField
-					name="explanation"
-					label={ this.state.sentiment === 'positive' ? 'What do you like about this page?' : 'How can we improve this page?' }
-					multiline
-					rows={ 3 }
-					maxRows={ 12 }
-					value={ this.state.explanation }
-					onChange={ this._onExplanationChange }
-					fullWidth
-				/>
-				<div className="readme-feedback-submit-buttons">
-					<button
-						type="button"
-						className="readme-feedback-cancel-button"
-						onClick={ this._cancelSubmission }
-					>
-						Cancel
-					</button>
-					<button
-						type="submit"
-						className="readme-feedback-submit-button"
-					>
-						Submit
-					</button>
-				</div>
-				<p>
-					<sup>*</sup>Please note that we can't reply to your submitted feedback. If you have questions, please reach out to us over chat!
-				</p>
+				{ this._renderExplanation() }
+				{ this._renderSubmitButtons() }
+				{ this._renderFootnote() }
 			</Fragment>
 		);
 	}
@@ -211,17 +348,7 @@ class Feedback extends React.Component {
 			>
 				{ this._renderSentiment() }
 				{ ( this.state.sentiment ) ? this._renderSubmit() : null }
-
-				<input type="hidden" name="pkg" value={ this.props.pkg } />
-				<input type="hidden" name="version" value={ this.props.version } />
-
-				<input type="hidden" name="_subject" value={ '[feedback] Package Documentation: @stdlib/' + this.props.pkg } />
-				<input type="hidden" name="_template" value="table" />
-				<input type="hidden" name="_url" value="https://stdlib.io" />
-				<input type="hidden" name="_cc" value="pburckhardt@outlook.com" />
-
-				<input type="hidden" name="_captcha" value="false" />
-				<input className="invisible" type="text" name="_honey" />
+				<input className="invisible" type="text" name="__invisible_input__" />
 			</form>
 		);
 	}
