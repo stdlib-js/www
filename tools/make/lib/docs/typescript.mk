@@ -16,31 +16,28 @@
 # limitations under the License.
 #/
 
-# DEPENDENCIES #
-
-include $(TOOLS_MAKE_LIB_DIR)/docs/app.mk
-include $(TOOLS_MAKE_LIB_DIR)/docs/app_resources.mk
-include $(TOOLS_MAKE_LIB_DIR)/docs/typescript.mk
-
-
 # RULES #
 
 #/
-# Builds the API documentation.
+# Builds the TypeScript API documentation.
 #
 # @example
-# make api-docs
+# make api-docs-ts
 #/
-api-docs: api-docs-app api-docs-ts api-docs-resources
+api-docs-ts: $(NODE_MODULES) clean-api-docs-ts
+	$(QUIET) cd $(NODE_MODULES)/@stdlib/stdlib && $(MAKE) typedoc-html
+	$(QUIET) cd $(ROOT_DIR)
+	$(QUIET) mv $(NODE_MODULES)/@stdlib/stdlib/build/docs/typedoc/static $(WWW_DIR)/docs/ts/latest
 
-.PHONY: api-docs
+.PHONY: api-docs-ts
 
 #/
-# Deletes API documentation artifacts.
+# Deletes TypeScript API documentation artifacts.
 #
 # @example
-# make clean-api-docs
+# make clean-api-docs-ts
 #/
-clean-api-docs: clean-api-docs-app clean-api-docs-ts
+clean-api-docs-ts:
+	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(WWW_DIR)/docs/ts/latest
 
-.PHONY: clean-api-docs
+.PHONY: clean-api-docs-ts
