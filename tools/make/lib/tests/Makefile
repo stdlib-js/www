@@ -28,9 +28,9 @@ api_docs_pkg_tests ?= $(TOOLS_DIR)/scripts/api-docs/tests.js
 # Builds package tests.
 #
 # @example
-# make api-docs-pkg-tests
+# make pkg-tests
 #/
-api-docs-pkg-tests: $(NODE_MODULES) $(api_docs_pkg_tests)
+pkg-tests: $(NODE_MODULES) $(api_docs_pkg_tests)
 	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(api_docs_pkg_tests)"
 
-.PHONY: api-docs-pkg-tests
+.PHONY: pkg-tests
