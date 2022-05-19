@@ -89,6 +89,14 @@ To build package benchmark bundles,
 $ make pkg-benchmarks
 ```
 
+#### TypeScript Documentation
+
+To build TypeScript documentation,
+
+```bash
+$ make api-docs-ts
+```
+
 #### Resources
 
 Assuming the above build steps have completed, to generate documentation resources,
