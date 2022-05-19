@@ -339,6 +339,14 @@ a:active {
 }
 
 /*
+* Search results.
+*/
+
+.search-results h1 button.icon-button .icon {
+	fill: var(--theme-text-color);
+}
+
+/*
 * Runner results.
 */
 
