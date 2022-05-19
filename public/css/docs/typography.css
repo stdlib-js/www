@@ -327,11 +327,15 @@ a:active {
 .readme-feedback .MuiTextField-root label,
 .readme-feedback .MuiTextField-root textarea,
 .readme-feedback h3,
-.readme-feedback p {
+.readme-feedback-footnote {
 	font-family: var(--thin-font-family);
 	font-weight: normal;
 
 	color: var(--theme-text-color);
+}
+
+.readme-feedback-error {
+	color: var(--feedback-error-text-color);
 }
 
 /*

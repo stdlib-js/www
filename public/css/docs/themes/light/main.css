@@ -204,6 +204,11 @@ html[data-theme="light"] {
 	--feedback-sentiment-hover-border-color: unset;
 
 	/*
+	* Feedback error messages should be red.
+	*/
+	--feedback-error-text-color: #e90b03;
+
+	/*
 	* A list of related packages should have a blue border.
 	*/
 	--related-border-color: #007bff;
