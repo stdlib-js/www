@@ -48,8 +48,8 @@ function main() {
 	var dir;
 
 	dir = documentationPath();
-	if ( !exists( dir ) ) {
-		mkdir( dir );
+	if ( !exists( join( dir, 'package' ) ) ) {
+		mkdir( join( dir, 'package' ) );
 	}
 	// Resolve a package tree:
 	opts = {
