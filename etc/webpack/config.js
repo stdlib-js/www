@@ -582,6 +582,7 @@ module.exports = function(webpackEnv) {
 			// the HTML & assets that are part of the Webpack build.
 			isEnvProduction &&
 				new WorkboxWebpackPlugin.GenerateSW({
+					handler: 'NetworkFirst',
 					clientsClaim: true,
 					exclude: [/\.map$/, /asset-manifest\.json$/],
 					importWorkboxFrom: 'cdn',
