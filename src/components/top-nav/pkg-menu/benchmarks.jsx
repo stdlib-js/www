@@ -29,12 +29,13 @@ import { Link } from 'react-router-dom';
 *
 * @private
 * @param {Object} props - component properties
+* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @param {string} props.path - package documentation URL
 * @returns {ReactElement} React element
 */
 function Benchmarks( props ) {
 	return (
-		<li key="benchmarks" class="top-nav-item" role="menuitem">
+		<li key={ props.pkg+'-benchmarks' } class="top-nav-item" role="menuitem">
 			<Link to={ props.path+'/benchmarks' } title="Run package benchmarks">benchmarks</Link>
 		</li>
 	);

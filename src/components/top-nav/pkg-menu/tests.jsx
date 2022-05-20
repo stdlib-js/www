@@ -29,12 +29,13 @@ import { Link } from 'react-router-dom';
 *
 * @private
 * @param {Object} props - component properties
+* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @param {string} props.path - package documentation URL
 * @returns {ReactElement} React element
 */
 function Tests( props ) {
 	return (
-		<li key="tests" class="top-nav-item" role="menuitem">
+		<li key={ props.pkg+'-tests' } class="top-nav-item" role="menuitem">
 			<Link to={ props.path+'/tests' } title="Run package tests">tests</Link>
 		</li>
 	);

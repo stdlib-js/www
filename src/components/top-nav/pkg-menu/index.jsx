@@ -117,9 +117,9 @@ class PackageMenu extends React.Component {
 					role="menubar"
 				>
 					{ this.props.home ? <Home /> : null }
-					{ this.props.docs ? <Docs path={ path } /> : null }
-					{ this.props.benchmarks ? <Benchmarks path={ path } /> : null }
-					{ this.props.tests ? <Tests path={ path } /> : null }
+					{ this.props.docs ? <Docs pkg={ this.props.pkg } path={ path } /> : null }
+					{ this.props.benchmarks ? <Benchmarks pkg={ this.props.pkg } path={ path } /> : null }
+					{ this.props.tests ? <Tests pkg={ this.props.pkg } path={ path } /> : null }
 					{ this.props.src ? <Source pkg={ this.props.pkg } version={ version } /> : null }
 					{ this.props.npm ? <NPM pkg={ this.props.pkg } /> : null }
 					{ this.props.typescript ? <TypeScript pkg={ this.props.pkg } version={ this.props.version } /> : null }
