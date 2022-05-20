@@ -212,16 +212,6 @@ server {
   # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#error_page
   error_page 404 /404.html;
 
-  # Define files to be used as an index.
-  #
-  # ## Usage
-  #
-  # Syntax: `index file ...;`
-  # Default: `index index.html;`
-  #
-  # [1]: http://nginx.org/en/docs/http/ngx_http_index_module.html#index
-  index index.html index.htm;
-
   # Include common configuration rules:
   include common.conf;
 
@@ -459,6 +449,16 @@ server {
 
   # Define a root location directive:
   location / {
+    # Define files to be used as an index.
+    #
+    # ## Usage
+    #
+    # Syntax: `index file ...;`
+    # Default: `index index.html;`
+    #
+    # [1]: http://nginx.org/en/docs/http/ngx_http_index_module.html#index
+    index index.html index.htm;
+
     # Turn on auto-indexing of directory contents.
     #
     # [1]: http://nginx.org/en/docs/http/ngx_http_autoindex_module.html#autoindex
