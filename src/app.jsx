@@ -443,7 +443,7 @@ class App extends React.Component {
 			resources = this.props.data.resources;
 
 			// If we were able to resolve package resources, determine which links we want to display in the top navigation...
-			if ( this.props.isClient && resources && typeof ptr === 'number' ) {
+			if ( resources && typeof ptr === 'number' ) {
 				ptr *= 3; // Note: the resources array is a strided array
 				props.typescript = Boolean( resources[ ptr+OFFSETS.typescript ] );
 				if ( path === routes.PACKAGE_DEFAULT ) {
