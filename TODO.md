@@ -76,6 +76,8 @@
     -   pass the list to the parallel utility
     -   if the build process breaks, etc, can easily resume from where the process left off, as the script directory will still contain the scripts
     -   allows for "pause" and "resume"
+    
+    -   another idea is to perform a meta-build using Makefiles. E.g., for test bundles, can generate a Makefile with each bundle being a target and an associated recipe for generating the bundle assets. Then we can run the build target from the Makefile and Make will only build those bundle assets which have not yet been created. This would allow graceful resumption of bundling upon encountering an error.
 
 21. (docs) sidenote/marginnote styling: <https://edwardtufte.github.io/tufte-css/>
 
@@ -107,7 +109,7 @@
 
 29. (docs) README syntax highlighted example URLs (i.e., `require( '@stdlib/foo' )`, where `@stdlib/foo` is a hyperlink)
 
-30. (tools) process for generating TypeScript documentation
+30.
 
 31. (docs) It would be a nice (future) feature if we could make the docs an HTML5 mobile app which can be run offline:
 
