@@ -416,7 +416,7 @@ class TestRunner extends React.Component {
 				<h1>{ this.props.title }</h1>
 
 				<nav className="badges" aria-label="badges">
-					<ul className="badge-list">
+					<ul className="disable-select badge-list">
 						<li className="badge">
 							<a title="View build status" href={ GITHUB_PRE + this.props.standalone + GITHUB_WORKFLOW } >Build Status</a>
 						</li>
