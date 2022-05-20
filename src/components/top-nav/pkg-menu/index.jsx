@@ -112,7 +112,7 @@ class PackageMenu extends React.Component {
 				</button>
 				<ul
 					id='top-nav-package-menu'
-					className={ ( this.props.open ) ? 'top-nav-items-dropdown' : 'top-nav-items' }
+					className={ 'disable-select ' + ( ( this.props.open ) ? 'top-nav-items-dropdown' : 'top-nav-items' ) }
 					onClick={ this._onMenuClose }
 					role="menubar"
 				>
