@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Next from './next.jsx';
 import Prev from './prev.jsx';
 import Placeholder from './placeholder.jsx';
@@ -49,6 +50,15 @@ function Pagination( props ) {
 		</div>
 	);
 }
+
+
+// PROPERTIES //
+
+Pagination.propTypes = {
+	'next': PropTypes.string,
+	'prev': PropTypes.string,
+	'version': PropTypes.string
+};
 
 
 // EXPORTS //

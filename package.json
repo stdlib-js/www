@@ -79,6 +79,7 @@
     "fastify": "^3.29.0",
     "ignore-styles": "^5.0.1",
     "lunr": "^2.3.9",
+    "prop-types": "^15.8.1",
     "qs": "^6.10.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
