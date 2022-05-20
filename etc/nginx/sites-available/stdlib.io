@@ -323,6 +323,31 @@ server {
     proxy_pass http://127.0.0.1:3000;
   }
 
+  # Define a location directive for resolving the API documentation landing page:
+  location /docs/api {
+    # Set proxy headers passed to the proxied server.
+    #
+    # ## Usage
+    #
+    # Syntax: `proxy_set_header field value;`
+    # Default: `proxy_set_header Host $proxy_host; proxy_set_header Connection close;`
+    #
+    # [1]: https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-NginX-Proxy true;
+
+    # Set the protocol and address of the proxied server.
+    #
+    # ## Usage
+    #
+    # Syntax: `proxy_pass URL;`
+    #
+    # [1]: https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass
+    proxy_pass http://127.0.0.1:3000/docs/api;
+  }
+
   # Define a location directive for handling error decoder requests:
   location /e/ {
     # Set proxy headers passed to the proxied server.
