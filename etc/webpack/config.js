@@ -585,7 +585,7 @@ module.exports = function(webpackEnv) {
 					clientsClaim: true,
 					exclude: [/\.map$/, /asset-manifest\.json$/],
 					importWorkboxFrom: 'cdn',
-					navigateFallback: publicUrl,
+					// navigateFallback: publicUrl + '/index.html',
 					navigateFallbackBlacklist: [
 						// Exclude URLs starting with /_, as they're likely an API call
 						new RegExp('^/_'),
