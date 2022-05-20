@@ -27,4 +27,4 @@ import App from './client.jsx';
 // MAIN //
 
 ReactDOM.hydrate( <App />, document.getElementById( 'root' ) );
-// serviceWorker.register();
+serviceWorker.register();
