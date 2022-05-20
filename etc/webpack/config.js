@@ -585,7 +585,10 @@ module.exports = function(webpackEnv) {
 					clientsClaim: true,
 					exclude: [/\.map$/, /asset-manifest\.json$/],
 					importWorkboxFrom: 'cdn',
+
+					// NOTE: the following is disabled, as this seemed to be contributing to SSR hydration issues when rendering a package page. Package pages are not precached, leading to the service worker to load the fallback URL. The fallback URL is **not** the same as the SSR, leading to discrepancies when React attempts to make the application interactive. A key assumption of hydration is that the initial client render DOM is the exact same as the SSR.
 					// navigateFallback: publicUrl + '/index.html',
+
 					navigateFallbackBlacklist: [
 						// Exclude URLs starting with /_, as they're likely an API call
 						new RegExp('^/_'),
