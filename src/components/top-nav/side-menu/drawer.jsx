@@ -698,7 +698,7 @@ class SideMenuDrawer extends React.Component {
 					<List
 						disablePadding
 						id="side-menu-list"
-						className="side-menu-list"
+						className="disable-select side-menu-list"
 						role="menu"
 						aria-label="package tree"
 					>
