@@ -35,7 +35,7 @@ import { Link } from 'react-router-dom';
 */
 function Docs( props ) {
 	return (
-		<li key={ props.pkg+'-documentation' } class="top-nav-item" role="menuitem">
+		<li key="documentation" class="top-nav-item" role="menuitem">
 			<Link to={ props.path } title="View package documentation">documentation</Link>
 		</li>
 	);

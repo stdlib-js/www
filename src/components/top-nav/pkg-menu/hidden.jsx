@@ -1,7 +1,7 @@
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2021 The Stdlib Authors.
+* Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,29 +19,25 @@
 // MODULES //
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 
 // MAIN //
 
 /**
-* Component for navigating to package tests.
+* Component for rendering a hidden navigation list element.
 *
 * @private
 * @param {Object} props - component properties
-* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
-* @param {string} props.path - package documentation URL
+* @param {string} props.name - list item name
 * @returns {ReactElement} React element
 */
-function Tests( props ) {
+function Hidden( props ) {
 	return (
-		<li key="tests" class="top-nav-item" role="menuitem">
-			<Link to={ props.path+'/tests' } title="Run package tests">tests</Link>
-		</li>
+		<li key={ props.name } class="top-nav-item invisible" role="menuitem" aria-hidden="true"></li>
 	);
 }
 
 
 // EXPORTS //
 
-export default Tests;
+export default Hidden;

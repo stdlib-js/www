@@ -36,8 +36,8 @@ import config from 'config';
 function Source( props ) {
 	var path = config.repository+'/tree/'+props.version+'/lib/node_modules/@stdlib/'+props.pkg;
 	return (
-		<li key={ props.pkg+'-source' } class="top-nav-item" role="menuitem">
-			<a key="source" href={ path } title="View source code">source</a>
+		<li key="source" class="top-nav-item" role="menuitem">
+			<a href={ path } title="View source code">source</a>
 		</li>
 	);
 }

@@ -39,8 +39,8 @@ var RE_FORWARD_SLASH = /\//g;
 */
 function NPM( props ) {
 	return (
-		<li key={ props.pkg+'-npm' } class="top-nav-item" role="menuitem">
-			<a key="npm" href={ NPM_BASE_URL + '@stdlib/' + props.pkg.replace( RE_FORWARD_SLASH, '-' ) } title="View npm package">npm</a>
+		<li key="npm" class="top-nav-item" role="menuitem">
+			<a href={ NPM_BASE_URL + '@stdlib/' + props.pkg.replace( RE_FORWARD_SLASH, '-' ) } title="View npm package">npm</a>
 		</li>
 	);
 }
