@@ -32,7 +32,7 @@ import React from 'react';
 function Home() {
 	return (
 		<li key="home" class="top-nav-item" role="menuitem">
-			<a href="/" title="Go to the main website">home</a>
+			<a key="go-to-home" href="/" title="Go to the main website">home</a>
 		</li>
 	);
 }

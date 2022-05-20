@@ -55,7 +55,7 @@ function TypeScript( props ) {
 
 	return (
 		<li key={ props.pkg+'-typescript' } class="top-nav-item" role="menuitem">
-			<a href={ PATH.join( '' ) } title="View TypeScript type definitions">typescript</a>
+			<a key="typescript" href={ PATH.join( '' ) } title="View TypeScript type definitions">typescript</a>
 		</li>
 	);
 }
