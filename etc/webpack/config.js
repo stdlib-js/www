@@ -582,7 +582,6 @@ module.exports = function(webpackEnv) {
 			// the HTML & assets that are part of the Webpack build.
 			isEnvProduction &&
 				new WorkboxWebpackPlugin.GenerateSW({
-					handler: 'NetworkFirst',
 					clientsClaim: true,
 					exclude: [/\.map$/, /asset-manifest\.json$/],
 					importWorkboxFrom: 'cdn',
@@ -596,6 +595,10 @@ module.exports = function(webpackEnv) {
 						// a route with query params (e.g. auth callbacks).
 						new RegExp('/[^/?]+\\.[^/]+$'),
 					],
+					runtimeCaching: [{
+						urlPattern: new RegExp( '.*' ),
+						handler: 'NetworkFirst'
+					}]
 				}),
 		].filter(Boolean),
 		// Some libraries import Node modules but don't use them in the browser.
