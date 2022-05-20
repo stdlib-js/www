@@ -28,7 +28,6 @@ import Source from './source.jsx';
 import Tests from './tests.jsx';
 import NPM from './npm.jsx';
 import TypeScript from './typescript.jsx';
-import Hidden from './hidden.jsx';
 
 
 // MAIN //
@@ -117,13 +116,13 @@ class PackageMenu extends React.Component {
 					onClick={ this._onMenuClose }
 					role="menubar"
 				>
-					{ this.props.home ? <Home /> : <Hidden name="home" /> }
-					{ this.props.docs ? <Docs pkg={ this.props.pkg } path={ path } /> : <Hidden name="documentation" /> }
-					{ this.props.benchmarks ? <Benchmarks pkg={ this.props.pkg } path={ path } /> : <Hidden name="benchmarks" /> }
-					{ this.props.tests ? <Tests pkg={ this.props.pkg } path={ path } /> : <Hidden name="tests" /> }
-					{ this.props.src ? <Source pkg={ this.props.pkg } version={ version } /> : <Hidden name="source" /> }
-					{ this.props.npm ? <NPM pkg={ this.props.pkg } /> : <Hidden name="npm" /> }
-					{ this.props.typescript ? <TypeScript pkg={ this.props.pkg } version={ this.props.version } /> : <Hidden name="typescript" /> }
+					{ this.props.home ? <Home /> : null }
+					{ this.props.docs ? <Docs pkg={ this.props.pkg } path={ path } /> : null }
+					{ this.props.benchmarks ? <Benchmarks pkg={ this.props.pkg } path={ path } /> : null }
+					{ this.props.tests ? <Tests pkg={ this.props.pkg } path={ path } /> : null }
+					{ this.props.src ? <Source pkg={ this.props.pkg } version={ version } /> : null }
+					{ this.props.npm ? <NPM pkg={ this.props.pkg } /> : null }
+					{ this.props.typescript ? <TypeScript pkg={ this.props.pkg } version={ this.props.version } /> : null }
 				</ul>
 			</Fragment>
 		);
