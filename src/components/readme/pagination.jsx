@@ -51,9 +51,14 @@ function Pagination( props ) {
 	);
 }
 
-
-// PROPERTIES //
-
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof Pagination
+* @type {Object}
+*/
 Pagination.propTypes = {
 	'next': PropTypes.string,
 	'prev': PropTypes.string,
