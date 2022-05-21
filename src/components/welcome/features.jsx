@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import config from 'config';
 
 
@@ -36,14 +37,14 @@ function Features( props ) {
 	return (
 		<Fragment>
 			<ul>
-				<li>35+ <a href={ config.mount+props.version+'/@stdlib/stats/base/dists/' }>probability distributions</a>, with support for evaluating probability density functions (PDFs), cumulative distribution functions (CDFs), quantiles, moments, and more.</li>
-				<li>40+ seedable <a href={ config.mount+props.version+'/@stdlib/random/base/' }>pseudorandom number generators</a> (PRNGs).</li>
-				<li>200+ general <a href={ config.mount+props.version+'/@stdlib/utils/' }>utilities</a> for data transformation, functional programming, and asynchronous control flow.</li>
-				<li>200+ <a href={ config.mount+props.version+'/@stdlib/assert/' }>assertion utilities</a> for data validation and feature detection.</li>
-				<li>50+ <a href={ config.mount+props.version+'/@stdlib/datasets/' }>sample datasets</a> for testing and development.</li>
-				<li>A <a href={ config.mount+props.version+'/@stdlib/plot/ctor' }>plot API</a> for data visualization and exploratory data analysis.</li>
+				<li>35+ <Link to={ config.mount+props.version+'/@stdlib/stats/base/dists/' }>probability distributions</Link>, with support for evaluating probability density functions (PDFs), cumulative distribution functions (CDFs), quantiles, moments, and more.</li>
+				<li>40+ seedable <Link to={ config.mount+props.version+'/@stdlib/random/base/' }>pseudorandom number generators</Link> (PRNGs).</li>
+				<li>200+ general <Link to={ config.mount+props.version+'/@stdlib/utils/' }>utilities</Link> for data transformation, functional programming, and asynchronous control flow.</li>
+				<li>200+ <Link to={ config.mount+props.version+'/@stdlib/assert/' }>assertion utilities</Link> for data validation and feature detection.</li>
+				<li>50+ <Link to={ config.mount+props.version+'/@stdlib/datasets/' }>sample datasets</Link> for testing and development.</li>
+				<li>A <Link to={ config.mount+props.version+'/@stdlib/plot/ctor' }>plot API</Link> for data visualization and exploratory data analysis.</li>
 				<li>Native add-ons for interfacing with BLAS libraries, with pure JavaScript fallbacks.</li>
-				<li>A <a href={ config.mount+props.version+'/@stdlib/bench/harness' }>benchmark framework</a> supporting TAP.</li>
+				<li>A <Link to={ config.mount+props.version+'/@stdlib/bench/harness' }>benchmark framework</Link> supporting TAP.</li>
 				<li>REPL environment with integrated help and examples.</li>
 				<li>Can be bundled using <a href="http://browserify.org/">Browserify</a>, <a href="https://webpack.js.org/">Webpack</a>, and other bundlers for use in web browsers.</li>
 			</ul>

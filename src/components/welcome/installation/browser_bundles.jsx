@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import config from 'config';
 
 
@@ -40,7 +41,7 @@ function BrowserBundles( props ) {
 			</p>
 
 			<p>
-				As an example, to include a UMD bundle exposing lower-level special <a href={ config.mount+props.version+'/@stdlib/math/base/special' }>math functions</a> in a webpage, we can first locally install the UMD bundle package using <a href="https://www.npmjs.com/">npm</a>
+				As an example, to include a UMD bundle exposing lower-level special <Link to={ config.mount+props.version+'/@stdlib/math/base/special' }>math functions</Link> in a webpage, we can first locally install the UMD bundle package using <a href="https://www.npmjs.com/">npm</a>
 			</p>
 
 			<pre>

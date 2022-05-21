@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import config from 'config';
 
 
@@ -36,7 +37,7 @@ function CommandLineUtility( props ) {
 	return (
 		<Fragment>
 			<p>
-				To install globally for use as a command-line utility and/or use the <a href={ config.mount+props.version+'/@stdlib/repl' }>REPL</a>,
+				To install globally for use as a command-line utility and/or use the <Link to={ config.mount+props.version+'/@stdlib/repl' }>REPL</Link>,
 			</p>
 
 			<pre>
@@ -56,7 +57,7 @@ function CommandLineUtility( props ) {
 			</pre>
 
 			<p>
-				and to run the <a href={ config.mount+props.version+'/@stdlib/repl' }>REPL</a>
+				and to run the <Link to={ config.mount+props.version+'/@stdlib/repl' }>REPL</Link>
 			</p>
 
 			<pre>
