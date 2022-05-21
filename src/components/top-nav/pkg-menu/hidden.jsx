@@ -33,7 +33,7 @@ import React from 'react';
 */
 function Hidden( props ) {
 	return (
-		<li key={ props.name } class="top-nav-item invisible" role="menuitem" aria-hidden="true"></li>
+		<li key={ props.name } className="top-nav-item invisible" role="menuitem" aria-hidden="true"></li>
 	);
 }
 

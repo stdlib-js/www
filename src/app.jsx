@@ -857,16 +857,16 @@ class App extends React.Component {
 		function render( props ) {
 			return (
 				<Fragment>
-					<div class="skip-links" tabIndex="-1" ref={ self._focusRef } role="navigation" aria-label="Skip links post nav">
-						<a class="skip-link" href="#main">Skip to main content</a>
-						<a class="skip-link" href="#top-nav-search">Skip to search</a>
-						<a class="skip-link" href="#top-nav-package-menu">Skip to top navigation</a>
-						<a class="skip-link" href="#side-menu-list">Skip to package tree</a>
-						<a class="skip-link" href="#bottom-nav">Skip to bottom navigation</a>
+					<div className="skip-links" tabIndex="-1" ref={ self._focusRef } role="navigation" aria-label="Skip links post nav">
+						<a className="skip-link" href="#main">Skip to main content</a>
+						<a className="skip-link" href="#top-nav-search">Skip to search</a>
+						<a className="skip-link" href="#top-nav-package-menu">Skip to top navigation</a>
+						<a className="skip-link" href="#side-menu-list">Skip to package tree</a>
+						<a className="skip-link" href="#bottom-nav">Skip to bottom navigation</a>
 					</div>
 					<main
 						id="main"
-						class={ 'main '+( ( self.state.sideMenu ) ? 'translate-right' : '' ) }
+						className={ 'main '+( ( self.state.sideMenu ) ? 'translate-right' : '' ) }
 						aria-live="polite"
 						aria-atomic="true"
 					>

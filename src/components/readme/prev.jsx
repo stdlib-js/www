@@ -58,9 +58,9 @@ function PaginationPrev( props ) {
 			title="Previous package"
 			rel="prev"
 		>
-			<div class="pagination-link-type">Previous</div>
-			<div class="pagination-link-label"><span aria-hidden="true">« </span>{ basename }</div>
-			<div class="pagination-link-sublabel">{  ( kind ) ? ' ('+kind+')' : null }</div>
+			<div className="pagination-link-type">Previous</div>
+			<div className="pagination-link-label"><span aria-hidden="true">« </span>{ basename }</div>
+			<div className="pagination-link-sublabel">{  ( kind ) ? ' ('+kind+')' : null }</div>
 		</Link>
 	);
 }

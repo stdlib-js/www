@@ -167,7 +167,7 @@ class TopNav extends React.Component {
 						onBlur={ this.props.onSearchBlur }
 					/>
 
-					<span class="top-nav-divider"></span>
+					<span className="top-nav-divider"></span>
 					<PackageMenu
 						open={ this.state.packageMenu }
 						pkg={ this.props.pkg }

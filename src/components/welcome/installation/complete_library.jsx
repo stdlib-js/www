@@ -49,12 +49,12 @@ function CompleteLibrary() {
 
 			<pre>
 				<code className="hljs language-javascript">
-					<span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+					<span className="hljs-keyword">var</span> ndarray = <span className="hljs-built_in">require</span>( <span className="hljs-string">'@stdlib/ndarray/ctor'</span> );
 					<br/>
 					<br/>
-					<span class="hljs-keyword">var</span> arr = ndarray( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+					<span className="hljs-keyword">var</span> arr = ndarray( [ [ <span className="hljs-number">1</span>, <span className="hljs-number">2</span> ], [ <span className="hljs-number">3</span>, <span className="hljs-number">4</span> ] ] );
 					<br/>
-					<span class="hljs-comment">// returns &#x3C;ndarray></span>
+					<span className="hljs-comment">// returns &#x3C;ndarray></span>
 				</code>
 			</pre>
 
@@ -64,12 +64,12 @@ function CompleteLibrary() {
 
 			<pre>
 				<code className="hljs language-javascript">
-					<span class="hljs-keyword">import</span> ndarray <span class="hljs-keyword">from</span> <span class="hljs-string">'@stdlib/ndarray/ctor'</span>;
+					<span className="hljs-keyword">import</span> ndarray <span className="hljs-keyword">from</span> <span className="hljs-string">'@stdlib/ndarray/ctor'</span>;
 					<br/>
 					<br/>
-					<span class="hljs-keyword">var</span> arr = ndarray( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+					<span className="hljs-keyword">var</span> arr = ndarray( [ [ <span className="hljs-number">1</span>, <span className="hljs-number">2</span> ], [ <span className="hljs-number">3</span>, <span className="hljs-number">4</span> ] ] );
 					<br/>
-					<span class="hljs-comment">// returns &#x3C;ndarray></span>
+					<span className="hljs-comment">// returns &#x3C;ndarray></span>
 				</code>
 			</pre>
 		</Fragment>

@@ -33,7 +33,7 @@ import React from 'react';
 function Banner() {
 	return (
 		<div className="image-wrapper" >
-			<img class="center" src="/img/logo_banner.svg" alt="stdlib logo" />
+			<img className="center" src="/img/logo_banner.svg" alt="stdlib logo" />
 		</div>
 	);
 }

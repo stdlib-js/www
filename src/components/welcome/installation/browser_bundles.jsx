@@ -55,7 +55,7 @@ function BrowserBundles( props ) {
 
 			<pre>
 				<code className="hljs language-html">
-					<span class="hljs-tag">&#x3C;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/path/to/@stdlib/dist-math-base-special-flat/build/bundle.min.js"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>></span><span class="hljs-tag">&#x3C;/<span class="hljs-name">script</span>></span>
+					<span className="hljs-tag">&#x3C;<span className="hljs-name">script</span> <span className="hljs-attr">src</span>=<span className="hljs-string">"/path/to/@stdlib/dist-math-base-special-flat/build/bundle.min.js"</span> <span className="hljs-attr">type</span>=<span className="hljs-string">"text/javascript"</span>></span><span className="hljs-tag">&#x3C;/<span className="hljs-name">script</span>></span>
 				</code>
 			</pre>
 
@@ -69,15 +69,15 @@ function BrowserBundles( props ) {
 
 			<pre>
 				<code className="hljs language-html">
-					<span class="hljs-tag">&#x3C;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>></span><span class="javascript">
+					<span className="hljs-tag">&#x3C;<span className="hljs-name">script</span> <span className="hljs-attr">type</span>=<span className="hljs-string">"text/javascript"</span>></span><span className="javascript">
 					<br/>
-					&nbsp;&nbsp;<span class="hljs-comment">// If no recognized module system present, exposed to global scope:</span>
+					&nbsp;&nbsp;<span className="hljs-comment">// If no recognized module system present, exposed to global scope:</span>
 					<br/>
-					&nbsp;&nbsp;<span class="hljs-keyword">var</span> erf = stdlib_math_base_special_flat.erf;
+					&nbsp;&nbsp;<span className="hljs-keyword">var</span> erf = stdlib_math_base_special_flat.erf;
 					<br/>
-					&nbsp;&nbsp;<span class="hljs-built_in">console</span>.log( erf( <span class="hljs-number">0.5</span> ) );
+					&nbsp;&nbsp;<span className="hljs-built_in">console</span>.log( erf( <span className="hljs-number">0.5</span> ) );
 					<br/>
-					</span><span class="hljs-tag">&#x3C;/<span class="hljs-name">script</span>></span>
+					</span><span className="hljs-tag">&#x3C;/<span className="hljs-name">script</span>></span>
 				</code>
 			</pre>
 

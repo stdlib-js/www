@@ -58,9 +58,9 @@ function PaginationNext( props ) {
 			title="Next package"
 			rel="next"
 		>
-			<div class="pagination-link-type">Next</div>
-			<div class="pagination-link-label">{ basename }<span aria-hidden="true"> »</span></div>
-			<div class="pagination-link-sublabel">{  ( kind ) ? ' ('+kind+')' : null }</div>
+			<div className="pagination-link-type">Next</div>
+			<div className="pagination-link-label">{ basename }<span aria-hidden="true"> »</span></div>
+			<div className="pagination-link-sublabel">{  ( kind ) ? ' ('+kind+')' : null }</div>
 		</Link>
 	);
 }

@@ -51,7 +51,7 @@ function CommandLineUtility( props ) {
 
 			<pre>
 				<code className="hljs language-bash">
-					$ stdlib <span class="hljs-built_in">help</span>
+					$ stdlib <span className="hljs-built_in">help</span>
 				</code>
 			</pre>
 

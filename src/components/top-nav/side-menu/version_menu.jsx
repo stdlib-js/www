@@ -52,9 +52,9 @@ function versionOption( version, idx ) {
 */
 function VersionMenu( props ) {
 	return (
-		<div class="side-menu-version-wrapper">
+		<div className="side-menu-version-wrapper">
 			<label for="side-menu-version-select">Version</label>
-			<div class="side-menu-version-select-wrapper">
+			<div className="side-menu-version-select-wrapper">
 				<select
 					id="side-menu-version-select"
 					className="side-menu-version-select"

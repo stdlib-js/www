@@ -49,12 +49,12 @@ function Namespaces() {
 
 			<pre>
 				<code className="hljs language-javascript">
-					<span class="hljs-keyword">var</span> sin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sin'</span> );
+					<span className="hljs-keyword">var</span> sin = <span className="hljs-built_in">require</span>( <span className="hljs-string">'@stdlib/math/base/special/sin'</span> );
 					<br/>
 					<br/>
-					<span class="hljs-keyword">var</span> v = sin( <span class="hljs-number">3.14</span> );
+					<span className="hljs-keyword">var</span> v = sin( <span className="hljs-number">3.14</span> );
 					<br/>
-					<span class="hljs-comment">// returns &#x3C;number></span>
+					<span className="hljs-comment">// returns &#x3C;number></span>
 				</code>
 			</pre>
 
@@ -64,12 +64,12 @@ function Namespaces() {
 
 			<pre>
 				<code className="hljs language-javascript">
-					<span class="hljs-keyword">import</span> sin <span class="hljs-keyword">from</span> <span class="hljs-string">'@stdlib/math/base/special/sin'</span>;
+					<span className="hljs-keyword">import</span> sin <span className="hljs-keyword">from</span> <span className="hljs-string">'@stdlib/math/base/special/sin'</span>;
 					<br/>
 					<br/>
-					<span class="hljs-keyword">var</span> v = sin( <span class="hljs-number">3.14</span> );
+					<span className="hljs-keyword">var</span> v = sin( <span className="hljs-number">3.14</span> );
 					<br/>
-					<span class="hljs-comment">// returns &#x3C;number></span>
+					<span className="hljs-comment">// returns &#x3C;number></span>
 				</code>
 			</pre>
 
