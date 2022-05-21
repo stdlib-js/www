@@ -20,6 +20,7 @@
 
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import fetchMessage from 'fetch-error-message';
 import pkgPath from 'pkg-doc-path';
 import log from 'log';
@@ -217,6 +218,23 @@ class ErrorDecoder extends React.Component {
 		);
 	}
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof ErrorDecoder
+* @type {Object}
+*/
+ErrorDecoder.propTypes = {
+	'version': PropTypes.string.isRequired,
+	'code': PropTypes.string.isRequired,
+	'args': PropTypes.array.isRequired,
+	'onClose': PropTypes.func.isRequired,
+	'pkg': PropTypes.string,
+	'content': PropTypes.string
+};
 
 
 // EXPORTS //
