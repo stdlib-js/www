@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
 
 
@@ -58,6 +59,20 @@ function Head( props ) {
 		</Helmet>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof Head
+* @type {Object}
+*/
+Head.propTypes = {
+	'title': PropTypes.string.isRequired,
+	'description': PropTypes.string.isRequired,
+	'url': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

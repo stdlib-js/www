@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import config from 'config';
 import PrintIcon from './../icons/print.jsx';
 
@@ -133,6 +134,19 @@ class PrintButton extends React.Component {
 		);
 	}
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof PrintButton
+* @type {Object}
+*/
+PrintButton.propTypes = {
+	'url': PropTypes.string.isRequired,
+	'version': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

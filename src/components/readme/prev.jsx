@@ -20,6 +20,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import pkgPath from 'pkg-doc-path';
 import pkgKind from 'pkg-kind';
 import pkgBasename from 'pkg-basename';
@@ -63,6 +64,19 @@ function PaginationPrev( props ) {
 			<div className="pagination-link-sublabel">{  ( kind ) ? ' ('+kind+')' : null }</div>
 		</Link>
 	);
+}
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof PaginationPrev
+* @type {Object}
+*/
+PaginationPrev.propTypes = {
+	'pkg': PropTypes.string.isRequired,
+	'version': PropTypes.string.isRequired
 }
 
 

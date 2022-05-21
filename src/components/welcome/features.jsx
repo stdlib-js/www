@@ -20,6 +20,7 @@
 
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import config from 'config';
 
 
@@ -51,6 +52,18 @@ function Features( props ) {
 		</Fragment>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof Features
+* @type {Object}
+*/
+Features.propTypes = {
+	'version': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //
