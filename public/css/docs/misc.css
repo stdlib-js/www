@@ -543,8 +543,11 @@ img {
 }
 
 .readme-feedback-sentiment-label {
-	border-radius: 50%;
 	border: 1px solid var(--feedback-sentiment-border-color);
+
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
 
 	cursor: pointer;
 }
@@ -631,10 +634,14 @@ img {
 }
 
 .readme-feedback-sentiment-radio {
+	-webkit-appearance: none;
+	-moz-appearance: none;
 	appearance: none;
 }
 
 .readme-feedback-submit-buttons button {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
 	border-radius: 4px;
 
 	cursor: pointer;
@@ -719,6 +726,8 @@ img {
 }
 
 .settings-select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
 	appearance: none;
 
 	background-color: var(--settings-input-background-color);
@@ -878,6 +887,9 @@ button.side-menu-list-item-namespace-icon:hover {
 
 .side-menu-list::-webkit-scrollbar-thumb {
 	background-color: #5e5e5e;
+
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
 	border-radius: 2px;
 }
 
