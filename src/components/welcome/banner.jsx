@@ -33,10 +33,10 @@ import Logo from './../logo/index.jsx';
 */
 function Banner() {
 	return (
-		<div className="banner-wrapper center" >
+		<section className="banner-wrapper" >
 			<Logo width="300" height="96" />
 			<p className="banner-tagline">a standard library for javascript and node.js</p>
-		</div>
+		</section>
 	);
 }
 
