@@ -1595,13 +1595,13 @@ button.side-menu-list-item-namespace-icon {
 * Banner.
 */
 
-.banner .image-wrapper {
+.banner .banner-wrapper {
 	margin-top: 3em;
 	margin-bottom: 4.5em;
 }
 
-.banner .image-wrapper img {
-	display: block;
+.banner .banner-tagline {
+	margin-top: 0.75em;
 }
 
 /*

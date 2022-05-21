@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import Logo from './../logo/index.jsx';
 
 
 // MAIN //
@@ -32,8 +33,9 @@ import React from 'react';
 */
 function Banner() {
 	return (
-		<div className="image-wrapper" >
-			<img className="center" src="/img/logo_banner.svg" alt="stdlib logo" />
+		<div className="banner-wrapper center" >
+			<Logo width="300" height="96" />
+			<p className="banner-tagline">a standard library for javascript and node.js</p>
 		</div>
 	);
 }

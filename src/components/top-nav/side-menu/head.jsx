@@ -22,7 +22,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import config from 'config';
 import ChevronLeftIcon from './../../icons/chevron_left.jsx';
-import Logo from './logo.jsx';
+import Logo from './../../logo/index.jsx';
 
 
 // MAIN //
@@ -44,7 +44,7 @@ function SideMenuHead( props ) {
 				title="Navigate to documentation home"
 				aria-label="home"
 			>
-				<Logo />
+				<Logo width="110.25" height="35" />
 			</Link>
 			<button
 				className="icon-button side-menu-close-button"

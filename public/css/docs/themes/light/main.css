@@ -34,8 +34,8 @@ html[data-theme="light"] {
 	/*
 	* stdlib colors.
 	*/
-	--stdlib-orange: #f0ad3e;
-	--stdlib-blue: #00aeef;
+	--stdlib-orange: #e99f36; /* #f0ad3e; */ /* original: e18f2f */
+	--stdlib-blue: #009cd7; /* #00aeef; */ /* original: 008bbf */
 
 	/*
 	* Links should be blue.

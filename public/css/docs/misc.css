@@ -1041,6 +1041,18 @@ h1 button.icon-button::after {
 }
 
 /*
+* Banner.
+*/
+
+.banner svg .stdlib-orange {
+	fill: var(--stdlib-orange);
+}
+
+.banner svg .stdlib-blue {
+	fill:  var(--stdlib-blue);
+}
+
+/*
 * Logo.
 */
 
