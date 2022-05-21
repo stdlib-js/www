@@ -191,7 +191,7 @@ class Settings extends React.Component {
 						<Head onClose={ this._onClose } />
 
 						<div className="settings-menu-item">
-							<label class="settings-menu-item-label">
+							<label className="settings-menu-item-label">
 								Theme
 							</label>
 							<div className="settings-select-wrapper">
@@ -209,7 +209,7 @@ class Settings extends React.Component {
 						</div>
 
 						<div className="settings-menu-item">
-							<label class="settings-menu-item-label">
+							<label className="settings-menu-item-label">
 								Documentation Mode
 							</label>
 							<div className="settings-select-wrapper">
@@ -229,7 +229,7 @@ class Settings extends React.Component {
 						</div>
 
 						<div className="settings-menu-item">
-							<label class="settings-menu-item-label">
+							<label className="settings-menu-item-label">
 								Previous/Next Package Navigation
 							</label>
 							<div className="settings-select-wrapper">
@@ -247,7 +247,7 @@ class Settings extends React.Component {
 						</div>
 
 						<div className="settings-menu-item">
-							<label class="settings-menu-item-label">
+							<label className="settings-menu-item-label">
 								Code Examples
 							</label>
 							<div className="settings-select-wrapper">
@@ -267,7 +267,7 @@ class Settings extends React.Component {
 						<div className="settings-menu-item settings-checkbox-wrapper">
 							<input
 								key={ Math.random() }
-								class="settings-checkbox"
+								className="settings-checkbox"
 								type="checkbox"
 								id="settings-checkbox-allow-settings-cookies"
 								name="settings-checkbox-allow-settings-cookies"
@@ -277,7 +277,7 @@ class Settings extends React.Component {
 							></input>
 							<label
 								htmlFor="settings-checkbox-allow-settings-cookies"
-								class="settings-checkbox-label disable-select"
+								className="settings-checkbox-label disable-select"
 								onClick={ this._onAllowSettingsCookiesLabelClick }
 							>
 								<p>

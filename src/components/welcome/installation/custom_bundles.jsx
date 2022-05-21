@@ -49,7 +49,7 @@ function CustomBundles() {
 						run the following command to print help documentation for providing a list of stdlib package names to bundle
 					</p>
 					<pre>
-						<code class="hljs language-bash">$ NODE_PATH=./lib/node_modules node ./bin/cli bundle-pkg-list -- -h
+						<code className="hljs language-bash">$ NODE_PATH=./lib/node_modules node ./bin/cli bundle-pkg-list -- -h
 						</code>
 					</pre>
 				</li>
@@ -58,7 +58,7 @@ function CustomBundles() {
 						modify and run the above command with the list of packages to bundle
 					</p>
 					<pre>
-						<code class="hljs language-bash">$ NODE_PATH=./lib/node_modules node ./bin/cli bundle-pkg-list -- &#x3C;pkg> &#x3C;pkg> &#x3C;pkg> ...
+						<code className="hljs language-bash">$ NODE_PATH=./lib/node_modules node ./bin/cli bundle-pkg-list -- &#x3C;pkg> &#x3C;pkg> &#x3C;pkg> ...
 						</code>
 					</pre>
 				</li>
