@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import config from 'config';
 import EditIcon from './../icons/edit.jsx';
 
@@ -42,6 +43,18 @@ function EditLink( props ) {
 		</a>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof EditLink
+* @type {Object}
+*/
+EditLink.propTypes = {
+	'pkg': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

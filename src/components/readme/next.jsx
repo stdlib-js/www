@@ -20,6 +20,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import pkgPath from 'pkg-doc-path';
 import pkgKind from 'pkg-kind';
 import pkgBasename from 'pkg-basename';
@@ -64,6 +65,19 @@ function PaginationNext( props ) {
 		</Link>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof PaginationNext
+* @type {Object}
+*/
+PaginationNext.propTypes = {
+	'pkg': PropTypes.string.isRequired,
+	'version': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //
