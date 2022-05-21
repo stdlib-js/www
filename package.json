@@ -20,7 +20,7 @@
     "install:dev": "npm run install:prod",
     "install:prod": "make install",
     "start": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules NODE_ENV=production node ./server/index.js",
-    "start-dev-server": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules NODE_ENV=development node ./etc/webpack/start_dev_server.js",
+    "start-dev": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules NODE_ENV=development node ./etc/webpack/start_dev_server.js",
     "restart": "make api-docs-app && make css-minify && npm run start"
   },
   "main": "",
