@@ -20,6 +20,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import pkgPath from 'pkg-doc-path';
 import config from 'config';
 import LogoIcon from './../icons/logo.jsx';
@@ -110,6 +111,19 @@ function BreadcrumbsNavigation( props ) {
 		</nav>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof BreadcrumbsNavigation
+* @type {Object}
+*/
+BreadcrumbsNavigation.propTypes = {
+	'pkg': PropTypes.string.isRequired,
+	'version': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

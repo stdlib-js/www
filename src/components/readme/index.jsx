@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import fetchFragment from 'fetch-fragment';
 import log from 'log';
 import NotFound from './../not-found/index.jsx';
@@ -184,6 +185,24 @@ class Readme extends React.Component {
 		);
 	}
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof Readme
+* @type {Object}
+*/
+Readme.propTypes = {
+	'url': PropTypes.string.isRequired,
+	'pkg': PropTypes.string.isRequired,
+	'version': PropTypes.string.isRequired,
+	'content': PropTypes.string,
+	'prev': PropTypes.string,
+	'next': PropTypes.string,
+	'onClick': PropTypes.func.isRequired
+};
 
 
 // EXPORTS //
