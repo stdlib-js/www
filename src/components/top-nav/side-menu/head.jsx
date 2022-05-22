@@ -45,7 +45,7 @@ function SideMenuHead( props ) {
 				title="Navigate to documentation home"
 				aria-label="home"
 			>
-				<Logo width="110.25" height="35" />
+				<Logo width={110.25} height={35} />
 			</Link>
 			<button
 				className="icon-button side-menu-close-button"
