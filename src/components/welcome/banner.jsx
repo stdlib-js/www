@@ -34,7 +34,7 @@ import Logo from './../logo/index.jsx';
 function Banner() {
 	return (
 		<section className="banner-wrapper" >
-			<Logo width="300" height="96" />
+			<Logo width={300} height={96} />
 			<p className="banner-tagline">a standard library for javascript and node.js</p>
 		</section>
 	);
