@@ -96,12 +96,17 @@ class ClientApp extends React.Component {
 		// Get the current list of cookies:
 		cookies = document.cookie;
 
-		// If cookies are present, we ASSUME that this means that a user has **opted-in** to allowing us to use cookies to store user preferences:
-		allowCookies = Boolean( cookies );
-
 		// Resolve the current set of applicable cookie values:
 		cookies = getCookies( cookies, COOKIES );
 
+		// If cookies are present, we ASSUME that this means that a user has **opted-in** to allowing us to use cookies to store user preferences...
+		allowCookies = false;
+		for ( i = 0; i < COOKIES.length; i++ ) {
+			if ( cookies[ COOKIES[ i ] ] ) {
+				allowCookies = true;
+				break;
+			}
+		}
 		// Set the initial component state:
 		this.state = {
 			// Documentation version:

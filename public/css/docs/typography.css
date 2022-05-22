@@ -549,6 +549,21 @@ button.side-menu-list-item-namespace-icon:hover {
 }
 
 /*
+* Banner.
+*/
+
+.banner-wrapper {
+	text-align: center;
+}
+
+.banner .banner-tagline {
+	font-family: var(--thin-font-family);
+	font-size: 1.3em;
+
+	color: var(--blockquote-color);
+}
+
+/*
 * Skip link.
 */
 
