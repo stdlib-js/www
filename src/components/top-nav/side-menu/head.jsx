@@ -20,6 +20,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import config from 'config';
 import ChevronLeftIcon from './../../icons/chevron_left.jsx';
 import Logo from './../../logo/index.jsx';
@@ -57,6 +58,20 @@ function SideMenuHead( props ) {
 		</div>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof
+* @type {Object}
+*/
+SideMenuHead.propTypes = {
+	'version': PropTypes.string.isRequired,
+	'onClose': PropTypes.func.isRequired
+};
+
 
 
 // EXPORTS //

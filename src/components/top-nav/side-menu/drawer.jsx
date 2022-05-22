@@ -20,6 +20,7 @@
 
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { debounce } from 'throttle-debounce';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import List from '@mui/material/List';
@@ -813,6 +814,24 @@ class SideMenuDrawer extends React.Component {
 		);
 	}
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof SideMenuDrawer
+* @type {Object}
+*/
+SideMenuDrawer.propTypes = {
+	'open': PropTypes.bool.isRequired,
+	'version': PropTypes.string.isRequired,
+	'pkg': PropTypes.string,
+	'onToggle': PropTypes.func.isRequired,
+	'onVersionChange': PropTypes.func.isRequired,
+	'onFilterFocus': PropTypes.func.isRequired,
+	'onFilterBlur': PropTypes.func.isRequired
+};
 
 
 // EXPORTS //
