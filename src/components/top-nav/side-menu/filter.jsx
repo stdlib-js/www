@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ClearIcon from '@mui/icons-material/Clear'; // FIXME: replace within internal icon
 
 
@@ -109,6 +110,19 @@ class SideMenuFilter extends React.Component {
 	}
 }
 
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof SideMenuFilter
+* @type {Object}
+*/
+SideMenuFilter.propTypes = {
+	'onFocus': PropTypes.func.isRequired,
+	'onBlur': PropTypes.func.isRequired,
+	'onChange': PropTypes.func.isRequired
+};
 
 
 // EXPORTS //

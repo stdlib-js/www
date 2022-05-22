@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import CloseIcon from './../../icons/close.jsx';
 
 
@@ -49,6 +50,18 @@ function Head( props ) {
 		</div>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof Head
+* @type {Object}
+*/
+Head.propTypes = {
+	'onClose': PropTypes.func.isRequired
+};
 
 
 // EXPORTS //
