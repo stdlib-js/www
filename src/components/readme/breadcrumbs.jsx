@@ -40,11 +40,12 @@ var RE_TRAILING_SLASH = /\/$/;
 * @param {string} label - link text (label)
 * @param {string} url - link URL
 * @param {boolean} current - boolean indicating whether a link points to the current page
+* @param {number} idx - index
 * @returns {ReactElement} React element
 */
-function breadcrumb( label, url, current ) {
+function breadcrumb( label, url, current, idx ) {
 	return (
-		<li>
+		<li key={idx} >
 			<span className="breadcrumb-separator" aria-hidden="true">/</span>
 			<Link
 				key={ label }
@@ -88,7 +89,7 @@ function BreadcrumbsNavigation( props ) {
 	links = [];
 	for ( i = 0; i < N; i++ ) {
 		p += '/' + parts[ i ];
-		links.push( breadcrumb( parts[ i ], p, i === N-1 ) );
+		links.push( breadcrumb( parts[ i ], p, i === N-1, i ) );
 	}
 	return (
 		<nav
