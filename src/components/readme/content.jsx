@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 // MAIN //
@@ -43,6 +44,19 @@ function ReadmeContent( props ) {
 		/>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof ReadmeContent
+* @type {Object}
+*/
+ReadmeContent.propTypes = {
+	'html': PropTypes.string.isRequired,
+	'onClick': PropTypes.func.isRequired
+};
 
 
 // EXPORTS //

@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress'; // FIXME: replace; use native HTML to create internal progress indicator
 import log from 'log';
 import config from 'config';
@@ -381,6 +382,21 @@ class BenchmarkRunner extends React.Component {
 		);
 	}
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof BenchmarkRunner
+* @type {Object}
+*/
+BenchmarkRunner.propTypes = {
+	'pkg': PropTypes.string.isRequired,
+	'version': PropTypes.string.isRequired,
+	'url': PropTypes.string.isRequired,
+	'title': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //
