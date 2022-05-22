@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import SideMenu from './side-menu/index.jsx';
 import PackageMenu from './pkg-menu/index.jsx';
 import SearchInput from './search_input.jsx';
@@ -207,6 +208,46 @@ class TopNav extends React.Component {
 		);
 	}
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof TopNav
+* @type {Object}
+*/
+TopNav.propTypes = {
+	'version': PropTypes.string.isRequired,
+	'pkg': PropTypes.string.isRequired,
+	'query': PropTypes.string.isRequired,
+	'onSideMenuToggle': PropTypes.func.isRequired,
+	'onVersionChange': PropTypes.func.isRequired,
+	'onSearchSubmit': PropTypes.func.isRequired,
+	'onSearchChange': PropTypes.func.isRequired,
+	'onSearchFocus': PropTypes.func.isRequired,
+	'onSearchBlur': PropTypes.func.isRequired,
+	'onFilterFocus': PropTypes.func.isRequired,
+	'onFilterBlur': PropTypes.func.isRequired,
+	'onAllowSettingsCookiesChange': PropTypes.func.isRequired,
+	'onThemeChange': PropTypes.func.isRequired,
+	'onModeChange': PropTypes.func.isRequired,
+	'onExampleSyntaxChange': PropTypes.func.isRequired,
+	'onPrevNextNavChange': PropTypes.func.isRequired,
+	'home': PropTypes.bool.isRequired,
+	'docs': PropTypes.bool.isRequired,
+	'src': PropTypes.bool.isRequired,
+	'npm': PropTypes.bool.isRequired,
+	'benchmarks': PropTypes.bool.isRequired,
+	'tests': PropTypes.bool.isRequired,
+	'typescript': PropTypes.bool.isRequired,
+	'sideMenu': PropTypes.bool.isRequired,
+	'allowSettingsCookies': PropTypes.bool.isRequired,
+	'theme': PropTypes.string.isRequired,
+	'mode': PropTypes.string.isRequired,
+	'exampleSyntax': PropTypes.string.isRequired,
+	'prevNextNavigation': PropTypes.bool.isRequired
+};
 
 
 // EXPORTS //
