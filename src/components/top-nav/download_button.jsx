@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import fetchDownloadData from 'fetch-download-data';
 import download from 'download-assets';
 import log from 'log';
@@ -155,6 +156,18 @@ class DownloadButton extends React.Component {
 	}
 }
 
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof DownloadButton
+* @type {Object}
+*/
+DownloadButton.propTypes = {
+	'version': PropTypes.string.isRequired,
+	'onProgress': PropTypes.func.isRequired
+}
 
 
 // EXPORTS //
