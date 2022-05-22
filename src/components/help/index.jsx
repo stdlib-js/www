@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import ClearIcon from './../icons/close.jsx';
 
 
@@ -54,6 +55,18 @@ function Help( props ) {
 		</Fragment>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof Help
+* @type {Object}
+*/
+Help.propTypes = {
+	'onClose': PropTypes.func.isRequired
+};
 
 
 // EXPORTS //
