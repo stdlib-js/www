@@ -246,7 +246,7 @@ TopNav.propTypes = {
 	'theme': PropTypes.string.isRequired,
 	'mode': PropTypes.string.isRequired,
 	'exampleSyntax': PropTypes.string.isRequired,
-	'prevNextNavigation': PropTypes.bool.isRequired
+	'prevNextNavigation': PropTypes.string.isRequired
 };
 
 
