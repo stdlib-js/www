@@ -75,10 +75,8 @@ module.exports = function(webpackEnv) {
 
 	// Webpack uses `publicPath` to determine where the app is being served from.
 	// It requires a trailing slash, or the file assets will get an incorrect path.
-	// In development, we always serve from the root. This makes config easier.
-	const publicPath = isEnvProduction
-		? paths.servedPath
-		: isEnvDevelopment && '/';
+	const publicPath = paths.servedPath;
+
 	// Some apps do not use client-side routing with pushState.
 	// For these, "homepage" can be set to "." to enable relative asset paths.
 	const shouldUseRelativeAssetPaths = publicPath === './';
@@ -175,20 +173,20 @@ module.exports = function(webpackEnv) {
 		].filter(Boolean),
 		output: {
 			// The build folder.
-			path: isEnvProduction ? paths.appBuild : undefined,
+			path: paths.appBuild,
 			// Add /* filename */ comments to generated require()s in the output.
 			pathinfo: isEnvDevelopment,
 			// There will be one main bundle, and one file per asynchronous chunk.
 			// In development, it does not produce real files.
 			filename: isEnvProduction
 				? 'static/js/[name].[contenthash:8].js'
-				: isEnvDevelopment && 'static/js/bundle.js',
+				: isEnvDevelopment && 'static/js/bundle.dev.js',
 			// TODO: remove this when upgrading to webpack 5
 			futureEmitAssets: true,
 			// There are also additional JS chunk files if you use code splitting.
 			chunkFilename: isEnvProduction
 				? 'static/js/[name].[contenthash:8].chunk.js'
-				: isEnvDevelopment && 'static/js/[name].chunk.js',
+				: isEnvDevelopment && 'static/js/[name].chunk.dev.js',
 			// We inferred the "public path" (such as / or /my-project) from homepage.
 			// We use "/" in development.
 			publicPath: publicPath,
