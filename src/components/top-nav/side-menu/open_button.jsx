@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import MenuIcon from './../../icons/menu.jsx';
 
 
@@ -46,6 +47,19 @@ function OpenButton( props ) {
 		</button>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof OpenButton
+* @type {Object}
+*/
+OpenButton.propTypes = {
+	'hide': PropTypes.bool.isRequired,
+	'onClick': PropTypes.func.isRequired
+};
 
 
 // EXPORTS //

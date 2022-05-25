@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StaticRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './app.jsx';
@@ -64,6 +65,30 @@ function ServerApp( props ) {
 		</StaticRouter>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof ServerApp
+* @type {Object}
+*/
+ServerApp.propTypes = {
+	'url': PropTypes.string.isRequired,
+	'context': PropTypes.object.isRequired,
+	'version': PropTypes.string.isRequired,
+	'data': PropTypes.object.isRequired,
+	'query': PropTypes.string.isRequired,
+	'content': PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.object
+	]).isRequired,
+	'theme': PropTypes.string.isRequired,
+	'mode': PropTypes.string.isRequired,
+	'exampleSyntax': PropTypes.string.isRequired,
+	'prevNextNavigation': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

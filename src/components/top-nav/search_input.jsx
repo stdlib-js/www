@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import InputBase from '@mui/material/InputBase'; // FIXME: replace; use native HTML
 import SearchIcon from './../icons/search.jsx';
 
@@ -37,7 +38,7 @@ class SearchInput extends React.Component {
 	* @private
 	* @constructor
 	* @param {Object} props - component properties
-	* @param {string} value - value of input element
+	* @param {string} props.value - value of input element
 	* @param {Callback} props.onChange - callback to invoke upon updating a search input element
 	* @param {Callback} props.onSubmit - callback to invoke upon a user submitting a search query
 	* @param {Callback} props.onFocus - callback to invoke when search input element receives focus
@@ -145,6 +146,22 @@ class SearchInput extends React.Component {
 		);
 	}
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof SearchInput
+* @type {Object}
+*/
+SearchInput.propTypes = {
+	'value': PropTypes.string.isRequired,
+	'onChange': PropTypes.func.isRequired,
+	'onSubmit': PropTypes.func.isRequired,
+	'onFocus': PropTypes.func.isRequired,
+	'onBlur': PropTypes.func.isRequired
+};
 
 
 // EXPORTS //

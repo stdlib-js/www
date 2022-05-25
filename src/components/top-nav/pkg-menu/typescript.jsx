@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 // VARIABLES //
@@ -59,6 +60,19 @@ function TypeScript( props ) {
 		</li>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof TypeScript
+* @type {Object}
+*/
+TypeScript.propTypes = {
+	'pkg': PropTypes.string.isRequired,
+	'version': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import OpenButton from './open_button.jsx';
 import Drawer from './drawer.jsx';
 
@@ -91,6 +92,24 @@ class SideMenu extends React.Component {
 		);
 	}
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof SideMenu
+* @type {Object}
+*/
+SideMenu.propTypes = {
+	'version': PropTypes.string.isRequired,
+	'pkg': PropTypes.string.isRequired,
+	'onToggle': PropTypes.func.isRequired,
+	'onVersionChange': PropTypes.func.isRequired,
+	'onFilterFocus': PropTypes.func.isRequired,
+	'onFilterBlur': PropTypes.func.isRequired,
+	'open': PropTypes.bool.isRequired
+};
 
 
 // EXPORTS //

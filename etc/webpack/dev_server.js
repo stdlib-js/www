@@ -24,45 +24,47 @@
 
 'use strict';
 
-const fs = require('fs');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
 const configFactory = require('./config.js');
-const paths = require('./paths.js');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
 const config = configFactory( 'development' );
 
-module.exports = function( proxy, allowedHost ) {
+module.exports = function( proxy ) {
 	return {
 		allowedHosts: 'auto',
 		// Enable gzip compression of generated files.
 		compress: true,
-		// It is important to tell WebpackDevServer to use the same "root" path
-		// as we specified in the config. In development, we always serve from /.
 		devMiddleware: {
+			index: true,
 			publicPath: config.output.publicPath,
+			serverSideRender: true,
+			writeToDisk: false
 		},
 		// Enable HTTPS if the HTTPS environment variable is set to 'true'
 		https: protocol === 'https',
 		host,
 		client: {
-			overlay: false,
+			overlay: {
+				errors: true,
+				warnings: false
+			}
 		},
 		historyApiFallback: {
 			// Paths with dots should still use the history fallback.
 			// See https://github.com/facebook/create-react-app/issues/387.
 			disableDotRule: true,
+			index: 'docs/api/index.html'
 		},
-		proxy,
-		onBeforeSetupMiddleware( devServer ) {
+		static: false,
+		hot: true,
+		open: [],
+		proxy: proxy,
+		setupMiddlewares( middlewares, devServer ) {
 			const app = devServer.app;
-			if (fs.existsSync(paths.proxySetup)) {
-				// This registers user provided middleware for proxy reasons
-				require(paths.proxySetup)(app);
-			}
 
 			// This lets us fetch source contents from webpack for the error overlay
 			app.use( evalSourceMapMiddleware( devServer ) );
@@ -75,6 +77,8 @@ module.exports = function( proxy, allowedHost ) {
 			// it used the same host and port.
 			// https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
 			app.use( noopServiceWorkerMiddleware( '/' ) );
+
+			return middlewares;
 		},
 	};
 };

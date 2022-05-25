@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 // VARIABLES //
@@ -44,6 +45,18 @@ function NPM( props ) {
 		</li>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof NPM
+* @type {Object}
+*/
+NPM.propTypes = {
+	'pkg': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

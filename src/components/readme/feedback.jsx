@@ -20,6 +20,7 @@
 
 import React, { Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 import ThumbsUpIcon from './../icons/thumbs_up.jsx';
 import ThumbsDownIcon from './../icons/thumbs_down.jsx';
@@ -352,6 +353,20 @@ class Feedback extends React.Component {
 			</form>
 		);
 	}
+}
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof Feedback
+* @type {Object}
+*/
+Feedback.propTypes = {
+	'pkg': PropTypes.string.isRequired,
+	'url': PropTypes.string.isRequired,
+	'version': PropTypes.string.isRequired
 }
 
 

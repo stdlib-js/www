@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import config from 'config';
 
 
@@ -68,6 +69,19 @@ function VersionMenu( props ) {
 		</div>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof VersionMenu
+* @type {Object}
+*/
+VersionMenu.propTypes = {
+	'version': PropTypes.string.isRequired,
+	'onChange': PropTypes.func.isRequired
+};
 
 
 // EXPORTS //

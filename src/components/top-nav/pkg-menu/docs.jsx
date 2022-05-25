@@ -20,6 +20,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 
 // MAIN //
@@ -40,6 +41,19 @@ function Docs( props ) {
 		</li>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof Docs
+* @type {Object}
+*/
+Docs.propTypes = {
+	'pkg': PropTypes.string.isRequired,
+	'path': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

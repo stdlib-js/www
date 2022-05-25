@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import GearIcon from './../../icons/gear.jsx';
 import ChevronDownIcon from './../../icons/chevron_down.jsx';
 import Head from './head.jsx';
@@ -419,6 +420,27 @@ class Settings extends React.Component {
 		);
 	}
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof Settings
+* @type {Object}
+*/
+Settings.propTypes = {
+	'allowSettingsCookies': PropTypes.bool.isRequired,
+	'theme': PropTypes.string.isRequired,
+	'mode': PropTypes.string.isRequired,
+	'exampleSyntax': PropTypes.string.isRequired,
+	'prevNextNavigation': PropTypes.string.isRequired,
+	'onAllowSettingsCookiesChange': PropTypes.func.isRequired,
+	'onThemeChange': PropTypes.func.isRequired,
+	'onModeChange': PropTypes.func.isRequired,
+	'onExampleSyntaxChange': PropTypes.func.isRequired,
+	'onPrevNextNavChange': PropTypes.func.isRequired
+};
 
 
 // EXPORTS //

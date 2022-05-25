@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import config from 'config';
 
 
@@ -41,6 +42,19 @@ function Source( props ) {
 		</li>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof Source
+* @type {Object}
+*/
+Source.propTypes = {
+	'pkg': PropTypes.string.isRequired,
+	'version': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

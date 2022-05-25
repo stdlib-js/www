@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import pkgPath from 'pkg-doc-path';
 import ExpandMoreIcon from './../../icons/expand_more.jsx';
 import Benchmarks from './benchmarks.jsx';
@@ -128,6 +129,28 @@ class PackageMenu extends React.Component {
 		);
 	}
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof PackageMenu
+* @type {Object}
+*/
+PackageMenu.propTypes = {
+	'pkg': PropTypes.string.isRequired,
+	'version': PropTypes.string.isRequired,
+	'open': PropTypes.bool.isRequired,
+	'onToggle': PropTypes.func.isRequired,
+	'home': PropTypes.bool,
+	'docs': PropTypes.bool,
+	'src': PropTypes.bool,
+	'npm': PropTypes.bool,
+	'benchmarks': PropTypes.bool,
+	'tests': PropTypes.bool,
+	'typescript': PropTypes.bool
+};
 
 
 // EXPORTS //

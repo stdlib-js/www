@@ -20,6 +20,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import config from 'config';
 import ChevronLeftIcon from './../../icons/chevron_left.jsx';
 import Logo from './../../logo/index.jsx';
@@ -44,7 +45,7 @@ function SideMenuHead( props ) {
 				title="Navigate to documentation home"
 				aria-label="home"
 			>
-				<Logo width="110.25" height="35" />
+				<Logo width={110.25} height={35} />
 			</Link>
 			<button
 				className="icon-button side-menu-close-button"
@@ -57,6 +58,20 @@ function SideMenuHead( props ) {
 		</div>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof
+* @type {Object}
+*/
+SideMenuHead.propTypes = {
+	'version': PropTypes.string.isRequired,
+	'onClose': PropTypes.func.isRequired
+};
+
 
 
 // EXPORTS //

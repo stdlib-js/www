@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import log from 'log';
 import config from 'config';
 import LogoIcon from './../icons/logo.jsx';
@@ -65,7 +66,7 @@ class TestRunner extends React.Component {
 	* @param {string} props.url - resource URL
 	* @param {string} props.title - page title
 	* @param {string} props.version - documentation version
-	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
+	* @param {string} props.standalone - standalone package name (e.g., `math-base-special-sin`)
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -433,6 +434,21 @@ class TestRunner extends React.Component {
 		);
 	}
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof TestRunner
+* @type {Object}
+*/
+TestRunner.propTypes = {
+	'url': PropTypes.string.isRequired,
+	'title': PropTypes.string.isRequired,
+	'version': PropTypes.string.isRequired,
+	'standalone': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import LinearProgress from '@mui/material/LinearProgress'; // FIXME: replace; use native HTML
 
 
@@ -29,7 +30,7 @@ import LinearProgress from '@mui/material/LinearProgress'; // FIXME: replace; us
 *
 * @private
 * @param {Object} props - component properties
-* @param {Callback} props.value - progress bar value
+* @param {number} props.value - progress bar value
 * @returns {ReactElement} React element
 */
 function DownloadProgressBar( props ) {
@@ -45,6 +46,18 @@ function DownloadProgressBar( props ) {
 		/>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof DownloadProgressBar
+* @type {Object}
+*/
+DownloadProgressBar.propTypes = {
+	'value': PropTypes.number.isRequired
+};
 
 
 // EXPORTS //

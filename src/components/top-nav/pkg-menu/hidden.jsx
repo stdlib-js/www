@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 // MAIN //
@@ -36,6 +37,18 @@ function Hidden( props ) {
 		<li key={ props.name } className="top-nav-item invisible" role="menuitem" aria-hidden="true"></li>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof Hidden
+* @type {Object}
+*/
+Hidden.propTypes = {
+	'name': PropTypes.string.isRequired
+};
 
 
 // EXPORTS //

@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import lunr from 'lunr';
 import { Link, withRouter } from 'react-router-dom';
 import fetchSearchData from 'fetch-search-data';
@@ -297,6 +298,20 @@ class Search extends React.Component {
 		);
 	}
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof Search
+* @type {Object}
+*/
+Search.propTypes = {
+	'version': PropTypes.string.isRequired,
+	'query': PropTypes.string.isRequired,
+	'onClose': PropTypes.func.isRequired
+};
 
 
 // EXPORTS //

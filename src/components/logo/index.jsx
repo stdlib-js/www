@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 // MAIN //
@@ -96,6 +97,19 @@ function Logo( props ) {
 		</svg>
 	);
 }
+
+/**
+* Component property types.
+*
+* @constant
+* @name propTypes
+* @memberof Logo
+* @type {Object}
+*/
+Logo.propTypes = {
+	'width': PropTypes.number.isRequired,
+	'height': PropTypes.number.isRequired
+};
 
 
 // EXPORTS //
