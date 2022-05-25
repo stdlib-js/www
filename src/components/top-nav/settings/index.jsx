@@ -24,6 +24,34 @@ import ChevronDownIcon from './../../icons/chevron_down.jsx';
 import Head from './head.jsx';
 
 
+// VARIABLES //
+
+var THEMES = [
+	// value, display_name
+	'light', 'Light',
+	'dark', 'Dark'
+];
+
+var MODES = [
+	// value, display_name
+	'default', 'Default'
+	// 'standalone', 'Standalone',
+	// 'repl', 'REPL',
+	// 'c', 'C'
+];
+
+var PREV_NEXT_MODES = [
+	// value, display_name
+	'alphabetical', 'Alphabetical',
+	'random', 'Random'
+];
+
+var EXAMPLE_SYNTAX = [
+	// value, display_name
+	'es5', 'ES5'
+	// 'es6', 'ES6+'
+];
+
 // MAIN //
 
 /**
@@ -159,6 +187,155 @@ class Settings extends React.Component {
 	}
 
 	/**
+	* Returns an option.
+	*
+	* @private
+	* @param {string} value - theme value
+	* @param {string} displayName - theme display name
+	* @param {boolean} isSelected - boolean indicating whether an option is selected
+	* @returns {ReactElement} React element
+	*/
+	_renderOption( value, displayName, isSelected ) {
+		return (
+			<option
+				value={ value }
+				selected={ isSelected }
+			>
+				{ displayName }
+			</option>
+		);
+	}
+
+	/**
+	* Returns a list of menu options.
+	*
+	* @private
+	* @param {Array<string>} options - strided array of interleaved option values and display names
+	* @param {string} selected - selected option
+	* @returns {Array<ReactElement>} list of menu options
+	*/
+	_renderOptions( options, selected ) {
+		var list;
+		var v;
+		var i;
+
+		list = [];
+		for ( i = 0; i < options.length; i += 2 ) {
+			v = options[ i ];
+			list.push( this._renderOption( v, options[ i+1 ], v === selected ) );
+		}
+		return list;
+	}
+
+	/**
+	* Returns a menu for selecting a theme.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	_renderThemeMenu() {
+		return (
+			<Fragment>
+				<label className="settings-menu-item-label">
+					Theme
+				</label>
+				<div className="settings-select-wrapper">
+					<select
+						className="settings-select"
+						onChange={ this._onThemeChange }
+					>
+						{ this._renderOptions( THEMES, this.props.theme ) }
+					</select>
+					<div className="settings-select-custom">
+						<ChevronDownIcon className="settings-select-custom-icon"/>
+					</div>
+				</div>
+			</Fragment>
+		);
+	}
+
+	/**
+	* Returns a menu for selecting a documentation mode.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	_renderModeMenu() {
+		return (
+			<Fragment>
+				<label className="settings-menu-item-label">
+					Documentation Mode
+				</label>
+				<div className="settings-select-wrapper">
+					<select
+						className="settings-select"
+						onChange={ this._onModeChange }
+					>
+						{ this._renderOptions( MODES, this.props.mode ) }
+					</select>
+					<div className="settings-select-custom">
+						<ChevronDownIcon className="settings-select-custom-icon"/>
+					</div>
+				</div>
+			</Fragment>
+		);
+	}
+
+	/**
+	* Returns a menu for selecting a previous/next package navigation mode.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	_renderPrevNextNavMenu() {
+		return (
+			<Fragment>
+				<label className="settings-menu-item-label">
+					Previous/Next Package Navigation
+				</label>
+				<div className="settings-select-wrapper">
+					<select
+						className="settings-select"
+						onChange={ this._onPrevNextNavChange }
+					>
+						{ this._renderOptions( PREV_NEXT_MODES, this.props.prevNextNavigation ) }
+					</select>
+					<div className="settings-select-custom">
+						<ChevronDownIcon className="settings-select-custom-icon"/>
+					</div>
+				</div>
+			</Fragment>
+		);
+	}
+
+	/**
+	* Returns a menu for selecting example code syntax.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	_renderExampleSyntaxMenu() {
+		return (
+			<Fragment>
+				<label className="settings-menu-item-label">
+					Example Code Syntax
+				</label>
+				<div className="settings-select-wrapper">
+					<select
+						className="settings-select"
+						onChange={ this._oExampleSyntaxChange }
+					>
+						{ this._renderOptions( EXAMPLE_SYNTAX, this.props.exampleSyntax ) }
+					</select>
+					<div className="settings-select-custom">
+						<ChevronDownIcon className="settings-select-custom-icon"/>
+					</div>
+				</div>
+			</Fragment>
+		);
+	}
+
+	/**
 	* Renders the component.
 	*
 	* @private
@@ -191,77 +368,19 @@ class Settings extends React.Component {
 						<Head onClose={ this._onClose } />
 
 						<div className="settings-menu-item">
-							<label className="settings-menu-item-label">
-								Theme
-							</label>
-							<div className="settings-select-wrapper">
-								<select
-									className="settings-select"
-									onChange={ this._onThemeChange }
-								>
-									<option value="light">Light</option>
-									<option value="dark">Dark</option>
-								</select>
-								<div className="settings-select-custom">
-									<ChevronDownIcon className="settings-select-custom-icon"/>
-								</div>
-							</div>
+							{ this._renderThemeMenu() }
 						</div>
 
 						<div className="settings-menu-item">
-							<label className="settings-menu-item-label">
-								Documentation Mode
-							</label>
-							<div className="settings-select-wrapper">
-								<select
-									className="settings-select"
-									onChange={ this._onModeChange }
-								>
-									<option value="default">Default</option>
-									{/*<option value="standalone">Standalone</option>*/}
-									{/*<option value="repl">REPL</option>*/}
-									{/*<option value="repl">C</option>*/}
-								</select>
-								<div className="settings-select-custom">
-									<ChevronDownIcon className="settings-select-custom-icon"/>
-								</div>
-							</div>
+							{ this._renderModeMenu() }
 						</div>
 
 						<div className="settings-menu-item">
-							<label className="settings-menu-item-label">
-								Previous/Next Package Navigation
-							</label>
-							<div className="settings-select-wrapper">
-								<select
-									className="settings-select"
-									onChange={ this._onPrevNextNavChange }
-								>
-									<option value="alphabetical">Alphabetical</option>
-									<option value="random">Random</option>
-								</select>
-								<div className="settings-select-custom">
-									<ChevronDownIcon className="settings-select-custom-icon"/>
-								</div>
-							</div>
+							{ this._renderPrevNextNavMenu() }
 						</div>
 
 						<div className="settings-menu-item">
-							<label className="settings-menu-item-label">
-								Code Examples
-							</label>
-							<div className="settings-select-wrapper">
-								<select
-									className="settings-select"
-									onChange={ this._oExampleSyntaxChange }
-								>
-									<option value="es5">ES5</option>
-									{/*<option value="es6">ES6+</option>*/}
-								</select>
-								<div className="settings-select-custom">
-									<ChevronDownIcon className="settings-select-custom-icon"/>
-								</div>
-							</div>
+							{ this._renderExampleSyntaxMenu() }
 						</div>
 
 						<div className="settings-menu-item settings-checkbox-wrapper">

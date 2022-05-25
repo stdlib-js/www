@@ -105,7 +105,13 @@
     - for relative requires, we simply load the syntax highlighted HTML
     - if we are really fancy, on hover, we can provide typescript/IDE-like functionality where we provide the type signature of an imported function and its description, all without ever leaving our website docs
 
-28.
+28. (docs) previous/next package navigation modes
+
+    - most recently updated?
+        - would need additional data, such as most recent standalone publish dates, which should be possible to obtain from GitHub event server
+    - most similar?
+        - would require computation of similarity scores
+        - could result in a local minima, so to speak, where a cluster of packages are all most similar to one another, so navigating to the next package does not allow breaking out to explore "new" packages
 
 29. (docs) README syntax highlighted example URLs (i.e., `require( '@stdlib/foo' )`, where `@stdlib/foo` is a hyperlink)
 
