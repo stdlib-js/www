@@ -199,6 +199,7 @@ class Settings extends React.Component {
 	_renderOption( value, displayName, isSelected ) {
 		return (
 			<option
+				key={ value }
 				value={ value }
 				selected={ isSelected }
 			>
