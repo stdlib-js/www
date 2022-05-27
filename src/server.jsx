@@ -25,6 +25,18 @@ import { HelmetProvider } from 'react-helmet-async';
 import App from './app.jsx';
 
 
+// FUNCTIONS //
+
+/**
+* Function which does nothing.
+*
+* @private
+*/
+function noop() {
+	// No-op...
+}
+
+
 // MAIN //
 
 /**
@@ -56,10 +68,19 @@ function ServerApp( props ) {
 					query={ props.query }
 					content={ props.content }
 
+					allowSettingsCookies={ false }
 					theme={ props.theme }
 					mode={ props.mode }
 					exampleSyntax={ props.exampleSyntax }
 					prevNextNavigation={ props.prevNextNavigation }
+
+					onVersionChange={ noop }
+
+					onAllowSettingsCookiesChange={ noop }
+					onThemeChange={ noop }
+					onModeChange={ noop }
+					onExampleSyntaxChange={ noop }
+					onPrevNextNavChange={ noop }
 				/>
 			</HelmetProvider>
 		</StaticRouter>
