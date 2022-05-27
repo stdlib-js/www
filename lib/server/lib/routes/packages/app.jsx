@@ -52,7 +52,7 @@ function WrappedApp( App, url, version, content, data, settings, context ) {
 				url={ url }
 				version={ version }
 				data={ data }
-				query=''
+				query=""
 				content={ content }
 
 				theme={ settings.theme }
