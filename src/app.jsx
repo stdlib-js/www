@@ -427,11 +427,11 @@ class App extends React.Component {
 		} else if ( path === routes.SEARCH ) {
 			props.home = true;
 			props.version = match.params.version;
-			props.pkg = match.params.pkg; // e.g., `math/base/special/sin`
+			props.pkg = match.params.pkg || ''; // e.g., `math/base/special/sin`
 		} else {
 			// We are currently rendering a package view...
 			props.version = match.params.version;
-			props.pkg = match.params.pkg; // e.g., `math/base/special/sin`
+			props.pkg = match.params.pkg || ''; // e.g., `math/base/special/sin`
 			props.src = true;
 			props.npm = ( RE_PLOT_PKG.test( props.pkg ) === false );
 
