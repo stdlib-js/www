@@ -35,20 +35,20 @@ function LogoIcon( props ) {
 		<svg className="icon stdlib-logo-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 16 16" focusable="false" aria-hidden="true" {...props}>
 			<defs>
 				<linearGradient id="Gradient_1" gradientUnits="userSpaceOnUse" x1="5.444" y1="4.6" x2="8.901" y2="2.604">
-					<stop offset="0" stop-color="#A4681D"/>
-					<stop offset="0.31" stop-color="#E18F2F"/>
-					<stop offset="1" stop-color="#F0AD3E"/>
+					<stop offset="0" stopColor="#A4681D"/>
+					<stop offset="0.31" stopColor="#E18F2F"/>
+					<stop offset="1" stopColor="#F0AD3E"/>
 				</linearGradient>
 				<linearGradient id="Gradient_2" gradientUnits="userSpaceOnUse" x1="7.289" y1="13.773" x2="12.457" y2="10.79">
-					<stop offset="0" stop-color="#F0AD3E"/>
-					<stop offset="0.69" stop-color="#E18F2F"/>
-					<stop offset="1" stop-color="#A4681D"/>
+					<stop offset="0" stopColor="#F0AD3E"/>
+					<stop offset="0.69" stopColor="#E18F2F"/>
+					<stop offset="1" stopColor="#A4681D"/>
 				</linearGradient>
 				<linearGradient id="Gradient_3" gradientUnits="userSpaceOnUse" x1="3.279" y1="7.218" x2="12.639" y2="7.218">
-					<stop offset="0" stop-color="#006991"/>
-					<stop offset="0.25" stop-color="#008BBF"/>
-					<stop offset="0.62" stop-color="#008BBF"/>
-					<stop offset="1" stop-color="#00AEEF"/>
+					<stop offset="0" stopColor="#006991"/>
+					<stop offset="0.25" stopColor="#008BBF"/>
+					<stop offset="0.62" stopColor="#008BBF"/>
+					<stop offset="1" stopColor="#00AEEF"/>
 				</linearGradient>
 			</defs>
 			<g>
