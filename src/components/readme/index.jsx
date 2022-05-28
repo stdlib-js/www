@@ -157,7 +157,7 @@ class Readme extends React.Component {
 				}
 				{ ( this.state.content ) ?
 					<section className="readme-addendum">
-						<nav className="readme-bottom-nav" aria-label="pagination">
+						<nav className="readme-bottom-nav">
 							<div className="edit-print-wrapper">
 								<PrintButton
 									version={ this.props.version }
@@ -169,6 +169,7 @@ class Readme extends React.Component {
 								prev={ this.props.prev }
 								next={ this.props.next }
 								version={ this.props.version }
+								aria-label="pagination"
 							/>
 						</nav>
 						<Feedback
