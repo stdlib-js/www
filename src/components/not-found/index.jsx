@@ -35,7 +35,7 @@ function NotFound() {
 	return (
 		<Fragment>
 			<div id="readme" className="readme">
-				<section>
+				<section className="readme-content">
 					<h1>Whoops!</h1>
 					<p>
 						Oh no! We're having trouble locating that page. <span role="img" aria-label="sadface emoji">😢</span>
