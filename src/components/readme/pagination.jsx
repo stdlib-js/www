@@ -32,9 +32,9 @@ import Placeholder from './placeholder.jsx';
 *
 * @private
 * @param {Object} props - component properties
-* @param {string} props.next - name of next package
-* @param {string} props.prev - name of previous package
 * @param {string} props.version - documentation version
+* @param {string} [props.next] - name of next package
+* @param {string} [props.prev] - name of previous package
 * @returns {(ReactElement|null)} React element
 */
 function Pagination( props ) {
@@ -62,7 +62,7 @@ function Pagination( props ) {
 Pagination.propTypes = {
 	'next': PropTypes.string,
 	'prev': PropTypes.string,
-	'version': PropTypes.string
+	'version': PropTypes.string.isRequired
 };
 
 
