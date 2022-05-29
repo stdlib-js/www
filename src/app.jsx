@@ -512,7 +512,6 @@ class App extends React.Component {
 		var pkg;
 		var ord;
 		var idx;
-		var t;
 
 		version = match.params.version;
 		pkg = match.params.pkg;
@@ -553,11 +552,10 @@ class App extends React.Component {
 			prev = null;
 			next = null;
 		}
-		t = pkg2title( pkg );
 		return (
 			<Fragment>
 				<Head
-					title={ t }
+					title={ pkg2title( pkg ) }
 					description={ desc || config.description }
 					url={ match.url }
 				/>
