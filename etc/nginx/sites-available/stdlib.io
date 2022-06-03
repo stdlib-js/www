@@ -460,7 +460,16 @@ server {
     # Default: `proxy_redirect default;`
     #
     # [1]: https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect
-    proxy_redirect ~^(http://[^:]+):\d+/gh(/.+)$ $2;
+    proxy_redirect ~^(http://[^:]+):\d+/(.+)$ /gh/$2;
+
+    # Change a URI according to a specified replacement string.
+    #
+    # ## Usage
+    #
+    # Syntax: `rewrite regex replacement [flag];`
+    #
+    # [1]: https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite
+    rewrite ^/gh(.*) $1 break;
 
     # Set the protocol and address of the proxied server.
     #
