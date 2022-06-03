@@ -436,7 +436,7 @@ server {
   }
 
   # Define a location directive for handling GitHub event payloads:
-  location ~* ^/gh/[a-z0-9.\-_]+/ {
+  location ~* ^/gh/[a-z0-9.\-_]+ {
     # Set proxy headers passed to the proxied server.
     #
     # ## Usage
