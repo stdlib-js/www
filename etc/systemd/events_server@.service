@@ -25,9 +25,10 @@ WantedBy=multi-user.target
 
 [Service]
 Type=simple
-Environment="NODE_ENV=production"
 WorkingDirectory=/srv/www/github-event-server
-ExecStart=/usr/bin/node ./scripts/index.js
+Environment="NODE_ENV=production" "PORT=3001" "DATA_DIR=/srv/www/github-event-server-data/"
+EnvironmentFile=/srv/www/github-event-server/etc/systemd/env.conf
+ExecStart=/usr/bin/node /srv/www/github-event-server/bin/cli
 Restart=always
 RestartSec=500ms
 StartLimitInterval=0
