@@ -71,7 +71,18 @@ function UserStories() {
 								I would like to include stdlib functionality by just using a <code>script</code> tag.
 							</p>
 							<ul>
-								<li>Install one of the pre-built UMD <a href="install_browser_bundles">browser bundles</a> or consume one of the pre-built bundles via a CDN, such as <a href="https://unpkg.com/">unpkg</a>.</li>
+								<li>
+									<p>I would like to use ES Modules.</p>
+									<ul>
+										<li>Use an individual package's ES Module <a href="#install_env_builds_esm">build</a>.</li>
+									</ul>
+								</li>
+								<li>
+									<p>I would like to use a pre-built bundle (possibly via a CDN, such as <a href="https://unpkg.com/#/">unpkg</a> or <a href="https://www.jsdelivr.com/">jsDelivr</a>).</p>
+									<ul>
+										<li>Install (or consume via a CDN) an individual package's pre-built UMD <a href="#install_env_builds_umd">browser bundle</a>.</li>
+									</ul>
+								</li>
 							</ul>
 						</li>
 						<li>
@@ -106,8 +117,14 @@ function UserStories() {
 							</ul>
 						</li>
 						<li>
+							<p>I would like to <b>vendor</b> stdlib functionality and avoid dependency trees.</p>
+							<ul>
+								<li>Install individual package UMD <a href="#install_env_builds_nodejs">bundles</a>.</li>
+							</ul>
+						</li>
+						<li>
 							<p>
-								I am interested in using a substantial amount of functionality found in a top-level stdlib namespace and don't want to separately install hundreds of individual packages.
+								I am interested in using a <b>substantial</b> amount of functionality found in a top-level stdlib namespace and don't want to separately install hundreds of individual packages.
 							</p>
 							<ul>
 								<li>Install one or more top-level <a href="#install_namespaces">namespaces</a>. Installing the entire project is likely unnecessary and will lead to slower installation times. Installing a top-level namespace is likely to mean installing functionality which will never be used; however, installing a top-level namespace is likely to be easier and less time-consuming than installing many individual packages separately.</li>
@@ -120,8 +137,7 @@ function UserStories() {
 						I am using <b>Deno</b>.
 					</p>
 					<ul>
-						<li>Use <a href="https://www.skypack.dev/view/@stdlib/stdlib">skypack</a> to import <a href="#install_individual_packages">individual packages</a>.
-						</li>
+						<li>Import <a href="#install_env_builds_deno">individual packages</a> using pre-built Deno builds.</li>
 					</ul>
 				</li>
 				<li>
@@ -129,7 +145,7 @@ function UserStories() {
 						I would like to use stdlib functionality in an <a href="https://observablehq.com/">Observable</a> notebook.
 					</p>
 					<ul>
-						<li>Consume one of the pre-built <a href="#install_browser_bundles">browser bundles</a> via a CDN, such as <a href="https://unpkg.com/">unpkg</a>.</li>
+						<li>Consume a pre-built <a href="#install_env_builds_umd">browser bundles</a> via a CDN, such as <a href="https://unpkg.com/#/">unpkg</a> or <a href="https://www.jsdelivr.com/">jsDelivr</a>.</li>
 					</ul>
 				</li>
 				<li>

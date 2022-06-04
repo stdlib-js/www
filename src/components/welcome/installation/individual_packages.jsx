@@ -43,7 +43,7 @@ function IndividualPackages() {
 
 			<pre>
 				<code className="hljs language-bash">
-					$ npm install @stdlib/ndarray-ctor
+					$ npm install @stdlib/ndarray-array
 				</code>
 			</pre>
 
@@ -53,7 +53,7 @@ function IndividualPackages() {
 
 			<pre>
 				<code className="hljs language-javascript">
-					<span className="hljs-keyword">var</span> ndarray = <span className="hljs-built_in">require</span>( <span className="hljs-string">'@stdlib/ndarray-ctor'</span> );
+					<span className="hljs-keyword">var</span> ndarray = <span className="hljs-built_in">require</span>( <span className="hljs-string">'@stdlib/ndarray-array'</span> );
 					<br/>
 					<br/>
 					<span className="hljs-keyword">var</span> arr = ndarray( [ [ <span className="hljs-number">1</span>, <span className="hljs-number">2</span> ], [ <span className="hljs-number">3</span>, <span className="hljs-number">4</span> ] ] );
@@ -68,7 +68,7 @@ function IndividualPackages() {
 
 			<pre>
 				<code className="hljs language-javascript">
-					<span className="hljs-keyword">import</span> ndarray <span className="hljs-keyword">from</span> <span className="hljs-string">'@stdlib/ndarray-ctor'</span>;
+					<span className="hljs-keyword">import</span> ndarray <span className="hljs-keyword">from</span> <span className="hljs-string">'@stdlib/ndarray-array'</span>;
 					<br/>
 					<br/>
 					<span className="hljs-keyword">var</span> arr = ndarray( [ [ <span className="hljs-number">1</span>, <span className="hljs-number">2</span> ], [ <span className="hljs-number">3</span>, <span className="hljs-number">4</span> ] ] );

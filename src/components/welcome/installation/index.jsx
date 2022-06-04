@@ -25,7 +25,7 @@ import CompleteLibrary from './complete_library.jsx';
 import IndividualPackages from './individual_packages.jsx';
 import Namespaces from './namespaces.jsx';
 import CommandLineUtility from './command_line_utility.jsx';
-import BrowserBundles from './browser_bundles.jsx';
+import EnvBuilds from './env_builds.jsx';
 import CustomBundles from './custom_bundles.jsx';
 import SystemLibrary from './system_library.jsx';
 
@@ -60,8 +60,8 @@ function Installation( props ) {
 			<h3 id="install_command_line_utility">Command-line Utility</h3>
 			<CommandLineUtility version={ props.version }/>
 
-			<h3 id="install_browser_bundles">Browser Bundles</h3>
-			<BrowserBundles version={ props.version }/>
+			<h3 id="install_env_builds">Environment Builds</h3>
+			<EnvBuilds version={ props.version }/>
 
 			<h3 id="install_custom_bundles">Custom Bundles</h3>
 			<CustomBundles />
