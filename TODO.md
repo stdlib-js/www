@@ -13,6 +13,8 @@
 
 3. (docs) investigate using [hotjar](https://www.hotjar.com/pricing) to collect user feedback for the API docs
 
+    -   **update**: we now collect user feedback via formsubmit
+
 4. (tools) Document local development setup
 
     -   <https://github.com/CodepediaOrg/bookmarks.dev-api/wiki/Setup-Nginx-for-development-(macOS)---work-in-progress>
@@ -85,6 +87,8 @@
 
     -   this navigation element could also be used to house the benchmarks, tests, source, and other links for a package, but maybe we want to keep separate (?)
     -   this would be similar in appearance to docusaurus, which may or may not be a good thing
+    -   could also show progress bar to indicate how far along one is in content
+    -   see Linode docs for potential inspiration: <https://www.linode.com/docs/guides/backing-up-your-data/>
 
 23. (www) background image slideshow? (see <https://tympanus.net/codrops/2012/01/02/fullscreen-background-image-slideshow-with-css3/>)
 
