@@ -48,6 +48,8 @@ function Footer( props ) {
 				<a href={ config.twitter } title="Follow us on Twitter!">Twitter</a>
 				<span aria-hidden="true"> / </span>
 				<a href={ config.repository } title="Contribute to stdlib">Contribute</a>
+				<span aria-hidden="true"> / </span>
+				<a href={ config.status } title="Status and uptime">Status</a>
 			</nav>
 		</footer>
 	);
