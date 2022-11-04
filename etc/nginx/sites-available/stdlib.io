@@ -348,26 +348,35 @@ server {
     proxy_pass http://127.0.0.1:3000/docs/api;
   }
 
-  # Define a location directive for handling error decoder requests:
-  location /e/ {
-    # Redirect the request to the corresponding API docs route.
-    #
-    # ## Usage
-    #
-    # Syntax: `rewrite regex replacement [flag];`
-    #
-    # [1]: https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite
-    rewrite ^/e/(.*) /docs/api/ping last;
+  # Rewrite error decoder requests.
+  #
+  # ## Usage
+  #
+  # Syntax: `rewrite regex replacement [flag];`
+  #
+  # [1]: https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite
+  rewrite ^/e/(.*)$ /docs/api/ping last;
 
-    # Return a `301` Moved Permanently response.
-    #
-    # ## Usage
-    #
-    # Syntax: `return value;`
-    #
-    # [1]: http://nginx.org/en/docs/stream/ngx_stream_return_module.html#return
-    return 301;
-  }
+  # # Define a location directive for handling error decoder requests:
+  # location /e/ {
+  #   # Redirect the request to the corresponding API docs route.
+  #   #
+  #   # ## Usage
+  #   #
+  #   # Syntax: `rewrite regex replacement [flag];`
+  #   #
+  #   # [1]: https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite
+  #   rewrite ^/e/(.*) /docs/api/ping break;
+
+  #   # Return a `301` Moved Permanently response.
+  #   #
+  #   # ## Usage
+  #   #
+  #   # Syntax: `return value;`
+  #   #
+  #   # [1]: http://nginx.org/en/docs/stream/ngx_stream_return_module.html#return
+  #   return 301;
+  # }
 
   # Define a location directive for resolving the GitHub event server status:
   location = /gh/status {
