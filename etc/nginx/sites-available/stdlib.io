@@ -366,7 +366,7 @@ server {
     # Syntax: `return value;`
     #
     # [1]: http://nginx.org/en/docs/stream/ngx_stream_return_module.html#return
-    return 301 https://stdlib.io$request_uri;;
+    return 301 https://stdlib.io$request_uri;
   }
 
   # Define a location directive for resolving the GitHub event server status:
