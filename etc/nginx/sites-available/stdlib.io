@@ -357,7 +357,7 @@ server {
     # Syntax: `rewrite regex replacement [flag];`
     #
     # [1]: https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite
-    rewrite ^/e/(.*)$ /docs/api/ping last;
+    rewrite ^/e/(.*) /docs/api/ping last;
 
     # Return a `301` Moved Permanently response.
     #
