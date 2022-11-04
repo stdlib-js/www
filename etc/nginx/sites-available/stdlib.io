@@ -348,7 +348,8 @@ server {
     proxy_pass http://127.0.0.1:3000/docs/api;
   }
 
-  location /e/ {
+  # Define a location directive for handling error decoder requests:
+  location ~* ^/e/[a-z0-9.\-_]+ {
     # Set proxy headers passed to the proxied server.
     #
     # ## Usage
