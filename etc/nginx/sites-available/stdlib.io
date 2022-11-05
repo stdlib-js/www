@@ -382,7 +382,7 @@ server {
     # Syntax: `rewrite regex replacement [flag];`
     #
     # [1]: https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite
-    rewrite ^/e/(.*)$ /docs/api/latest/error/decoder/$1 break;
+    rewrite ^/e/(.*)$ /docs/api/latest/error/decoder/$1 permanent;
 
     # # Set the protocol and address of the proxied server.
     # #
@@ -400,7 +400,7 @@ server {
     # Syntax: `return code URL;`
     #
     # [1]: http://nginx.org/en/docs/stream/ngx_stream_return_module.html#return
-    return 301;
+    # return 301 https://stdlib.io/docs/api/latest/error/decoder;
   }
 
   # Define a location directive for resolving the GitHub event server status:
