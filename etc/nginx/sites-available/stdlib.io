@@ -59,7 +59,7 @@ server {
   #
   # ## Usage
   #
-  # Syntax: `return value;`
+  # Syntax: `return code URL;`
   #
   # ## Notes
   #
@@ -129,7 +129,7 @@ server {
   #
   # ## Usage
   #
-  # Syntax: `return value;`
+  # Syntax: `return code URL;`
   #
   # [1]: http://nginx.org/en/docs/stream/ngx_stream_return_module.html#return
   return 301 https://stdlib.io$request_uri;
@@ -388,12 +388,19 @@ server {
     # #
     # # ## Usage
     # #
-    # # Syntax: `proxy_pass URL;`
+    # # Syntax: `proxy_pass value;`
     # #
     # # [1]: https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass
     # proxy_pass http://127.0.0.1:3000;
 
-    return 301 https://stdlib.io$request_uri;
+    # Redirect to the corresponding API docs location with a `301` Moved Permanently response.
+    #
+    # ## Usage
+    #
+    # Syntax: `return code URL;`
+    #
+    # [1]: http://nginx.org/en/docs/stream/ngx_stream_return_module.html#return
+    return 301;
   }
 
   # Define a location directive for resolving the GitHub event server status:
