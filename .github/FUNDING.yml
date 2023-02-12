@@ -17,7 +17,10 @@
 #/
 
 # List (up to 4) principal GitHub contributors:
-github: [kgryte]
+github: [stdlib-js]
 
-# Link to a Patreon account:
-patreon: athan
+# Link to Open Collective:
+open_collective: stdlib
+
+# Link to Tidelift:
+tidelift: npm/@stdlib/stdlib
