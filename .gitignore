@@ -168,3 +168,7 @@ acs-*.bib
 #################
 .vscode/
 jsconfig.json
+
+# Sublime Text #
+################
+*.sublime-workspace
