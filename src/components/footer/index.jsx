@@ -41,7 +41,7 @@ function Footer( props ) {
 				className="bottom-nav center"
 				aria-label="secondary"
 			>
-				<a href={ config.funding } title="Help support the project">Donate</a>
+				<a href={ config.funding } title="Help support the project">Sponsor</a>
 				<span aria-hidden="true"> / </span>
 				<Link to={ config.mount } title="Documentation">Docs</Link>
 				<span aria-hidden="true"> / </span>
