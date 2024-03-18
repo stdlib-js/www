@@ -67,6 +67,7 @@ class Settings extends React.Component {
 	* @private
 	* @constructor
 	* @param {Object} props - component properties
+	* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 	* @param {boolean} props.allowSettingsCookies - boolean indicating whether to allow the use of cookies for storing settings
 	* @param {string} props.theme - current theme
 	* @param {string} props.mode - current documentation "mode"
@@ -367,7 +368,7 @@ class Settings extends React.Component {
 						onClick={ this._onWrapperClick }
 					>
 
-						<Head onClose={ this._onClose } />
+						<Head onClose={ this._onClose } isMenuOpen={ this.state.open } shortcuts={ this.props.shortcuts} />
 
 						<div className="settings-menu-item">
 							{ this._renderThemeMenu() }
@@ -436,6 +437,7 @@ Settings.propTypes = {
 	'mode': PropTypes.string.isRequired,
 	'exampleSyntax': PropTypes.string.isRequired,
 	'prevNextNavigation': PropTypes.string.isRequired,
+	'shortcuts': PropTypes.bool.isRequired,
 	'onAllowSettingsCookiesChange': PropTypes.func.isRequired,
 	'onThemeChange': PropTypes.func.isRequired,
 	'onModeChange': PropTypes.func.isRequired,

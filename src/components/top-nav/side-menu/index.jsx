@@ -44,6 +44,7 @@ class SideMenu extends React.Component {
 	* @param {Callback} props.onVersionChange - callback to invoke upon a change to the selected documentation version
 	* @param {Callback} props.onFilterFocus - callback to invoke when the side menu filter receives focus
 	* @param {Callback} props.onFilterBlur - callback to invoke when the side menu filter loses focus
+	* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 	* @param {boolean} props.open - boolean indicating whether the side menu is open
 	* @returns {ReactComponent} component
 	*/
@@ -59,6 +60,40 @@ class SideMenu extends React.Component {
 	*/
 	_onMenuOpen = () => {
 		this.props.onToggle( true );
+	};
+
+	/**
+	* Callback invoked upon a user press down a key to toggle the side menu view
+	*
+	* @private
+	* @param {Object} event - event object
+	* @returns {void}
+	*/
+	_sideMenuToggle = ( event ) => {
+		// Toggle when 'm' was pressed down while shortcuts are active
+		if ( event.key === "m" && this.props.shortcuts ) {
+			this.props.onToggle( !this.props.open );
+		}
+	};
+
+	/**
+	* Callback invoked immediately after unmounting a component (i.e., is removed from a tree).
+	*
+	* @private
+	*/
+	componentDidMount() {
+		// Add event listener for key down event
+		document.addEventListener( "keydown", this._sideMenuToggle );
+	}
+
+	/**
+	* Callback invoked immediately after unmounting a component (i.e., is removed from a tree).
+	*
+	* @private
+	*/
+	componentWillUnmount() {
+		// Clean up event listener
+		document.removeEventListener( "keydown", this._sideMenuToggle );
 	}
 
 	/**
@@ -86,6 +121,7 @@ class SideMenu extends React.Component {
 						onVersionChange={ this.props.onVersionChange }
 						onFilterFocus={ this.props.onFilterFocus }
 						onFilterBlur={ this.props.onFilterBlur }
+						shortcuts={ this.props.shortcuts }
 					/>
 				</div>
 			</Fragment>
@@ -108,7 +144,8 @@ SideMenu.propTypes = {
 	'onVersionChange': PropTypes.func.isRequired,
 	'onFilterFocus': PropTypes.func.isRequired,
 	'onFilterBlur': PropTypes.func.isRequired,
-	'open': PropTypes.bool.isRequired
+	'open': PropTypes.bool.isRequired,
+	'shortcuts' : PropTypes.bool.isRequired
 };
 
 

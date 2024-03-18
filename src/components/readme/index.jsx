@@ -51,6 +51,7 @@ class Readme extends React.Component {
 	* @param {string} [props.content] - initial content
 	* @param {string} [props.prev] - previous package name
 	* @param {string} [props.next] - next package name
+	* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 	* @param {Callback} props.onClick - callback to invoke upon clicking on README content
 	* @returns {ReactComponent} React component
 	*/
@@ -169,6 +170,7 @@ class Readme extends React.Component {
 								prev={ this.props.prev }
 								next={ this.props.next }
 								version={ this.props.version }
+								shortcuts={ this.props.shortcuts }
 								aria-label="pagination"
 							/>
 						</nav>
@@ -202,7 +204,8 @@ Readme.propTypes = {
 	'content': PropTypes.string,
 	'prev': PropTypes.string,
 	'next': PropTypes.string,
-	'onClick': PropTypes.func.isRequired
+	'onClick': PropTypes.func.isRequired,
+	'shortcuts': PropTypes.bool.isRequired
 };
 
 
