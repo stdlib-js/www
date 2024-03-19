@@ -18,8 +18,8 @@
 
 // MODULES //
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useCallback } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import pkgPath from 'pkg-doc-path';
 import pkgKind from 'pkg-kind';
@@ -35,9 +35,13 @@ import pkgBasename from 'pkg-basename';
 * @param {Object} props - component properties
 * @param {string} props.pkg - package
 * @param {string} props.version - documentation version
+* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 * @returns {ReactElement} React element
 */
 function PaginationNext( props ) {
+	// For accessing the history object in functional component
+	var history = useHistory();
+
 	var basename;
 	var name;
 	var kind;
@@ -51,6 +55,23 @@ function PaginationNext( props ) {
 
 	// Determine if we can resolve a package "kind":
 	kind = pkgKind( pkg );
+
+	const onArrowRight = useCallback(( event ) => {
+		// Check if the arrowright is pressed when shortcuts are active
+		if ( event.ctrlKey && event.key === "ArrowRight" && props.shortcuts ) {
+			history.push( pkgPath( name, props.version) );
+		}
+	}, [props]);
+
+	useEffect(() => {
+		// Add event listener when the component mounts
+		document.addEventListener( "keyup", onArrowRight );
+
+		// Cleanup the event listener when the component unmounts
+		return () => {
+			document.removeEventListener( "keyup", onArrowRight );
+		};
+	}, [onArrowRight]);
 
 	return (
 		<Link
@@ -76,7 +97,8 @@ function PaginationNext( props ) {
 */
 PaginationNext.propTypes = {
 	'pkg': PropTypes.string.isRequired,
-	'version': PropTypes.string.isRequired
+	'version': PropTypes.string.isRequired,
+	'shortcuts': PropTypes.bool.isRequired
 };
 
 
