@@ -20,14 +20,13 @@
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import viewportWidth from 'viewport-width';
 import SideMenu from './side-menu/index.jsx';
 import PackageMenu from './pkg-menu/index.jsx';
 import SearchInput from './search_input.jsx';
 import DownloadButton from './download_button.jsx';
 import DownloadProgressBar from './download_progress_bar.jsx';
 import Settings from './settings/index.jsx';
-import DocsHelp from './docs_help.jsx'
+
 
 // MAIN //
 
@@ -50,7 +49,6 @@ class TopNav extends React.Component {
 	* @param {Callback} props.onVersionChange - callback to invoke upon selecting a version
 	* @param {Callback} props.onFilterFocus - callback to invoke when the side menu filter receives focus
 	* @param {Callback} props.onFilterBlur - callback to invoke when the side menu filter loses focus
-	* @param {Callback} props.onHelpOpen - callback to invoke when the help page buttons gets clicked
 	* @param {Callback} props.onSearchSubmit - callback to invoke upon submitting a search query
 	* @param {Callback} props.onSearchChange - callback to invoke upon updating a search input element
 	* @param {Callback} props.onSearchFocus - callback to invoke when search input receives focus
@@ -69,7 +67,6 @@ class TopNav extends React.Component {
 	* @param {boolean} props.typescript - boolean indicating whether to link to TypeScript type declarations
 	* @param {boolean} props.sideMenu - boolean indicating whether to expand the side menu
 	* @param {boolean} props.allowSettingsCookies - boolean indicating whether to allow the use of cookies for storing settings
-	* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 	* @param {string} props.theme - current documentation theme
 	* @param {string} props.mode - current documentation "mode"
 	* @param {string} props.exampleSyntax - current example code syntax
@@ -87,22 +84,6 @@ class TopNav extends React.Component {
 		}
 	}
 
-	/**
-	* Callback invoked upon checking the device type
-	*
-	* @private
-	* @param {boolean} bool - boolean indicating whether a the device is PC or not
-	*/
-	_isPC = () => {
-		// Query the current viewport width:
-		var w = viewportWidth();
-
-		// Only render help page, based on the assumption that small devices are likely to be mobile devices:
-		if ( w && w >= 1080 ) {
-			return true;
-		}
-		return false;
-	}
 	/**
 	* Callback invoked upon a download progress update.
 	*
@@ -155,39 +136,6 @@ class TopNav extends React.Component {
 	}
 
 	/**
-	* Callback invoked upon a user press down a key to open help page.
-	*
-	* @private
-	* @param {Object} event - event object
-	* @returns {void}
-	*/
-	openHelpPage = ( event ) => {
-		// Open when question mark is pressed down and shortcuts are active
-		if( event.key == "?" && this.props.shortcuts ){
-			this.props.onHelpOpen();
-		}
-	}
-
-	/**
-	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
-	*
-	* @private
-	*/
-	componentDidMount(){
-		document.addEventListener( "keydown", this.openHelpPage )
-	}
-
-	/**
-	* Callback invoked immediately after unmounting a component (i.e., is removed from a tree).
-	*
-	* @private
-	*/
-	componentWillUnmount(){
-		document.addEventListener( "keydown", this.openHelpPage )
-	}
-	
-	
-	/**
 	* Renders the component.
 	*
 	* @private
@@ -210,7 +158,6 @@ class TopNav extends React.Component {
 						onVersionChange={ this.props.onVersionChange }
 						onFilterFocus={ this.props.onFilterFocus }
 						onFilterBlur={ this.props.onFilterBlur }
-						shortcuts={ this.props.shortcuts }
 					/>
 
 					<SearchInput
@@ -219,7 +166,6 @@ class TopNav extends React.Component {
 						onChange={ this.props.onSearchChange }
 						onFocus={ this.props.onSearchFocus }
 						onBlur={ this.props.onSearchBlur }
-						shortcuts={ this.props.shortcuts }
 					/>
 
 					<span className="top-nav-divider"></span>
@@ -227,7 +173,6 @@ class TopNav extends React.Component {
 						open={ this.state.packageMenu }
 						pkg={ this.props.pkg }
 						version={ this.props.version }
-						shortcuts={ this.props.shortcuts }
 						home={ this.props.home }
 						docs={ this.props.docs }
 						benchmarks={ this.props.benchmarks }
@@ -250,16 +195,12 @@ class TopNav extends React.Component {
 						onModeChange={ this.props.onModeChange }
 						onExampleSyntaxChange={ this.props.onExampleSyntaxChange }
 						onPrevNextNavChange={ this.props.onPrevNextNavChange }
-
-						shortcuts={ this.props.shortcuts }
 					/>
 
 					<DownloadButton
 						version={ this.props.version }
 						onProgress={ this._onDownloadProgress }
 					/>
-					
-					{ this._isPC() ?  < DocsHelp onHelpOpen={ this.props.onHelpOpen } /> : null }
 
 					{ progress ? <DownloadProgressBar value={ progress } /> : null }
 				</nav>
@@ -282,7 +223,6 @@ TopNav.propTypes = {
 	'query': PropTypes.string.isRequired,
 	'onSideMenuToggle': PropTypes.func.isRequired,
 	'onVersionChange': PropTypes.func.isRequired,
-	'onHelpOpen': PropTypes.func.isRequired,
 	'onSearchSubmit': PropTypes.func.isRequired,
 	'onSearchChange': PropTypes.func.isRequired,
 	'onSearchFocus': PropTypes.func.isRequired,
@@ -303,7 +243,6 @@ TopNav.propTypes = {
 	'typescript': PropTypes.bool.isRequired,
 	'sideMenu': PropTypes.bool.isRequired,
 	'allowSettingsCookies': PropTypes.bool.isRequired,
-	'shortcuts' : PropTypes.bool.isRequired,
 	'theme': PropTypes.string.isRequired,
 	'mode': PropTypes.string.isRequired,
 	'exampleSyntax': PropTypes.string.isRequired,

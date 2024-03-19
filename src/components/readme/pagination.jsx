@@ -35,7 +35,6 @@ import Placeholder from './placeholder.jsx';
 * @param {string} props.version - documentation version
 * @param {string} [props.next] - name of next package
 * @param {string} [props.prev] - name of previous package
-* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 * @returns {(ReactElement|null)} React element
 */
 function Pagination( props ) {
@@ -46,8 +45,8 @@ function Pagination( props ) {
 	}
 	return (
 		<div className="pagination">
-			{ ( prev ) ? <Prev pkg={ prev } version={ props.version } shortcuts={ props.shortcuts } /> : <Placeholder /> }
-			{ ( next ) ? <Next pkg={ next } version={ props.version } shortcuts={ props.shortcuts } /> : <Placeholder /> }
+			{ ( prev ) ? <Prev pkg={ prev } version={ props.version }/> : <Placeholder /> }
+			{ ( next ) ? <Next pkg={ next } version={ props.version }/> : <Placeholder /> }
 		</div>
 	);
 }
@@ -63,8 +62,7 @@ function Pagination( props ) {
 Pagination.propTypes = {
 	'next': PropTypes.string,
 	'prev': PropTypes.string,
-	'version': PropTypes.string.isRequired,
-	'shortcuts': PropTypes.bool.isRequired
+	'version': PropTypes.string.isRequired
 };
 
 

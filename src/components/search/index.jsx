@@ -49,7 +49,6 @@ class Search extends React.Component {
 	* @param {Object} props - component properties
 	* @param {string} props.version - version
 	* @param {string} props.query - search query
-	* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 	* @param {Callback} props.onClose - callback to invoke upon closing search results
 	* @returns {ReactComponent} React component
 	*/
@@ -235,38 +234,12 @@ class Search extends React.Component {
 	}
 
 	/**
-	* Callback invoked upon a user press down a key when search results are open.
-	*
-	* @private
-	* @param {Object} event - event object
-	* @returns {void}
-	*/
-	_closeSearchResults = ( event ) => {
-		// Close search results only after the settings menu gets closed
-		var isSettingsClosed = document.querySelector( 'div.settings-menu-overlay.invisible' ) !== null;
-
-		if ( event.key === "Escape" && this.props.shortcuts && isSettingsClosed ) {
-			this.props.onClose();
-		  }
-	}
-
-	/**
 	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
 	*
 	* @private
 	*/
 	componentDidMount() {
-		document.addEventListener( "keydown" , this._closeSearchResults )
 		this._updateSearchIndex();
-	}
-
-	/**
-	* Callback invoked immediately after unmounting a component (i.e., is removed from a tree).
-	*
-	* @private
-	*/
-	componentWillUnmount() {
-		document.removeEventListener( "keydown", this._closeSearchResults )
 	}
 
 	/**
@@ -337,8 +310,7 @@ class Search extends React.Component {
 Search.propTypes = {
 	'version': PropTypes.string.isRequired,
 	'query': PropTypes.string.isRequired,
-	'onClose': PropTypes.func.isRequired,
-	'shortcuts': PropTypes.bool.isRequired
+	'onClose': PropTypes.func.isRequired
 };
 
 

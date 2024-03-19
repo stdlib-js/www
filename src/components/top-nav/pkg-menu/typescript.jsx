@@ -18,7 +18,7 @@
 
 // MODULES //
 
-import React, { useEffect, useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 
@@ -44,7 +44,6 @@ var PATH = [
 * @param {Object} props - component properties
 * @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @param {string} props.version - documentation version
-* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 * @returns {ReactElement} React element
 */
 function TypeScript( props ) {
@@ -54,29 +53,6 @@ function TypeScript( props ) {
 
 	pkg = pkg.replace( RE_STDLIB_PREFIX, '' );
 	PATH[ 3 ] = pkg.replace( RE_UNDERSCORE_REPLACE, '_' );
-
-	var location = window.location;
-	var path = location.protocol + "//" + location.hostname;
-	// when port is available 
-	path += location.port ? ":" + location.port : "";
-	path += PATH.join( '' );
-
-	const openTSDocs = useCallback(( event ) => {
-		// Open when 'shift+T' is pressed down while shortcuts are active
-		if ( event.key === "T" && event.shiftKey && props.shortcuts ) {
-			window.location.href = path;
-		}
-	}, [props]);
-
-	useEffect(() => {
-		// Add event listener when the component mounts
-		document.addEventListener( "keydown", openTSDocs );
-
-		// Cleanup the event listener when the component unmounts
-		return () => {
-			document.removeEventListener( "keydown", openTSDocs );
-		};
-	}, [openTSDocs]);
 
 	return (
 		<li key="typescript" className="top-nav-item" role="menuitem">
@@ -95,8 +71,7 @@ function TypeScript( props ) {
 */
 TypeScript.propTypes = {
 	'pkg': PropTypes.string.isRequired,
-	'version': PropTypes.string.isRequired,
-	'shortcuts': PropTypes.bool.isRequired
+	'version': PropTypes.string.isRequired
 };
 
 

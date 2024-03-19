@@ -40,12 +40,6 @@ var COOKIES = [
 	'prevnextnavigation'
 ];
 
-var THEMES = [
-	'light',
-	'dark'
-	// more to come... hopefully...
-]
-
 // MAIN //
 
 /**
@@ -137,10 +131,7 @@ class ClientApp extends React.Component {
 			'exampleSyntax': cookies.examplesyntax || config.exampleSyntax,
 
 			// Previous/next package navigation:
-			'prevNextNavigation': cookies.prevnextnavigation || config.prevNextNavigation,
-
-			// Boolean indicating whether keyboard shortcuts are active:
-			'shortcuts': true
+			'prevNextNavigation': cookies.prevnextnavigation || config.prevNextNavigation
 		};
 	}
 
@@ -278,75 +269,6 @@ class ClientApp extends React.Component {
 		});
 	}
 
-    /**
-	* Callback invoked when the search input element receives focus.
-	*
-	* @private
-	*/
-	_onSearchFocus = () => {
-		// Whenever the search input element receives focus, we want to disable keyboard shortcuts:
-		this.setState({
-			'shortcuts': false
-		});
-	}
-
-	/**
-	* Callback invoked when the search input element loses focus.
-	*
-	* @private
-	*/
-	_onSearchBlur = () => {
-		// Whenever the search input element loses focus, we can enable keyboard shortcuts:
-		this.setState({
-			'shortcuts': true
-		});
-	}
-
-	/**
-	* Callback invoked when the side menu filter receives focus.
-	*
-	* @private
-	*/
-	_onFilterFocus = () => {
-		// Whenever the side menu filter receives focus, we want to disable keyboard shortcuts:
-		this.setState({
-			'shortcuts': false
-		});
-	}
-
-	/**
-	* Callback invoked when the side menu filter loses focus.
-	*
-	* @private
-	*/
-	_onFilterBlur = () => {
-		// Whenever the side menu filter loses focus, we can enable keyboard shortcuts:
-		this.setState({
-			'shortcuts': true
-		});
-	}
-
-	/**
-	* Callback invoked upon a user press down a key to cycle through available themes
-	*
-	* @private
-	* @param {Object} event - event object
-	* @returns {void}
-	*/
-	_changeTheme = ( event ) => {
-		if ( event.shiftKey && event.key === "A" && this.state.shortcuts ) {
-			var changedTheme;
-			var currentThemeIndex = THEMES.indexOf( this.state.theme )
-			if( currentThemeIndex === THEMES.length - 1 ){
-				changedTheme = THEMES[0]  
-			}
-			else{
-				changedTheme = THEMES[currentThemeIndex + 1]
-			}
-			this._onThemeChange( changedTheme );
-		}
-	};
-
 	/**
 	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
 	*
@@ -382,17 +304,6 @@ class ClientApp extends React.Component {
 				'data': data
 			});
 		}
-		document.addEventListener( "keyup", this._changeTheme );
-	}
-
-	/**
-	* Callback invoked immediately after unmounting a component (i.e., is removed from a tree).
-	*
-	* @private
-	*/
-	componentWillUnmount() {
-		// Clean up event listener
-		document.removeEventListener( "keyup", this._changeTheme );
 	}
 
 	/**
@@ -426,12 +337,6 @@ class ClientApp extends React.Component {
 						onModeChange={ this._onModeChange }
 						onExampleSyntaxChange={ this._onExampleSyntaxChange }
 						onPrevNextNavChange={ this._onPrevNextNavChange }
-
-						shortcuts={ this.state.shortcuts }
-						onSearchFocus={ this._onSearchFocus }
-						onSearchBlur={ this._onSearchBlur }
-						onFilterFocus={ this._onFilterFocus }
-						onFilterBlur={ this._onFilterBlur }
 					/>
 				</HelmetProvider>
 			</BrowserRouter>

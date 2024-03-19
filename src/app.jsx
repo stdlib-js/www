@@ -47,7 +47,7 @@ import routes from './routes.js';
 // VARIABLES //
 
 var RE_INTERNAL_URL = new RegExp( '^'+config.mount );
-var RE_SEARCH_OR_HELP_URL = /(\/search|\/help)\/?/;
+var RE_SEARCH_URL = /\/search\/?/;
 var RE_FORWARD_SLASH = /\//g;
 var RE_PLOT_PKG = /\/plot/;
 
@@ -161,11 +161,14 @@ class App extends React.Component {
 			// Boolean indicating whether to show the side menu:
 			'sideMenu': false,
 
+			// Boolean indicating whether keyboard shortcuts are active:
+			'shortcuts': true,
+
 			// Boolean indicating whether a notification is currently displayed:
 			'notification': props.location.search.indexOf( 'notification' ) >= 0
 		};
 
-		// Previous (non-search/help) location (e.g., used for navigating to previous page after closing search results):
+		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
 		this._prevLocation = config.mount; // default is API docs landing page
 
 		// Create a `ref` to point to a DOM element for resetting focus on page change:
@@ -275,9 +278,9 @@ class App extends React.Component {
 		if ( this.state.query === '' ) {
 			return;
 		}
-		// If we are coming from a non-search/help page, cache the current location...
+		// If we are coming from a non-search page, cache the current location...
 		path = this.props.location.pathname;
-		if ( RE_SEARCH_OR_HELP_URL.test( path ) === false ) {
+		if ( RE_SEARCH_URL.test( path ) === false ) {
 			this._prevLocation = path;
 		}
 		// Resolve a search URL based on the search query:
@@ -288,30 +291,65 @@ class App extends React.Component {
 	}
 
 	/**
-	* Callback invoked upon submitting a search query.
-	*
-	* @private
-	* @returns {void}
-	*/
-	_onHelpOpen = () => {
-		var path = config.mount + this.props.version + '/help';
-
-		// Manually update the history to trigger navigation to the help page:
-		this.props.history.push( path );
-	}
-
-	/**
 	* Callback invoked upon closing search results.
 	*
 	* @private
 	*/
 	_onSearchClose = () => {
-		// Manually update the history to trigger navigation to a previous (non-search/help) page:
+		// Manually update the history to trigger navigation to a previous (non-search) page:
 		this.props.history.push( this._prevLocation );
 
 		// Update the component state:
 		this.setState({
 			'query': '' // reset the search input element
+		});
+	}
+
+	/**
+	* Callback invoked when the search input element receives focus.
+	*
+	* @private
+	*/
+	_onSearchFocus = () => {
+		// Whenever the search input element receives focus, we want to disable keyboard shortcuts:
+		this.setState({
+			'shortcuts': false
+		});
+	}
+
+	/**
+	* Callback invoked when the search input element loses focus.
+	*
+	* @private
+	*/
+	_onSearchBlur = () => {
+		// Whenever the search input element loses focus, we can enable keyboard shortcuts:
+		this.setState({
+			'shortcuts': true
+		});
+	}
+
+	/**
+	* Callback invoked when the side menu filter receives focus.
+	*
+	* @private
+	*/
+	_onFilterFocus = () => {
+		// Whenever the side menu filter receives focus, we want to disable keyboard shortcuts:
+		this.setState({
+			'shortcuts': false
+		});
+	}
+
+	/**
+	* Callback invoked when the side menu filter loses focus.
+	*
+	* @private
+	*/
+	_onFilterBlur = () => {
+		// Whenever the side menu filter loses focus, we can enable keyboard shortcuts:
+		this.setState({
+			'shortcuts': true
 		});
 	}
 
@@ -426,15 +464,13 @@ class App extends React.Component {
 
 				onSearchChange={ this._onSearchChange }
 				onSearchSubmit={ this._onSearchSubmit }
-				onSearchFocus={ this.props.onSearchFocus }
-				onSearchBlur={ this.props.onSearchBlur }
+				onSearchFocus={ this._onSearchFocus }
+				onSearchBlur={ this._onSearchBlur }
 
-				onFilterFocus={ this.props.onFilterFocus }
-				onFilterBlur={ this.props.onFilterBlur }
+				onFilterFocus={ this._onFilterFocus }
+				onFilterBlur={ this._onFilterBlur }
 
 				onVersionChange={ this.props.onVersionChange }
-
-				onHelpOpen={ this._onHelpOpen }
 
 				onAllowSettingsCookiesChange={ this.props.onAllowSettingsCookiesChange }
 				onThemeChange={ this.props.onThemeChange }
@@ -443,7 +479,7 @@ class App extends React.Component {
 				onPrevNextNavChange={ this.props.onPrevNextNavChange }
 
 				sideMenu={ this.state.sideMenu }
-				shortcuts = { this.props.shortcuts }
+
 				allowSettingsCookies={ this.props.allowSettingsCookies }
 				theme={ this.props.theme }
 				mode={ this.props.mode }
@@ -529,7 +565,6 @@ class App extends React.Component {
 					prev={ prev }
 					next={ next }
 					url={ match.url }
-					shortcuts={ this.props.shortcuts }
 					content={ this.props.content }
 					onClick={ this._onReadmeClick }
 				/>
@@ -713,7 +748,6 @@ class App extends React.Component {
 					version={ match.params.version }
 					query={ query }
 					onClose={ this._onSearchClose }
-					shortcuts={ this.props.shortcuts }
 				/>
 			</Fragment>
 		);
@@ -737,7 +771,6 @@ class App extends React.Component {
 				/>
 				<Help
 					onClose={ this._onHelpClose }
-					shortcuts={ this.props.shortcuts }
 				/>
 			</Fragment>
 		);

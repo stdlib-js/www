@@ -18,7 +18,7 @@
 
 // MODULES //
 
-import React, { useEffect, useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import CloseIcon from './../../icons/close.jsx';
 
@@ -30,30 +30,10 @@ import CloseIcon from './../../icons/close.jsx';
 *
 * @private
 * @param {Object} props - component properties
-* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
-* @param {boolean} props.isMenuOpen - boolean indicating whether the settings menu is open or closed
 * @param {Callback} props.onClose - callback to invoke upon a "close" event
 * @returns {ReactElement} React element
 */
-function Head( props ) { 
-	const closeSettings = useCallback(( event ) => {
-		// Close when Escape is clicked when settings menu is open and shortcuts are active
-		if ( event.key === "Escape" && props.shortcuts && props.isMenuOpen ) {
-			props.onClose( event );
-		}
-	}, [props]);
-
-	useEffect(() => {
-		// Add event listener when the component mounts
-		document.addEventListener( "keyup", closeSettings );
-
-		// Cleanup the event listener when the component unmounts
-		return () => {
-			document.removeEventListener( "keyup", closeSettings );
-
-		};
-	}, [closeSettings]);
-
+function Head( props ) {
 	return (
 		<div className="settings-menu-head" >
 			<h1>
@@ -80,7 +60,6 @@ function Head( props ) {
 * @type {Object}
 */
 Head.propTypes = {
-	'isMenuOpen': PropTypes.bool.isRequired,
 	'onClose': PropTypes.func.isRequired
 };
 

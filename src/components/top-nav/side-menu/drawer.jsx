@@ -130,7 +130,6 @@ class SideMenuDrawer extends React.Component {
 	* @param {Callback} props.onVersionChange - callback to invoke upon a change to the selected documentation version
 	* @param {Callback} props.onFilterFocus - callback to invoke when the side menu filter receives focus
 	* @param {Callback} props.onFilterBlur - callback to invoke when the side menu filter loses focus
-	* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 	* @returns {ReactComponent} component
 	*/
 	constructor( props ) {
@@ -693,7 +692,6 @@ class SideMenuDrawer extends React.Component {
 				<Filter
 					onFocus={ this.props.onFilterFocus }
 					onBlur={ this.props.onFilterBlur }
-					shortcuts = { this.props.shortcuts }
 					onChange={ this._onFilterChange }
 					aria-controls="side-menu-list"
 				/>
@@ -832,8 +830,7 @@ SideMenuDrawer.propTypes = {
 	'onToggle': PropTypes.func.isRequired,
 	'onVersionChange': PropTypes.func.isRequired,
 	'onFilterFocus': PropTypes.func.isRequired,
-	'onFilterBlur': PropTypes.func.isRequired,
-	'shortcuts': PropTypes.bool.isRequired
+	'onFilterBlur': PropTypes.func.isRequired
 };
 
 

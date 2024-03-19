@@ -40,7 +40,6 @@ class SideMenuFilter extends React.Component {
 	* @param {Callback} props.onFocus - callback to invoke when the menu filter receives focus
 	* @param {Callback} props.onBlur - callback to invoke when the menu filter loses focus
 	* @param {Callback} props.onChange - callback to invoke upon a change in the filter
-	* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -48,8 +47,6 @@ class SideMenuFilter extends React.Component {
 		this.state = {
 			'filter': ''
 		};
-		// Ref for side menu filter
-		this.filterRef = React.createRef();
 	}
 
 	/**
@@ -77,41 +74,6 @@ class SideMenuFilter extends React.Component {
 			'filter': ''
 		});
 		this.props.onChange( '' );
-	};
-
-	/**
-	* Callback invoked upon a user press down a key to focus the side menu filter
-	*
-	* @private
-	* @param {Object} event - event object
-	* @returns {void}
-	*/
-	_focusSideMenuFilter = ( event ) => {
-		// Focus when shift + F was pressed down while shortcuts are active
-		if ( event.shiftKey && event.key === "F" && this.props.shortcuts ) {
-			this.filterRef.current.focus();
-			event.preventDefault();
-		}
-	};
-
-	/**
-	* Callback invoked immediately after unmounting a component (i.e., is removed from a tree).
-	*
-	* @private
-	*/
-	componentDidMount() {
-		// Add event listener for key press event
-		document.addEventListener( "keydown", this._focusSideMenuFilter );
-	}
-
-	/**
-	* Callback invoked immediately after unmounting a component (i.e., is removed from a tree).
-	*
-	* @private
-	*/
-	componentWillUnmount() {
-		// Clean up event listener
-		document.removeEventListener( "keydown", this._focusSideMenuFilter );
 	}
 
 	/**
@@ -126,7 +88,6 @@ class SideMenuFilter extends React.Component {
 				<input
 					className="side-menu-filter-input"
 					type="text"
-					ref={ this.filterRef }
 					onChange={ this._onFilterChange }
 					onFocus={ this.props.onFocus }
 					onBlur={ this.props.onBlur }
@@ -160,8 +121,7 @@ class SideMenuFilter extends React.Component {
 SideMenuFilter.propTypes = {
 	'onFocus': PropTypes.func.isRequired,
 	'onBlur': PropTypes.func.isRequired,
-	'onChange': PropTypes.func.isRequired,
-	'shortcuts': PropTypes.bool.isRequired
+	'onChange': PropTypes.func.isRequired
 };
 
 

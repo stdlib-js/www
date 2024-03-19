@@ -48,7 +48,6 @@ class PackageMenu extends React.Component {
 	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 	* @param {string} props.version - documentation version
 	* @param {boolean} props.open - boolean indicating whether to expand the menu
-	* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 	* @param {Callback} props.onToggle - callback to invoke upon a change to the package navigation menu
 	* @param {boolean} props.home - boolean indicating whether to link to the main website
 	* @param {boolean} props.docs - boolean indicating whether to link to package documentation
@@ -119,12 +118,12 @@ class PackageMenu extends React.Component {
 					role="menubar"
 				>
 					{ this.props.home ? <Home /> : null }
-					{ this.props.docs ? <Docs pkg={ this.props.pkg } path={ path } shortcuts={ this.props.shortcuts } /> : null }
-					{ this.props.benchmarks ? <Benchmarks pkg={ this.props.pkg } path={ path } shortcuts={ this.props.shortcuts } /> : null }
-					{ this.props.tests ? <Tests pkg={ this.props.pkg } path={ path } shortcuts={ this.props.shortcuts } /> : null }
-					{ this.props.src ? <Source pkg={ this.props.pkg } version={ version } shortcuts={ this.props.shortcuts } /> : null }
+					{ this.props.docs ? <Docs pkg={ this.props.pkg } path={ path } /> : null }
+					{ this.props.benchmarks ? <Benchmarks pkg={ this.props.pkg } path={ path } /> : null }
+					{ this.props.tests ? <Tests pkg={ this.props.pkg } path={ path } /> : null }
+					{ this.props.src ? <Source pkg={ this.props.pkg } version={ version } /> : null }
 					{ this.props.npm ? <NPM pkg={ this.props.pkg } /> : null }
-					{ this.props.typescript ? <TypeScript pkg={ this.props.pkg } version={ this.props.version } shortcuts={ this.props.shortcuts } /> : null }
+					{ this.props.typescript ? <TypeScript pkg={ this.props.pkg } version={ this.props.version } /> : null }
 				</ul>
 			</Fragment>
 		);
@@ -143,7 +142,6 @@ PackageMenu.propTypes = {
 	'pkg': PropTypes.string.isRequired,
 	'version': PropTypes.string.isRequired,
 	'open': PropTypes.bool.isRequired,
-	'shortcuts': PropTypes.bool.isRequired,
 	'onToggle': PropTypes.func.isRequired,
 	'home': PropTypes.bool,
 	'docs': PropTypes.bool,

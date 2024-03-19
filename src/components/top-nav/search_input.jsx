@@ -43,7 +43,6 @@ class SearchInput extends React.Component {
 	* @param {Callback} props.onSubmit - callback to invoke upon a user submitting a search query
 	* @param {Callback} props.onFocus - callback to invoke when search input element receives focus
 	* @param {Callback} props.onBlur - callback to invoke when search input element loses focus
-	* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -52,9 +51,6 @@ class SearchInput extends React.Component {
 			// Boolean indicating whether a search input element is "active" (e.g., is focused or contains a search query):
 			'active': false
 		};
-		// Ref for search input element
-		this.searchRef = React.createRef();
-
 	}
 
 	/**
@@ -75,7 +71,7 @@ class SearchInput extends React.Component {
 	* @returns {void}
 	*/
 	_onKeyUp = ( event ) => {
-		if ( event.key === 'Enter' ) {
+		if ( event.charCode === 13 || event.key === 'Enter' ) {
 			this.props.onSubmit();
 		}
 	}
@@ -113,41 +109,6 @@ class SearchInput extends React.Component {
 	*/
 	_onSubmitClick = () => {
 		this.props.onSubmit();
-	};
-
-	/**
-	* Callback invoked upon a user press down a key to focus the search input element
-	*
-	* @private
-	* @param {Object} event - event object
-	* @returns {void}
-	*/
-	_focusSearch = ( event ) => {
-		// Focus search input element when forward slash is pressed down while shortcuts are active
-		if ( event.key === "/" && this.props.shortcuts ) {
-			this.searchRef.current.focus();
-			event.preventDefault();
-		}
-	};
-
-	/**
-	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
-	*
-	* @private
-	*/
-	componentDidMount() {
-		// Add event listener when the component mounts
-		document.addEventListener( "keydown", this._focusSearch );
-	}
-
-	/**
-	* Callback invoked immediately after unmounting a component (i.e., is removed from a tree).
-	*
-	* @private
-	*/
-	componentWillUnmount() {
-		// Cleanup the event listener when the component unmounts
-		document.removeEventListener( "keydown", this._focusSearch );
 	}
 
 	/**
@@ -164,7 +125,6 @@ class SearchInput extends React.Component {
 					className={ 'top-nav-search ' + ( ( this.state.active || this.props.value ) ? 'top-nav-search-active' : '' ) }
 					placeholder="Search documentation"
 					value={ this.props.value }
-					inputRef={ this.searchRef }
 					type="text"
 					inputProps={{
 						'aria-label': 'search text'
@@ -200,8 +160,7 @@ SearchInput.propTypes = {
 	'onChange': PropTypes.func.isRequired,
 	'onSubmit': PropTypes.func.isRequired,
 	'onFocus': PropTypes.func.isRequired,
-	'onBlur': PropTypes.func.isRequired,
-	'shortcuts': PropTypes.bool.isRequired
+	'onBlur': PropTypes.func.isRequired
 };
 
 

@@ -1143,26 +1143,8 @@ h2 {
 	display: flex;
 }
 
-.readme.help h2 {
-	border-bottom: 0px;
-}
-
 .readme.help h1 span {
 	flex-grow: 1;
-}
-
-.readme.help .keyboard-shortcut {
-	display: flex;
-	margin-bottom: 2em;
-	flex-direction: row;
-	align-items: baseline;
-	justify-content: space-between;
-	border-bottom: 2px solid var(--heading-border-bottom-color);
-
-}
-
-.readme.help .keyboard-shortcut-section {
-	margin-bottom: 5em;
 }
 
 /*

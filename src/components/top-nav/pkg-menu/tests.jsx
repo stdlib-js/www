@@ -18,8 +18,8 @@
 
 // MODULES //
 
-import React, { useEffect, useCallback } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
@@ -32,28 +32,9 @@ import PropTypes from 'prop-types';
 * @param {Object} props - component properties
 * @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @param {string} props.path - package documentation URL
-* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 * @returns {ReactElement} React element
 */
 function Tests( props ) {
-	var history = useHistory();
-	const openTestsPage = useCallback(( event ) => {
-		// Open when 't' was pressed while shortcuts are active
-		if ( !event.shiftKey && event.key === "t" && props.shortcuts ) {
-			history.push( props.path + "/tests" );
-		}
-	}, [props]);
-
-	useEffect(() => {
-		// Add event listener when the component mounts
-		document.addEventListener( "keydown", openTestsPage );
-
-		// Cleanup the event listener when the component unmounts
-		return () => {
-			document.removeEventListener( "keydown", openTestsPage );
-		};
-	}, [openTestsPage]);
-	
 	return (
 		<li key="tests" className="top-nav-item" role="menuitem">
 			<Link to={ props.path+'/tests' } title="Run package tests">tests</Link>
@@ -71,8 +52,7 @@ function Tests( props ) {
 */
 Tests.propTypes = {
 	'pkg': PropTypes.string.isRequired,
-	'path': PropTypes.string.isRequired,
-	'shortcuts': PropTypes.bool.isRequired
+	'path': PropTypes.string.isRequired
 };
 
 

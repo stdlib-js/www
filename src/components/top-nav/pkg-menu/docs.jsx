@@ -18,9 +18,10 @@
 
 // MODULES //
 
-import React, { useEffect, useCallback } from "react";
-import { Link, useHistory } from "react-router-dom";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 // MAIN //
 
@@ -31,29 +32,9 @@ import PropTypes from "prop-types";
 * @param {Object} props - component properties
 * @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @param {string} props.path - package documentation URL
-* @param {boolean} props.shortcuts - boolean indicating whether keyboard shortcuts are active
 * @returns {ReactElement} React element
 */
 function Docs( props ) {
-	var history = useHistory();
-
-	const openDocs = useCallback(( event ) => {
-		// Open when 'p' is pressed down while shortcuts are active
-		if ( event.key === "p" && props.shortcuts ) {
-			history.push( props.path );
-		}
-	}, [props]);
-	
-	useEffect(() => {
-		// Add event listener when the component mounts
-		document.addEventListener( "keydown", openDocs );
-
-		// Cleanup the event listener when the component unmounts
-		return () => {
-			document.removeEventListener( "keydown", openDocs );
-		};
-	}, [openDocs]);
-
 	return (
 		<li key="documentation" className="top-nav-item" role="menuitem">
 			<Link to={ props.path } title="View package documentation">documentation</Link>
@@ -71,8 +52,7 @@ function Docs( props ) {
 */
 Docs.propTypes = {
 	'pkg': PropTypes.string.isRequired,
-	'path': PropTypes.string.isRequired,
-	'shortcuts': PropTypes.bool.isRequired
+	'path': PropTypes.string.isRequired
 };
 
 
