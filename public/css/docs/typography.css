@@ -184,14 +184,12 @@ a:active {
 */
 
 .readme kbd {
-	font-size: 0.6875em;
+	font-size: 1em;
 	font-family: var(--code-font-family);
 
 	color: #555555; /* charcoal */
 
 	line-height: 1em;
-
-	vertical-align: middle;
 }
 
 /*
@@ -336,6 +334,14 @@ a:active {
 
 .readme-feedback-error {
 	color: var(--feedback-error-text-color);
+}
+
+/*
+* Help page.
+*/
+
+.help h1 button.icon-button .icon {
+	fill: var(--theme-text-color);
 }
 
 /*
