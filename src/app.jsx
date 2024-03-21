@@ -40,7 +40,6 @@ import Help from './components/help/index.jsx';
 import ErrorDecoder from './components/error-decoder/index.jsx';
 import TestRunner from './components/runner/test.jsx';
 import BenchmarkRunner from './components/runner/benchmark.jsx';
-import Chat from './components/chat/index.jsx';
 import routes from './routes.js';
 
 
@@ -1003,7 +1002,6 @@ class App extends React.Component {
 				<Footer
 					version={ this.props.version }
 				/>
-				<Chat />
 			</Fragment>
 		);
 	}

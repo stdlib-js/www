@@ -1565,24 +1565,6 @@ button.side-menu-list-item-namespace-icon {
 }
 
 /*
-* Chat.
-*/
-
-.toggle-chat-button {
-	position: fixed;
-	bottom: 16px;
-	right: 16px;
-
-	height: 64px;
-	width: 64px;
-}
-
-.toggle-chat-button .icon {
-	height: 36px;
-	width: 36px;
-}
-
-/*
 * Equations.
 */
 
@@ -1683,10 +1665,6 @@ h1 button.icon-button .icon {
 	}
 
 	.readme-addendum {
-		display: none;
-	}
-
-	.toggle-chat-button {
 		display: none;
 	}
 

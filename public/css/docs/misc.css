@@ -919,60 +919,6 @@ button.side-menu-list-item-namespace-icon:hover {
 }
 
 /*
-* Chat.
-*/
-
-.toggle-chat-button {
-	outline: 0;
-    border: 0;
-
-    background-color: var(--default-button-background-color);
-
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
-
-    /* offset-x | offset-y | blur-radius | spread-radius | color */
-	-webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
-	-moz-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
-	box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
-
-	cursor: pointer;
-}
-
-.toggle-chat-button:hover,
-.toggle-chat-button:focus {
-	background-color: var(--default-button-hover-background-color);
-}
-
-.toggle-chat-button .icon {
-	fill: var(--default-button-text-color);
-}
-
-aside.gitter-chat-embed {
-	border-left: 0;
-
-	-webkit-box-shadow: 0 0 18px 0 rgba(50, 50, 50, 0.3);
-	-moz-box-shadow: 0 0 18px 0 rgba(50, 50, 50, 0.3);
-	box-shadow: 0 0 18px 0 rgba(50, 50, 50, 0.3);
-
-	transition: none;
-}
-
-div.gitter-chat-embed-action-bar {
-	background: #ffffff;
-
-     /* offset-x | offset-y | blur-radius | color */
-	-webkit-box-shadow: 0 0 5px #ced4da;
-	-moz-box-shadow: 0 0 5px #ced4da;
-	box-shadow: 0 0 5px #ced4da;
-
-	justify-content: space-between;
-
-	padding-bottom: 0;
-}
-
-/*
 * Icons.
 */
 
