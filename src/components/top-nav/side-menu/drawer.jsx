@@ -694,6 +694,7 @@ class SideMenuDrawer extends React.Component {
 					onBlur={ this.props.onFilterBlur }
 					onChange={ this._onFilterChange }
 					aria-controls="side-menu-list"
+					filter={ this.state.filter }
 				/>
 				<div className="side-menu-list-wrapper" >
 					<List
