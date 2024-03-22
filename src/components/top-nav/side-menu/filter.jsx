@@ -37,6 +37,7 @@ class SideMenuFilter extends React.Component {
 	* @private
 	* @constructor
 	* @param {Object} props - component properties
+	* @param {string} props.filter - text the user has entered to filter the list of packages displayed in the side menu
 	* @param {Callback} props.onFocus - callback to invoke when the menu filter receives focus
 	* @param {Callback} props.onBlur - callback to invoke when the menu filter loses focus
 	* @param {Callback} props.onChange - callback to invoke upon a change in the filter
@@ -44,9 +45,6 @@ class SideMenuFilter extends React.Component {
 	*/
 	constructor( props ) {
 		super( props );
-		this.state = {
-			'filter': ''
-		};
 	}
 
 	/**
@@ -56,11 +54,7 @@ class SideMenuFilter extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onFilterChange = ( event ) => {
-		var filter = event.target.value;
-		this.props.onChange( filter );
-		this.setState({
-			'filter': filter
-		});
+		this.props.onChange( event.target.value );
 	}
 
 	/**
@@ -70,9 +64,6 @@ class SideMenuFilter extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onResetFilterClick = () => {
-		this.setState({
-			'filter': ''
-		});
 		this.props.onChange( '' );
 	}
 
@@ -91,12 +82,12 @@ class SideMenuFilter extends React.Component {
 					onChange={ this._onFilterChange }
 					onFocus={ this.props.onFocus }
 					onBlur={ this.props.onBlur }
-					value={ this.state.filter }
+					value={ this.props.filter }
 					placeholder="Type here to filter menu..."
 					title="Filter package menu"
 					aria-label="filter menu"
 				/>
-				{ this.state.filter
+				{ this.props.filter
 					? <ClearIcon
 						className="side-menu-filter-clear"
 						title="Clear the current filter"
@@ -119,6 +110,7 @@ class SideMenuFilter extends React.Component {
 * @type {Object}
 */
 SideMenuFilter.propTypes = {
+	'filter': PropTypes.string.isRequired,
 	'onFocus': PropTypes.func.isRequired,
 	'onBlur': PropTypes.func.isRequired,
 	'onChange': PropTypes.func.isRequired
