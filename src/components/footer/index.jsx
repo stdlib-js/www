@@ -45,6 +45,8 @@ function Footer( props ) {
 				<span aria-hidden="true"> / </span>
 				<Link to={ config.mount } title="Documentation">Docs</Link>
 				<span aria-hidden="true"> / </span>
+				<a href={ config.blog } title="Read our blog">Blog</a>
+				<span aria-hidden="true"> / </span>
 				<a href={ config.twitter } title="Follow us on Twitter!">Twitter</a>
 				<span aria-hidden="true"> / </span>
 				<a href={ config.repository } title="Contribute to stdlib">Contribute</a>
