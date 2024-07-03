@@ -456,6 +456,18 @@ server {
     proxy_pass http://127.0.0.1:3001;
   }
 
+  # Define a location directive for redirecting to a community survey:
+  location = /survey {
+    # Redirect to the public form with a `301` Moved Permanently response.
+    #
+    # ## Usage
+    #
+    # Syntax: `return code URL;`
+    #
+    # [1]: http://nginx.org/en/docs/stream/ngx_stream_return_module.html#return
+    return 301 https://docs.google.com/forms/d/e/1FAIpQLSe1MtIYn_WDfiFKGBFBugPC-bJljdQ6k_C1hTIDcb3C91KngA/viewform;
+  }
+
   # Define a root location directive:
   location / {
     # Define files to be used as an index.
