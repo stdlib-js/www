@@ -1,128 +1,160 @@
 {
-    "version": "v1.0.0",
-    "entity": {
-        "type": "organisation",
-        "role": "owner",
-        "name": "stdlib",
-        "email": "kgryte@gmail.com",
-        "phone": "",
-        "description": "stdlib is a standard library with an emphasis on numerical and scientific computation, written in JavaScript (and C) for execution in browsers and Node.js. It provides robust, high-performance libraries for mathematics, statistics, data processing, streams, and more.",
-        "webpageUrl": {
-            "url": "https://stdlib.io",
-            "wellKnown": ""
-        }
-    },
-    "projects": [{
-        "guid": "stdlib",
-        "name": "stdlib",
-        "description": "A standard library for numerical and scientific computing in JavaScript, providing data structures and algorithmic building blocks for data analysis, statistical computing, and machine learning.",
-        "webpageUrl": {
-            "url": "https://stdlib.io"
-        },
-        "repositoryUrl": {
-            "url": "https://github.com/stdlib-js/stdlib",
-            "wellKnown": "https://github.com/stdlib-js/stdlib/blob/develop/.well-known/funding-manifest-urls"
-        },
-        "licenses": ["spdx:Apache-2.0"],
-        "tags": ["javascript", "scientific-computing", "numerical-computation", "nodejs", "web"]
-    }],
-    "funding": {
-        "channels": [
-            {
-                "guid": "opencollective",
-                "type": "payment-provider",
-                "address": "https://opencollective.com/stdlib",
-                "description": "Support stdlib through Open Collective with one-time or recurring contributions."
-            },
-            {
-                "guid": "github-sponsors",
-                "type": "payment-provider",
-                "address": "https://github.com/sponsors/stdlib-js",
-                "description": "Support stdlib through GitHub Sponsors with one-time or recurring contributions."
-            }
-        ],
-        "plans": [
-            {
-                "guid": "backers-plan",
-                "status": "active",
-                "name": "Backers",
-                "description": "Support us with a monthly donation of $5 to help maintain stdlib.",
-                "amount": 5,
-                "currency": "USD",
-                "frequency": "monthly",
-                "channels": ["opencollective", "github-sponsors"]
-            },
-            {
-                "guid": "donors-plan",
-                "status": "active",
-                "name": "Donors",
-                "description": "Support us with a monthly donation of $20 to help maintain and improve stdlib.",
-                "amount": 20,
-                "currency": "USD",
-                "frequency": "monthly",
-                "channels": ["opencollective", "github-sponsors"]
-            },
-            {
-                "guid": "supporters-plan",
-                "status": "active",
-                "name": "Supporters",
-                "description": "Support us with a monthly donation of $100 to help stdlib thrive.",
-                "amount": 100,
-                "currency": "USD",
-                "frequency": "monthly",
-                "channels": ["opencollective", "github-sponsors"]
-            },
-            {
-                "guid": "super-supporters-plan",
-                "status": "active",
-                "name": "Super Supporters",
-                "description": "Support us with a monthly donation of $500 to supercharge stdlib development.",
-                "amount": 500,
-                "currency": "USD",
-                "frequency": "monthly",
-                "channels": ["opencollective", "github-sponsors"]
-            },
-            {
-                "guid": "company-sponsors-bronze-plan",
-                "status": "active",
-                "name": "Company Sponsor: Bronze",
-                "description": "Support us with a monthly donation of $1,000 to ensure the long-term sustainability and continued development of stdlib.",
-                "amount": 1000,
-                "currency": "USD",
-                "frequency": "monthly",
-                "channels": ["opencollective", "github-sponsors"]
-            },
-            {
-                "guid": "company-sponsors-silver-plan",
-                "status": "active",
-                "name": "Company Sponsor: Silver",
-                "description": "Support us with a monthly donation of $2,000 to ensure the long-term sustainability and continued development of stdlib.",
-                "amount": 2000,
-                "currency": "USD",
-                "frequency": "monthly",
-                "channels": ["github-sponsors"]
-            },
-            {
-                "guid": "company-sponsors-gold-plan",
-                "status": "active",
-                "name": "Company Sponsor: Gold",
-                "description": "Support us with a monthly donation of $5,000 to ensure the long-term sustainability and continued development of stdlib.",
-                "amount": 5000,
-                "currency": "USD",
-                "frequency": "monthly",
-                "channels": ["github-sponsors"]
-            },
-            {
-                "guid": "one-time-donation",
-                "status": "active",
-                "name": "One-Time Donation",
-                "description": "Make a one-time donation to support the stdlib project.",
-                "amount": 0,
-                "currency": "USD",
-                "frequency": "one-time",
-                "channels": ["opencollective", "github-sponsors"]
-            }
-        ],
-        "history": []
+  "version": "v1.0.0",
+  "entity": {
+    "type": "organisation",
+    "role": "owner",
+    "name": "stdlib",
+    "email": "kgryte@gmail.com",
+    "phone": "",
+    "description": "stdlib is a standard library with an emphasis on numerical and scientific computation, written in JavaScript (and C) for execution in browsers and Node.js. It provides robust, high-performance libraries for mathematics, statistics, data processing, streams, and more.",
+    "webpageUrl": {
+      "url": "https://stdlib.io",
+      "wellKnown": ""
     }
+  },
+  "projects": [
+    {
+      "guid": "stdlib",
+      "name": "stdlib",
+      "description": "A standard library for numerical and scientific computing in JavaScript, providing data structures and algorithmic building blocks for data analysis, statistical computing, and machine learning.",
+      "webpageUrl": {
+        "url": "https://stdlib.io"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/stdlib-js/stdlib",
+        "wellKnown": "https://github.com/stdlib-js/stdlib/blob/develop/.well-known/funding-manifest-urls"
+      },
+      "licenses": [
+        "spdx:Apache-2.0"
+      ],
+      "tags": [
+        "javascript",
+        "scientific-computing",
+        "numerical-computation",
+        "nodejs",
+        "web"
+      ]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "opencollective",
+        "type": "payment-provider",
+        "address": "https://opencollective.com/stdlib",
+        "description": "Support stdlib through Open Collective with one-time or recurring contributions."
+      },
+      {
+        "guid": "github-sponsors",
+        "type": "payment-provider",
+        "address": "https://github.com/sponsors/stdlib-js",
+        "description": "Support stdlib through GitHub Sponsors with one-time or recurring contributions."
+      }
+    ],
+    "plans": [
+      {
+        "guid": "backers-plan",
+        "status": "active",
+        "name": "Backers",
+        "description": "Support us with a monthly donation of $5 to help maintain stdlib.",
+        "amount": 5,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "opencollective",
+          "github-sponsors"
+        ]
+      },
+      {
+        "guid": "donors-plan",
+        "status": "active",
+        "name": "Donors",
+        "description": "Support us with a monthly donation of $20 to help maintain and improve stdlib.",
+        "amount": 20,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "opencollective",
+          "github-sponsors"
+        ]
+      },
+      {
+        "guid": "supporters-plan",
+        "status": "active",
+        "name": "Supporters",
+        "description": "Support us with a monthly donation of $100 to help stdlib thrive.",
+        "amount": 100,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "opencollective",
+          "github-sponsors"
+        ]
+      },
+      {
+        "guid": "super-supporters-plan",
+        "status": "active",
+        "name": "Super Supporters",
+        "description": "Support us with a monthly donation of $500 to supercharge stdlib development.",
+        "amount": 500,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "opencollective",
+          "github-sponsors"
+        ]
+      },
+      {
+        "guid": "company-sponsors-bronze-plan",
+        "status": "active",
+        "name": "Company Sponsor: Bronze",
+        "description": "Support us with a monthly donation of $1,000 to ensure the long-term sustainability and continued development of stdlib.",
+        "amount": 1000,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "opencollective",
+          "github-sponsors"
+        ]
+      },
+      {
+        "guid": "company-sponsors-silver-plan",
+        "status": "active",
+        "name": "Company Sponsor: Silver",
+        "description": "Support us with a monthly donation of $2,000 to ensure the long-term sustainability and continued development of stdlib.",
+        "amount": 2000,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "github-sponsors"
+        ]
+      },
+      {
+        "guid": "company-sponsors-gold-plan",
+        "status": "active",
+        "name": "Company Sponsor: Gold",
+        "description": "Support us with a monthly donation of $5,000 to ensure the long-term sustainability and continued development of stdlib.",
+        "amount": 5000,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "github-sponsors"
+        ]
+      },
+      {
+        "guid": "one-time-donation",
+        "status": "active",
+        "name": "One-Time Donation",
+        "description": "Make a one-time donation to support the stdlib project.",
+        "amount": 0,
+        "currency": "USD",
+        "frequency": "one-time",
+        "channels": [
+          "opencollective",
+          "github-sponsors"
+        ]
+      }
+    ],
+    "history": []
+  }
 }
